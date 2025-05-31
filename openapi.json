@@ -1,0 +1,497 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "leadping.Api",
+    "description": "leadping API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://api.leadping.ai",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/leads": {
+      "post": {
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Creates a lead.",
+        "operationId": "Leads_CreateExternal_request",
+        "requestBody": {
+          "description": "The lead data submitted by the external system.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Lead was successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A related resource was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Updates an existing lead.",
+        "operationId": "Leads_Update_id_request",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the lead to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The updated lead data.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Lead was successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmploymentType": {
+        "enum": [
+          "Employed",
+          "PartTime",
+          "SelfEmployed",
+          "Contractor",
+          "Unemployed",
+          "Retired",
+          "Student",
+          "Military",
+          "Homemaker",
+          "Disabled",
+          "Other"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "GenderType": {
+        "enum": [
+          "M",
+          "F",
+          "NonBinary",
+          "PreferNotToSay",
+          "Other"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Represents a gender classification used for demographic or identification purposes."
+      },
+      "LeadContact": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "description": "Gets or sets the first name of the lead.",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Gets or sets the last name (surname) of the lead.",
+            "nullable": true
+          },
+          "streetAddress": {
+            "$ref": "#/components/schemas/StreetAddress"
+          },
+          "phone": {
+            "$ref": "#/components/schemas/Phone"
+          },
+          "email": {
+            "type": "string",
+            "description": "Gets or sets the email address of the lead.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the primary contact details for a lead, including name, address, phone, and email."
+      },
+      "LeadMetadata": {
+        "required": [
+          "trustedFormUri"
+        ],
+        "type": "object",
+        "properties": {
+          "utmSource": {
+            "type": "string",
+            "description": "The source of the lead traffic (e.g., \"google\", \"facebook\").",
+            "nullable": true
+          },
+          "utmMedium": {
+            "type": "string",
+            "description": "The medium used to acquire the lead (e.g., \"cpc\", \"email\").",
+            "nullable": true
+          },
+          "utmCampaign": {
+            "type": "string",
+            "description": "The UTM campaign name used for marketing attribution (e.g., \"fall-promo\").",
+            "nullable": true
+          },
+          "referrer": {
+            "type": "string",
+            "description": "The full referring URL or page that originated the lead.",
+            "nullable": true
+          },
+          "landingPage": {
+            "type": "string",
+            "description": "The landing page or form endpoint used to submit the lead.",
+            "nullable": true
+          },
+          "subId": {
+            "type": "string",
+            "description": "A sub-source identifier, often representing a placement or internal variant. May be truncated or character-normalized.",
+            "nullable": true
+          },
+          "pubId": {
+            "type": "string",
+            "description": "A publisher ID representing the partner or platform that supplied the lead.",
+            "nullable": true
+          },
+          "ipAddress": {
+            "type": "string",
+            "description": "The IP address of the user who submitted the lead.",
+            "nullable": true
+          },
+          "userAgent": {
+            "type": "string",
+            "description": "The user agent string from the browser or device used during lead submission.",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Identifier of the lead in an external or third-party system.",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The UTC timestamp when the lead was generated.",
+            "format": "date-time"
+          },
+          "price": {
+            "type": "number",
+            "description": "The monetary value or payout assigned to this lead.",
+            "format": "double",
+            "nullable": true
+          },
+          "trustedFormUri": {
+            "minLength": 1,
+            "type": "string",
+            "description": "A required URI pointing to the TrustedForm or similar consent certificate."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Metadata related to the origin, context, and attribution of a submitted lead."
+      },
+      "LeadProfile": {
+        "type": "object",
+        "properties": {
+          "gender": {
+            "$ref": "#/components/schemas/GenderType"
+          },
+          "height": {
+            "type": "integer",
+            "description": "The lead prospect's height in inches",
+            "format": "int32",
+            "nullable": true
+          },
+          "weight": {
+            "type": "integer",
+            "description": "The lead prospect's weight in pounds",
+            "format": "int32",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "The lead prospect's birth date",
+            "format": "date",
+            "nullable": true
+          },
+          "maritalStatus": {
+            "$ref": "#/components/schemas/MaritalStatusType"
+          },
+          "income": {
+            "type": "integer",
+            "description": "The lead prospect's income in dollars",
+            "format": "int32",
+            "nullable": true
+          },
+          "isHomeowner": {
+            "type": "boolean",
+            "description": "true if the lead prospect is a homeowner",
+            "nullable": true
+          },
+          "monthsAtResidence": {
+            "type": "integer",
+            "description": "How many months has the lead prospect lived at their current residence?",
+            "format": "int32",
+            "nullable": true
+          },
+          "creditScore": {
+            "type": "integer",
+            "description": "The lead prospect's credit rating",
+            "format": "int32",
+            "nullable": true
+          },
+          "hasBankruptcy": {
+            "type": "boolean",
+            "description": "true if the lead prospect experienced bankruptcy in the last 7 years",
+            "nullable": true
+          },
+          "employmentType": {
+            "$ref": "#/components/schemas/EmploymentType"
+          },
+          "numberOfDependents": {
+            "type": "integer",
+            "description": "The lead prospect's number of dependents",
+            "format": "int32",
+            "nullable": true
+          },
+          "hasMedicalCondition": {
+            "type": "boolean",
+            "description": "true if the lead has any pre-existing medical conditions",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeadRequest": {
+        "required": [
+          "metadata"
+        ],
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/LeadMetadata"
+          },
+          "contact": {
+            "$ref": "#/components/schemas/LeadContact"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/LeadProfile"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeadResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the lead record.",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "An optional message returned with the lead, such as confirmation or status details.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the result of a lead submission."
+      },
+      "MaritalStatusType": {
+        "enum": [
+          "Married",
+          "Single",
+          "Widow",
+          "Separated",
+          "Divorced"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "Phone": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "The lead's phone number in required format: +1 followed by 10 digits (e.g. +11234567890)",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/PhoneType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PhoneType": {
+        "enum": [
+          "Mobile",
+          "Landline",
+          "Voip",
+          "TollFree",
+          "ShortCode",
+          "PremiumRate",
+          "Temporary",
+          "Other"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Represents the classification of a phone number for compliance, routing, or message deliverability purposes."
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "StreetAddress": {
+        "type": "object",
+        "properties": {
+          "line1": {
+            "type": "string",
+            "nullable": true
+          },
+          "line2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "additionalInfo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1234abcdef\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
