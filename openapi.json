@@ -16,6 +16,486 @@
     }
   ],
   "paths": {
+    "/automations": {
+      "post": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Creates a new automation for automated SMS sending.",
+        "operationId": "Automations_Create_request",
+        "requestBody": {
+          "description": "The automation details to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutomationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Automation was successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutomationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/automations/{id}": {
+      "put": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Updates an existing automation.",
+        "operationId": "Automations_Update_id_request",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the automation to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The updated automation details.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutomationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Automation was successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutomationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified automation was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Retrieves an automation by ID.",
+        "operationId": "Automations_Get_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the automation to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Automation was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutomationResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified automation was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Deletes an automation.",
+        "operationId": "Automations_Delete_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the automation to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Automation was successfully deleted."
+          },
+          "404": {
+            "description": "The specified automation was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/{id}": {
+      "put": {
+        "tags": [
+          "Businesses"
+        ],
+        "summary": "Updates an existing business.",
+        "operationId": "Businesses_Update_id_request",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the business to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The updated business data.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Businesses was successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified business was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Businesses"
+        ],
+        "summary": "Retrieves a business by its ID.",
+        "operationId": "Businesses_Get_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the business to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Businesses was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified business was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/for-current-user": {
+      "get": {
+        "tags": [
+          "Businesses"
+        ],
+        "summary": "Retrieves a business for the current user.",
+        "operationId": "Businesses_GetForCurrentUser_NoParams",
+        "responses": {
+          "200": {
+            "description": "Business was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified business was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dispositions": {
+      "post": {
+        "tags": [
+          "Dispositions"
+        ],
+        "summary": "Creates a new disposition.",
+        "operationId": "Dispositions_Create_request",
+        "requestBody": {
+          "description": "The disposition data to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DispositionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Disposition was successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DispositionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A related resource was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dispositions/{id}": {
+      "get": {
+        "tags": [
+          "Dispositions"
+        ],
+        "summary": "Retrieves a disposition by its ID.",
+        "operationId": "Dispositions_Get_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the disposition to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Disposition was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DispositionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified disposition was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Dispositions"
+        ],
+        "summary": "Deletes a disposition.",
+        "operationId": "Dispositions_Delete_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the disposition to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Disposition was successfully deleted."
+          },
+          "404": {
+            "description": "The specified disposition was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dispositions/lead/{leadId}": {
+      "get": {
+        "tags": [
+          "Dispositions"
+        ],
+        "summary": "Retrieves all dispositions for a specific lead.",
+        "operationId": "Dispositions_GetByLeadId_leadId",
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "description": "The ID of the lead to get dispositions for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dispositions were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DispositionResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leads": {
       "post": {
         "tags": [
@@ -126,10 +606,549 @@
           }
         }
       }
+    },
+    "/payment-methods/{id}": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Retrieves a Payment method",
+        "operationId": "PaymentMethods_Get_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StripePaymentMethodResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Deletes a payment method from the user",
+        "operationId": "PaymentMethods_Delete_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Retrieves a User",
+        "operationId": "Users_Get_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Updates a user",
+        "operationId": "Users_Update_id_request",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}/paymentmethod": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Retrieves a payment method for a user",
+        "operationId": "Users_GetPaymentMethod_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StripePaymentMethodResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "AutomationRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the automation.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the automation.",
+            "nullable": true
+          },
+          "schedule": {
+            "type": "string",
+            "description": "The schedule for the automation in cron format.",
+            "nullable": true
+          },
+          "fromPhoneNumber": {
+            "type": "string",
+            "description": "The phone number to send the SMS from.",
+            "nullable": true
+          },
+          "toPhoneNumber": {
+            "type": "string",
+            "description": "The phone number to send the SMS to.",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "The message content to send.",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether the automation is active."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request DTO for creating or updating an SMS automation."
+      },
+      "AutomationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the automation.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the automation.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the automation.",
+            "nullable": true
+          },
+          "schedule": {
+            "type": "string",
+            "description": "The schedule for the automation in cron format.",
+            "nullable": true
+          },
+          "fromPhoneNumber": {
+            "type": "string",
+            "description": "The phone number to send the SMS from.",
+            "nullable": true
+          },
+          "toPhoneNumber": {
+            "type": "string",
+            "description": "The phone number to send the SMS to.",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "The message content to send.",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether the automation is active."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the automation was created.",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "When the automation was last updated.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response DTO for SMS automation data."
+      },
+      "BusinessRequest": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "$ref": "#/components/schemas/StreetAddress"
+          },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
+          "vertical": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "ein": {
+            "type": "string",
+            "nullable": true
+          },
+          "isOlderThan90": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "einDocumentUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "phones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdNameValue"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "$ref": "#/components/schemas/StreetAddress"
+          },
+          "vertical": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "ein": {
+            "type": "string",
+            "nullable": true
+          },
+          "isOlderThan90": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "einDocumentUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "phones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdNameValue"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DispositionRequest": {
+        "type": "object",
+        "properties": {
+          "leadId": {
+            "type": "string",
+            "description": "The ID of the lead this disposition is associated with.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of disposition (e.g., \"Call\", \"Text\").",
+            "nullable": true
+          },
+          "outcome": {
+            "type": "string",
+            "description": "The outcome or result of the disposition.",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional notes or comments about the disposition.",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "The timestamp when the disposition occurred.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request model for creating or updating a disposition."
+      },
+      "DispositionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the disposition.",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "description": "The ID of the lead this disposition is associated with.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of disposition (e.g., \"Call\", \"Text\").",
+            "nullable": true
+          },
+          "outcome": {
+            "type": "string",
+            "description": "The outcome or result of the disposition.",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional notes or comments about the disposition.",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "The timestamp when the disposition occurred.",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The timestamp when the disposition was created.",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The timestamp when the disposition was last updated.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response model for disposition data."
+      },
       "EmploymentType": {
         "enum": [
           "Employed",
@@ -158,6 +1177,46 @@
         "type": "string",
         "additionalProperties": false,
         "description": "Represents a gender classification used for demographic or identification purposes."
+      },
+      "IdNamePair": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdNameValue": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "LeadContact": {
         "type": "object",
@@ -474,6 +1533,206 @@
           },
           "additionalInfo": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StripePaymentMethodResponse": {
+        "required": [
+          "brand",
+          "id",
+          "last4"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The Stripe PaymentMethod ID",
+            "nullable": true
+          },
+          "brand": {
+            "type": "string",
+            "description": "The brand of the card (e.g., Visa, MasterCard)",
+            "nullable": true
+          },
+          "last4": {
+            "type": "string",
+            "description": "The last 4 digits of the card number",
+            "nullable": true
+          },
+          "expMonth": {
+            "type": "integer",
+            "description": "The expiration month of the card",
+            "format": "int32"
+          },
+          "expYear": {
+            "type": "integer",
+            "description": "The expiration year of the card",
+            "format": "int32"
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "Whether this payment method is set as the default"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the payment method was created (optional, if available)",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a saved payment method (e.g., card) for user display"
+      },
+      "UserIdentity": {
+        "type": "object",
+        "properties": {
+          "issuer": {
+            "type": "string",
+            "nullable": true
+          },
+          "issuerAssignedId": {
+            "type": "string",
+            "nullable": true
+          },
+          "signInType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRequest": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "description": "This is not a perfect field; a user can have multiple emails...",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingPlan": {
+            "type": "string",
+            "nullable": true
+          },
+          "business": {
+            "$ref": "#/components/schemas/BusinessRequest"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingPlan": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRoles"
+            },
+            "nullable": true
+          },
+          "identities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserIdentity"
+            },
+            "nullable": true
+          },
+          "stripeInfo": {
+            "$ref": "#/components/schemas/UserStripeInfo"
+          },
+          "accountBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "business": {
+            "$ref": "#/components/schemas/IdNamePair"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRoles": {
+        "enum": [
+          "Initialized",
+          "Agent",
+          "Admin",
+          "SuperUser"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "A user can have multiple role types. <para />"
+      },
+      "UserStripeInfo": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultPaymentMethodId": {
+            "type": "string",
+            "description": "Default payment method (usually card) attached to the customer, for billing later.",
             "nullable": true
           }
         },
