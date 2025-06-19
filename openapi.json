@@ -222,7 +222,7 @@
         },
         "responses": {
           "200": {
-            "description": "Businesses was successfully updated.",
+            "description": "Business was successfully updated.",
             "content": {
               "application/json": {
                 "schema": {
@@ -272,7 +272,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Businesses was successfully retrieved.",
+            "description": "Business was successfully retrieved.",
             "content": {
               "application/json": {
                 "schema": {
@@ -294,7 +294,7 @@
         }
       }
     },
-    "/businesses/for-current-user": {
+    "/businesses/me": {
       "get": {
         "tags": [
           "Businesses"
@@ -612,12 +612,13 @@
         "tags": [
           "PaymentMethods"
         ],
-        "summary": "Retrieves a Payment method",
+        "summary": "Retrieves a payment method by its ID.",
         "operationId": "PaymentMethods_Get_id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The ID of the payment method to retrieve.",
             "required": true,
             "schema": {
               "type": "string"
@@ -626,7 +627,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Payment method was successfully retrieved.",
             "content": {
               "application/json": {
                 "schema": {
@@ -636,7 +637,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The specified payment method was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -646,7 +647,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or malformed.",
             "content": {
               "application/json": {
                 "schema": {
@@ -661,12 +662,13 @@
         "tags": [
           "PaymentMethods"
         ],
-        "summary": "Deletes a payment method from the user",
+        "summary": "Deletes a payment method from the user.",
         "operationId": "PaymentMethods_Delete_id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The ID of the payment method to delete.",
             "required": true,
             "schema": {
               "type": "string"
@@ -675,7 +677,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content",
+            "description": "Payment method was successfully deleted.",
             "content": {
               "application/json": {
                 "schema": {
@@ -685,7 +687,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The specified payment method was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -695,7 +697,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or malformed.",
             "content": {
               "application/json": {
                 "schema": {
@@ -712,8 +714,10 @@
         "tags": [
           "Sources"
         ],
+        "summary": "Creates a new source.",
         "operationId": "Sources_Create_request",
         "requestBody": {
+          "description": "The source data to create.",
           "content": {
             "application/json": {
               "schema": {
@@ -724,7 +728,7 @@
         },
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "Source was successfully created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -734,7 +738,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or malformed.",
             "content": {
               "application/json": {
                 "schema": {
@@ -749,6 +753,7 @@
         "tags": [
           "Sources"
         ],
+        "summary": "Retrieves all sources based on the provided query options.",
         "operationId": "Sources_Get_Skip_Take_OrderBy_IncludeCount",
         "parameters": [
           {
@@ -784,7 +789,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Sources were successfully retrieved.",
             "content": {
               "application/json": {
                 "schema": {
@@ -804,11 +809,13 @@
         "tags": [
           "Sources"
         ],
+        "summary": "Updates an existing source.",
         "operationId": "Sources_Update_id_request",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The ID of the source to update.",
             "required": true,
             "schema": {
               "type": "string"
@@ -816,6 +823,7 @@
           }
         ],
         "requestBody": {
+          "description": "The updated source data.",
           "content": {
             "application/json": {
               "schema": {
@@ -826,7 +834,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Source was successfully updated.",
             "content": {
               "application/json": {
                 "schema": {
@@ -836,7 +844,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The specified source was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -851,11 +859,13 @@
         "tags": [
           "Sources"
         ],
+        "summary": "Retrieves a source by its ID.",
         "operationId": "Sources_GetById_id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The ID of the source to retrieve.",
             "required": true,
             "schema": {
               "type": "string"
@@ -864,7 +874,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Source was successfully retrieved.",
             "content": {
               "application/json": {
                 "schema": {
@@ -874,7 +884,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The specified source was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -889,11 +899,13 @@
         "tags": [
           "Sources"
         ],
+        "summary": "Deletes a source.",
         "operationId": "Sources_Delete_id",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The ID of the source to delete.",
             "required": true,
             "schema": {
               "type": "string"
@@ -902,10 +914,10 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Source was successfully deleted."
           },
           "404": {
-            "description": "Not Found",
+            "description": "The specified source was not found.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -928,55 +940,6 @@
       }
     },
     "/users/{id}": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Retrieves a User",
-        "operationId": "Users_Get_id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
       "put": {
         "tags": [
           "Users"
@@ -1066,6 +1029,37 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Retrieves the current user's information",
+        "operationId": "Users_GetForCurrentUser_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
