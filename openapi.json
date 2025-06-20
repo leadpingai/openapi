@@ -1888,6 +1888,14 @@
         "additionalProperties": false,
         "description": "Represents a saved payment method (e.g., card) for user display"
       },
+      "SubscriptionStatus": {
+        "enum": [
+          "Active",
+          "Cancelled"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
       "UserIdentity": {
         "type": "object",
         "properties": {
@@ -1942,6 +1950,13 @@
             "type": "string",
             "nullable": true
           },
+          "subscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "subscriptionStatus": {
+            "$ref": "#/components/schemas/SubscriptionStatus"
+          },
           "business": {
             "$ref": "#/components/schemas/BusinessRequest"
           }
@@ -1987,6 +2002,13 @@
           "billingPlan": {
             "type": "string",
             "nullable": true
+          },
+          "subscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "subscriptionStatus": {
+            "$ref": "#/components/schemas/SubscriptionStatus"
           },
           "roles": {
             "type": "array",
