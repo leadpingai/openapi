@@ -252,46 +252,6 @@
             }
           }
         }
-      },
-      "get": {
-        "tags": [
-          "Businesses"
-        ],
-        "summary": "Retrieves a business by its ID.",
-        "operationId": "Businesses_Get_id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of the business to retrieve.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Business was successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BusinessResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified business was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/businesses/me": {
@@ -1096,6 +1056,46 @@
           }
         }
       }
+    },
+    "/users/details": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Updates the current user's details",
+        "operationId": "Users_UpdateDetails_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1235,7 +1235,7 @@
             "type": "string",
             "nullable": true
           },
-          "isOlderThan90": {
+          "isYoungerThan90": {
             "type": "boolean",
             "nullable": true
           },
@@ -1277,6 +1277,10 @@
             "type": "string",
             "nullable": true
           },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
           "address": {
             "$ref": "#/components/schemas/StreetAddress"
           },
@@ -1292,7 +1296,7 @@
             "type": "string",
             "nullable": true
           },
-          "isOlderThan90": {
+          "isYoungerThan90": {
             "type": "boolean",
             "nullable": true
           },
@@ -1957,6 +1961,19 @@
           "subscriptionStatus": {
             "$ref": "#/components/schemas/SubscriptionStatus"
           },
+          "autoRefillEnabled": {
+            "type": "boolean"
+          },
+          "autoRefillAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "autoRefillTrigger": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
           "business": {
             "$ref": "#/components/schemas/BusinessRequest"
           }
@@ -2030,6 +2047,19 @@
           "accountBalance": {
             "type": "number",
             "format": "double"
+          },
+          "autoRefillEnabled": {
+            "type": "boolean"
+          },
+          "autoRefillAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "autoRefillTrigger": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
           },
           "business": {
             "$ref": "#/components/schemas/IdNamePair"
