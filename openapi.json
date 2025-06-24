@@ -937,6 +937,40 @@
         }
       }
     },
+    "/stripe/webhook": {
+      "post": {
+        "tags": [
+          "Stripe"
+        ],
+        "summary": "Handles incoming Stripe webhook events.",
+        "operationId": "Stripe_Webhook_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/{id}/paymentmethod": {
       "get": {
         "tags": [
@@ -1057,13 +1091,13 @@
         }
       }
     },
-    "/users/details": {
+    "/users/plan": {
       "put": {
         "tags": [
           "Users"
         ],
-        "summary": "Updates the current user's details",
-        "operationId": "Users_UpdateDetails_request",
+        "summary": "Updates the current user's plan info",
+        "operationId": "Users_UpdatePlan_request",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1196,6 +1230,14 @@
         },
         "additionalProperties": false,
         "description": "Response DTO for SMS automation data."
+      },
+      "BillingPlan": {
+        "enum": [
+          "Annual",
+          "Monthly"
+        ],
+        "type": "string",
+        "additionalProperties": false
       },
       "BusinessRequest": {
         "required": [
@@ -1895,7 +1937,7 @@
       "SubscriptionStatus": {
         "enum": [
           "Active",
-          "Cancelled"
+          "Canceled"
         ],
         "type": "string",
         "additionalProperties": false
@@ -1951,12 +1993,7 @@
             "nullable": true
           },
           "billingPlan": {
-            "type": "string",
-            "nullable": true
-          },
-          "subscriptionId": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/BillingPlan"
           },
           "subscriptionStatus": {
             "$ref": "#/components/schemas/SubscriptionStatus"
@@ -2017,12 +2054,7 @@
             "nullable": true
           },
           "billingPlan": {
-            "type": "string",
-            "nullable": true
-          },
-          "subscriptionId": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/BillingPlan"
           },
           "subscriptionStatus": {
             "$ref": "#/components/schemas/SubscriptionStatus"
@@ -2088,6 +2120,13 @@
           "defaultPaymentMethodId": {
             "type": "string",
             "description": "Default payment method (usually card) attached to the customer, for billing later.",
+            "nullable": true
+          },
+          "subscriptionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         },
