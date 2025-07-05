@@ -1130,6 +1130,46 @@
           }
         }
       }
+    },
+    "/users/compliance": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Updates the user's compliance acknowledgement",
+        "operationId": "Users_UpdateCompliance_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1291,6 +1331,9 @@
               "$ref": "#/components/schemas/IdNameValue"
             },
             "nullable": true
+          },
+          "setupStep": {
+            "$ref": "#/components/schemas/BusinessSetupStep"
           }
         },
         "additionalProperties": false
@@ -1352,8 +1395,28 @@
               "$ref": "#/components/schemas/IdNameValue"
             },
             "nullable": true
+          },
+          "setupStep": {
+            "$ref": "#/components/schemas/BusinessSetupStep"
           }
         },
+        "additionalProperties": false
+      },
+      "BusinessSetupStep": {
+        "enum": [
+          "DomainFinding",
+          "DomainOptionsFound",
+          "SiteGenerating",
+          "SiteGenerated",
+          "BrandSubmitted",
+          "BrandApproved",
+          "CampaignSubmitted",
+          "CampaignApproved",
+          "CarrierReviewing",
+          "TenDlcComplete",
+          "Complete"
+        ],
+        "type": "string",
         "additionalProperties": false
       },
       "DispositionRequest": {
@@ -1937,6 +2000,7 @@
       "SubscriptionStatus": {
         "enum": [
           "Active",
+          "Pending",
           "Canceled"
         ],
         "type": "string",
@@ -2013,6 +2077,9 @@
           },
           "business": {
             "$ref": "#/components/schemas/BusinessRequest"
+          },
+          "agreedToLeadPolicy": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -2095,6 +2162,9 @@
           },
           "business": {
             "$ref": "#/components/schemas/IdNamePair"
+          },
+          "agreedToLeadPolicy": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -2136,7 +2206,7 @@
     "securitySchemes": {
       "Bearer": {
         "type": "apiKey",
-        "description": "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1234abcdef\"",
+        "description": "JWT Authorization header using the Bearer scheme. (i.e. \"Bearer 1234abcdef\")",
         "name": "Authorization",
         "in": "header"
       }
