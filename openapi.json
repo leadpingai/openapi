@@ -754,7 +754,7 @@
           "Sources"
         ],
         "summary": "Retrieves all sources based on the provided query options.",
-        "operationId": "Sources_Get_Skip_Take_OrderBy_IncludeCount",
+        "operationId": "Sources_Get_Skip_Take_OrderBy_IncludeCount_Search",
         "parameters": [
           {
             "name": "Skip",
@@ -784,6 +784,13 @@
             "in": "query",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
