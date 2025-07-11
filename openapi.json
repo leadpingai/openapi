@@ -24,7 +24,6 @@
         "summary": "Creates a new automation for automated SMS sending.",
         "operationId": "Automations_Create_request",
         "requestBody": {
-          "description": "The automation details to create.",
           "content": {
             "application/json": {
               "schema": {
@@ -35,7 +34,7 @@
         },
         "responses": {
           "201": {
-            "description": "Automation was successfully created.",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -45,7 +44,78 @@
             }
           },
           "400": {
-            "description": "The request was invalid or malformed.",
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Retrieves all automations.",
+        "operationId": "Automations_GetAll_Skip_Take_OrderBy_IncludeCount_Search",
+        "parameters": [
+          {
+            "name": "Skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Take",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IncludeCount",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AutomationResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -68,7 +138,6 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the automation to update.",
             "required": true,
             "schema": {
               "type": "string"
@@ -76,7 +145,6 @@
           }
         ],
         "requestBody": {
-          "description": "The updated automation details.",
           "content": {
             "application/json": {
               "schema": {
@@ -87,7 +155,7 @@
         },
         "responses": {
           "200": {
-            "description": "Automation was successfully updated.",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -97,7 +165,7 @@
             }
           },
           "400": {
-            "description": "The request was invalid or malformed.",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -107,7 +175,7 @@
             }
           },
           "404": {
-            "description": "The specified automation was not found.",
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -128,7 +196,6 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the automation to retrieve.",
             "required": true,
             "schema": {
               "type": "string"
@@ -137,7 +204,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Automation was successfully retrieved.",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -147,7 +214,7 @@
             }
           },
           "404": {
-            "description": "The specified automation was not found.",
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -168,7 +235,6 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the automation to delete.",
             "required": true,
             "schema": {
               "type": "string"
@@ -177,10 +243,10 @@
         ],
         "responses": {
           "204": {
-            "description": "Automation was successfully deleted."
+            "description": "No Content"
           },
           "404": {
-            "description": "The specified automation was not found.",
+            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -546,6 +612,46 @@
       }
     },
     "/leads/{id}": {
+      "get": {
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Retrieves a lead by ID.",
+        "operationId": "Leads_Get_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the lead to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lead was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "tags": [
           "Leads"
@@ -598,6 +704,49 @@
             "description": "The request was invalid or malformed.",
             "content": {
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Deletes a lead by ID.",
+        "operationId": "Leads_Delete_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the lead to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Lead was successfully deleted."
+          },
+          "404": {
+            "description": "The specified lead was not found.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -946,33 +1095,23 @@
         }
       }
     },
-    "/stripe/webhook": {
-      "post": {
+    "/sources/my": {
+      "get": {
         "tags": [
-          "Stripe"
+          "Sources"
         ],
-        "summary": "Handles incoming Stripe webhook events.",
-        "operationId": "Stripe_Webhook_NoParams",
+        "summary": "Retrieves all sources for the current user.",
+        "operationId": "Sources_GetMySources_NoParams",
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request",
+            "description": "Sources were successfully retrieved.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SourceResponse"
+                  }
                 }
               }
             }
@@ -1753,11 +1892,12 @@
         "additionalProperties": false
       },
       "LeadRequest": {
-        "required": [
-          "metadata"
-        ],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
           "metadata": {
             "$ref": "#/components/schemas/LeadMetadata"
           },
@@ -1775,17 +1915,28 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier for the lead record.",
             "nullable": true
           },
-          "message": {
+          "createdAt": {
             "type": "string",
-            "description": "An optional message returned with the lead, such as confirmation or status details.",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/LeadMetadata"
+          },
+          "contact": {
+            "$ref": "#/components/schemas/LeadContact"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/LeadProfile"
           }
         },
-        "additionalProperties": false,
-        "description": "Represents the result of a lead submission."
+        "additionalProperties": false
       },
       "MaritalStatusType": {
         "enum": [
@@ -2008,8 +2159,9 @@
       },
       "SubscriptionStatus": {
         "enum": [
-          "Active",
           "Pending",
+          "Active",
+          "Overdue",
           "Canceled"
         ],
         "type": "string",
@@ -2206,6 +2358,11 @@
             "items": {
               "type": "string"
             },
+            "nullable": true
+          },
+          "cancelAt": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },
