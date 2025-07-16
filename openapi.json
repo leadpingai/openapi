@@ -2097,12 +2097,14 @@
           "TollFree",
           "ShortCode",
           "PremiumRate",
-          "Temporary",
+          "Masked",
+          "SharedCost",
+          "Fax",
+          "Pager",
           "Other"
         ],
         "type": "string",
-        "additionalProperties": false,
-        "description": "Represents the classification of a phone number for compliance, routing, or message deliverability purposes."
+        "additionalProperties": false
       },
       "ProblemDetails": {
         "type": "object",
@@ -2367,6 +2369,9 @@
           },
           "agreedToLeadPolicy": {
             "type": "boolean"
+          },
+          "agreedToBaa": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -2451,6 +2456,9 @@
             "$ref": "#/components/schemas/IdNamePair"
           },
           "agreedToLeadPolicy": {
+            "type": "boolean"
+          },
+          "agreedToBaa": {
             "type": "boolean"
           }
         },
