@@ -389,6 +389,98 @@
         }
       }
     },
+    "/conversations/my": {
+      "get": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Gets the recent conversations for the current user (max 20).",
+        "operationId": "Conversations_GetConversationsForCurrentUser_maxCount",
+        "parameters": [
+          {
+            "name": "maxCount",
+            "in": "query",
+            "description": "Maximum number of conversations to return (default 20).",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConversationResponse"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConversationResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConversationResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/dispositions": {
       "post": {
         "tags": [
@@ -1565,6 +1657,40 @@
           "Complete"
         ],
         "type": "string",
+        "additionalProperties": false
+      },
+      "ConversationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastSnippet": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastEventAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isUnread": {
+            "type": "boolean"
+          }
+        },
         "additionalProperties": false
       },
       "DispositionRequest": {
