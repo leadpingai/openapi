@@ -85,6 +85,47 @@
         }
       }
     },
+    "/businesses/getall": {
+      "post": {
+        "tags": [
+          "Businesses"
+        ],
+        "summary": "Retrieves all businesses with filtering, searching, and paging options.",
+        "operationId": "Businesses_GetAllWithPagination_options",
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Businesses were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/conversations/my": {
       "get": {
         "tags": [
@@ -544,6 +585,43 @@
         }
       }
     },
+    "/leads/getall/my": {
+      "post": {
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Retrieves all leads for the current user with filtering, searching, and paging options.",
+        "operationId": "Leads_GetAllForCurrentUser_options",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Leads were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeadTableRow"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed."
+          }
+        }
+      }
+    },
     "/payment-methods/{id}": {
       "get": {
         "tags": [
@@ -691,10 +769,10 @@
           "Sources"
         ],
         "summary": "Retrieves all sources based on the provided query options.",
-        "operationId": "Sources_Get_Skip_Take_OrderBy_IncludeCount_Search",
+        "operationId": "Sources_Get_PageSize_ContinuationToken_OrderBy_IncludeCount_Search_SearchFields_Filters_RangeFilters",
         "parameters": [
           {
-            "name": "Skip",
+            "name": "PageSize",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -702,18 +780,20 @@
             }
           },
           {
-            "name": "Take",
+            "name": "ContinuationToken",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           },
           {
             "name": "OrderBy",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/OrderByOption"
+              }
             }
           },
           {
@@ -728,6 +808,36 @@
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "SearchFields",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ExactMatchFilter"
+              }
+            }
+          },
+          {
+            "name": "RangeFilters",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RangeFilter"
+              }
             }
           }
         ],
@@ -879,6 +989,74 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/sources/getall": {
+      "post": {
+        "tags": [
+          "Sources"
+        ],
+        "summary": "Retrieves all sources with filtering, searching, and paging options.",
+        "operationId": "Sources_GetAll_options",
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sources were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed."
+          }
+        }
+      }
+    },
+    "/sources/getall/my": {
+      "post": {
+        "tags": [
+          "Sources"
+        ],
+        "summary": "Retrieves all sources for the current user with filtering, searching, and paging options.",
+        "operationId": "Sources_GetAllForCurrentUser_options",
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sources were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed."
           }
         }
       }
@@ -1157,6 +1335,12 @@
             "type": "string",
             "nullable": true
           },
+          "user": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BusinessStatus"
+          },
           "phone": {
             "type": "string",
             "nullable": true
@@ -1188,12 +1372,19 @@
             "type": "string",
             "nullable": true
           },
+          "domain": {
+            "type": "string",
+            "nullable": true
+          },
           "phones": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/IdNameValue"
             },
             "nullable": true
+          },
+          "site": {
+            "$ref": "#/components/schemas/IdNamePair"
           },
           "setupStep": {
             "$ref": "#/components/schemas/BusinessSetupStep"
@@ -1216,6 +1407,77 @@
           "Complete"
         ],
         "type": "string",
+        "additionalProperties": false
+      },
+      "BusinessStatus": {
+        "enum": [
+          "SettingUp",
+          "SetupCompleted",
+          "Active"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "BusinessTableRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the business.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the business. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "The user associated with the business. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "description": "The phone number of the business. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "description": "The website of the business. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "createdAtDisplay": {
+            "type": "string",
+            "description": "The creation date of the business record. This column is shown as-is in the table.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a row of business data used in a data table."
+      },
+      "BusinessTableRowPagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessTableRow"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "ConversationResponse": {
@@ -1346,6 +1608,20 @@
           "Other"
         ],
         "type": "string",
+        "additionalProperties": false
+      },
+      "ExactMatchFilter": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "object",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "GenderType": {
@@ -1499,6 +1775,11 @@
             "minLength": 1,
             "type": "string",
             "description": "A required URI pointing to the TrustedForm or similar consent certificate."
+          },
+          "userId": {
+            "type": "string",
+            "description": "The user that owns this lead",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -1623,6 +1904,43 @@
         },
         "additionalProperties": false
       },
+      "LeadTableRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the lead.",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "description": "The first name of the lead's contact. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The last name of the lead's contact. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "description": "The phone number of the lead's contact. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the lead's contact. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "createdAtDisplay": {
+            "type": "string",
+            "description": "The creation date of the lead record. This column is shown as-is in the table.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a row of lead data used in a data table, with mapped fields from the contact and lead models."
+      },
       "MaritalStatusType": {
         "enum": [
           "Married",
@@ -1632,6 +1950,19 @@
           "Divorced"
         ],
         "type": "string",
+        "additionalProperties": false
+      },
+      "OrderByOption": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "$ref": "#/components/schemas/SortDirection"
+          }
+        },
         "additionalProperties": false
       },
       "Phone": {
@@ -1692,6 +2023,90 @@
         },
         "additionalProperties": { }
       },
+      "RangeFilter": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "greaterThan": {
+            "type": "object",
+            "nullable": true
+          },
+          "greaterThanOrEqual": {
+            "type": "object",
+            "nullable": true
+          },
+          "lessThan": {
+            "type": "object",
+            "nullable": true
+          },
+          "lessThanOrEqual": {
+            "type": "object",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequestDataOptions": {
+        "type": "object",
+        "properties": {
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderBy": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderByOption"
+            },
+            "nullable": true
+          },
+          "includeCount": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "search": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExactMatchFilter"
+            },
+            "nullable": true
+          },
+          "rangeFilters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RangeFilter"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SortDirection": {
+        "enum": [
+          "Asc",
+          "Desc"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
       "SourceRequest": {
         "required": [
           "name"
@@ -1749,6 +2164,67 @@
             "type": "boolean"
           },
           "apiKey": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SourceTableRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the source.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the source. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the source. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "apiKey": {
+            "type": "string",
+            "description": "The API key of the source. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "createdAtDisplay": {
+            "type": "string",
+            "description": "The creation date of the source record. This column is shown as-is in the table.",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "The status of the source (enabled/disabled). This column is orderable and searchable."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a row of source data used in a data table, with mapped fields from the source model."
+      },
+      "SourceTableRowPagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceTableRow"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "continuationToken": {
             "type": "string",
             "nullable": true
           }
