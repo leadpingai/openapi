@@ -608,10 +608,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/LeadTableRow"
-                  }
+                  "$ref": "#/components/schemas/LeadTableRowPagedResult"
                 }
               }
             }
@@ -847,10 +844,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SourceResponse"
-                  }
+                  "$ref": "#/components/schemas/SourceResponsePagedResult"
                 }
               }
             }
@@ -1471,7 +1465,8 @@
           },
           "totalCount": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "continuationToken": {
             "type": "string",
@@ -1941,6 +1936,32 @@
         "additionalProperties": false,
         "description": "Represents a row of lead data used in a data table, with mapped fields from the contact and lead models."
       },
+      "LeadTableRowPagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LeadTableRow"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "MaritalStatusType": {
         "enum": [
           "Married",
@@ -2170,6 +2191,32 @@
         },
         "additionalProperties": false
       },
+      "SourceResponsePagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceResponse"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "SourceTableRow": {
         "type": "object",
         "properties": {
@@ -2222,7 +2269,8 @@
           },
           "totalCount": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "continuationToken": {
             "type": "string",
