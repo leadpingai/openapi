@@ -1358,10 +1358,6 @@
             "type": "string",
             "nullable": true
           },
-          "isYoungerThan90": {
-            "type": "boolean",
-            "nullable": true
-          },
           "einDocumentUrl": {
             "type": "string",
             "nullable": true
