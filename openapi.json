@@ -85,7 +85,7 @@
         }
       }
     },
-    "/businesses/getall": {
+    "/businesses/all": {
       "post": {
         "tags": [
           "Businesses"
@@ -127,50 +127,49 @@
       }
     },
     "/conversations/my": {
-      "get": {
+      "post": {
         "tags": [
           "Conversations"
         ],
-        "summary": "Gets the recent conversations for the current user (max 20).",
-        "operationId": "Conversations_GetConversationsForCurrentUser_maxCount",
-        "parameters": [
-          {
-            "name": "maxCount",
-            "in": "query",
-            "description": "Maximum number of conversations to return (default 20).",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
+        "summary": "Gets conversations for the current user.",
+        "operationId": "Conversations_GetAllForCurrentUser_requestDataOptions",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ConversationResponse"
-                  }
+                  "$ref": "#/components/schemas/ConversationResponsePagedResult"
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ConversationResponse"
-                  }
+                  "$ref": "#/components/schemas/ConversationResponsePagedResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ConversationResponse"
-                  }
+                  "$ref": "#/components/schemas/ConversationResponsePagedResult"
                 }
               }
             }
@@ -389,6 +388,99 @@
         }
       }
     },
+    "/events/all/my": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Retrieves all events for the current user with filtering, searching, and paging options.",
+        "operationId": "Events_GetAllForCurrentUser_options",
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Events were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/leads/{leadId}": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Retrieves all events for a given lead with filtering, searching, and paging options.",
+        "operationId": "Events_GetAllForLead_leadId_options",
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "description": "The ID of the lead.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Events for the lead were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/leads": {
       "post": {
         "tags": [
@@ -445,8 +537,8 @@
         "tags": [
           "Leads"
         ],
-        "summary": "Retrieves a lead by ID.",
-        "operationId": "Leads_Get_id",
+        "summary": "Retrieves a lead by ID for the current user, ensuring ownership.",
+        "operationId": "Leads_GetForCurrentUser_id",
         "parameters": [
           {
             "name": "id",
@@ -471,6 +563,16 @@
           },
           "404": {
             "description": "The specified lead was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The user does not own this lead.",
             "content": {
               "application/json": {
                 "schema": {
@@ -585,7 +687,7 @@
         }
       }
     },
-    "/leads/getall/my": {
+    "/leads/all/my": {
       "post": {
         "tags": [
           "Leads"
@@ -615,6 +717,254 @@
           },
           "400": {
             "description": "The request was invalid or malformed."
+          }
+        }
+      }
+    },
+    "/notifications/me": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Gets paginated notifications for the current user with advanced filtering and sorting.",
+        "operationId": "Notifications_GetAllForCurrentUser_options",
+        "requestBody": {
+          "description": "Request data options for pagination, filtering, and sorting.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notifications/unread-count": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Gets the count of unread notifications for the current user.",
+        "operationId": "Notifications_GetUnreadCount_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notifications/{id}/mark-read": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Marks a specific notification as read.",
+        "operationId": "Notifications_MarkAsRead_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the notification to mark as read.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notifications/mark-all-read": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Marks all notifications as read for the current user.",
+        "operationId": "Notifications_MarkAllAsRead_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notifications/announcements": {
+      "post": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Gets paginated announcements for the current user.",
+        "operationId": "Notifications_GetAnnouncements_options",
+        "requestBody": {
+          "description": "Request data options for pagination, filtering, and sorting.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         }
       }
@@ -760,96 +1110,6 @@
             }
           }
         }
-      },
-      "get": {
-        "tags": [
-          "Sources"
-        ],
-        "summary": "Retrieves all sources based on the provided query options.",
-        "operationId": "Sources_Get_PageSize_ContinuationToken_OrderBy_IncludeCount_Search_SearchFields_Filters_RangeFilters",
-        "parameters": [
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "ContinuationToken",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "OrderBy",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/OrderByOption"
-              }
-            }
-          },
-          {
-            "name": "IncludeCount",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "Search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "SearchFields",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "Filters",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/ExactMatchFilter"
-              }
-            }
-          },
-          {
-            "name": "RangeFilters",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/RangeFilter"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Sources were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SourceResponsePagedResult"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/sources/{id}": {
@@ -908,7 +1168,7 @@
           "Sources"
         ],
         "summary": "Retrieves a source by its ID.",
-        "operationId": "Sources_GetById_id",
+        "operationId": "Sources_Get_id",
         "parameters": [
           {
             "name": "id",
@@ -987,13 +1247,13 @@
         }
       }
     },
-    "/sources/getall": {
+    "/sources/all": {
       "post": {
         "tags": [
           "Sources"
         ],
         "summary": "Retrieves all sources with filtering, searching, and paging options.",
-        "operationId": "Sources_GetAll_options",
+        "operationId": "Sources_GetAllForAdmin_options",
         "requestBody": {
           "description": "Pagination, filtering, and sorting options.",
           "content": {
@@ -1021,7 +1281,7 @@
         }
       }
     },
-    "/sources/getall/my": {
+    "/sources/all/my": {
       "post": {
         "tags": [
           "Sources"
@@ -1055,26 +1315,88 @@
         }
       }
     },
-    "/sources/my": {
+    "/transactions/{id}": {
       "get": {
         "tags": [
-          "Sources"
+          "Transactions"
         ],
-        "summary": "Retrieves all sources for the current user.",
-        "operationId": "Sources_GetMySources_NoParams",
+        "summary": "Retrieves a transaction by ID for the current user, ensuring ownership.",
+        "operationId": "Transactions_GetForCurrentUser_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the transaction to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Sources were successfully retrieved.",
+            "description": "Transaction was successfully retrieved.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SourceResponse"
-                  }
+                  "$ref": "#/components/schemas/TransactionResponse"
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified transaction was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The user does not own this transaction.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/all/my": {
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Retrieves all transactions for the current user with filtering, searching, and paging options.",
+        "operationId": "Transactions_GetAllForCurrentUser_options",
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transactions were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed."
           }
         }
       }
@@ -1199,18 +1521,68 @@
         }
       }
     },
-    "/users/plan": {
+    "/users/change-billing-plan": {
       "put": {
         "tags": [
           "Users"
         ],
-        "summary": "Updates the current user's plan info",
-        "operationId": "Users_UpdatePlan_request",
+        "summary": "Changes the billing plan for a user (admin can specify user, otherwise current user)",
+        "operationId": "Users_ChangeBillingPlan_request",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRequest"
+                "$ref": "#/components/schemas/ChangeBillingPlanRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/compliance": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Updates the current user's compliance information with setup step validation",
+        "operationId": "Users_UpdateCompliance_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplianceUpdateRequest"
               }
             }
           }
@@ -1265,6 +1637,13 @@
             "minLength": 0,
             "type": "string"
           },
+          "secondaryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/BusinessStatus"
+          },
           "phone": {
             "type": "string",
             "nullable": true
@@ -1292,9 +1671,8 @@
             "type": "boolean",
             "nullable": true
           },
-          "einDocumentUrl": {
-            "type": "string",
-            "nullable": true
+          "einDocument": {
+            "$ref": "#/components/schemas/IdNameValue"
           },
           "phones": {
             "type": "array",
@@ -1329,6 +1707,10 @@
             "type": "string",
             "nullable": true
           },
+          "secondaryName": {
+            "type": "string",
+            "nullable": true
+          },
           "user": {
             "$ref": "#/components/schemas/IdNamePair"
           },
@@ -1358,9 +1740,8 @@
             "type": "string",
             "nullable": true
           },
-          "einDocumentUrl": {
-            "type": "string",
-            "nullable": true
+          "einDocument": {
+            "$ref": "#/components/schemas/IdNameValue"
           },
           "domain": {
             "type": "string",
@@ -1471,6 +1852,50 @@
         },
         "additionalProperties": false
       },
+      "CarrierType": {
+        "enum": [
+          "FixedLine",
+          "Mobile",
+          "Voip",
+          "FixedLineOrMobile",
+          "TollFree",
+          "PremiumRate",
+          "SharedCost",
+          "PersonalNumber",
+          "Pager",
+          "Uan",
+          "Voicemail",
+          "Unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "ChangeBillingPlanRequest": {
+        "type": "object",
+        "properties": {
+          "billingPlan": {
+            "$ref": "#/components/schemas/BillingPlan"
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComplianceUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "compliance": {
+            "$ref": "#/components/schemas/UserCompliance"
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ConversationResponse": {
         "type": "object",
         "properties": {
@@ -1501,6 +1926,32 @@
           },
           "isUnread": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConversationResponsePagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConversationResponse"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1601,6 +2052,59 @@
         "type": "string",
         "additionalProperties": false
       },
+      "EventTableRow": {
+        "type": "object",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAtDisplay": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an event row for data table display with pagination support."
+      },
+      "EventTableRowPagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventTableRow"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ExactMatchFilter": {
         "type": "object",
         "properties": {
@@ -1697,7 +2201,7 @@
       },
       "LeadMetadata": {
         "required": [
-          "trustedFormUri"
+          "trustedFormUrl"
         ],
         "type": "object",
         "properties": {
@@ -1754,7 +2258,8 @@
           "createdAt": {
             "type": "string",
             "description": "The UTC timestamp when the lead was generated.",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "price": {
             "type": "number",
@@ -1762,10 +2267,10 @@
             "format": "double",
             "nullable": true
           },
-          "trustedFormUri": {
+          "trustedFormUrl": {
             "minLength": 1,
             "type": "string",
-            "description": "A required URI pointing to the TrustedForm or similar consent certificate."
+            "description": "A URL pointing to the ActiveProspect TrustedForm certificate. Required."
           },
           "userId": {
             "type": "string",
@@ -1846,7 +2351,8 @@
             "nullable": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents a lead prospect's profile, containing demographic and financial information."
       },
       "LeadRequest": {
         "type": "object",
@@ -1958,6 +2464,18 @@
         },
         "additionalProperties": false
       },
+      "LineType": {
+        "enum": [
+          "Wireline",
+          "Wireless",
+          "VoWiFi",
+          "VoIP",
+          "PrePaidWireless",
+          "Unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
       "MaritalStatusType": {
         "enum": [
           "Married",
@@ -1965,6 +2483,111 @@
           "Widow",
           "Separated",
           "Divorced"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "NotificationPriority": {
+        "enum": [
+          "Low",
+          "Medium",
+          "High",
+          "Critical"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "NotificationTableRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/NotificationType"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/NotificationPriority"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "isRead": {
+            "type": "boolean"
+          },
+          "createdAtDisplay": {
+            "type": "string",
+            "nullable": true
+          },
+          "readAtDisplay": {
+            "type": "string",
+            "nullable": true
+          },
+          "actionUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "actionButtonText": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotificationTableRowPagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationTableRow"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotificationType": {
+        "enum": [
+          "General",
+          "Lead",
+          "Call",
+          "Sms",
+          "Billing",
+          "System",
+          "Success",
+          "Warning",
+          "Error",
+          "Info",
+          "Announcement"
         ],
         "type": "string",
         "additionalProperties": false
@@ -1990,27 +2613,68 @@
             "description": "The lead's phone number in required format: +1 followed by 10 digits (e.g. +11234567890)",
             "nullable": true
           },
-          "type": {
-            "$ref": "#/components/schemas/PhoneType"
+          "lookup": {
+            "$ref": "#/components/schemas/PhoneLookup"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents a phone number associated with an entity, including its type and additional information."
       },
-      "PhoneType": {
-        "enum": [
-          "Mobile",
-          "Landline",
-          "Voip",
-          "TollFree",
-          "ShortCode",
-          "PremiumRate",
-          "Masked",
-          "SharedCost",
-          "Fax",
-          "Pager",
-          "Other"
-        ],
-        "type": "string",
+      "PhoneLookup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "number": {
+            "type": "string",
+            "description": "The phone number that was looked up",
+            "nullable": true
+          },
+          "isValid": {
+            "type": "boolean",
+            "description": "Whether the phone number is valid"
+          },
+          "lineType": {
+            "$ref": "#/components/schemas/LineType"
+          },
+          "carrierType": {
+            "$ref": "#/components/schemas/CarrierType"
+          },
+          "location": {
+            "$ref": "#/components/schemas/PhoneNumberLocation"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents phone information retrieved from a phone number lookup"
+      },
+      "PhoneNumberLocation": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "Typically maps to city",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "ProblemDetails": {
@@ -2187,32 +2851,6 @@
         },
         "additionalProperties": false
       },
-      "SourceResponsePagedResult": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SourceResponse"
-            },
-            "nullable": true
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "continuationToken": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "SourceTableRow": {
         "type": "object",
         "properties": {
@@ -2223,12 +2861,12 @@
           },
           "name": {
             "type": "string",
-            "description": "The name of the source. This column is orderable and searchable.",
+            "description": "The name of the source.",
             "nullable": true
           },
           "description": {
             "type": "string",
-            "description": "The description of the source. This column is orderable and searchable.",
+            "description": "The description of the source.",
             "nullable": true
           },
           "apiKey": {
@@ -2374,20 +3012,243 @@
         "type": "string",
         "additionalProperties": false
       },
+      "TransactionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "string",
+            "description": "Account ID (e.g. UserId)",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "netAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "gatewayFeeAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "gatewayStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "gatewayId": {
+            "type": "string",
+            "description": "Payment gateway provided id (e.g. Stripe Payment Intent ID)",
+            "nullable": true
+          },
+          "platformFeeAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethodDisplay": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionType": {
+            "$ref": "#/components/schemas/TransactionType"
+          },
+          "transactionStatus": {
+            "$ref": "#/components/schemas/TransactionStatus"
+          },
+          "correlationId": {
+            "type": "string",
+            "description": "Id to correlate related records (e.g. LeadId)",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "User ID that created the record",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "description": "User ID that modified the record",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionStatus": {
+        "enum": [
+          "Pending",
+          "Confirmed",
+          "Failed"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "TransactionTableRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the transaction.",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "string",
+            "description": "The account ID associated with the transaction.",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "description": "The lead ID associated with the transaction.",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "description": "The transaction amount.",
+            "format": "double"
+          },
+          "netAmount": {
+            "type": "number",
+            "description": "The net amount after fees.",
+            "format": "double"
+          },
+          "transactionType": {
+            "$ref": "#/components/schemas/TransactionType"
+          },
+          "transactionStatus": {
+            "$ref": "#/components/schemas/TransactionStatus"
+          },
+          "paymentMethodDisplay": {
+            "type": "string",
+            "description": "The payment method display.",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "The transaction description.",
+            "nullable": true
+          },
+          "createdAtDisplay": {
+            "type": "string",
+            "description": "The creation date of the transaction record.",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "The user who created the transaction.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a row of transaction data used in a data table."
+      },
+      "TransactionTableRowPagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionTableRow"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionType": {
+        "enum": [
+          "Debit",
+          "Adjustment",
+          "Deposit"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "TrustedFormCertificate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UserCompliance": {
         "type": "object",
         "properties": {
-          "agreedToTerms": {
+          "acceptedTerms": {
             "type": "boolean"
           },
-          "agreedToSubscription": {
+          "acceptedToSubscription": {
             "type": "boolean"
           },
-          "agreedToBaa": {
+          "acceptedSms": {
             "type": "boolean"
           },
-          "agreedToEmail": {
+          "acceptedBaa": {
             "type": "boolean"
+          },
+          "acceptedEmail": {
+            "type": "boolean"
+          },
+          "trustedFormCertificates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrustedFormCertificate"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2427,7 +3288,6 @@
           },
           "email": {
             "type": "string",
-            "description": "This is not a perfect field; a user can have multiple emails...",
             "nullable": true
           },
           "firstName": {
@@ -2462,7 +3322,7 @@
             "nullable": true
           },
           "business": {
-            "$ref": "#/components/schemas/BusinessRequest"
+            "$ref": "#/components/schemas/IdNamePair"
           },
           "compliance": {
             "$ref": "#/components/schemas/UserCompliance"
