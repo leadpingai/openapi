@@ -85,47 +85,6 @@
         }
       }
     },
-    "/businesses/all": {
-      "post": {
-        "tags": [
-          "Businesses"
-        ],
-        "summary": "Retrieves all businesses with filtering, searching, and paging options.",
-        "operationId": "Businesses_GetAllWithPagination_options",
-        "requestBody": {
-          "description": "Pagination, filtering, and sorting options.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RequestDataOptions"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Businesses were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BusinessTableRowPagedResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/conversations/my": {
       "post": {
         "tags": [
@@ -470,6 +429,90 @@
           },
           "400": {
             "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{eventId}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Retrieves a single event by its ID.",
+        "operationId": "Events_GetById_eventId",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "The ID of the event.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventTableRow"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{eventId}/detail": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Retrieves detailed information about a single event including the full JSON payload.",
+        "operationId": "Events_GetDetailById_eventId",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "The ID of the event.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event details were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDetailResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1315,6 +1358,51 @@
         }
       }
     },
+    "/sources/all/business/{businessId}": {
+      "post": {
+        "tags": [
+          "Sources"
+        ],
+        "summary": "Retrieves all sources for a specific business with filtering, searching, and paging options.",
+        "operationId": "Sources_GetAllForBusiness_businessId_options",
+        "parameters": [
+          {
+            "name": "businessId",
+            "in": "path",
+            "description": "The ID of the business.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sources were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed."
+          }
+        }
+      }
+    },
     "/transactions/{id}": {
       "get": {
         "tags": [
@@ -1401,23 +1489,13 @@
         }
       }
     },
-    "/users/{id}/paymentmethod": {
+    "/users/me/paymentmethod": {
       "get": {
         "tags": [
           "Users"
         ],
-        "summary": "Retrieves a payment method for a user",
-        "operationId": "Users_GetPaymentMethod_id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "summary": "Retrieves the current user's payment method",
+        "operationId": "Users_GetPaymentMethodForCurrentUser_NoParams",
         "responses": {
           "200": {
             "description": "OK",
@@ -1425,16 +1503,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StripePaymentMethodResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1789,69 +1857,6 @@
         "type": "string",
         "additionalProperties": false
       },
-      "BusinessTableRow": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique identifier of the business.",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the business. This column is orderable and searchable.",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "description": "The user associated with the business. This column is orderable and searchable.",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "description": "The phone number of the business. This column is orderable and searchable.",
-            "nullable": true
-          },
-          "website": {
-            "type": "string",
-            "description": "The website of the business. This column is orderable and searchable.",
-            "nullable": true
-          },
-          "createdAtDisplay": {
-            "type": "string",
-            "description": "The creation date of the business record. This column is shown as-is in the table.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Represents a row of business data used in a data table."
-      },
-      "BusinessTableRowPagedResult": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BusinessTableRow"
-            },
-            "nullable": true
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "continuationToken": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CarrierType": {
         "enum": [
           "FixedLine",
@@ -2052,9 +2057,57 @@
         "type": "string",
         "additionalProperties": false
       },
+      "EventDetailResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "eventType": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondaryEventType": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
+          "leadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullPayload": {
+            "type": "string",
+            "description": "The full event payload as JSON string for generic display",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "EventTableRow": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the event.",
+            "nullable": true
+          },
           "eventType": {
             "type": "string",
             "nullable": true
@@ -2432,6 +2485,16 @@
           "createdAtDisplay": {
             "type": "string",
             "description": "The creation date of the lead record. This column is shown as-is in the table.",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "description": "The name of the business associated with this lead. This column is orderable and searchable.",
+            "nullable": true
+          },
+          "sourceName": {
+            "type": "string",
+            "description": "The name of the source associated with this lead. This column is orderable and searchable.",
             "nullable": true
           }
         },
@@ -2813,6 +2876,10 @@
           "apiKey": {
             "type": "string",
             "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2847,6 +2914,12 @@
           "apiKey": {
             "type": "string",
             "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
+          "business": {
+            "$ref": "#/components/schemas/IdNamePair"
           }
         },
         "additionalProperties": false
@@ -2882,6 +2955,17 @@
           "enabled": {
             "type": "boolean",
             "description": "The status of the source (enabled/disabled). This column is orderable and searchable."
+          },
+          "user": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
+          "business": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
+          "businessId": {
+            "type": "string",
+            "description": "The business ID associated with this source.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
