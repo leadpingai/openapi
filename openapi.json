@@ -16,6 +16,276 @@
     }
   ],
   "paths": {
+    "/activities/all/my": {
+      "post": {
+        "tags": [
+          "Activities"
+        ],
+        "summary": "Gets all activities for current user.",
+        "operationId": "Activities_GetAllForCurrentUser_options",
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activities were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/activities/all": {
+      "post": {
+        "tags": [
+          "Activities"
+        ],
+        "summary": "Gets all activities for admin.",
+        "operationId": "Activities_GetAllForAdmin_options",
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activities were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/activities/conversations/{conversationId}": {
+      "post": {
+        "tags": [
+          "Activities"
+        ],
+        "summary": "Gets all activities for a conversation.",
+        "operationId": "Activities_GetAllForConversation_conversationId_options",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "description": "The ID of the conversation.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activities for the conversation were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/activities/leads/{leadId}": {
+      "post": {
+        "tags": [
+          "Activities"
+        ],
+        "summary": "Gets all activities for a lead.",
+        "operationId": "Activities_GetAllForLead_leadId_options",
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "description": "The ID of the lead.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Activities for the lead were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityTableRowPagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/activities/{activityId}": {
+      "get": {
+        "tags": [
+          "Activities"
+        ],
+        "summary": "Gets activity by ID.",
+        "operationId": "Activities_GetById_activityId",
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "The ID of the activity.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityTableRow"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Activity was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/activities/{activityId}/detail": {
+      "get": {
+        "tags": [
+          "Activities"
+        ],
+        "summary": "Gets activity details by ID.",
+        "operationId": "Activities_GetDetailById_activityId",
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "description": "The ID of the activity.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activity details were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityDetailResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Activity was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/businesses/me": {
       "get": {
         "tags": [
@@ -92,6 +362,108 @@
         ],
         "summary": "Gets conversations for the current user.",
         "operationId": "Conversations_GetAllForCurrentUser_requestDataOptions",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationResponsePagedResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationResponsePagedResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationResponsePagedResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/conversations/lead/{leadId}": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Gets conversations for a specific lead.",
+        "operationId": "Conversations_GetConversationsByLead_leadId_requestDataOptions",
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "description": "The lead ID to get conversations for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -336,183 +708,6 @@
           },
           "404": {
             "description": "The specified lead was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/events/all/my": {
-      "post": {
-        "tags": [
-          "Events"
-        ],
-        "summary": "Gets all events for current user.",
-        "operationId": "Events_GetAllForCurrentUser_options",
-        "requestBody": {
-          "description": "Pagination, filtering, and sorting options.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RequestDataOptions"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Events were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventTableRowPagedResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/events/leads/{leadId}": {
-      "post": {
-        "tags": [
-          "Events"
-        ],
-        "summary": "Gets all events for lead.",
-        "operationId": "Events_GetAllForLead_leadId_options",
-        "parameters": [
-          {
-            "name": "leadId",
-            "in": "path",
-            "description": "The ID of the lead.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Pagination, filtering, and sorting options.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RequestDataOptions"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Events for the lead were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventTableRowPagedResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/events/{eventId}": {
-      "get": {
-        "tags": [
-          "Events"
-        ],
-        "summary": "Gets event by ID.",
-        "operationId": "Events_GetById_eventId",
-        "parameters": [
-          {
-            "name": "eventId",
-            "in": "path",
-            "description": "The ID of the event.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Event was successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventTableRow"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Event was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/events/{eventId}/detail": {
-      "get": {
-        "tags": [
-          "Events"
-        ],
-        "summary": "Gets event details by ID.",
-        "operationId": "Events_GetDetailById_eventId",
-        "parameters": [
-          {
-            "name": "eventId",
-            "in": "path",
-            "description": "The ID of the event.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Event details were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDetailResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Event was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1290,40 +1485,6 @@
         }
       }
     },
-    "/sources/all": {
-      "post": {
-        "tags": [
-          "Sources"
-        ],
-        "summary": "Gets all sources for admin.",
-        "operationId": "Sources_GetAllForAdmin_options",
-        "requestBody": {
-          "description": "Pagination, filtering, and sorting options.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RequestDataOptions"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Sources were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SourceTableRowPagedResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed."
-          }
-        }
-      }
-    },
     "/sources/all/my": {
       "post": {
         "tags": [
@@ -1682,6 +1843,149 @@
   },
   "components": {
     "schemas": {
+      "ActivityDetailResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "activityType": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "conversationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullPayload": {
+            "type": "string",
+            "description": "The full activity payload as JSON string for generic display",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityTableRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the activity.",
+            "nullable": true
+          },
+          "activityType": {
+            "type": "string",
+            "description": "The type of activity.",
+            "nullable": true
+          },
+          "activityCategory": {
+            "type": "string",
+            "description": "The category of activity.",
+            "nullable": true
+          },
+          "conversationId": {
+            "type": "string",
+            "description": "The conversation ID.",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "description": "The lead ID.",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of the activity.",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "description": "The direction of the activity.",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the activity.",
+            "nullable": true
+          },
+          "createdAtDisplay": {
+            "type": "string",
+            "description": "Formatted creation date for display.",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the activity was created.",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Who created the activity.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an activity row for data table display with pagination support."
+      },
+      "ActivityTableRowPagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityTableRow"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "BillingPlan": {
         "enum": [
           "Annual",
@@ -1931,6 +2235,9 @@
           },
           "isUnread": {
             "type": "boolean"
+          },
+          "phoneNumber": {
+            "$ref": "#/components/schemas/IdNameValue"
           }
         },
         "additionalProperties": false
@@ -2057,107 +2364,6 @@
         "type": "string",
         "additionalProperties": false
       },
-      "EventDetailResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "eventType": {
-            "type": "string",
-            "nullable": true
-          },
-          "secondaryEventType": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "user": {
-            "$ref": "#/components/schemas/IdNamePair"
-          },
-          "leadId": {
-            "type": "string",
-            "nullable": true
-          },
-          "fullPayload": {
-            "type": "string",
-            "description": "The full event payload as JSON string for generic display",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "EventTableRow": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique identifier of the event.",
-            "nullable": true
-          },
-          "eventType": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAtDisplay": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdBy": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Represents an event row for data table display with pagination support."
-      },
-      "EventTableRowPagedResult": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EventTableRow"
-            },
-            "nullable": true
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "continuationToken": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "ExactMatchFilter": {
         "type": "object",
         "properties": {
@@ -2166,8 +2372,7 @@
             "nullable": true
           },
           "value": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           }
         },
         "additionalProperties": false
@@ -2775,20 +2980,16 @@
             "nullable": true
           },
           "greaterThan": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "greaterThanOrEqual": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "lessThan": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           },
           "lessThanOrEqual": {
-            "type": "object",
-            "nullable": true
+            "type": "object"
           }
         },
         "additionalProperties": false
@@ -3547,9 +3748,36 @@
       }
     }
   },
-  "security": [
+  "tags": [
     {
-      "Bearer": [ ]
+      "name": "Activities"
+    },
+    {
+      "name": "Businesses"
+    },
+    {
+      "name": "Conversations"
+    },
+    {
+      "name": "Dispositions"
+    },
+    {
+      "name": "Leads"
+    },
+    {
+      "name": "Notifications"
+    },
+    {
+      "name": "PaymentMethods"
+    },
+    {
+      "name": "Sources"
+    },
+    {
+      "name": "Transactions"
+    },
+    {
+      "name": "Users"
     }
   ]
 }
