@@ -286,6 +286,56 @@
         }
       }
     },
+    "/activities/conversations/{conversationId}/notes": {
+      "post": {
+        "tags": [
+          "Activities"
+        ],
+        "summary": "Creates a note activity for a conversation.",
+        "operationId": "Activities_CreateNote_conversationId_request",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNoteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityTableRow"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/businesses/me": {
       "get": {
         "tags": [
@@ -338,6 +388,500 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BusinessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/me/options": {
+      "get": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_GetSwitchOptions_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BusinessSwitchOption"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/me/switch": {
+      "post": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_SwitchCurrentBusiness_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessSwitchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/me/users": {
+      "get": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_GetCurrentBusinessUsers_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BusinessUserTableRow"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_AddCurrentBusinessUser_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/me/users/{userId}": {
+      "put": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_ChangeCurrentBusinessUserRole_userId_request",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_RemoveCurrentBusinessUser_userId",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/me/invitations": {
+      "get": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_GetCurrentBusinessInvitations_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BusinessInvitationTableRow"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_CreateCurrentBusinessInvitation_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessInvitationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessInvitationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/me/invitations/{invitationId}/resend": {
+      "post": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_ResendCurrentBusinessInvitation_invitationId",
+        "parameters": [
+          {
+            "name": "invitationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessInvitationResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessInvitationResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessInvitationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/me/invitations/{invitationId}": {
+      "delete": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_RevokeCurrentBusinessInvitation_invitationId",
+        "parameters": [
+          {
+            "name": "invitationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/invitations/token/{token}": {
+      "get": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_GetInvitationByToken_token",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessInvitationResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/businesses/invitations/accept": {
+      "post": {
+        "tags": [
+          "Businesses"
+        ],
+        "operationId": "Businesses_AcceptInvitation_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptBusinessInvitationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessInvitationResponse"
                 }
               }
             }
@@ -600,6 +1144,64 @@
       }
     },
     "/dispositions/{id}": {
+      "put": {
+        "tags": [
+          "Dispositions"
+        ],
+        "summary": "Updates a disposition.",
+        "operationId": "Dispositions_Update_id_request",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DispositionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DispositionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "tags": [
           "Dispositions"
@@ -719,13 +1321,187 @@
         }
       }
     },
+    "/dispositions/lead/{leadId}/export": {
+      "get": {
+        "tags": [
+          "Dispositions"
+        ],
+        "operationId": "Dispositions_ExportByLeadId_leadId",
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DispositionExportResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/e2e/auth/login": {
+      "post": {
+        "tags": [
+          "E2E"
+        ],
+        "operationId": "E2E_Login_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/E2ELoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/E2ELoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/E2ELoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/E2ELoginResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/E2ELoginResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/E2ELoginResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/e2e/reset": {
+      "post": {
+        "tags": [
+          "E2E"
+        ],
+        "operationId": "E2E_Reset_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/e2e/seed": {
+      "post": {
+        "tags": [
+          "E2E"
+        ],
+        "operationId": "E2E_Seed_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/e2e/health": {
+      "get": {
+        "tags": [
+          "E2E"
+        ],
+        "operationId": "E2E_Health_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/E2EHealthResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/E2EHealthResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/E2EHealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "operationId": "Health_Get_NoParams",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/leads": {
       "post": {
         "tags": [
           "Leads"
         ],
         "summary": "Creates a lead externally.",
-        "operationId": "Leads_CreateExternal_request",
+        "operationId": "Leads_CreateExternal_request_X-Leadping-Source-Id_X-Leadping-Source-Key",
+        "parameters": [
+          {
+            "name": "X-Leadping-Source-Id",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Leadping-Source-Key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "The lead data submitted by the external system.",
           "content": {
@@ -759,6 +1535,105 @@
           },
           "400": {
             "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leads/intake": {
+      "post": {
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Creates a lead externally using a flat, source-authenticated intake payload.",
+        "operationId": "Leads_CreateIntake_request_X-Leadping-Source-Id_X-Leadping-Source-Key",
+        "parameters": [
+          {
+            "name": "X-Leadping-Source-Id",
+            "in": "header",
+            "description": "The Leadping source id supplied in the X-Leadping-Source-Id header.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Leadping-Source-Key",
+            "in": "header",
+            "description": "The source API key supplied in the X-Leadping-Source-Key header.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The common lead fields submitted by the external system.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadIntakeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
@@ -1564,6 +2439,123 @@
         }
       }
     },
+    "/suppressions": {
+      "post": {
+        "tags": [
+          "Suppressions"
+        ],
+        "operationId": "Suppressions_Suppress_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuppressionEntryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuppressionEntryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/suppressions/release": {
+      "post": {
+        "tags": [
+          "Suppressions"
+        ],
+        "operationId": "Suppressions_Release_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuppressionEntryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuppressionEntryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/suppressions/check": {
+      "post": {
+        "tags": [
+          "Suppressions"
+        ],
+        "operationId": "Suppressions_Check_request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuppressionEntryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuppressionCheckResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/transactions/{id}": {
       "get": {
         "tags": [
@@ -1646,6 +2638,73 @@
           },
           "400": {
             "description": "The request was invalid or malformed."
+          }
+        }
+      }
+    },
+    "/usage/all/my": {
+      "post": {
+        "tags": [
+          "Usage"
+        ],
+        "operationId": "Usage_GetAllForCurrentBusiness_options",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDataOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageLedgerTableRowPagedResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/summary/my": {
+      "get": {
+        "tags": [
+          "Usage"
+        ],
+        "operationId": "Usage_GetSummaryForCurrentBusiness_periodStart_periodEnd",
+        "parameters": [
+          {
+            "name": "periodStart",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "periodEnd",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageSummaryResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -1843,6 +2902,159 @@
   },
   "components": {
     "schemas": {
+      "AcceptBusinessInvitationRequest": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivationDomainOption": {
+        "type": "object",
+        "properties": {
+          "domainName": {
+            "type": "string",
+            "nullable": true
+          },
+          "whyItFits": {
+            "type": "string",
+            "nullable": true
+          },
+          "industryRelevance": {
+            "type": "string",
+            "nullable": true
+          },
+          "trustConcerns": {
+            "type": "string",
+            "nullable": true
+          },
+          "estimatedAnnualCost": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "availabilityStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "recommended": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivationLaunchReviewStatus": {
+        "enum": [
+          "NotReady",
+          "Pending",
+          "Approved",
+          "NotRequired",
+          "Blocked"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "ActivationOnboardingStatus": {
+        "enum": [
+          "Draft",
+          "Submitted",
+          "Failed"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "ActivationPaymentStatus": {
+        "enum": [
+          "PaymentMethodPending",
+          "PaymentMethodConfirmed",
+          "Failed"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "ActivationSubscriptionStatus": {
+        "enum": [
+          "Pending",
+          "Active",
+          "Failed",
+          "Canceled"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "ActivationTelephonyStatus": {
+        "enum": [
+          "NotStarted",
+          "ProvisioningPending",
+          "PartiallyProvisioned",
+          "Ready",
+          "Failed",
+          "BlockedRequiresOperatorAction"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "ActivationTimelineEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "details": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "actorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "actorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "failureReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "actionUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
       "ActivityDetailResponse": {
         "type": "object",
         "properties": {
@@ -1860,8 +3072,7 @@
             "nullable": true
           },
           "activityType": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/ActivityType"
           },
           "activityCategory": {
             "type": "string",
@@ -1887,8 +3098,7 @@
             "nullable": true
           },
           "status": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/ActivityStatus"
           },
           "fullPayload": {
             "type": "string",
@@ -1896,6 +3106,17 @@
             "nullable": true
           }
         },
+        "additionalProperties": false
+      },
+      "ActivityStatus": {
+        "enum": [
+          "Pending",
+          "InProgress",
+          "Completed",
+          "Failed",
+          "Cancelled"
+        ],
+        "type": "string",
         "additionalProperties": false
       },
       "ActivityTableRow": {
@@ -1907,9 +3128,7 @@
             "nullable": true
           },
           "activityType": {
-            "type": "string",
-            "description": "The type of activity.",
-            "nullable": true
+            "$ref": "#/components/schemas/ActivityType"
           },
           "activityCategory": {
             "type": "string",
@@ -1937,13 +3156,34 @@
             "nullable": true
           },
           "status": {
+            "$ref": "#/components/schemas/ActivityTimelineStatus"
+          },
+          "statusReason": {
             "type": "string",
-            "description": "The status of the activity.",
             "nullable": true
           },
-          "createdAtDisplay": {
+          "isWarmup": {
+            "type": "boolean"
+          },
+          "trafficType": {
+            "$ref": "#/components/schemas/SmsTrafficType"
+          },
+          "scheduledFor": {
             "type": "string",
-            "description": "Formatted creation date for display.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scheduledReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "canceledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cancelReason": {
+            "type": "string",
             "nullable": true
           },
           "createdAt": {
@@ -1986,12 +3226,538 @@
         },
         "additionalProperties": false
       },
+      "ActivityTimelineStatus": {
+        "enum": [
+          "Pending",
+          "InProgress",
+          "Completed",
+          "Cancelled",
+          "Scheduled",
+          "Queued",
+          "Sending",
+          "Sent",
+          "Received",
+          "Delivered",
+          "Undeliverable",
+          "OptedOut",
+          "Blocked",
+          "Initiated",
+          "Ringing",
+          "Active",
+          "Ended",
+          "Missed",
+          "Voicemail",
+          "Failed",
+          "Canceled"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "ActivityType": {
+        "enum": [
+          "Message",
+          "Sms",
+          "Mms",
+          "Call",
+          "Voicemail",
+          "Note",
+          "LeadCreated",
+          "LeadUpdated",
+          "Notification",
+          "Payment"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "BillableUnit": {
+        "enum": [
+          "SmsSegment",
+          "MmsMessage",
+          "EmailMessage",
+          "VoiceMinute",
+          "PhoneNumberMonth",
+          "WarmupSmsSegment",
+          "WarmupVoiceMinute",
+          "WebsiteSetup",
+          "DomainRegistration",
+          "TenDlcApplication",
+          "IntegrationAction",
+          "AutomationRun"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
       "BillingPlan": {
         "enum": [
           "Annual",
           "Monthly"
         ],
         "type": "string",
+        "additionalProperties": false
+      },
+      "BusinessActivationState": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/CustomerActivationStatus"
+          },
+          "onboardingStatus": {
+            "$ref": "#/components/schemas/ActivationOnboardingStatus"
+          },
+          "paymentStatus": {
+            "$ref": "#/components/schemas/ActivationPaymentStatus"
+          },
+          "billingSubscriptionStatus": {
+            "$ref": "#/components/schemas/ActivationSubscriptionStatus"
+          },
+          "launchReviewStatus": {
+            "$ref": "#/components/schemas/ActivationLaunchReviewStatus"
+          },
+          "controlledLaunch": {
+            "type": "boolean"
+          },
+          "telephonyStatus": {
+            "$ref": "#/components/schemas/ActivationTelephonyStatus"
+          },
+          "websiteStatus": {
+            "$ref": "#/components/schemas/WebsiteLifecycleStatus"
+          },
+          "tenDlcStatus": {
+            "$ref": "#/components/schemas/TenDlcApplicationStatus"
+          },
+          "customerFacingStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "nextAdminAction": {
+            "type": "string",
+            "nullable": true
+          },
+          "needsAdminReview": {
+            "type": "boolean"
+          },
+          "requiresOperatorAction": {
+            "type": "boolean"
+          },
+          "paymentMethodProviderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentSetupIntentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethodConfirmedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "subscriptionProviderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "subscriptionInvoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "subscriptionPendingAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "subscriptionActiveAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "launchReviewRequestedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "launchApprovedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "telephonyProvisioningStartedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "telephonyPartiallyProvisionedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "telephonyReadyAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "telephonyRetryCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "telephonyLastAttemptAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "telephonyFailureStep": {
+            "type": "string",
+            "nullable": true
+          },
+          "telephonyFailureReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "telephonyProviderCorrelationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastProviderError": {
+            "type": "string",
+            "nullable": true
+          },
+          "failureReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "failedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "activatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "completedTransitionKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "telephonyProvisioningSteps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TelephonyProvisioningStepState"
+            },
+            "nullable": true
+          },
+          "industry": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "targetAudience": {
+            "type": "string",
+            "nullable": true
+          },
+          "offer": {
+            "type": "string",
+            "nullable": true
+          },
+          "websiteNeeds": {
+            "type": "string",
+            "nullable": true
+          },
+          "serviceArea": {
+            "type": "string",
+            "nullable": true
+          },
+          "complianceNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "domainOptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivationDomainOption"
+            },
+            "nullable": true
+          },
+          "selectedDomain": {
+            "type": "string",
+            "nullable": true
+          },
+          "domainApprovedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "domainApprovedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "domainPurchaseProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "domainPurchaseResult": {
+            "type": "string",
+            "nullable": true
+          },
+          "domainPurchaseError": {
+            "type": "string",
+            "nullable": true
+          },
+          "websiteUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "deploymentUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "cloudflareProjectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "cloudflareZoneId": {
+            "type": "string",
+            "nullable": true
+          },
+          "websiteFailureReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "manualBypassReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenDlcDraft": {
+            "$ref": "#/components/schemas/TenDlcApplicationDraft"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivationTimelineEvent"
+            },
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessCompliancePolicy": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "allowedStates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "allowedProducts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "requireLeadState": {
+            "type": "boolean"
+          },
+          "requireAgentLicenseState": {
+            "type": "boolean"
+          },
+          "requireProduct": {
+            "type": "boolean"
+          },
+          "requireTrustedFormForAutomations": {
+            "type": "boolean"
+          },
+          "requireSourceComplianceApproval": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessInvitationRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/BusinessUserRole"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessInvitationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/BusinessUserRole"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BusinessInvitationStatus"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "resentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "acceptedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "revokedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sendFailureReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "inviteUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailDeliveryMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "safeMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessInvitationStatus": {
+        "enum": [
+          "Pending",
+          "Accepted",
+          "Expired",
+          "Revoked",
+          "Resent",
+          "FailedToSend"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "BusinessInvitationTableRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/BusinessUserRole"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BusinessInvitationStatus"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "resentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "acceptedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "revokedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sendFailureReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "inviteUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
         "additionalProperties": false
       },
       "BusinessRequest": {
@@ -2055,6 +3821,12 @@
           },
           "setupStep": {
             "$ref": "#/components/schemas/BusinessSetupStep"
+          },
+          "activation": {
+            "$ref": "#/components/schemas/BusinessActivationState"
+          },
+          "compliancePolicy": {
+            "$ref": "#/components/schemas/BusinessCompliancePolicy"
           }
         },
         "additionalProperties": false
@@ -2131,6 +3903,12 @@
           },
           "setupStep": {
             "$ref": "#/components/schemas/BusinessSetupStep"
+          },
+          "activation": {
+            "$ref": "#/components/schemas/BusinessActivationState"
+          },
+          "compliancePolicy": {
+            "$ref": "#/components/schemas/BusinessCompliancePolicy"
           }
         },
         "additionalProperties": false
@@ -2159,6 +3937,166 @@
           "Active"
         ],
         "type": "string",
+        "additionalProperties": false
+      },
+      "BusinessSwitchOption": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/BusinessUserRole"
+          },
+          "isCurrent": {
+            "type": "boolean"
+          },
+          "lastUsedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "businessStatus": {
+            "$ref": "#/components/schemas/BusinessStatus"
+          },
+          "activationStatus": {
+            "$ref": "#/components/schemas/CustomerActivationStatus"
+          },
+          "needsAdminReview": {
+            "type": "boolean"
+          },
+          "activationSummary": {
+            "type": "string",
+            "nullable": true
+          },
+          "readyForCustomerTraffic": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessSwitchRequest": {
+        "type": "object",
+        "properties": {
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessUserRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/BusinessUserRole"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessUserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "business": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
+          "user": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
+          "userEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/BusinessUserRole"
+          },
+          "createdByUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "removedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "removedByUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastUsedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessUserRole": {
+        "enum": [
+          "Owner",
+          "Admin",
+          "Agent"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "BusinessUserTableRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/BusinessUserRole"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
         "additionalProperties": false
       },
       "CarrierType": {
@@ -2238,6 +4176,14 @@
           },
           "phoneNumber": {
             "$ref": "#/components/schemas/IdNameValue"
+          },
+          "outboundPhoneNumberOverrideId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activeOutboundPhoneNumberId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2264,6 +4210,140 @@
           "continuationToken": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateNoteRequest": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomerActivationStatus": {
+        "enum": [
+          "DraftOnboarding",
+          "PaymentMethodPending",
+          "PaymentMethodConfirmed",
+          "SubscriptionPending",
+          "SubscriptionReceived",
+          "SubscriptionActive",
+          "LaunchReviewPending",
+          "TelephonyProvisioningPending",
+          "TelephonyPartiallyProvisioned",
+          "TelephonyReady",
+          "AwaitingReview",
+          "DomainSelection",
+          "WebsiteSetup",
+          "ComplianceRegistration",
+          "ReadyForApproval",
+          "Active",
+          "Failed",
+          "Blocked",
+          "BlockedRequiresOperatorAction",
+          "ManuallyBypassed"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "DispositionExportResponse": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "csv": {
+            "type": "string",
+            "nullable": true
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DispositionExportRow"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DispositionExportRow": {
+        "type": "object",
+        "properties": {
+          "leadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "dispositionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "outcome": {
+            "type": "string",
+            "nullable": true
+          },
+          "followUpStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "callbackAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "taskDueAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentStartAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentEndAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "assignedToUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedCallEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isMissedCallFollowUp": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
@@ -2295,6 +4375,49 @@
             "type": "string",
             "description": "The timestamp when the disposition occurred.",
             "format": "date-time"
+          },
+          "followUpStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "callbackAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "taskDueAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentStartAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentEndAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignedToUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedCallEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isMissedCallFollowUp": {
+            "type": "boolean"
+          },
+          "sourceId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -2342,10 +4465,132 @@
             "type": "string",
             "description": "The timestamp when the disposition was last updated.",
             "format": "date-time"
+          },
+          "followUpStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "callbackAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "taskDueAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentStartAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentEndAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentNotes": {
+            "type": "string",
+            "nullable": true
+          },
+          "assignedToUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedCallEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "isMissedCallFollowUp": {
+            "type": "boolean"
+          },
+          "sourceId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "Response model for disposition data."
+      },
+      "E2EAuthUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "E2EHealthResponse": {
+        "type": "object",
+        "properties": {
+          "e2E": {
+            "type": "boolean"
+          },
+          "authEnabled": {
+            "type": "boolean"
+          },
+          "seedServicesAvailable": {
+            "type": "boolean"
+          },
+          "environment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "E2ELoginRequest": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "E2ELoginResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/E2EAuthUser"
+          }
+        },
+        "additionalProperties": false
       },
       "EmploymentType": {
         "enum": [
@@ -2457,6 +4702,136 @@
         "additionalProperties": false,
         "description": "Represents the primary contact details for a lead, including name, address, phone, and email."
       },
+      "LeadIntakeRequest": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneType": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "address1": {
+            "type": "string",
+            "nullable": true
+          },
+          "address2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "subId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sellerLeadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sellerLeadIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "directPostPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "utmSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "utmMedium": {
+            "type": "string",
+            "nullable": true
+          },
+          "utmCampaign": {
+            "type": "string",
+            "nullable": true
+          },
+          "utmTerm": {
+            "type": "string",
+            "nullable": true
+          },
+          "utmContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "referrer": {
+            "type": "string",
+            "nullable": true
+          },
+          "landingPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "trustedFormUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceMetadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LeadMetadata": {
         "required": [
           "trustedFormUrl"
@@ -2476,6 +4851,16 @@
           "utmCampaign": {
             "type": "string",
             "description": "The UTM campaign name used for marketing attribution (e.g., \"fall-promo\").",
+            "nullable": true
+          },
+          "utmTerm": {
+            "type": "string",
+            "description": "The UTM search term or keyword supplied with the lead.",
+            "nullable": true
+          },
+          "utmContent": {
+            "type": "string",
+            "description": "The UTM content value supplied with the lead.",
             "nullable": true
           },
           "referrer": {
@@ -2513,6 +4898,11 @@
             "description": "Identifier of the lead in an external or third-party system.",
             "nullable": true
           },
+          "sellerLeadId": {
+            "type": "string",
+            "description": "Identifier assigned by the seller or upstream lead vendor.",
+            "nullable": true
+          },
           "createdAt": {
             "type": "string",
             "description": "The UTC timestamp when the lead was generated.",
@@ -2525,6 +4915,69 @@
             "format": "double",
             "nullable": true
           },
+          "directPostPrice": {
+            "type": "number",
+            "description": "Direct-post price supplied by an upstream source. This is preserved separately from normalized lead price.",
+            "format": "double",
+            "nullable": true
+          },
+          "product": {
+            "type": "string",
+            "nullable": true
+          },
+          "vertical": {
+            "type": "string",
+            "nullable": true
+          },
+          "complianceStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "complianceBlockedReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceMetadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Additional non-sensitive source metadata supplied with the intake request.",
+            "nullable": true
+          },
+          "assignedPhoneNumberId": {
+            "type": "string",
+            "description": "Internal sender selected for this lead when a lead-level assignment exists.",
+            "nullable": true
+          },
+          "smsConsentStatus": {
+            "type": "string",
+            "description": "Lead-level SMS consent state used to block outreach after STOP and re-enable after START.",
+            "nullable": true
+          },
+          "smsOptedOut": {
+            "type": "boolean"
+          },
+          "smsOptOutAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "smsOptInAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "smsHelpRequestedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "smsConsentPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
           "trustedFormUrl": {
             "minLength": 1,
             "type": "string",
@@ -2533,6 +4986,11 @@
           "userId": {
             "type": "string",
             "description": "The user that owns this lead",
+            "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "description": "The business that owns this lead. New writes must set this; legacy records can be backfilled from source/user ownership.",
             "nullable": true
           }
         },
@@ -2687,9 +5145,29 @@
             "description": "The email address of the lead's contact. This column is orderable and searchable.",
             "nullable": true
           },
-          "createdAtDisplay": {
+          "createdAt": {
             "type": "string",
-            "description": "The creation date of the lead record. This column is shown as-is in the table.",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusTone": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceId": {
+            "type": "string",
             "nullable": true
           },
           "businessName": {
@@ -2795,15 +5273,16 @@
             "type": "string",
             "nullable": true
           },
-          "isRead": {
-            "type": "boolean"
-          },
-          "createdAtDisplay": {
+          "details": {
             "type": "string",
             "nullable": true
           },
-          "readAtDisplay": {
+          "isRead": {
+            "type": "boolean"
+          },
+          "readAt": {
             "type": "string",
+            "format": "date-time",
             "nullable": true
           },
           "actionUrl": {
@@ -2811,6 +5290,14 @@
             "nullable": true
           },
           "actionButtonText": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedEntityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedEntityType": {
             "type": "string",
             "nullable": true
           }
@@ -2855,7 +5342,8 @@
           "Warning",
           "Error",
           "Info",
-          "Announcement"
+          "Announcement",
+          "Activation"
         ],
         "type": "string",
         "additionalProperties": false
@@ -2879,6 +5367,11 @@
           "number": {
             "type": "string",
             "description": "The lead's phone number in required format: +1 followed by 10 digits (e.g. +11234567890)",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The upstream phone type when supplied by the lead source, for example mobile, landline, or voip.",
             "nullable": true
           },
           "lookup": {
@@ -3044,6 +5537,17 @@
         },
         "additionalProperties": false
       },
+      "SmsTrafficType": {
+        "enum": [
+          "RealLead",
+          "Warmup",
+          "Test",
+          "SystemInternal",
+          "FailedAttempt"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
       "SortDirection": {
         "enum": [
           "Asc",
@@ -3078,7 +5582,39 @@
             "type": "string",
             "nullable": true
           },
+          "regenerateApiKey": {
+            "type": "boolean"
+          },
           "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "costPerLead": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allowedStates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "allowedProducts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "requiresTrustedForm": {
+            "type": "boolean"
+          },
+          "complianceApproved": {
+            "type": "boolean"
+          },
+          "complianceNotes": {
             "type": "string",
             "nullable": true
           }
@@ -3116,11 +5652,49 @@
             "type": "string",
             "nullable": true
           },
+          "apiKeyPreview": {
+            "type": "string",
+            "nullable": true
+          },
+          "apiKeyIssuedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "user": {
             "$ref": "#/components/schemas/IdNamePair"
           },
           "business": {
             "$ref": "#/components/schemas/IdNamePair"
+          },
+          "costPerLead": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allowedStates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "allowedProducts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "requiresTrustedForm": {
+            "type": "boolean"
+          },
+          "complianceApproved": {
+            "type": "boolean"
+          },
+          "complianceNotes": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3148,10 +5722,18 @@
             "description": "The API key of the source. This column is orderable and searchable.",
             "nullable": true
           },
-          "createdAtDisplay": {
+          "apiKeyPreview": {
             "type": "string",
-            "description": "The creation date of the source record. This column is shown as-is in the table.",
+            "description": "The masked API key preview safe to show after initial issuance.",
             "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
           },
           "enabled": {
             "type": "boolean",
@@ -3167,6 +5749,31 @@
             "type": "string",
             "description": "The business ID associated with this source.",
             "nullable": true
+          },
+          "costPerLead": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allowedStates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "allowedProducts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "requiresTrustedForm": {
+            "type": "boolean"
+          },
+          "complianceApproved": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false,
@@ -3297,6 +5904,449 @@
         "type": "string",
         "additionalProperties": false
       },
+      "SuppressionCheckResult": {
+        "type": "object",
+        "properties": {
+          "allowed": {
+            "type": "boolean"
+          },
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "recipientIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "type": "string",
+            "nullable": true
+          },
+          "suppressionEntryId": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "adminReason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuppressionEntryAudit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "actorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "safeMetadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuppressionEntryRequest": {
+        "type": "object",
+        "properties": {
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "recipientIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "actorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "safeMetadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuppressionEntryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "recipientIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "suppressedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "releasedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "audit": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SuppressionEntryAudit"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TelephonyProvisioningStepName": {
+        "enum": [
+          "CredentialConnection",
+          "MessagingProfile",
+          "VoiceConnection",
+          "PhoneNumberOrder",
+          "MessagingProfileAttachment",
+          "VoiceConnectionAttachment",
+          "TenDlcCampaignAttachment",
+          "InboundSmsRouteVerification",
+          "InboundVoiceRouteVerification",
+          "TelephonyReady"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "TelephonyProvisioningStepState": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "$ref": "#/components/schemas/TelephonyProvisioningStepName"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TelephonyProvisioningStepStatus"
+          },
+          "providerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerCorrelationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastAttemptAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "failedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "retryCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "failureReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastProviderError": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TelephonyProvisioningStepStatus": {
+        "enum": [
+          "NotStarted",
+          "Pending",
+          "Completed",
+          "Failed",
+          "Skipped",
+          "Blocked"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "TenDlcApplicationDraft": {
+        "type": "object",
+        "properties": {
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactName": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "ein": {
+            "type": "string",
+            "nullable": true
+          },
+          "websiteUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "industry": {
+            "type": "string",
+            "nullable": true
+          },
+          "useCase": {
+            "type": "string",
+            "nullable": true
+          },
+          "useCaseDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageExamples": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "optInLanguage": {
+            "type": "string",
+            "nullable": true
+          },
+          "privacyPolicyUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "termsUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "expectedMonthlyVolume": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "leadSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "trustedFormRequired": {
+            "type": "boolean"
+          },
+          "complianceWarnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "missingFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "externalBrandId": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalCampaignId": {
+            "type": "string",
+            "nullable": true
+          },
+          "messagingProfileId": {
+            "type": "string",
+            "nullable": true
+          },
+          "campaignProfileAssignmentTaskId": {
+            "type": "string",
+            "nullable": true
+          },
+          "telnyxSubmissionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastSubmittedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "submittedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "rejectionReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TenDlcApplicationStatus": {
+        "enum": [
+          "NotStarted",
+          "DraftGenerated",
+          "DraftNeedsAdminReview",
+          "ReadyToSubmit",
+          "Submitted",
+          "PendingTelnyxReview",
+          "Approved",
+          "Rejected",
+          "NeedsChanges",
+          "ResubmissionReady",
+          "Failed"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
       "TransactionResponse": {
         "type": "object",
         "properties": {
@@ -3318,7 +6368,23 @@
             "description": "Account ID (e.g. UserId)",
             "nullable": true
           },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
           "leadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadName": {
             "type": "string",
             "nullable": true
           },
@@ -3407,9 +6473,25 @@
             "description": "The account ID associated with the transaction.",
             "nullable": true
           },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
           "leadId": {
             "type": "string",
             "description": "The lead ID associated with the transaction.",
+            "nullable": true
+          },
+          "leadName": {
+            "type": "string",
             "nullable": true
           },
           "amount": {
@@ -3438,10 +6520,10 @@
             "description": "The transaction description.",
             "nullable": true
           },
-          "createdAtDisplay": {
+          "createdAt": {
             "type": "string",
             "description": "The creation date of the transaction record.",
-            "nullable": true
+            "format": "date-time"
           },
           "createdBy": {
             "type": "string",
@@ -3510,6 +6592,270 @@
         },
         "additionalProperties": false
       },
+      "UsageChannel": {
+        "enum": [
+          "Sms",
+          "Mms",
+          "Email",
+          "Voice",
+          "PhoneNumber",
+          "Warmup",
+          "Website",
+          "Domain",
+          "TenDlc",
+          "Integration",
+          "Automation"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "UsageLedgerTableRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberId": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "$ref": "#/components/schemas/UsageChannel"
+          },
+          "billableUnit": {
+            "$ref": "#/components/schemas/BillableUnit"
+          },
+          "status": {
+            "$ref": "#/components/schemas/UsageRecordStatus"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "durationSeconds": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "billableSeconds": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "smsSegments": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerChargeAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "providerCostAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "internalCostAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "isBillable": {
+            "type": "boolean"
+          },
+          "isInternal": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsageLedgerTableRowPagedResult": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UsageLedgerTableRow"
+            },
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "continuationToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsageRecordStatus": {
+        "enum": [
+          "Recorded",
+          "Rated",
+          "PendingInvoice",
+          "Invoiced",
+          "Charged",
+          "Failed",
+          "RefundedCredited",
+          "NonBillableInternal",
+          "BlockedDueToBilling"
+        ],
+        "type": "string",
+        "additionalProperties": false
+      },
+      "UsageSummaryLine": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "$ref": "#/components/schemas/UsageChannel"
+          },
+          "billableUnit": {
+            "$ref": "#/components/schemas/BillableUnit"
+          },
+          "status": {
+            "$ref": "#/components/schemas/UsageRecordStatus"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "customerChargeAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "providerCostAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "internalCostAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "recordCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UsageSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "periodStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customerChargeTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "providerCostTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "internalCostTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "billableQuantityTotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "usageRecordCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pendingInvoiceCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "failedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "billingBlockedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nonBillableInternalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UsageSummaryLine"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UserCompliance": {
         "type": "object",
         "properties": {
@@ -3534,6 +6880,20 @@
               "$ref": "#/components/schemas/TrustedFormCertificate"
             },
             "nullable": true
+          },
+          "licensedStates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "licensedProducts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3552,6 +6912,18 @@
           "signInType": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserNotificationPreferences": {
+        "type": "object",
+        "properties": {
+          "newLeadEmailEnabled": {
+            "type": "boolean"
+          },
+          "newLeadSmsEnabled": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -3609,8 +6981,14 @@
           "business": {
             "$ref": "#/components/schemas/IdNamePair"
           },
+          "currentBusiness": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
           "compliance": {
             "$ref": "#/components/schemas/UserCompliance"
+          },
+          "notificationPreferences": {
+            "$ref": "#/components/schemas/UserNotificationPreferences"
           }
         },
         "additionalProperties": false
@@ -3694,8 +7072,32 @@
           "business": {
             "$ref": "#/components/schemas/IdNamePair"
           },
+          "currentBusiness": {
+            "$ref": "#/components/schemas/IdNamePair"
+          },
           "compliance": {
             "$ref": "#/components/schemas/UserCompliance"
+          },
+          "notificationPreferences": {
+            "$ref": "#/components/schemas/UserNotificationPreferences"
+          },
+          "personalDataDeletionRequestedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "personalDataDeletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "personalDataDeletionStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "personalDataDeletionReason": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3730,12 +7132,61 @@
             },
             "nullable": true
           },
+          "planSubscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "planSubscriptionItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneSubscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneSubscriptionItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberQuantity": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
           "cancelAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSubscriptionEventAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPaymentMethodEventAt": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           }
         },
+        "additionalProperties": false
+      },
+      "WebsiteLifecycleStatus": {
+        "enum": [
+          "NotStarted",
+          "DomainSuggestionsPending",
+          "DomainSelectionPending",
+          "DomainPurchasePending",
+          "DomainPurchased",
+          "WebsiteGenerationQueued",
+          "WebsiteGenerating",
+          "WebsiteDeploymentQueued",
+          "WebsiteDeploying",
+          "WebsiteLive",
+          "WebsiteFailed",
+          "ManuallyBypassed"
+        ],
+        "type": "string",
         "additionalProperties": false
       }
     },
@@ -3762,6 +7213,12 @@
       "name": "Dispositions"
     },
     {
+      "name": "E2E"
+    },
+    {
+      "name": "Health"
+    },
+    {
       "name": "Leads"
     },
     {
@@ -3774,7 +7231,13 @@
       "name": "Sources"
     },
     {
+      "name": "Suppressions"
+    },
+    {
       "name": "Transactions"
+    },
+    {
+      "name": "Usage"
     },
     {
       "name": "Users"
