@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.4",
   "info": {
-    "title": "leadping.Api",
+    "title": "Leadping API",
     "description": "Leadping API",
     "license": {
       "name": "MIT",
@@ -16,26 +16,13 @@
     }
   ],
   "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "leadping.Api"
-        ],
-        "operationId": "leadping.Api__NoParams",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/conversations/my": {
       "post": {
         "tags": [
           "Conversations"
         ],
         "summary": "Gets conversations for the current user.",
-        "operationId": "Conversations_GetAllForCurrentUser_requestDataOptions",
+        "operationId": "Conversations_GetAllForCurrentUser",
         "requestBody": {
           "description": "Cancellation token.",
           "content": {
@@ -59,7 +46,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the paged conversation response.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -79,7 +66,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -99,7 +86,7 @@
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "An unexpected server error occurred.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -127,7 +114,7 @@
           "Conversations"
         ],
         "summary": "Gets conversations for a specific lead.",
-        "operationId": "Conversations_GetConversationsByLead_leadId_requestDataOptions",
+        "operationId": "Conversations_GetConversationsByLead",
         "parameters": [
           {
             "name": "leadId",
@@ -162,7 +149,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the paged conversation response.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -182,7 +169,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -202,7 +189,7 @@
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "An unexpected server error occurred.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -230,7 +217,7 @@
           "Dispositions"
         ],
         "summary": "Creates a disposition.",
-        "operationId": "Dispositions_Create_request",
+        "operationId": "Dispositions_Create",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -287,12 +274,12 @@
           "Dispositions"
         ],
         "summary": "Updates a disposition.",
-        "operationId": "Dispositions_Update_id_request",
+        "operationId": "Dispositions_Update",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "The resource identifier.",
+            "description": "The ID of the disposition.",
             "required": true,
             "schema": {
               "type": "string"
@@ -317,7 +304,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the disposition response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -327,7 +314,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The requested resource was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -337,7 +324,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -353,7 +340,7 @@
           "Dispositions"
         ],
         "summary": "Gets a disposition.",
-        "operationId": "Dispositions_Get_id",
+        "operationId": "Dispositions_Get",
         "parameters": [
           {
             "name": "id",
@@ -393,7 +380,7 @@
           "Dispositions"
         ],
         "summary": "Deletes a disposition.",
-        "operationId": "Dispositions_Delete_id",
+        "operationId": "Dispositions_Delete",
         "parameters": [
           {
             "name": "id",
@@ -431,7 +418,7 @@
           "Dispositions"
         ],
         "summary": "Gets dispositions for lead.",
-        "operationId": "Dispositions_GetByLeadId_leadId",
+        "operationId": "Dispositions_GetByLeadId",
         "parameters": [
           {
             "name": "leadId",
@@ -476,7 +463,7 @@
           "Dispositions"
         ],
         "summary": "Handles export by lead ID.",
-        "operationId": "Dispositions_ExportByLeadId_leadId",
+        "operationId": "Dispositions_ExportByLeadId",
         "parameters": [
           {
             "name": "leadId",
@@ -490,7 +477,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the disposition export response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -500,7 +487,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The requested resource was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -512,27 +499,13 @@
         }
       }
     },
-    "/health": {
-      "get": {
-        "tags": [
-          "Health"
-        ],
-        "summary": "Gets.",
-        "operationId": "Health_Get_NoParams",
-        "responses": {
-          "200": {
-            "description": "An action result for the request."
-          }
-        }
-      }
-    },
     "/leads": {
       "post": {
         "tags": [
           "Leads"
         ],
         "summary": "Creates a lead externally.",
-        "operationId": "Leads_CreateExternal_request_X-Leadping-Source-Id_X-Leadping-Source-Key",
+        "operationId": "Leads_CreateExternal",
         "parameters": [
           {
             "name": "X-Leadping-Source-Id",
@@ -597,7 +570,7 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "Authentication is required or the bearer token is invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -607,7 +580,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "The authenticated user is not authorized for this operation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -625,7 +598,7 @@
           "Leads"
         ],
         "summary": "Creates a lead externally using a flat, source-authenticated intake payload.",
-        "operationId": "Leads_CreateIntake_request_X-Leadping-Source-Id_X-Leadping-Source-Key",
+        "operationId": "Leads_CreateIntake",
         "parameters": [
           {
             "name": "X-Leadping-Source-Id",
@@ -660,7 +633,7 @@
         },
         "responses": {
           "201": {
-            "description": "Created",
+            "description": "The lead response was created successfully.",
             "content": {
               "application/json": {
                 "schema": {
@@ -670,7 +643,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -680,7 +653,7 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
+            "description": "Authentication is required or the bearer token is invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -690,7 +663,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "The authenticated user is not authorized for this operation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -708,7 +681,7 @@
           "Leads"
         ],
         "summary": "Gets a lead by ID for current user.",
-        "operationId": "Leads_GetForCurrentUser_id",
+        "operationId": "Leads_GetForCurrentUser",
         "parameters": [
           {
             "name": "id",
@@ -758,7 +731,7 @@
           "Leads"
         ],
         "summary": "Updates a lead.",
-        "operationId": "Leads_Update_id_request",
+        "operationId": "Leads_Update",
         "parameters": [
           {
             "name": "id",
@@ -824,7 +797,7 @@
           "Leads"
         ],
         "summary": "Deletes a lead.",
-        "operationId": "Leads_Delete_id",
+        "operationId": "Leads_Delete",
         "parameters": [
           {
             "name": "id",
@@ -869,7 +842,7 @@
           "Leads"
         ],
         "summary": "Gets all leads for current user.",
-        "operationId": "Leads_GetAllForCurrentUser_options",
+        "operationId": "Leads_GetAllForCurrentUser",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -906,7 +879,7 @@
           "Notifications"
         ],
         "summary": "Gets notifications for current user.",
-        "operationId": "Notifications_GetAllForCurrentUser_options",
+        "operationId": "Notifications_GetAllForCurrentUser",
         "requestBody": {
           "description": "Cancellation token.",
           "content": {
@@ -925,7 +898,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the paged notification table row.",
             "content": {
               "application/json": {
                 "schema": {
@@ -935,7 +908,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -945,7 +918,7 @@
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "An unexpected server error occurred.",
             "content": {
               "application/json": {
                 "schema": {
@@ -963,10 +936,10 @@
           "Notifications"
         ],
         "summary": "Gets unread notification count.",
-        "operationId": "Notifications_GetUnreadCount_NoParams",
+        "operationId": "Notifications_GetUnreadCount",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the int.",
             "content": {
               "application/json": {
                 "schema": {
@@ -977,7 +950,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -987,7 +960,7 @@
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "An unexpected server error occurred.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1005,7 +978,7 @@
           "Notifications"
         ],
         "summary": "Marks notification as read.",
-        "operationId": "Notifications_MarkAsRead_id",
+        "operationId": "Notifications_MarkAsRead",
         "parameters": [
           {
             "name": "id",
@@ -1019,7 +992,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the bool.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1029,7 +1002,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1039,7 +1012,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The requested resource was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1049,7 +1022,7 @@
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "An unexpected server error occurred.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1067,10 +1040,10 @@
           "Notifications"
         ],
         "summary": "Marks all notifications as read.",
-        "operationId": "Notifications_MarkAllAsRead_NoParams",
+        "operationId": "Notifications_MarkAllAsRead",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the int.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1081,7 +1054,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1091,7 +1064,7 @@
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "An unexpected server error occurred.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1109,7 +1082,7 @@
           "Notifications"
         ],
         "summary": "Gets announcements.",
-        "operationId": "Notifications_GetAnnouncements_options",
+        "operationId": "Notifications_GetAnnouncements",
         "requestBody": {
           "description": "Cancellation token.",
           "content": {
@@ -1128,7 +1101,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the paged notification table row.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1138,7 +1111,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1148,7 +1121,7 @@
             }
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "An unexpected server error occurred.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1166,7 +1139,7 @@
           "Sources"
         ],
         "summary": "Creates a source.",
-        "operationId": "Sources_Create_request",
+        "operationId": "Sources_Create",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -1213,7 +1186,7 @@
           "Sources"
         ],
         "summary": "Updates a source.",
-        "operationId": "Sources_Update_id_request",
+        "operationId": "Sources_Update",
         "parameters": [
           {
             "name": "id",
@@ -1269,7 +1242,7 @@
           "Sources"
         ],
         "summary": "Gets a source.",
-        "operationId": "Sources_Get_id",
+        "operationId": "Sources_Get",
         "parameters": [
           {
             "name": "id",
@@ -1309,7 +1282,7 @@
           "Sources"
         ],
         "summary": "Deletes a source.",
-        "operationId": "Sources_Delete_id",
+        "operationId": "Sources_Delete",
         "parameters": [
           {
             "name": "id",
@@ -1354,7 +1327,7 @@
           "Sources"
         ],
         "summary": "Gets all sources for current user.",
-        "operationId": "Sources_GetAllForCurrentUser_options",
+        "operationId": "Sources_GetAllForCurrentUser",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -1385,157 +1358,16 @@
         }
       }
     },
-    "/suppressions": {
-      "post": {
-        "tags": [
-          "Suppressions"
-        ],
-        "summary": "Handles suppress.",
-        "operationId": "Suppressions_Suppress_request",
-        "requestBody": {
-          "description": "A token to cancel the operation.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SuppressionEntryRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SuppressionEntryRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuppressionEntryResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/suppressions/release": {
-      "post": {
-        "tags": [
-          "Suppressions"
-        ],
-        "summary": "Handles release.",
-        "operationId": "Suppressions_Release_request",
-        "requestBody": {
-          "description": "A token to cancel the operation.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SuppressionEntryRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SuppressionEntryRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuppressionEntryResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/suppressions/check": {
-      "post": {
-        "tags": [
-          "Suppressions"
-        ],
-        "summary": "Handles check.",
-        "operationId": "Suppressions_Check_request",
-        "requestBody": {
-          "description": "A token to cancel the operation.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SuppressionEntryRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/SuppressionEntryRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuppressionCheckResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/users/me/paymentmethod": {
       "get": {
         "tags": [
           "Users"
         ],
         "summary": "Gets current user's payment method.",
-        "operationId": "Users_GetPaymentMethodForCurrentUser_NoParams",
+        "operationId": "Users_GetPaymentMethodForCurrentUser",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the stripe payment method response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1545,7 +1377,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1563,10 +1395,10 @@
           "Users"
         ],
         "summary": "Gets current user's info.",
-        "operationId": "Users_GetForCurrentUser_NoParams",
+        "operationId": "Users_GetForCurrentUser",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the user response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1576,7 +1408,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The requested resource was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1592,7 +1424,7 @@
           "Users"
         ],
         "summary": "Updates current user's info.",
-        "operationId": "Users_UpdateForCurrentUser_request",
+        "operationId": "Users_UpdateForCurrentUser",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -1611,7 +1443,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the user response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1621,7 +1453,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1639,7 +1471,7 @@
           "Users"
         ],
         "summary": "Changes billing plan.",
-        "operationId": "Users_ChangeBillingPlan_request",
+        "operationId": "Users_ChangeBillingPlan",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -1658,7 +1490,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the user response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1668,7 +1500,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1678,7 +1510,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The requested resource was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1696,7 +1528,7 @@
           "Users"
         ],
         "summary": "Updates compliance info.",
-        "operationId": "Users_UpdateCompliance_request",
+        "operationId": "Users_UpdateCompliance",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -1715,7 +1547,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the user response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1725,7 +1557,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1743,7 +1575,7 @@
           "PaymentMethods"
         ],
         "summary": "Gets a payment method.",
-        "operationId": "PaymentMethods_Get_id",
+        "operationId": "PaymentMethods_Get",
         "parameters": [
           {
             "name": "id",
@@ -1793,7 +1625,7 @@
           "PaymentMethods"
         ],
         "summary": "Deletes a payment method.",
-        "operationId": "PaymentMethods_Delete_id",
+        "operationId": "PaymentMethods_Delete",
         "parameters": [
           {
             "name": "id",
@@ -1845,7 +1677,7 @@
           "Transactions"
         ],
         "summary": "Gets a transaction by ID for current user.",
-        "operationId": "Transactions_GetForCurrentUser_id",
+        "operationId": "Transactions_GetForCurrentUser",
         "parameters": [
           {
             "name": "id",
@@ -1897,7 +1729,7 @@
           "Transactions"
         ],
         "summary": "Gets all transactions for current user.",
-        "operationId": "Transactions_GetAllForCurrentUser_options",
+        "operationId": "Transactions_GetAllForCurrentUser",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -1934,7 +1766,7 @@
           "Usage"
         ],
         "summary": "Gets all for current business.",
-        "operationId": "Usage_GetAllForCurrentBusiness_options",
+        "operationId": "Usage_GetAllForCurrentBusiness",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -1953,7 +1785,7 @@
         },
         "responses": {
           "200": {
-            "description": "An action result for the request.",
+            "description": "Returns the paged usage ledger table row.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1971,7 +1803,7 @@
           "Usage"
         ],
         "summary": "Gets summary for current business.",
-        "operationId": "Usage_GetSummaryForCurrentBusiness_periodStart_periodEnd",
+        "operationId": "Usage_GetSummaryForCurrentBusiness",
         "parameters": [
           {
             "name": "periodStart",
@@ -1994,7 +1826,7 @@
         ],
         "responses": {
           "200": {
-            "description": "An action result for the request.",
+            "description": "Returns the usage summary response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2011,8 +1843,8 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Gets current user's business.",
-        "operationId": "Businesses_GetForCurrentUser_NoParams",
+        "summary": "Gets the authenticated user's current business.",
+        "operationId": "Businesses_GetForCurrentUser",
         "responses": {
           "200": {
             "description": "Business was successfully retrieved.",
@@ -2040,8 +1872,8 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Updates current user's business.",
-        "operationId": "Businesses_UpdateForCurrentUser_request",
+        "summary": "Updates the authenticated user's current business profile.",
+        "operationId": "Businesses_UpdateForCurrentUser",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -2060,7 +1892,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the business response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2070,7 +1902,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2087,11 +1919,11 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Gets switch options.",
-        "operationId": "Businesses_GetSwitchOptions_NoParams",
+        "summary": "Gets the businesses the authenticated user can switch into.",
+        "operationId": "Businesses_GetSwitchOptions",
         "responses": {
           "200": {
-            "description": "An action result for the request.",
+            "description": "Returns the list of business switch option.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2111,8 +1943,8 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Handles switch current business.",
-        "operationId": "Businesses_SwitchCurrentBusiness_request",
+        "summary": "Switches the authenticated user's current business context.",
+        "operationId": "Businesses_SwitchCurrentBusiness",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -2131,7 +1963,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the business response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2141,7 +1973,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "The authenticated user is not authorized for this operation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2158,11 +1990,11 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Gets current business users.",
-        "operationId": "Businesses_GetCurrentBusinessUsers_NoParams",
+        "summary": "Gets users assigned to the authenticated user's current business.",
+        "operationId": "Businesses_GetCurrentBusinessUsers",
         "responses": {
           "200": {
-            "description": "An action result for the request.",
+            "description": "Returns the list of business user table row.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2180,8 +2012,8 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Adds current business user.",
-        "operationId": "Businesses_AddCurrentBusinessUser_request",
+        "summary": "Adds a user to the authenticated user's current business.",
+        "operationId": "Businesses_AddCurrentBusinessUser",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -2200,7 +2032,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the business user response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2210,7 +2042,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2220,7 +2052,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "The authenticated user is not authorized for this operation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2237,13 +2069,13 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Handles change current business user role.",
-        "operationId": "Businesses_ChangeCurrentBusinessUserRole_userId_request",
+        "summary": "Changes a user's role in the authenticated user's current business.",
+        "operationId": "Businesses_ChangeCurrentBusinessUserRole",
         "parameters": [
           {
             "name": "userId",
             "in": "path",
-            "description": "The user identifier.",
+            "description": "The ID of the user whose current-business role is changing.",
             "required": true,
             "schema": {
               "type": "string"
@@ -2268,7 +2100,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the business user response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2278,7 +2110,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2288,7 +2120,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "The authenticated user is not authorized for this operation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2303,13 +2135,13 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Removes current business user.",
-        "operationId": "Businesses_RemoveCurrentBusinessUser_userId",
+        "summary": "Removes a user from the authenticated user's current business.",
+        "operationId": "Businesses_RemoveCurrentBusinessUser",
         "parameters": [
           {
             "name": "userId",
             "in": "path",
-            "description": "The user identifier.",
+            "description": "The ID of the user to remove from the current business.",
             "required": true,
             "schema": {
               "type": "string"
@@ -2318,10 +2150,10 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No content is returned when the operation succeeds."
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -2341,7 +2173,7 @@
             }
           },
           "403": {
-            "description": "Forbidden",
+            "description": "The authenticated user is not authorized for this operation.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -2368,11 +2200,11 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Gets current business invitations.",
-        "operationId": "Businesses_GetCurrentBusinessInvitations_NoParams",
+        "summary": "Gets invitations for the authenticated user's current business.",
+        "operationId": "Businesses_GetCurrentBusinessInvitations",
         "responses": {
           "200": {
-            "description": "An action result for the request.",
+            "description": "Returns the list of business invitation table row.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2390,8 +2222,8 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Creates current business invitation.",
-        "operationId": "Businesses_CreateCurrentBusinessInvitation_request",
+        "summary": "Creates an invitation for the authenticated user's current business.",
+        "operationId": "Businesses_CreateCurrentBusinessInvitation",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -2410,7 +2242,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the business invitation response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2420,7 +2252,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2437,13 +2269,13 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Handles resend current business invitation.",
-        "operationId": "Businesses_ResendCurrentBusinessInvitation_invitationId",
+        "summary": "Resends an invitation for the authenticated user's current business.",
+        "operationId": "Businesses_ResendCurrentBusinessInvitation",
         "parameters": [
           {
             "name": "invitationId",
             "in": "path",
-            "description": "The invitation identifier.",
+            "description": "The ID of the current-business invitation to resend.",
             "required": true,
             "schema": {
               "type": "string"
@@ -2452,7 +2284,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the business invitation response.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -2472,7 +2304,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -2499,13 +2331,13 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Handles revoke current business invitation.",
-        "operationId": "Businesses_RevokeCurrentBusinessInvitation_invitationId",
+        "summary": "Revokes an invitation for the authenticated user's current business.",
+        "operationId": "Businesses_RevokeCurrentBusinessInvitation",
         "parameters": [
           {
             "name": "invitationId",
             "in": "path",
-            "description": "The invitation identifier.",
+            "description": "The ID of the current-business invitation to revoke.",
             "required": true,
             "schema": {
               "type": "string"
@@ -2514,10 +2346,10 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No content is returned when the operation succeeds."
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -2544,13 +2376,13 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Gets invitation by token.",
-        "operationId": "Businesses_GetInvitationByToken_token",
+        "summary": "Gets a business invitation by its acceptance token.",
+        "operationId": "Businesses_GetInvitationByToken",
         "parameters": [
           {
             "name": "token",
             "in": "path",
-            "description": "The token.",
+            "description": "The invitation acceptance token.",
             "required": true,
             "schema": {
               "type": "string"
@@ -2559,7 +2391,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the business invitation response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2569,7 +2401,7 @@
             }
           },
           "404": {
-            "description": "Not Found",
+            "description": "The requested resource was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2586,8 +2418,8 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Accepts invitation.",
-        "operationId": "Businesses_AcceptInvitation_request",
+        "summary": "Accepts a business invitation.",
+        "operationId": "Businesses_AcceptInvitation",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -2606,7 +2438,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the business invitation response.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2616,7 +2448,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2634,7 +2466,7 @@
           "Activities"
         ],
         "summary": "Gets all activities for current user.",
-        "operationId": "Activities_GetAllForCurrentUser_options",
+        "operationId": "Activities_GetAllForCurrentUser",
         "requestBody": {
           "description": "A token to cancel the operation.",
           "content": {
@@ -2681,7 +2513,7 @@
           "Activities"
         ],
         "summary": "Gets all activities for a conversation.",
-        "operationId": "Activities_GetAllForConversation_conversationId_options",
+        "operationId": "Activities_GetAllForConversation",
         "parameters": [
           {
             "name": "conversationId",
@@ -2739,7 +2571,7 @@
           "Activities"
         ],
         "summary": "Gets all activities for a lead.",
-        "operationId": "Activities_GetAllForLead_leadId_options",
+        "operationId": "Activities_GetAllForLead",
         "parameters": [
           {
             "name": "leadId",
@@ -2797,7 +2629,7 @@
           "Activities"
         ],
         "summary": "Gets activity by ID.",
-        "operationId": "Activities_GetById_activityId",
+        "operationId": "Activities_GetById",
         "parameters": [
           {
             "name": "activityId",
@@ -2839,7 +2671,7 @@
           "Activities"
         ],
         "summary": "Gets activity details by ID.",
-        "operationId": "Activities_GetDetailById_activityId",
+        "operationId": "Activities_GetDetailById",
         "parameters": [
           {
             "name": "activityId",
@@ -2881,7 +2713,7 @@
           "Activities"
         ],
         "summary": "Creates a note activity for a conversation.",
-        "operationId": "Activities_CreateNote_conversationId_request",
+        "operationId": "Activities_CreateNote",
         "parameters": [
           {
             "name": "conversationId",
@@ -2911,7 +2743,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the activity table row.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2921,7 +2753,7 @@
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2941,62 +2773,62 @@
         "properties": {
           "token": {
             "type": "string",
-            "description": "Gets or sets the token."
+            "description": "The token supplied to authorize or complete this business invitation."
           },
           "email": {
             "type": "string",
-            "description": "Gets or sets the email.",
+            "description": "The email address associated with this business invitation.",
             "nullable": true
           },
           "firstName": {
             "type": "string",
-            "description": "Gets or sets the first name.",
+            "description": "The first name value for this business invitation.",
             "nullable": true
           },
           "lastName": {
             "type": "string",
-            "description": "Gets or sets the last name.",
+            "description": "The date and time for the last name value on this business invitation.",
             "nullable": true
           }
         },
-        "description": "Represents the Accept Business Invitation Request payload."
+        "description": "Request payload for accept business invitation."
       },
       "ActivationDomainOption": {
         "type": "object",
         "properties": {
           "domainName": {
             "type": "string",
-            "description": "Gets or sets the domain name."
+            "description": "The domain name associated with this activation domain option."
           },
           "whyItFits": {
             "type": "string",
-            "description": "Gets or sets the why it fits."
+            "description": "The why it fits value for this activation domain option."
           },
           "industryRelevance": {
             "type": "string",
-            "description": "Gets or sets the industry relevance."
+            "description": "The industry relevance value for this activation domain option."
           },
           "trustConcerns": {
             "type": "string",
-            "description": "Gets or sets the trust concerns.",
+            "description": "The trust concerns value for this activation domain option.",
             "nullable": true
           },
           "estimatedAnnualCost": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the estimated annual cost.",
+            "description": "The estimated annual cost value for this activation domain option.",
             "format": "double",
             "nullable": true
           },
           "availabilityStatus": {
             "type": "string",
-            "description": "Gets or sets the availability status."
+            "description": "The current availability status for this activation domain option."
           },
           "recommended": {
             "type": "boolean",
-            "description": "Gets or sets the recommended."
+            "description": "Whether this activation domain option is recommended."
           }
         },
-        "description": "Represents an Activation Domain Option."
+        "description": "API DTO containing activation domain option data used by Leadping API contracts."
       },
       "ActivationLaunchReviewStatus": {
         "enum": [
@@ -3054,42 +2886,42 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Gets or sets the identifier."
+            "description": "The unique ID for this activation timeline event."
           },
           "type": {
             "type": "string",
-            "description": "Gets or sets the type."
+            "description": "The type classification for this activation timeline event."
           },
           "title": {
             "type": "string",
-            "description": "Gets or sets the title."
+            "description": "The title value for this activation timeline event."
           },
           "details": {
             "type": "string",
-            "description": "Gets or sets the details.",
+            "description": "The details value for this activation timeline event.",
             "nullable": true
           },
           "status": {
             "type": "string",
-            "description": "Gets or sets the status."
+            "description": "The current status for this activation timeline event."
           },
           "actorName": {
             "type": "string",
-            "description": "Gets or sets the actor name.",
+            "description": "The actor name value for this activation timeline event.",
             "nullable": true
           },
           "failureReason": {
             "type": "string",
-            "description": "Gets or sets the failure reason.",
+            "description": "The human-readable failure reason explaining this activation timeline event.",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this activation timeline event.",
             "format": "date-time"
           }
         },
-        "description": "Represents an Activation Timeline Event."
+        "description": "API DTO containing activation timeline event data used by Leadping API contracts."
       },
       "ActivityDetailResponse": {
         "type": "object",
@@ -3099,16 +2931,16 @@
           },
           "activityCategory": {
             "type": "string",
-            "description": "Gets or sets the activity category."
+            "description": "The activity category value for this activity detail."
           },
           "conversationId": {
             "type": "string",
-            "description": "Gets or sets the conversation identifier.",
+            "description": "The conversation ID associated with this activity detail.",
             "nullable": true
           },
           "leadId": {
             "type": "string",
-            "description": "Gets or sets the lead identifier.",
+            "description": "The lead ID associated with this activity detail.",
             "nullable": true
           },
           "user": {
@@ -3116,12 +2948,12 @@
           },
           "summary": {
             "type": "string",
-            "description": "Gets or sets the summary.",
+            "description": "The summary value for this activity detail.",
             "nullable": true
           },
           "direction": {
             "type": "string",
-            "description": "Gets or sets the direction.",
+            "description": "The direction value for this activity detail.",
             "nullable": true
           },
           "status": {
@@ -3148,7 +2980,7 @@
             "nullable": true
           }
         },
-        "description": "Represents the Activity Detail Response returned by the API."
+        "description": "API response containing activity detail data returned to callers."
       },
       "ActivityStatus": {
         "enum": [
@@ -3166,33 +2998,33 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier of the activity."
+            "description": "The unique ID for this activity."
           },
           "activityType": {
             "$ref": "#/components/schemas/ActivityType"
           },
           "activityCategory": {
             "type": "string",
-            "description": "The category of activity."
+            "description": "The activity category value for this activity."
           },
           "conversationId": {
             "type": "string",
-            "description": "The conversation ID.",
+            "description": "The conversation ID associated with this activity.",
             "nullable": true
           },
           "leadId": {
             "type": "string",
-            "description": "The lead ID.",
+            "description": "The lead ID associated with this activity.",
             "nullable": true
           },
           "summary": {
             "type": "string",
-            "description": "Summary of the activity.",
+            "description": "The summary value for this activity.",
             "nullable": true
           },
           "direction": {
             "type": "string",
-            "description": "The direction of the activity.",
+            "description": "The direction value for this activity.",
             "nullable": true
           },
           "status": {
@@ -3208,12 +3040,12 @@
           },
           "statusReason": {
             "type": "string",
-            "description": "Gets or sets the status reason.",
+            "description": "The human-readable status reason explaining this activity.",
             "nullable": true
           },
           "isWarmup": {
             "type": "boolean",
-            "description": "Gets or sets whether it is warmup."
+            "description": "Whether this activity is warmup."
           },
           "trafficType": {
             "oneOf": [
@@ -3228,37 +3060,37 @@
           },
           "scheduledFor": {
             "type": "string",
-            "description": "Gets or sets the scheduled for.",
+            "description": "The date and time for the scheduled for value on this activity.",
             "format": "date-time",
             "nullable": true
           },
           "scheduledReason": {
             "type": "string",
-            "description": "Gets or sets the scheduled reason.",
+            "description": "The human-readable scheduled reason explaining this activity.",
             "nullable": true
           },
           "canceledAt": {
             "type": "string",
-            "description": "Gets or sets when canceled.",
+            "description": "The date and time for the canceled at value on this activity.",
             "format": "date-time",
             "nullable": true
           },
           "cancelReason": {
             "type": "string",
-            "description": "Gets or sets the cancel reason.",
+            "description": "The human-readable cancel reason explaining this activity.",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "description": "When the activity was created.",
+            "description": "The date and time for the created at value on this activity.",
             "format": "date-time"
           },
           "createdBy": {
             "type": "string",
-            "description": "Who created the activity."
+            "description": "The date and time for the created by value on this activity."
           }
         },
-        "description": "Represents an activity row for data table display with pagination support."
+        "description": "API DTO containing activity data used by Leadping API contracts."
       },
       "ActivityTimelineStatus": {
         "enum": [
@@ -3349,7 +3181,7 @@
           },
           "controlledLaunch": {
             "type": "boolean",
-            "description": "Gets or sets the controlled launch."
+            "description": "Whether controlled launch applies to this business activation state."
           },
           "telephonyStatus": {
             "$ref": "#/components/schemas/ActivationTelephonyStatus"
@@ -3362,101 +3194,101 @@
           },
           "customerFacingStatus": {
             "type": "string",
-            "description": "Gets or sets the customer facing status."
+            "description": "The current customer facing status for this business activation state."
           },
           "paymentMethodConfirmedAt": {
             "type": "string",
-            "description": "Gets or sets when payment method confirmed.",
+            "description": "The date and time for the payment method confirmed at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "subscriptionPendingAt": {
             "type": "string",
-            "description": "Gets or sets when subscription pending.",
+            "description": "The date and time for the subscription pending at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "subscriptionActiveAt": {
             "type": "string",
-            "description": "Gets or sets when subscription active.",
+            "description": "The date and time for the subscription active at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "launchReviewRequestedAt": {
             "type": "string",
-            "description": "Gets or sets when launch review requested.",
+            "description": "The date and time for the launch review requested at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "launchApprovedAt": {
             "type": "string",
-            "description": "Gets or sets when launch approved.",
+            "description": "The date and time for the launch approved at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "telephonyProvisioningStartedAt": {
             "type": "string",
-            "description": "Gets or sets when telephony provisioning started.",
+            "description": "The date and time for the telephony provisioning started at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "telephonyPartiallyProvisionedAt": {
             "type": "string",
-            "description": "Gets or sets when telephony partially provisioned.",
+            "description": "The date and time for the telephony partially provisioned at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "telephonyReadyAt": {
             "type": "string",
-            "description": "Gets or sets when telephony ready.",
+            "description": "The date and time for the telephony ready at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "failedAt": {
             "type": "string",
-            "description": "Gets or sets when failed.",
+            "description": "The date and time for the failed at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "activatedAt": {
             "type": "string",
-            "description": "Gets or sets when activated.",
+            "description": "The date and time for the activated at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "industry": {
             "type": "string",
-            "description": "Gets or sets the industry.",
+            "description": "The industry value for this business activation state.",
             "nullable": true
           },
           "businessDescription": {
             "type": "string",
-            "description": "Gets or sets the business description.",
+            "description": "The business description value for this business activation state.",
             "nullable": true
           },
           "targetAudience": {
             "type": "string",
-            "description": "Gets or sets the target audience.",
+            "description": "The target audience value for this business activation state.",
             "nullable": true
           },
           "offer": {
             "type": "string",
-            "description": "Gets or sets the offer.",
+            "description": "The offer value for this business activation state.",
             "nullable": true
           },
           "websiteNeeds": {
             "type": "string",
-            "description": "Gets or sets the website needs.",
+            "description": "The website needs value for this business activation state.",
             "nullable": true
           },
           "serviceArea": {
             "type": "string",
-            "description": "Gets or sets the service area.",
+            "description": "The service area value for this business activation state.",
             "nullable": true
           },
           "complianceNotes": {
             "type": "string",
-            "description": "Gets or sets the compliance notes.",
+            "description": "The compliance notes value for this business activation state.",
             "nullable": true
           },
           "domainOptions": {
@@ -3464,22 +3296,22 @@
             "items": {
               "$ref": "#/components/schemas/ActivationDomainOption"
             },
-            "description": "Gets or sets the domain options."
+            "description": "The domain options included with this business activation state."
           },
           "selectedDomain": {
             "type": "string",
-            "description": "Gets or sets the selected domain.",
+            "description": "The selected domain value for this business activation state.",
             "nullable": true
           },
           "domainApprovedAt": {
             "type": "string",
-            "description": "Gets or sets when domain approved.",
+            "description": "The date and time for the domain approved at value on this business activation state.",
             "format": "date-time",
             "nullable": true
           },
           "websiteUrl": {
             "type": "string",
-            "description": "Gets or sets the website URL.",
+            "description": "The URL associated with this business activation state.",
             "nullable": true
           },
           "tenDlcDraft": {
@@ -3498,101 +3330,101 @@
             "items": {
               "$ref": "#/components/schemas/ActivationTimelineEvent"
             },
-            "description": "Gets or sets the events."
+            "description": "The events included with this business activation state."
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this business activation state.",
             "format": "date-time"
           },
           "updatedAt": {
             "type": "string",
-            "description": "Gets or sets when updated.",
+            "description": "The date and time for the updated at value on this business activation state.",
             "format": "date-time"
           }
         },
-        "description": "Represents a Business Activation State."
+        "description": "API DTO containing business activation state data used by Leadping API contracts."
       },
       "BusinessCompliancePolicy": {
         "type": "object",
         "properties": {
           "enabled": {
             "type": "boolean",
-            "description": "Gets or sets whether enabled."
+            "description": "Whether this business compliance policy is enabled."
           },
           "allowedStates": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the allowed states."
+            "description": "The allowed states included with this business compliance policy."
           },
           "allowedProducts": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the allowed products."
+            "description": "The allowed products included with this business compliance policy."
           },
           "requireLeadState": {
             "type": "boolean",
-            "description": "Gets or sets the require lead state."
+            "description": "Whether this business compliance policy requires lead state."
           },
           "requireAgentLicenseState": {
             "type": "boolean",
-            "description": "Gets or sets the require agent license state."
+            "description": "Whether this business compliance policy requires agent license state."
           },
           "requireProduct": {
             "type": "boolean",
-            "description": "Gets or sets the require product."
+            "description": "Whether this business compliance policy requires product."
           },
           "requireTrustedFormForAutomations": {
             "type": "boolean",
-            "description": "Gets or sets the require trusted form for automations."
+            "description": "Whether this business compliance policy requires TrustedForm for automations."
           },
           "requireSourceComplianceApproval": {
             "type": "boolean",
-            "description": "Gets or sets the require source compliance approval."
+            "description": "Whether this business compliance policy requires source compliance approval."
           }
         },
-        "description": "Represents a Business Compliance Policy."
+        "description": "API DTO containing business compliance policy data used by Leadping API contracts."
       },
       "BusinessInvitationRequest": {
         "type": "object",
         "properties": {
           "email": {
             "type": "string",
-            "description": "Gets or sets the email."
+            "description": "The email address associated with this business invitation."
           },
           "role": {
             "$ref": "#/components/schemas/BusinessUserRole"
           }
         },
-        "description": "Represents the Business Invitation Request payload."
+        "description": "Request payload for business invitation."
       },
       "BusinessInvitationResponse": {
         "type": "object",
         "properties": {
           "safeMessage": {
             "type": "string",
-            "description": "Gets or sets the safe message.",
+            "description": "The safe message value for this business invitation.",
             "nullable": true
           },
           "id": {
             "type": "string",
-            "description": "Gets or sets the identifier."
+            "description": "The unique ID for this business invitation."
           },
           "businessId": {
             "type": "string",
-            "description": "Gets or sets the business identifier."
+            "description": "The business ID associated with this business invitation."
           },
           "businessName": {
             "type": "string",
-            "description": "Gets or sets the business name."
+            "description": "The business name value for this business invitation."
           },
           "email": {
             "type": "string",
-            "description": "Gets or sets the email."
+            "description": "The email address associated with this business invitation."
           },
           "role": {
             "$ref": "#/components/schemas/BusinessUserRole"
@@ -3602,45 +3434,45 @@
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this business invitation.",
             "format": "date-time"
           },
           "expiresAt": {
             "type": "string",
-            "description": "Gets or sets when expires.",
+            "description": "The date and time for the expires at value on this business invitation.",
             "format": "date-time"
           },
           "sentAt": {
             "type": "string",
-            "description": "Gets or sets when sent.",
+            "description": "The date and time for the sent at value on this business invitation.",
             "format": "date-time",
             "nullable": true
           },
           "resentAt": {
             "type": "string",
-            "description": "Gets or sets when resent.",
+            "description": "The date and time for the resent at value on this business invitation.",
             "format": "date-time",
             "nullable": true
           },
           "acceptedAt": {
             "type": "string",
-            "description": "Gets or sets when accepted.",
+            "description": "The date and time for the accepted at value on this business invitation.",
             "format": "date-time",
             "nullable": true
           },
           "revokedAt": {
             "type": "string",
-            "description": "Gets or sets when revoked.",
+            "description": "The date and time for the revoked at value on this business invitation.",
             "format": "date-time",
             "nullable": true
           },
           "sendFailureReason": {
             "type": "string",
-            "description": "Gets or sets the send failure reason.",
+            "description": "The human-readable send failure reason explaining this business invitation.",
             "nullable": true
           }
         },
-        "description": "Represents the Business Invitation Response returned by the API."
+        "description": "API response containing business invitation data returned to callers."
       },
       "BusinessInvitationStatus": {
         "enum": [
@@ -3659,19 +3491,19 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Gets or sets the identifier."
+            "description": "The unique ID for this business invitation."
           },
           "businessId": {
             "type": "string",
-            "description": "Gets or sets the business identifier."
+            "description": "The business ID associated with this business invitation."
           },
           "businessName": {
             "type": "string",
-            "description": "Gets or sets the business name."
+            "description": "The business name value for this business invitation."
           },
           "email": {
             "type": "string",
-            "description": "Gets or sets the email."
+            "description": "The email address associated with this business invitation."
           },
           "role": {
             "$ref": "#/components/schemas/BusinessUserRole"
@@ -3681,45 +3513,45 @@
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this business invitation.",
             "format": "date-time"
           },
           "expiresAt": {
             "type": "string",
-            "description": "Gets or sets when expires.",
+            "description": "The date and time for the expires at value on this business invitation.",
             "format": "date-time"
           },
           "sentAt": {
             "type": "string",
-            "description": "Gets or sets when sent.",
+            "description": "The date and time for the sent at value on this business invitation.",
             "format": "date-time",
             "nullable": true
           },
           "resentAt": {
             "type": "string",
-            "description": "Gets or sets when resent.",
+            "description": "The date and time for the resent at value on this business invitation.",
             "format": "date-time",
             "nullable": true
           },
           "acceptedAt": {
             "type": "string",
-            "description": "Gets or sets when accepted.",
+            "description": "The date and time for the accepted at value on this business invitation.",
             "format": "date-time",
             "nullable": true
           },
           "revokedAt": {
             "type": "string",
-            "description": "Gets or sets when revoked.",
+            "description": "The date and time for the revoked at value on this business invitation.",
             "format": "date-time",
             "nullable": true
           },
           "sendFailureReason": {
             "type": "string",
-            "description": "Gets or sets the send failure reason.",
+            "description": "The human-readable send failure reason explaining this business invitation.",
             "nullable": true
           }
         },
-        "description": "Represents a Business Invitation Table Row."
+        "description": "API DTO containing business invitation data used by Leadping API contracts."
       },
       "BusinessRequest": {
         "required": [
@@ -3729,7 +3561,7 @@
         "properties": {
           "secondaryName": {
             "type": "string",
-            "description": "Gets or sets the secondary name.",
+            "description": "The secondary name value for this business.",
             "nullable": true
           },
           "status": {
@@ -3745,7 +3577,7 @@
           },
           "phone": {
             "type": "string",
-            "description": "Gets or sets the phone.",
+            "description": "The phone number associated with this business.",
             "nullable": true
           },
           "address": {
@@ -3761,27 +3593,27 @@
           },
           "website": {
             "type": "string",
-            "description": "Gets or sets the website.",
+            "description": "The website URL associated with this business.",
             "nullable": true
           },
           "vertical": {
             "type": "string",
-            "description": "Gets or sets the vertical.",
+            "description": "The vertical value for this business.",
             "nullable": true
           },
           "description": {
             "type": "string",
-            "description": "Gets or sets the description.",
+            "description": "The human-readable description of this business.",
             "nullable": true
           },
           "ein": {
             "type": "string",
-            "description": "Gets or sets the EIN.",
+            "description": "The EIN value for this business.",
             "nullable": true
           },
           "isYoungerThan90": {
             "type": "boolean",
-            "description": "Gets or sets whether it is younger than 90.",
+            "description": "Whether this business is younger than90.",
             "nullable": true
           },
           "einDocument": {
@@ -3800,7 +3632,7 @@
             "items": {
               "$ref": "#/components/schemas/IdNameValue"
             },
-            "description": "Gets or sets the phones.",
+            "description": "The phones included with this business.",
             "nullable": true
           },
           "setupStep": {
@@ -3846,14 +3678,14 @@
             "nullable": true
           }
         },
-        "description": "Represents the Business Request payload."
+        "description": "Request payload for business."
       },
       "BusinessResponse": {
         "type": "object",
         "properties": {
           "secondaryName": {
             "type": "string",
-            "description": "Gets or sets the secondary name.",
+            "description": "The secondary name value for this business.",
             "nullable": true
           },
           "user": {
@@ -3880,12 +3712,12 @@
           },
           "phone": {
             "type": "string",
-            "description": "Gets or sets the phone.",
+            "description": "The phone number associated with this business.",
             "nullable": true
           },
           "website": {
             "type": "string",
-            "description": "Gets or sets the website.",
+            "description": "The website URL associated with this business.",
             "nullable": true
           },
           "address": {
@@ -3901,17 +3733,17 @@
           },
           "vertical": {
             "type": "string",
-            "description": "Gets or sets the vertical.",
+            "description": "The vertical value for this business.",
             "nullable": true
           },
           "description": {
             "type": "string",
-            "description": "Gets or sets the description.",
+            "description": "The human-readable description of this business.",
             "nullable": true
           },
           "ein": {
             "type": "string",
-            "description": "Gets or sets the EIN.",
+            "description": "The EIN value for this business.",
             "nullable": true
           },
           "einDocument": {
@@ -3927,7 +3759,7 @@
           },
           "domain": {
             "type": "string",
-            "description": "Gets or sets the domain.",
+            "description": "The domain name associated with this business.",
             "nullable": true
           },
           "phones": {
@@ -3935,7 +3767,7 @@
             "items": {
               "$ref": "#/components/schemas/IdNameValue"
             },
-            "description": "Gets or sets the phones.",
+            "description": "The phones included with this business.",
             "nullable": true
           },
           "site": {
@@ -3998,7 +3830,7 @@
             "nullable": true
           }
         },
-        "description": "Represents the Business Response returned by the API."
+        "description": "API response containing business data returned to callers."
       },
       "BusinessSetupStep": {
         "enum": [
@@ -4031,22 +3863,22 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Gets or sets the identifier."
+            "description": "The unique ID for this business switch option."
           },
           "name": {
             "type": "string",
-            "description": "Gets or sets the name."
+            "description": "The human-readable name shown for this business switch option."
           },
           "role": {
             "$ref": "#/components/schemas/BusinessUserRole"
           },
           "isCurrent": {
             "type": "boolean",
-            "description": "Gets or sets whether it is current."
+            "description": "Whether this business switch option is current."
           },
           "lastUsedAt": {
             "type": "string",
-            "description": "Gets or sets when last used.",
+            "description": "The date and time for the last used at value on this business switch option.",
             "format": "date-time",
             "nullable": true
           },
@@ -4074,48 +3906,48 @@
           },
           "needsAdminReview": {
             "type": "boolean",
-            "description": "Gets or sets whether it needs admin review."
+            "description": "Whether needs admin review applies to this business switch option."
           },
           "activationSummary": {
             "type": "string",
-            "description": "Gets or sets the activation summary.",
+            "description": "The activation summary value for this business switch option.",
             "nullable": true
           },
           "readyForCustomerTraffic": {
             "type": "boolean",
-            "description": "Gets or sets the ready for customer traffic."
+            "description": "Whether ready for customer traffic applies to this business switch option."
           }
         },
-        "description": "Represents a Business Switch Option."
+        "description": "API DTO containing business switch option data used by Leadping API contracts."
       },
       "BusinessSwitchRequest": {
         "type": "object",
         "properties": {
           "businessId": {
             "type": "string",
-            "description": "Gets or sets the business identifier."
+            "description": "The business ID associated with this business switch."
           }
         },
-        "description": "Represents the Business Switch Request payload."
+        "description": "Request payload for business switch."
       },
       "BusinessUserRequest": {
         "type": "object",
         "properties": {
           "userId": {
             "type": "string",
-            "description": "Gets or sets the user identifier.",
+            "description": "The user ID associated with this business user.",
             "nullable": true
           },
           "email": {
             "type": "string",
-            "description": "Gets or sets the email.",
+            "description": "The email address associated with this business user.",
             "nullable": true
           },
           "role": {
             "$ref": "#/components/schemas/BusinessUserRole"
           }
         },
-        "description": "Represents the Business User Request payload."
+        "description": "Request payload for business user."
       },
       "BusinessUserResponse": {
         "type": "object",
@@ -4128,7 +3960,7 @@
           },
           "userEmail": {
             "type": "string",
-            "description": "Gets or sets the user email.",
+            "description": "The user email value for this business user.",
             "nullable": true
           },
           "role": {
@@ -4136,23 +3968,23 @@
           },
           "createdByUserId": {
             "type": "string",
-            "description": "Gets or sets the created by user identifier.",
+            "description": "The created by user ID associated with this business user.",
             "nullable": true
           },
           "removedAt": {
             "type": "string",
-            "description": "Gets or sets when removed.",
+            "description": "The date and time for the removed at value on this business user.",
             "format": "date-time",
             "nullable": true
           },
           "removedByUserId": {
             "type": "string",
-            "description": "Gets or sets the removed by user identifier.",
+            "description": "The removed by user ID associated with this business user.",
             "nullable": true
           },
           "lastUsedAt": {
             "type": "string",
-            "description": "Gets or sets when last used.",
+            "description": "The date and time for the last used at value on this business user.",
             "format": "date-time",
             "nullable": true
           },
@@ -4172,7 +4004,7 @@
             "nullable": true
           }
         },
-        "description": "Represents the Business User Response returned by the API."
+        "description": "API response containing business user data returned to callers."
       },
       "BusinessUserRole": {
         "enum": [
@@ -4188,19 +4020,19 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Gets or sets the identifier."
+            "description": "The unique ID for this business user."
           },
           "userId": {
             "type": "string",
-            "description": "Gets or sets the user identifier."
+            "description": "The user ID associated with this business user."
           },
           "userName": {
             "type": "string",
-            "description": "Gets or sets the user name."
+            "description": "The user name value for this business user."
           },
           "userEmail": {
             "type": "string",
-            "description": "Gets or sets the user email.",
+            "description": "The user email value for this business user.",
             "nullable": true
           },
           "role": {
@@ -4208,11 +4040,11 @@
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this business user.",
             "format": "date-time"
           }
         },
-        "description": "Represents a Business User Table Row."
+        "description": "API DTO containing business user data used by Leadping API contracts."
       },
       "CarrierType": {
         "enum": [
@@ -4239,11 +4071,11 @@
           },
           "userId": {
             "type": "string",
-            "description": "Gets or sets the user identifier.",
+            "description": "The user ID associated with this billing plan.",
             "nullable": true
           }
         },
-        "description": "Represents the Change Billing Plan Request payload."
+        "description": "Request payload for change billing plan."
       },
       "ComplianceUpdateRequest": {
         "type": "object",
@@ -4261,45 +4093,45 @@
           },
           "source": {
             "type": "string",
-            "description": "Gets or sets the source.",
+            "description": "The source value for this compliance update.",
             "nullable": true
           }
         },
-        "description": "Represents the Compliance Update Request payload."
+        "description": "Request payload for compliance update."
       },
       "ConversationResponse": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "Gets or sets the identifier."
+            "description": "The unique ID for this conversation."
           },
           "leadId": {
             "type": "string",
-            "description": "Gets or sets the lead identifier."
+            "description": "The lead ID associated with this conversation."
           },
           "firstName": {
             "type": "string",
-            "description": "Gets or sets the first name."
+            "description": "The first name value for this conversation."
           },
           "lastName": {
             "type": "string",
-            "description": "Gets or sets the last name."
+            "description": "The date and time for the last name value on this conversation."
           },
           "lastSnippet": {
             "type": "string",
-            "description": "Gets or sets the last snippet.",
+            "description": "The date and time for the last snippet value on this conversation.",
             "nullable": true
           },
           "lastEventAt": {
             "type": "string",
-            "description": "Gets or sets when last event.",
+            "description": "The date and time for the last event at value on this conversation.",
             "format": "date-time",
             "nullable": true
           },
           "isUnread": {
             "type": "boolean",
-            "description": "Gets or sets whether it is unread."
+            "description": "Whether this conversation is unread."
           },
           "phoneNumber": {
             "oneOf": [
@@ -4314,26 +4146,26 @@
           },
           "outboundPhoneNumberOverrideId": {
             "type": "string",
-            "description": "Gets or sets the outbound phone number override identifier.",
+            "description": "The outbound phone number override ID associated with this conversation.",
             "nullable": true
           },
           "activeOutboundPhoneNumberId": {
             "type": "string",
-            "description": "Gets or sets the active outbound phone number identifier.",
+            "description": "The active outbound phone number ID associated with this conversation.",
             "nullable": true
           }
         },
-        "description": "Represents the Conversation Response returned by the API."
+        "description": "API response containing conversation data returned to callers."
       },
       "CreateNoteRequest": {
         "type": "object",
         "properties": {
           "text": {
             "type": "string",
-            "description": "Gets or sets the text."
+            "description": "The text value for this note."
           }
         },
-        "description": "Represents the Create Note Request payload."
+        "description": "Request payload for create note."
       },
       "CustomerActivationStatus": {
         "enum": [
@@ -4366,191 +4198,191 @@
         "properties": {
           "fileName": {
             "type": "string",
-            "description": "Gets or sets the file name."
+            "description": "The file name value for this disposition export."
           },
           "contentType": {
             "type": "string",
-            "description": "Gets or sets the content type."
+            "description": "The content type classification for this disposition export."
           },
           "csv": {
             "type": "string",
-            "description": "Gets or sets the csv."
+            "description": "The csv value for this disposition export."
           },
           "rows": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/DispositionExportRow"
             },
-            "description": "Gets or sets the rows."
+            "description": "The rows included with this disposition export."
           }
         },
-        "description": "Represents the Disposition Export Response returned by the API."
+        "description": "API response containing disposition export data returned to callers."
       },
       "DispositionExportRow": {
         "type": "object",
         "properties": {
           "leadId": {
             "type": "string",
-            "description": "Gets or sets the lead identifier.",
+            "description": "The lead ID associated with this disposition export row.",
             "nullable": true
           },
           "dispositionId": {
             "type": "string",
-            "description": "Gets or sets the disposition identifier.",
+            "description": "The disposition ID associated with this disposition export row.",
             "nullable": true
           },
           "type": {
             "type": "string",
-            "description": "Gets or sets the type.",
+            "description": "The type classification for this disposition export row.",
             "nullable": true
           },
           "outcome": {
             "type": "string",
-            "description": "Gets or sets the outcome.",
+            "description": "The outcome value for this disposition export row.",
             "nullable": true
           },
           "followUpStatus": {
             "type": "string",
-            "description": "Gets or sets the follow up status.",
+            "description": "The current follow up status for this disposition export row.",
             "nullable": true
           },
           "callbackAt": {
             "type": "string",
-            "description": "Gets or sets when callback.",
+            "description": "The date and time for the callback at value on this disposition export row.",
             "format": "date-time",
             "nullable": true
           },
           "taskDueAt": {
             "type": "string",
-            "description": "Gets or sets when task due.",
+            "description": "The date and time for the task due at value on this disposition export row.",
             "format": "date-time",
             "nullable": true
           },
           "appointmentStartAt": {
             "type": "string",
-            "description": "Gets or sets when appointment start.",
+            "description": "The date and time for the appointment start at value on this disposition export row.",
             "format": "date-time",
             "nullable": true
           },
           "appointmentEndAt": {
             "type": "string",
-            "description": "Gets or sets when appointment end.",
+            "description": "The date and time for the appointment end at value on this disposition export row.",
             "format": "date-time",
             "nullable": true
           },
           "assignedToUserId": {
             "type": "string",
-            "description": "Gets or sets the assigned to user identifier.",
+            "description": "The assigned to user ID associated with this disposition export row.",
             "nullable": true
           },
           "sourceId": {
             "type": "string",
-            "description": "Gets or sets the source identifier.",
+            "description": "The source ID associated with this disposition export row.",
             "nullable": true
           },
           "relatedCallEventId": {
             "type": "string",
-            "description": "Gets or sets the related call event identifier.",
+            "description": "The related call event ID associated with this disposition export row.",
             "nullable": true
           },
           "isMissedCallFollowUp": {
             "type": "boolean",
-            "description": "Gets or sets whether it is missed call follow up."
+            "description": "Whether this disposition export row is missed call follow up."
           },
           "notes": {
             "type": "string",
-            "description": "Gets or sets the notes.",
+            "description": "The operator or customer notes recorded for this disposition export row.",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this disposition export row.",
             "format": "date-time"
           },
           "updatedAt": {
             "type": "string",
-            "description": "Gets or sets when updated.",
+            "description": "The date and time for the updated at value on this disposition export row.",
             "format": "date-time"
           }
         },
-        "description": "Represents the Disposition Export Row returned by the API."
+        "description": "API response containing disposition export row data returned to callers."
       },
       "DispositionRequest": {
         "type": "object",
         "properties": {
           "leadId": {
             "type": "string",
-            "description": "The ID of the lead this disposition is associated with."
+            "description": "The lead ID associated with this disposition."
           },
           "type": {
             "type": "string",
-            "description": "The type of disposition (e.g., \"Call\", \"Text\")."
+            "description": "The type classification for this disposition."
           },
           "outcome": {
             "type": "string",
-            "description": "The outcome or result of the disposition."
+            "description": "The outcome value for this disposition."
           },
           "notes": {
             "type": "string",
-            "description": "Additional notes or comments about the disposition.",
+            "description": "The operator or customer notes recorded for this disposition.",
             "nullable": true
           },
           "timestamp": {
             "type": "string",
-            "description": "The timestamp when the disposition occurred.",
+            "description": "The date and time for the timestamp value on this disposition.",
             "format": "date-time"
           },
           "followUpStatus": {
             "type": "string",
-            "description": "Gets or sets the follow up status.",
+            "description": "The current follow up status for this disposition.",
             "nullable": true
           },
           "callbackAt": {
             "type": "string",
-            "description": "Gets or sets when callback.",
+            "description": "The date and time for the callback at value on this disposition.",
             "format": "date-time",
             "nullable": true
           },
           "taskDueAt": {
             "type": "string",
-            "description": "Gets or sets when task due.",
+            "description": "The date and time for the task due at value on this disposition.",
             "format": "date-time",
             "nullable": true
           },
           "appointmentStartAt": {
             "type": "string",
-            "description": "Gets or sets when appointment start.",
+            "description": "The date and time for the appointment start at value on this disposition.",
             "format": "date-time",
             "nullable": true
           },
           "appointmentEndAt": {
             "type": "string",
-            "description": "Gets or sets when appointment end.",
+            "description": "The date and time for the appointment end at value on this disposition.",
             "format": "date-time",
             "nullable": true
           },
           "appointmentNotes": {
             "type": "string",
-            "description": "Gets or sets the appointment notes.",
+            "description": "The appointment notes value for this disposition.",
             "nullable": true
           },
           "assignedToUserId": {
             "type": "string",
-            "description": "Gets or sets the assigned to user identifier.",
+            "description": "The assigned to user ID associated with this disposition.",
             "nullable": true
           },
           "relatedCallEventId": {
             "type": "string",
-            "description": "Gets or sets the related call event identifier.",
+            "description": "The related call event ID associated with this disposition.",
             "nullable": true
           },
           "isMissedCallFollowUp": {
             "type": "boolean",
-            "description": "Gets or sets whether it is missed call follow up."
+            "description": "Whether this disposition is missed call follow up."
           },
           "sourceId": {
             "type": "string",
-            "description": "Gets or sets the source identifier.",
+            "description": "The source ID associated with this disposition.",
             "nullable": true
           }
         },
@@ -4561,90 +4393,90 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier of the disposition."
+            "description": "The unique ID for this disposition."
           },
           "leadId": {
             "type": "string",
-            "description": "The ID of the lead this disposition is associated with."
+            "description": "The lead ID associated with this disposition."
           },
           "type": {
             "type": "string",
-            "description": "The type of disposition (e.g., \"Call\", \"Text\")."
+            "description": "The type classification for this disposition."
           },
           "outcome": {
             "type": "string",
-            "description": "The outcome or result of the disposition."
+            "description": "The outcome value for this disposition."
           },
           "notes": {
             "type": "string",
-            "description": "Additional notes or comments about the disposition."
+            "description": "The operator or customer notes recorded for this disposition."
           },
           "timestamp": {
             "type": "string",
-            "description": "The timestamp when the disposition occurred.",
+            "description": "The date and time for the timestamp value on this disposition.",
             "format": "date-time"
           },
           "createdAt": {
             "type": "string",
-            "description": "The timestamp when the disposition was created.",
+            "description": "The date and time for the created at value on this disposition.",
             "format": "date-time"
           },
           "updatedAt": {
             "type": "string",
-            "description": "The timestamp when the disposition was last updated.",
+            "description": "The date and time for the updated at value on this disposition.",
             "format": "date-time"
           },
           "followUpStatus": {
             "type": "string",
-            "description": "Gets or sets the follow up status.",
+            "description": "The current follow up status for this disposition.",
             "nullable": true
           },
           "callbackAt": {
             "type": "string",
-            "description": "Gets or sets when callback.",
+            "description": "The date and time for the callback at value on this disposition.",
             "format": "date-time",
             "nullable": true
           },
           "taskDueAt": {
             "type": "string",
-            "description": "Gets or sets when task due.",
+            "description": "The date and time for the task due at value on this disposition.",
             "format": "date-time",
             "nullable": true
           },
           "appointmentStartAt": {
             "type": "string",
-            "description": "Gets or sets when appointment start.",
+            "description": "The date and time for the appointment start at value on this disposition.",
             "format": "date-time",
             "nullable": true
           },
           "appointmentEndAt": {
             "type": "string",
-            "description": "Gets or sets when appointment end.",
+            "description": "The date and time for the appointment end at value on this disposition.",
             "format": "date-time",
             "nullable": true
           },
           "appointmentNotes": {
             "type": "string",
-            "description": "Gets or sets the appointment notes.",
+            "description": "The appointment notes value for this disposition.",
             "nullable": true
           },
           "assignedToUserId": {
             "type": "string",
-            "description": "Gets or sets the assigned to user identifier.",
+            "description": "The assigned to user ID associated with this disposition.",
             "nullable": true
           },
           "relatedCallEventId": {
             "type": "string",
-            "description": "Gets or sets the related call event identifier.",
+            "description": "The related call event ID associated with this disposition.",
             "nullable": true
           },
           "isMissedCallFollowUp": {
             "type": "boolean",
-            "description": "Gets or sets whether it is missed call follow up."
+            "description": "Whether this disposition is missed call follow up."
           },
           "sourceId": {
             "type": "string",
-            "description": "Gets or sets the source identifier.",
+            "description": "The source ID associated with this disposition.",
             "nullable": true
           }
         },
@@ -4726,12 +4558,12 @@
         "properties": {
           "firstName": {
             "type": "string",
-            "description": "Gets or sets the first name of the lead.",
+            "description": "The first name value for this lead contact.",
             "nullable": true
           },
           "lastName": {
             "type": "string",
-            "description": "Gets or sets the last name (surname) of the lead.",
+            "description": "The date and time for the last name value on this lead contact.",
             "nullable": true
           },
           "streetAddress": {
@@ -4758,157 +4590,157 @@
           },
           "email": {
             "type": "string",
-            "description": "Gets or sets the email address of the lead.",
+            "description": "The email address associated with this lead contact.",
             "nullable": true
           }
         },
-        "description": "Represents the primary contact details for a lead, including name, address, phone, and email."
+        "description": "API DTO containing lead contact data used by Leadping API contracts."
       },
       "LeadIntakeRequest": {
         "type": "object",
         "properties": {
           "firstName": {
             "type": "string",
-            "description": "Gets or sets the first name.",
+            "description": "The first name value for this lead intake.",
             "nullable": true
           },
           "lastName": {
             "type": "string",
-            "description": "Gets or sets the last name.",
+            "description": "The date and time for the last name value on this lead intake.",
             "nullable": true
           },
           "email": {
             "type": "string",
-            "description": "Gets or sets the email.",
+            "description": "The email address associated with this lead intake.",
             "nullable": true
           },
           "phone": {
             "type": "string",
-            "description": "Gets or sets the phone.",
+            "description": "The phone number associated with this lead intake.",
             "nullable": true
           },
           "phoneType": {
             "type": "string",
-            "description": "Gets or sets the phone type.",
+            "description": "The phone type classification for this lead intake.",
             "nullable": true
           },
           "dateOfBirth": {
             "type": "string",
-            "description": "Gets or sets the date of birth.",
+            "description": "The date and time for the date of birth value on this lead intake.",
             "format": "date",
             "nullable": true
           },
           "birthDate": {
             "type": "string",
-            "description": "Gets or sets the birth date.",
+            "description": "The date and time for the birth date value on this lead intake.",
             "format": "date",
             "nullable": true
           },
           "address1": {
             "type": "string",
-            "description": "Gets or sets the address 1.",
+            "description": "The address1 value for this lead intake.",
             "nullable": true
           },
           "address2": {
             "type": "string",
-            "description": "Gets or sets the address 2.",
+            "description": "The address2 value for this lead intake.",
             "nullable": true
           },
           "city": {
             "type": "string",
-            "description": "Gets or sets the city.",
+            "description": "The city value for this lead intake.",
             "nullable": true
           },
           "state": {
             "type": "string",
-            "description": "Gets or sets the state.",
+            "description": "The current state for this lead intake.",
             "nullable": true
           },
           "zip": {
             "type": "string",
-            "description": "Gets or sets the zip.",
+            "description": "The zip value for this lead intake.",
             "nullable": true
           },
           "postalCode": {
             "type": "string",
-            "description": "Gets or sets the postal code.",
+            "description": "The postal code value for this lead intake.",
             "nullable": true
           },
           "gender": {
             "type": "string",
-            "description": "Gets or sets the gender.",
+            "description": "The gender value for this lead intake.",
             "nullable": true
           },
           "subId": {
             "type": "string",
-            "description": "Gets or sets the sub identifier.",
+            "description": "The sub ID associated with this lead intake.",
             "nullable": true
           },
           "sellerLeadId": {
             "type": "string",
-            "description": "Gets or sets the seller lead identifier.",
+            "description": "The seller lead ID associated with this lead intake.",
             "nullable": true
           },
           "sellerLeadIdentifier": {
             "type": "string",
-            "description": "Gets or sets the seller lead identifier.",
+            "description": "The seller lead identifier value for this lead intake.",
             "nullable": true
           },
           "directPostPrice": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the direct post price.",
+            "description": "The direct post price value for this lead intake.",
             "format": "double",
             "nullable": true
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the price.",
+            "description": "The monetary price for this lead intake.",
             "format": "double",
             "nullable": true
           },
           "utmSource": {
             "type": "string",
-            "description": "Gets or sets the utm source.",
+            "description": "The utm source value for this lead intake.",
             "nullable": true
           },
           "utmMedium": {
             "type": "string",
-            "description": "Gets or sets the utm medium.",
+            "description": "The utm medium value for this lead intake.",
             "nullable": true
           },
           "utmCampaign": {
             "type": "string",
-            "description": "Gets or sets the utm campaign.",
+            "description": "The utm campaign value for this lead intake.",
             "nullable": true
           },
           "utmTerm": {
             "type": "string",
-            "description": "Gets or sets the utm term.",
+            "description": "The utm term value for this lead intake.",
             "nullable": true
           },
           "utmContent": {
             "type": "string",
-            "description": "Gets or sets the utm content.",
+            "description": "The utm content value for this lead intake.",
             "nullable": true
           },
           "referrer": {
             "type": "string",
-            "description": "Gets or sets the referrer.",
+            "description": "The referrer value for this lead intake.",
             "nullable": true
           },
           "landingPage": {
             "type": "string",
-            "description": "Gets or sets the landing page.",
+            "description": "The landing page value for this lead intake.",
             "nullable": true
           },
           "trustedFormUrl": {
             "type": "string",
-            "description": "Gets or sets the trusted form URL.",
+            "description": "The URL associated with this lead intake.",
             "nullable": true
           },
           "externalId": {
             "type": "string",
-            "description": "Gets or sets the external identifier.",
+            "description": "The external ID associated with this lead intake.",
             "nullable": true
           },
           "sourceMetadata": {
@@ -4916,11 +4748,11 @@
             "additionalProperties": {
               "type": "string"
             },
-            "description": "Gets or sets the source metadata.",
+            "description": "The source metadata key-value data carried with this lead intake; values must be safe to expose in API responses.",
             "nullable": true
           }
         },
-        "description": "Represents the Lead Intake Request payload."
+        "description": "Request payload for lead intake."
       },
       "LeadMetadata": {
         "required": [
@@ -4930,105 +4762,105 @@
         "properties": {
           "utmSource": {
             "type": "string",
-            "description": "The source of the lead traffic (e.g., \"google\", \"facebook\").",
+            "description": "The utm source value for this lead metadata.",
             "nullable": true
           },
           "utmMedium": {
             "type": "string",
-            "description": "The medium used to acquire the lead (e.g., \"cpc\", \"email\").",
+            "description": "The utm medium value for this lead metadata.",
             "nullable": true
           },
           "utmCampaign": {
             "type": "string",
-            "description": "The UTM campaign name used for marketing attribution (e.g., \"fall-promo\").",
+            "description": "The utm campaign value for this lead metadata.",
             "nullable": true
           },
           "utmTerm": {
             "type": "string",
-            "description": "The UTM search term or keyword supplied with the lead.",
+            "description": "The utm term value for this lead metadata.",
             "nullable": true
           },
           "utmContent": {
             "type": "string",
-            "description": "The UTM content value supplied with the lead.",
+            "description": "The utm content value for this lead metadata.",
             "nullable": true
           },
           "referrer": {
             "type": "string",
-            "description": "The full referring URL or page that originated the lead.",
+            "description": "The referrer value for this lead metadata.",
             "nullable": true
           },
           "landingPage": {
             "type": "string",
-            "description": "The landing page or form endpoint used to submit the lead.",
+            "description": "The landing page value for this lead metadata.",
             "nullable": true
           },
           "subId": {
             "type": "string",
-            "description": "A sub-source identifier, often representing a placement or internal variant. May be truncated or character-normalized.",
+            "description": "The sub ID associated with this lead metadata.",
             "nullable": true
           },
           "pubId": {
             "type": "string",
-            "description": "A publisher ID representing the partner or platform that supplied the lead.",
+            "description": "The pub ID associated with this lead metadata.",
             "nullable": true
           },
           "ipAddress": {
             "type": "string",
-            "description": "The IP address of the user who submitted the lead.",
+            "description": "The IP address value for this lead metadata.",
             "nullable": true
           },
           "userAgent": {
             "type": "string",
-            "description": "The user agent string from the browser or device used during lead submission.",
+            "description": "The user agent value for this lead metadata.",
             "nullable": true
           },
           "externalId": {
             "type": "string",
-            "description": "Identifier of the lead in an external or third-party system.",
+            "description": "The external ID associated with this lead metadata.",
             "nullable": true
           },
           "sellerLeadId": {
             "type": "string",
-            "description": "Identifier assigned by the seller or upstream lead vendor.",
+            "description": "The seller lead ID associated with this lead metadata.",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "description": "The UTC timestamp when the lead was generated.",
+            "description": "The date and time for the created at value on this lead metadata.",
             "format": "date-time",
             "nullable": true
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The monetary value or payout assigned to this lead.",
+            "description": "The monetary price for this lead metadata.",
             "format": "double",
             "nullable": true
           },
           "directPostPrice": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Direct-post price supplied by an upstream source. This is preserved separately from normalized lead price.",
+            "description": "The direct post price value for this lead metadata.",
             "format": "double",
             "nullable": true
           },
           "product": {
             "type": "string",
-            "description": "Gets or sets the product.",
+            "description": "The product value for this lead metadata.",
             "nullable": true
           },
           "vertical": {
             "type": "string",
-            "description": "Gets or sets the vertical.",
+            "description": "The vertical value for this lead metadata.",
             "nullable": true
           },
           "complianceStatus": {
             "type": "string",
-            "description": "Gets or sets the compliance status.",
+            "description": "The current compliance status for this lead metadata.",
             "nullable": true
           },
           "complianceBlockedReason": {
             "type": "string",
-            "description": "Gets or sets the compliance blocked reason.",
+            "description": "The human-readable compliance blocked reason explaining this lead metadata.",
             "nullable": true
           },
           "sourceMetadata": {
@@ -5036,58 +4868,58 @@
             "additionalProperties": {
               "type": "string"
             },
-            "description": "Additional non-sensitive source metadata supplied with the intake request.",
+            "description": "The source metadata key-value data carried with this lead metadata; values must be safe to expose in API responses.",
             "nullable": true
           },
           "assignedPhoneNumberId": {
             "type": "string",
-            "description": "Internal sender selected for this lead when a lead-level assignment exists.",
+            "description": "The assigned phone number ID associated with this lead metadata.",
             "nullable": true
           },
           "smsConsentStatus": {
             "type": "string",
-            "description": "Lead-level SMS consent state used to block outreach after STOP and re-enable after START.",
+            "description": "The current SMS consent status for this lead metadata.",
             "nullable": true
           },
           "smsOptedOut": {
             "type": "boolean",
-            "description": "Gets or sets the SMS opted out."
+            "description": "Whether SMS opted out applies to this lead metadata."
           },
           "smsOptOutAt": {
             "type": "string",
-            "description": "Gets or sets when SMS opt out.",
+            "description": "The date and time for the SMS opt out at value on this lead metadata.",
             "format": "date-time",
             "nullable": true
           },
           "smsOptInAt": {
             "type": "string",
-            "description": "Gets or sets when SMS opt in.",
+            "description": "The date and time for the SMS opt in at value on this lead metadata.",
             "format": "date-time",
             "nullable": true
           },
           "smsHelpRequestedAt": {
             "type": "string",
-            "description": "Gets or sets when SMS help requested.",
+            "description": "The date and time for the SMS help requested at value on this lead metadata.",
             "format": "date-time",
             "nullable": true
           },
           "smsConsentPhoneNumber": {
             "type": "string",
-            "description": "Gets or sets the SMS consent phone number.",
+            "description": "The SMS consent phone number value for this lead metadata.",
             "nullable": true
           },
           "trustedFormUrl": {
             "type": "string",
-            "description": "A URL pointing to the ActiveProspect TrustedForm certificate. Required."
+            "description": "The URL associated with this lead metadata."
           },
           "userId": {
             "type": "string",
-            "description": "The user that owns this lead",
+            "description": "The user ID associated with this lead metadata.",
             "nullable": true
           },
           "businessId": {
             "type": "string",
-            "description": "The business that owns this lead. New writes must set this; legacy records can be backfilled from source/user ownership.",
+            "description": "The business ID associated with this lead metadata.",
             "nullable": true
           }
         },
@@ -5109,19 +4941,19 @@
           },
           "height": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The lead prospect's height in inches",
+            "description": "The height value for this lead profile.",
             "format": "int32",
             "nullable": true
           },
           "weight": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The lead prospect's weight in pounds",
+            "description": "The weight value for this lead profile.",
             "format": "int32",
             "nullable": true
           },
           "birthDate": {
             "type": "string",
-            "description": "The lead prospect's birth date",
+            "description": "The date and time for the birth date value on this lead profile.",
             "format": "date",
             "nullable": true
           },
@@ -5138,30 +4970,30 @@
           },
           "income": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The lead prospect's income in dollars",
+            "description": "The income value for this lead profile.",
             "format": "int32",
             "nullable": true
           },
           "isHomeowner": {
             "type": "boolean",
-            "description": "true if the lead prospect is a homeowner",
+            "description": "Whether this lead profile is homeowner.",
             "nullable": true
           },
           "monthsAtResidence": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "How many months has the lead prospect lived at their current residence?",
+            "description": "The months at residence value for this lead profile.",
             "format": "int32",
             "nullable": true
           },
           "creditScore": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The lead prospect's credit rating",
+            "description": "The credit score metric for this lead profile.",
             "format": "int32",
             "nullable": true
           },
           "hasBankruptcy": {
             "type": "boolean",
-            "description": "true if the lead prospect experienced bankruptcy in the last 7 years",
+            "description": "Whether this lead profile has bankruptcy.",
             "nullable": true
           },
           "employmentType": {
@@ -5177,17 +5009,17 @@
           },
           "numberOfDependents": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The lead prospect's number of dependents",
+            "description": "The number of dependents value for this lead profile.",
             "format": "int32",
             "nullable": true
           },
           "hasMedicalCondition": {
             "type": "boolean",
-            "description": "true if the lead has any pre-existing medical conditions",
+            "description": "Whether this lead profile has medical condition.",
             "nullable": true
           }
         },
-        "description": "Represents a lead prospect's profile, containing demographic and financial information."
+        "description": "API DTO containing lead profile data used by Leadping API contracts."
       },
       "LeadRequest": {
         "type": "object",
@@ -5206,7 +5038,7 @@
             "nullable": true
           }
         },
-        "description": "Represents the Lead Request payload."
+        "description": "Request payload for lead."
       },
       "LeadResponse": {
         "type": "object",
@@ -5233,70 +5065,70 @@
             "nullable": true
           }
         },
-        "description": "Represents the Lead Response returned by the API."
+        "description": "API response containing lead data returned to callers."
       },
       "LeadTableRow": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier of the lead."
+            "description": "The unique ID for this lead."
           },
           "firstName": {
             "type": "string",
-            "description": "The first name of the lead's contact. This column is orderable and searchable."
+            "description": "The first name value for this lead."
           },
           "lastName": {
             "type": "string",
-            "description": "The last name of the lead's contact. This column is orderable and searchable."
+            "description": "The date and time for the last name value on this lead."
           },
           "phone": {
             "type": "string",
-            "description": "The phone number of the lead's contact. This column is orderable and searchable."
+            "description": "The phone number associated with this lead."
           },
           "email": {
             "type": "string",
-            "description": "The email address of the lead's contact. This column is orderable and searchable."
+            "description": "The email address associated with this lead."
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this lead.",
             "format": "date-time"
           },
           "status": {
             "type": "string",
-            "description": "Gets or sets the status."
+            "description": "The current status for this lead."
           },
           "statusTone": {
             "type": "string",
-            "description": "Gets or sets the status tone."
+            "description": "The status tone value for this lead."
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the price.",
+            "description": "The monetary price for this lead.",
             "format": "double",
             "nullable": true
           },
           "businessId": {
             "type": "string",
-            "description": "Gets or sets the business identifier.",
+            "description": "The business ID associated with this lead.",
             "nullable": true
           },
           "sourceId": {
             "type": "string",
-            "description": "Gets or sets the source identifier.",
+            "description": "The source ID associated with this lead.",
             "nullable": true
           },
           "businessName": {
             "type": "string",
-            "description": "The name of the business associated with this lead. This column is orderable and searchable."
+            "description": "The business name value for this lead."
           },
           "sourceName": {
             "type": "string",
-            "description": "The name of the source associated with this lead. This column is orderable and searchable."
+            "description": "The source name value for this lead."
           }
         },
-        "description": "Represents a row of lead data used in a data table, with mapped fields from the contact and lead models."
+        "description": "API DTO containing lead data used by Leadping API contracts."
       },
       "LineType": {
         "enum": [
@@ -5341,41 +5173,41 @@
           },
           "message": {
             "type": "string",
-            "description": "Gets or sets the message."
+            "description": "The message value for this notification."
           },
           "details": {
             "type": "string",
-            "description": "Gets or sets the details.",
+            "description": "The details value for this notification.",
             "nullable": true
           },
           "isRead": {
             "type": "boolean",
-            "description": "Gets or sets whether it is read."
+            "description": "Whether this notification is read."
           },
           "readAt": {
             "type": "string",
-            "description": "Gets or sets when read.",
+            "description": "The date and time for the read at value on this notification.",
             "format": "date-time",
             "nullable": true
           },
           "actionUrl": {
             "type": "string",
-            "description": "Gets or sets the action URL.",
+            "description": "The URL associated with this notification.",
             "nullable": true
           },
           "actionButtonText": {
             "type": "string",
-            "description": "Gets or sets the action button text.",
+            "description": "The action button text value for this notification.",
             "nullable": true
           },
           "relatedEntityId": {
             "type": "string",
-            "description": "Gets or sets the related entity identifier.",
+            "description": "The related entity ID associated with this notification.",
             "nullable": true
           },
           "relatedEntityType": {
             "type": "string",
-            "description": "Gets or sets the related entity type.",
+            "description": "The related entity type classification for this notification.",
             "nullable": true
           },
           "name": {
@@ -5394,7 +5226,7 @@
             "nullable": true
           }
         },
-        "description": "Represents the Notification Table Row returned by the API."
+        "description": "API response containing notification data returned to callers."
       },
       "NotificationType": {
         "enum": [
@@ -5606,11 +5438,11 @@
         "properties": {
           "number": {
             "type": "string",
-            "description": "The lead's phone number in required format: +1 followed by 10 digits (e.g. +11234567890)"
+            "description": "The number value for this phone."
           },
           "type": {
             "type": "string",
-            "description": "The upstream phone type when supplied by the lead source, for example mobile, landline, or voip.",
+            "description": "The type classification for this phone.",
             "nullable": true
           },
           "lookup": {
@@ -5625,19 +5457,19 @@
             ]
           }
         },
-        "description": "Represents a phone number associated with an entity, including its type and additional information."
+        "description": "API DTO containing phone data used by Leadping API contracts."
       },
       "PhoneLookup": {
         "type": "object",
         "properties": {
           "number": {
             "type": "string",
-            "description": "The phone number that was looked up",
+            "description": "The number value for this phone lookup.",
             "nullable": true
           },
           "isValid": {
             "type": "boolean",
-            "description": "Whether the phone number is valid"
+            "description": "Whether this phone lookup is valid."
           },
           "lineType": {
             "oneOf": [
@@ -5692,21 +5524,21 @@
         "properties": {
           "location": {
             "type": "string",
-            "description": "Typically maps to city",
+            "description": "The location value for this phone number location.",
             "nullable": true
           },
           "state": {
             "type": "string",
-            "description": "Gets or sets the state.",
+            "description": "The current state for this phone number location.",
             "nullable": true
           },
           "countryCode": {
             "type": "string",
-            "description": "Gets or sets the country code.",
+            "description": "The country code value for this phone number location.",
             "nullable": true
           }
         },
-        "description": "Represents a Phone Number Location."
+        "description": "API DTO containing phone number location data used by Leadping API contracts."
       },
       "ProblemDetails": {
         "type": "object",
@@ -5821,25 +5653,25 @@
         "properties": {
           "description": {
             "type": "string",
-            "description": "Gets or sets the description.",
+            "description": "The human-readable description of this source.",
             "nullable": true
           },
           "enabled": {
             "type": "boolean",
-            "description": "Gets or sets whether enabled."
+            "description": "Whether this source is enabled."
           },
           "regenerateApiKey": {
             "type": "boolean",
-            "description": "Gets or sets the regenerate API key."
+            "description": "Whether regenerate API key applies to this source."
           },
           "businessId": {
             "type": "string",
-            "description": "Gets or sets the business identifier.",
+            "description": "The business ID associated with this source.",
             "nullable": true
           },
           "costPerLead": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the cost per lead.",
+            "description": "The cost per lead value for this source.",
             "format": "double",
             "nullable": true
           },
@@ -5848,26 +5680,26 @@
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the allowed states."
+            "description": "The allowed states included with this source."
           },
           "allowedProducts": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the allowed products."
+            "description": "The allowed products included with this source."
           },
           "requiresTrustedForm": {
             "type": "boolean",
-            "description": "Gets or sets whether it requires trusted form."
+            "description": "Whether this source requires TrustedForm."
           },
           "complianceApproved": {
             "type": "boolean",
-            "description": "Gets or sets the compliance approved."
+            "description": "Whether this source is compliance approved."
           },
           "complianceNotes": {
             "type": "string",
-            "description": "Gets or sets the compliance notes.",
+            "description": "The compliance notes value for this source.",
             "nullable": true
           },
           "name": {
@@ -5880,28 +5712,28 @@
             "nullable": true
           }
         },
-        "description": "Represents the Source Request payload."
+        "description": "Request payload for source."
       },
       "SourceResponse": {
         "type": "object",
         "properties": {
           "description": {
             "type": "string",
-            "description": "Gets or sets the description.",
+            "description": "The human-readable description of this source.",
             "nullable": true
           },
           "enabled": {
             "type": "boolean",
-            "description": "Gets or sets whether enabled."
+            "description": "Whether this source is enabled."
           },
           "apiKeyPreview": {
             "type": "string",
-            "description": "Gets or sets the API key preview.",
+            "description": "The API key preview value for this source.",
             "nullable": true
           },
           "apiKeyIssuedAt": {
             "type": "string",
-            "description": "Gets or sets when API key issued.",
+            "description": "The date and time for the API key issued at value on this source.",
             "format": "date-time",
             "nullable": true
           },
@@ -5929,7 +5761,7 @@
           },
           "costPerLead": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the cost per lead.",
+            "description": "The cost per lead value for this source.",
             "format": "double",
             "nullable": true
           },
@@ -5938,26 +5770,26 @@
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the allowed states."
+            "description": "The allowed states included with this source."
           },
           "allowedProducts": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the allowed products."
+            "description": "The allowed products included with this source."
           },
           "requiresTrustedForm": {
             "type": "boolean",
-            "description": "Gets or sets whether it requires trusted form."
+            "description": "Whether this source requires TrustedForm."
           },
           "complianceApproved": {
             "type": "boolean",
-            "description": "Gets or sets the compliance approved."
+            "description": "Whether this source is compliance approved."
           },
           "complianceNotes": {
             "type": "string",
-            "description": "Gets or sets the compliance notes.",
+            "description": "The compliance notes value for this source.",
             "nullable": true
           },
           "name": {
@@ -5976,40 +5808,40 @@
             "nullable": true
           }
         },
-        "description": "Represents the Source Response returned by the API."
+        "description": "API response containing source data returned to callers."
       },
       "SourceTableRow": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier of the source."
+            "description": "The unique ID for this source."
           },
           "name": {
             "type": "string",
-            "description": "The name of the source."
+            "description": "The human-readable name shown for this source."
           },
           "description": {
             "type": "string",
-            "description": "The description of the source."
+            "description": "The human-readable description of this source."
           },
           "apiKeyPreview": {
             "type": "string",
-            "description": "The masked API key preview safe to show after initial issuance."
+            "description": "The API key preview value for this source."
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this source.",
             "format": "date-time"
           },
           "modifiedAt": {
             "type": "string",
-            "description": "Gets or sets when modified.",
+            "description": "The date and time for the modified at value on this source.",
             "format": "date-time"
           },
           "enabled": {
             "type": "boolean",
-            "description": "The status of the source (enabled/disabled). This column is orderable and searchable."
+            "description": "Whether this source is enabled."
           },
           "user": {
             "oneOf": [
@@ -6040,7 +5872,7 @@
           },
           "costPerLead": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the cost per lead.",
+            "description": "The cost per lead value for this source.",
             "format": "double",
             "nullable": true
           },
@@ -6049,25 +5881,25 @@
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the allowed states."
+            "description": "The allowed states included with this source."
           },
           "allowedProducts": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the allowed products."
+            "description": "The allowed products included with this source."
           },
           "requiresTrustedForm": {
             "type": "boolean",
-            "description": "Gets or sets whether it requires trusted form."
+            "description": "Whether this source requires TrustedForm."
           },
           "complianceApproved": {
             "type": "boolean",
-            "description": "Gets or sets the compliance approved."
+            "description": "Whether this source is compliance approved."
           }
         },
-        "description": "Represents a row of source data used in a data table, with mapped fields from the source model."
+        "description": "API DTO containing source data used by Leadping API contracts."
       },
       "StreetAddress": {
         "type": "object",
@@ -6120,38 +5952,38 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The Stripe PaymentMethod ID"
+            "description": "The unique ID for this Stripe payment method."
           },
           "brand": {
             "type": "string",
-            "description": "The brand of the card (e.g., Visa, MasterCard)"
+            "description": "The brand value for this Stripe payment method."
           },
           "last4": {
             "type": "string",
-            "description": "The last 4 digits of the card number"
+            "description": "The date and time for the last4 value on this Stripe payment method."
           },
           "expMonth": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The expiration month of the card",
+            "description": "The exp month value for this Stripe payment method.",
             "format": "int32"
           },
           "expYear": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The expiration year of the card",
+            "description": "The exp year value for this Stripe payment method.",
             "format": "int32"
           },
           "isDefault": {
             "type": "boolean",
-            "description": "Whether this payment method is set as the default"
+            "description": "Whether this Stripe payment method is default."
           },
           "createdAt": {
             "type": "string",
-            "description": "When the payment method was created (optional, if available)",
+            "description": "The date and time for the created at value on this Stripe payment method.",
             "format": "date-time",
             "nullable": true
           }
         },
-        "description": "Represents a saved payment method (e.g., card) for user display"
+        "description": "API DTO containing stripe payment method data used by Leadping API contracts."
       },
       "SubscriptionStatus": {
         "enum": [
@@ -6163,298 +5995,52 @@
         "type": "string",
         "description": "Defines the supported Subscription Status values."
       },
-      "SuppressionCheckResult": {
-        "type": "object",
-        "properties": {
-          "allowed": {
-            "type": "boolean",
-            "description": "Gets or sets the allowed."
-          },
-          "businessId": {
-            "type": "string",
-            "description": "Gets or sets the business identifier.",
-            "nullable": true
-          },
-          "recipientIdentifier": {
-            "type": "string",
-            "description": "Gets or sets the recipient identifier.",
-            "nullable": true
-          },
-          "normalizedPhoneNumber": {
-            "type": "string",
-            "description": "Gets or sets the normalized phone number.",
-            "nullable": true
-          },
-          "normalizedEmail": {
-            "type": "string",
-            "description": "Gets or sets the normalized email.",
-            "nullable": true
-          },
-          "channel": {
-            "type": "string",
-            "description": "Gets or sets the channel.",
-            "nullable": true
-          },
-          "suppressionEntryId": {
-            "type": "string",
-            "description": "Gets or sets the suppression entry identifier.",
-            "nullable": true
-          },
-          "customerReason": {
-            "type": "string",
-            "description": "Gets or sets the customer reason.",
-            "nullable": true
-          },
-          "adminReason": {
-            "type": "string",
-            "description": "Gets or sets the admin reason.",
-            "nullable": true
-          }
-        },
-        "description": "Represents the Suppression Check Result returned by the API."
-      },
-      "SuppressionEntryAudit": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Gets or sets the identifier."
-          },
-          "status": {
-            "type": "string",
-            "description": "Gets or sets the status."
-          },
-          "source": {
-            "type": "string",
-            "description": "Gets or sets the source."
-          },
-          "timestamp": {
-            "type": "string",
-            "description": "Gets or sets the timestamp.",
-            "format": "date-time"
-          },
-          "actorId": {
-            "type": "string",
-            "description": "Gets or sets the actor identifier.",
-            "nullable": true
-          },
-          "sourceEventId": {
-            "type": "string",
-            "description": "Gets or sets the source event identifier.",
-            "nullable": true
-          },
-          "providerEventId": {
-            "type": "string",
-            "description": "Gets or sets the provider event identifier.",
-            "nullable": true
-          },
-          "reason": {
-            "type": "string",
-            "description": "Gets or sets the reason.",
-            "nullable": true
-          },
-          "safeMetadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Gets or sets the safe metadata."
-          }
-        },
-        "description": "Represents a Suppression Entry Audit."
-      },
-      "SuppressionEntryRequest": {
-        "type": "object",
-        "properties": {
-          "businessId": {
-            "type": "string",
-            "description": "Gets or sets the business identifier."
-          },
-          "recipientIdentifier": {
-            "type": "string",
-            "description": "Gets or sets the recipient identifier.",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "description": "Gets or sets the phone number.",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "description": "Gets or sets the email.",
-            "nullable": true
-          },
-          "channel": {
-            "type": "string",
-            "description": "Gets or sets the channel."
-          },
-          "source": {
-            "type": "string",
-            "description": "Gets or sets the source."
-          },
-          "reason": {
-            "type": "string",
-            "description": "Gets or sets the reason.",
-            "nullable": true
-          },
-          "actorId": {
-            "type": "string",
-            "description": "Gets or sets the actor identifier.",
-            "nullable": true
-          },
-          "sourceEventId": {
-            "type": "string",
-            "description": "Gets or sets the source event identifier.",
-            "nullable": true
-          },
-          "providerEventId": {
-            "type": "string",
-            "description": "Gets or sets the provider event identifier.",
-            "nullable": true
-          },
-          "timestamp": {
-            "type": "string",
-            "description": "Gets or sets the timestamp.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "safeMetadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Gets or sets the safe metadata."
-          }
-        },
-        "description": "Represents the Suppression Entry Request payload."
-      },
-      "SuppressionEntryResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Gets or sets the identifier.",
-            "nullable": true
-          },
-          "businessId": {
-            "type": "string",
-            "description": "Gets or sets the business identifier.",
-            "nullable": true
-          },
-          "recipientIdentifier": {
-            "type": "string",
-            "description": "Gets or sets the recipient identifier.",
-            "nullable": true
-          },
-          "normalizedPhoneNumber": {
-            "type": "string",
-            "description": "Gets or sets the normalized phone number.",
-            "nullable": true
-          },
-          "normalizedEmail": {
-            "type": "string",
-            "description": "Gets or sets the normalized email.",
-            "nullable": true
-          },
-          "channel": {
-            "type": "string",
-            "description": "Gets or sets the channel.",
-            "nullable": true
-          },
-          "source": {
-            "type": "string",
-            "description": "Gets or sets the source.",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "description": "Gets or sets the status.",
-            "nullable": true
-          },
-          "reason": {
-            "type": "string",
-            "description": "Gets or sets the reason.",
-            "nullable": true
-          },
-          "sourceEventId": {
-            "type": "string",
-            "description": "Gets or sets the source event identifier.",
-            "nullable": true
-          },
-          "providerEventId": {
-            "type": "string",
-            "description": "Gets or sets the provider event identifier.",
-            "nullable": true
-          },
-          "suppressedAt": {
-            "type": "string",
-            "description": "Gets or sets when suppressed.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "releasedAt": {
-            "type": "string",
-            "description": "Gets or sets when released.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "audit": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SuppressionEntryAudit"
-            },
-            "description": "Gets or sets the audit."
-          }
-        },
-        "description": "Represents the Suppression Entry Response returned by the API."
-      },
       "TenDlcApplicationDraft": {
         "type": "object",
         "properties": {
           "companyName": {
             "type": "string",
-            "description": "Gets or sets the company name.",
+            "description": "The company name value for this 10DLC application draft.",
             "nullable": true
           },
           "contactName": {
             "type": "string",
-            "description": "Gets or sets the contact name.",
+            "description": "The contact name value for this 10DLC application draft.",
             "nullable": true
           },
           "contactEmail": {
             "type": "string",
-            "description": "Gets or sets the contact email.",
+            "description": "The contact email value for this 10DLC application draft.",
             "nullable": true
           },
           "contactPhone": {
             "type": "string",
-            "description": "Gets or sets the contact phone.",
+            "description": "The contact phone value for this 10DLC application draft.",
             "nullable": true
           },
           "ein": {
             "type": "string",
-            "description": "Gets or sets the EIN.",
+            "description": "The EIN value for this 10DLC application draft.",
             "nullable": true
           },
           "websiteUrl": {
             "type": "string",
-            "description": "Gets or sets the website URL.",
+            "description": "The URL associated with this 10DLC application draft.",
             "nullable": true
           },
           "industry": {
             "type": "string",
-            "description": "Gets or sets the industry.",
+            "description": "The industry value for this 10DLC application draft.",
             "nullable": true
           },
           "useCase": {
             "type": "string",
-            "description": "Gets or sets the use case.",
+            "description": "The use case value for this 10DLC application draft.",
             "nullable": true
           },
           "useCaseDescription": {
             "type": "string",
-            "description": "Gets or sets the use case description.",
+            "description": "The use case description value for this 10DLC application draft.",
             "nullable": true
           },
           "messageExamples": {
@@ -6462,76 +6048,76 @@
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the message examples."
+            "description": "The message examples included with this 10DLC application draft."
           },
           "optInLanguage": {
             "type": "string",
-            "description": "Gets or sets the opt in language.",
+            "description": "The opt in language value for this 10DLC application draft.",
             "nullable": true
           },
           "privacyPolicyUrl": {
             "type": "string",
-            "description": "Gets or sets the privacy policy URL.",
+            "description": "The URL associated with this 10DLC application draft.",
             "nullable": true
           },
           "termsUrl": {
             "type": "string",
-            "description": "Gets or sets the terms URL.",
+            "description": "The URL associated with this 10DLC application draft.",
             "nullable": true
           },
           "expectedMonthlyVolume": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the expected monthly volume.",
+            "description": "The expected monthly volume value for this 10DLC application draft.",
             "format": "int32",
             "nullable": true
           },
           "leadSource": {
             "type": "string",
-            "description": "Gets or sets the lead source.",
+            "description": "The lead source value for this 10DLC application draft.",
             "nullable": true
           },
           "trustedFormRequired": {
             "type": "boolean",
-            "description": "Gets or sets the trusted form required."
+            "description": "Whether TrustedForm required applies to this 10DLC application draft."
           },
           "complianceWarnings": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the compliance warnings."
+            "description": "The compliance warnings included with this 10DLC application draft."
           },
           "missingFields": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the missing fields."
+            "description": "The missing fields included with this 10DLC application draft."
           },
           "lastSubmittedAt": {
             "type": "string",
-            "description": "Gets or sets when last submitted.",
+            "description": "The date and time for the last submitted at value on this 10DLC application draft.",
             "format": "date-time",
             "nullable": true
           },
           "rejectionReason": {
             "type": "string",
-            "description": "Gets or sets the rejection reason.",
+            "description": "The human-readable rejection reason explaining this 10DLC application draft.",
             "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "description": "Gets or sets when updated.",
+            "description": "The date and time for the updated at value on this 10DLC application draft.",
             "format": "date-time",
             "nullable": true
           },
           "version": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the version.",
+            "description": "The version value for this 10DLC application draft.",
             "format": "int32"
           }
         },
-        "description": "Represents a 10DLC Application Draft."
+        "description": "API DTO containing ten dlc application draft data used by Leadping API contracts."
       },
       "TenDlcApplicationStatus": {
         "enum": [
@@ -6555,77 +6141,77 @@
         "properties": {
           "accountId": {
             "type": "string",
-            "description": "Account ID (e.g. UserId)"
+            "description": "The account ID associated with this transaction."
           },
           "accountName": {
             "type": "string",
-            "description": "Gets or sets the account name.",
+            "description": "The account name value for this transaction.",
             "nullable": true
           },
           "businessId": {
             "type": "string",
-            "description": "Gets or sets the business identifier.",
+            "description": "The business ID associated with this transaction.",
             "nullable": true
           },
           "businessName": {
             "type": "string",
-            "description": "Gets or sets the business name.",
+            "description": "The business name value for this transaction.",
             "nullable": true
           },
           "leadId": {
             "type": "string",
-            "description": "Gets or sets the lead identifier."
+            "description": "The lead ID associated with this transaction."
           },
           "leadName": {
             "type": "string",
-            "description": "Gets or sets the lead name.",
+            "description": "The lead name value for this transaction.",
             "nullable": true
           },
           "amount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the amount.",
+            "description": "The monetary amount for this transaction.",
             "format": "double"
           },
           "netAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the net amount.",
+            "description": "The monetary net amount for this transaction.",
             "format": "double"
           },
           "gatewayFeeAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the gateway fee amount.",
+            "description": "The monetary gateway fee amount for this transaction.",
             "format": "double",
             "nullable": true
           },
           "gatewayStatus": {
             "type": "string",
-            "description": "Gets or sets the gateway status.",
+            "description": "The current gateway status for this transaction.",
             "nullable": true
           },
           "gatewayId": {
             "type": "string",
-            "description": "Payment gateway provided id (e.g. Stripe Payment Intent ID)",
+            "description": "The gateway ID associated with this transaction.",
             "nullable": true
           },
           "platformFeeAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the platform fee amount.",
+            "description": "The monetary platform fee amount for this transaction.",
             "format": "double",
             "nullable": true
           },
           "notes": {
             "type": "string",
-            "description": "Gets or sets the notes.",
+            "description": "The operator or customer notes recorded for this transaction.",
             "nullable": true
           },
           "description": {
             "type": "string",
-            "description": "Gets or sets the description.",
+            "description": "The human-readable description of this transaction.",
             "nullable": true
           },
           "paymentMethodDisplay": {
             "type": "string",
-            "description": "Gets or sets the payment method display.",
+            "description": "The payment method display value for this transaction.",
             "nullable": true
           },
           "transactionType": {
@@ -6636,16 +6222,16 @@
           },
           "correlationId": {
             "type": "string",
-            "description": "Id to correlate related records (e.g. LeadId)",
+            "description": "The correlation ID associated with this transaction.",
             "nullable": true
           },
           "createdBy": {
             "type": "string",
-            "description": "User ID that created the record"
+            "description": "The date and time for the created by value on this transaction."
           },
           "modifiedBy": {
             "type": "string",
-            "description": "User ID that modified the record",
+            "description": "The modified by value for this transaction.",
             "nullable": true
           },
           "id": {
@@ -6661,7 +6247,7 @@
             "nullable": true
           }
         },
-        "description": "Represents the Transaction Response returned by the API."
+        "description": "API response containing transaction data returned to callers."
       },
       "TransactionStatus": {
         "enum": [
@@ -6677,44 +6263,44 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier of the transaction."
+            "description": "The unique ID for this transaction."
           },
           "accountId": {
             "type": "string",
-            "description": "The account ID associated with the transaction."
+            "description": "The account ID associated with this transaction."
           },
           "accountName": {
             "type": "string",
-            "description": "Gets or sets the account name.",
+            "description": "The account name value for this transaction.",
             "nullable": true
           },
           "businessId": {
             "type": "string",
-            "description": "Gets or sets the business identifier.",
+            "description": "The business ID associated with this transaction.",
             "nullable": true
           },
           "businessName": {
             "type": "string",
-            "description": "Gets or sets the business name.",
+            "description": "The business name value for this transaction.",
             "nullable": true
           },
           "leadId": {
             "type": "string",
-            "description": "The lead ID associated with the transaction."
+            "description": "The lead ID associated with this transaction."
           },
           "leadName": {
             "type": "string",
-            "description": "Gets or sets the lead name.",
+            "description": "The lead name value for this transaction.",
             "nullable": true
           },
           "amount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The transaction amount.",
+            "description": "The monetary amount for this transaction.",
             "format": "double"
           },
           "netAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The net amount after fees.",
+            "description": "The monetary net amount for this transaction.",
             "format": "double"
           },
           "transactionType": {
@@ -6725,25 +6311,25 @@
           },
           "paymentMethodDisplay": {
             "type": "string",
-            "description": "The payment method display.",
+            "description": "The payment method display value for this transaction.",
             "nullable": true
           },
           "description": {
             "type": "string",
-            "description": "The transaction description.",
+            "description": "The human-readable description of this transaction.",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "description": "The creation date of the transaction record.",
+            "description": "The date and time for the created at value on this transaction.",
             "format": "date-time"
           },
           "createdBy": {
             "type": "string",
-            "description": "The user who created the transaction."
+            "description": "The date and time for the created by value on this transaction."
           }
         },
-        "description": "Represents a row of transaction data used in a data table."
+        "description": "API DTO containing transaction data used by Leadping API contracts."
       },
       "TransactionType": {
         "enum": [
@@ -6759,26 +6345,26 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Gets or sets the identifier.",
+            "description": "The unique ID for this TrustedForm certificate.",
             "nullable": true
           },
           "url": {
             "type": "string",
-            "description": "Gets or sets the URL."
+            "description": "The URL associated with this TrustedForm certificate."
           },
           "source": {
             "type": "string",
-            "description": "Gets or sets the source.",
+            "description": "The source value for this TrustedForm certificate.",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this TrustedForm certificate.",
             "format": "date-time",
             "nullable": true
           }
         },
-        "description": "Represents a Trusted Form Certificate."
+        "description": "API DTO containing trusted form certificate data used by Leadping API contracts."
       },
       "UsageChannel": {
         "enum": [
@@ -6802,61 +6388,61 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Gets or sets the identifier."
+            "description": "The unique ID for this usage ledger."
           },
           "idempotencyKey": {
             "type": "string",
-            "description": "Gets or sets the idempotency key.",
+            "description": "The idempotency key value for this usage ledger.",
             "nullable": true
           },
           "businessId": {
             "type": "string",
-            "description": "Gets or sets the business identifier.",
+            "description": "The business ID associated with this usage ledger.",
             "nullable": true
           },
           "businessName": {
             "type": "string",
-            "description": "Gets or sets the business name.",
+            "description": "The business name value for this usage ledger.",
             "nullable": true
           },
           "userId": {
             "type": "string",
-            "description": "Gets or sets the user identifier.",
+            "description": "The user ID associated with this usage ledger.",
             "nullable": true
           },
           "userName": {
             "type": "string",
-            "description": "Gets or sets the user name.",
+            "description": "The user name value for this usage ledger.",
             "nullable": true
           },
           "leadId": {
             "type": "string",
-            "description": "Gets or sets the lead identifier.",
+            "description": "The lead ID associated with this usage ledger.",
             "nullable": true
           },
           "leadName": {
             "type": "string",
-            "description": "Gets or sets the lead name.",
+            "description": "The lead name value for this usage ledger.",
             "nullable": true
           },
           "phoneNumberId": {
             "type": "string",
-            "description": "Gets or sets the phone number identifier.",
+            "description": "The phone number ID associated with this usage ledger.",
             "nullable": true
           },
           "phoneNumber": {
             "type": "string",
-            "description": "Gets or sets the phone number.",
+            "description": "The phone number associated with this usage ledger.",
             "nullable": true
           },
           "sourceEventId": {
             "type": "string",
-            "description": "Gets or sets the source event identifier.",
+            "description": "The source event ID associated with this usage ledger.",
             "nullable": true
           },
           "correlationId": {
             "type": "string",
-            "description": "Gets or sets the correlation identifier.",
+            "description": "The correlation ID associated with this usage ledger.",
             "nullable": true
           },
           "channel": {
@@ -6870,69 +6456,69 @@
           },
           "quantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the quantity.",
+            "description": "The quantity value for this usage ledger.",
             "format": "double"
           },
           "durationSeconds": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the duration seconds.",
+            "description": "The duration seconds value for this usage ledger.",
             "format": "int32",
             "nullable": true
           },
           "billableSeconds": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the billable seconds.",
+            "description": "The billable seconds value for this usage ledger.",
             "format": "int32",
             "nullable": true
           },
           "smsSegments": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the SMS segments.",
+            "description": "The SMS segments value for this usage ledger.",
             "format": "int32",
             "nullable": true
           },
           "unitPrice": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the unit price.",
+            "description": "The unit price value for this usage ledger.",
             "format": "double"
           },
           "customerChargeAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the customer charge amount.",
+            "description": "The monetary customer charge amount for this usage ledger.",
             "format": "double"
           },
           "providerCostAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the provider cost amount.",
+            "description": "The monetary provider cost amount for this usage ledger.",
             "format": "double",
             "nullable": true
           },
           "internalCostAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the internal cost amount.",
+            "description": "The monetary internal cost amount for this usage ledger.",
             "format": "double",
             "nullable": true
           },
           "isBillable": {
             "type": "boolean",
-            "description": "Gets or sets whether it is billable."
+            "description": "Whether this usage ledger is billable."
           },
           "isInternal": {
             "type": "boolean",
-            "description": "Gets or sets whether it is internal."
+            "description": "Whether this usage ledger is internal."
           },
           "description": {
             "type": "string",
-            "description": "Gets or sets the description.",
+            "description": "The human-readable description of this usage ledger.",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets when created.",
+            "description": "The date and time for the created at value on this usage ledger.",
             "format": "date-time"
           }
         },
-        "description": "Represents an Usage Ledger Table Row."
+        "description": "API DTO containing usage ledger data used by Leadping API contracts."
       },
       "UsageRecordStatus": {
         "enum": [
@@ -6963,88 +6549,88 @@
           },
           "quantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the quantity.",
+            "description": "The quantity value for this usage summary line.",
             "format": "double"
           },
           "customerChargeAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the customer charge amount.",
+            "description": "The monetary customer charge amount for this usage summary line.",
             "format": "double"
           },
           "providerCostAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the provider cost amount.",
+            "description": "The monetary provider cost amount for this usage summary line.",
             "format": "double"
           },
           "internalCostAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the internal cost amount.",
+            "description": "The monetary internal cost amount for this usage summary line.",
             "format": "double"
           },
           "recordCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the record count.",
+            "description": "The record count for this usage summary line.",
             "format": "int32"
           }
         },
-        "description": "Represents an Usage Summary Line."
+        "description": "API DTO containing usage summary line data used by Leadping API contracts."
       },
       "UsageSummaryResponse": {
         "type": "object",
         "properties": {
           "periodStart": {
             "type": "string",
-            "description": "Gets or sets the period start.",
+            "description": "The date and time for the period start value on this usage summary.",
             "format": "date-time"
           },
           "periodEnd": {
             "type": "string",
-            "description": "Gets or sets the period end.",
+            "description": "The date and time for the period end value on this usage summary.",
             "format": "date-time"
           },
           "customerChargeTotal": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the customer charge total.",
+            "description": "The customer charge total for this usage summary.",
             "format": "double"
           },
           "providerCostTotal": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the provider cost total.",
+            "description": "The provider cost total for this usage summary.",
             "format": "double"
           },
           "internalCostTotal": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the internal cost total.",
+            "description": "The internal cost total for this usage summary.",
             "format": "double"
           },
           "billableQuantityTotal": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the billable quantity total.",
+            "description": "The billable quantity total for this usage summary.",
             "format": "double"
           },
           "usageRecordCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the usage record count.",
+            "description": "The usage record count for this usage summary.",
             "format": "int32"
           },
           "pendingInvoiceCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the pending invoice count.",
+            "description": "The pending invoice count for this usage summary.",
             "format": "int32"
           },
           "failedCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the failed count.",
+            "description": "The failed count for this usage summary.",
             "format": "int32"
           },
           "billingBlockedCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the billing blocked count.",
+            "description": "The billing blocked count for this usage summary.",
             "format": "int32"
           },
           "nonBillableInternalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the non billable internal count.",
+            "description": "The non billable internal count for this usage summary.",
             "format": "int32"
           },
           "lines": {
@@ -7052,40 +6638,40 @@
             "items": {
               "$ref": "#/components/schemas/UsageSummaryLine"
             },
-            "description": "Gets or sets the lines."
+            "description": "The lines included with this usage summary."
           }
         },
-        "description": "Represents an Usage Summary Response."
+        "description": "API DTO containing usage summary response data."
       },
       "UserCompliance": {
         "type": "object",
         "properties": {
           "acceptedTerms": {
             "type": "boolean",
-            "description": "Gets or sets the accepted terms."
+            "description": "Whether the user accepted terms for this user compliance."
           },
           "acceptedToSubscription": {
             "type": "boolean",
-            "description": "Gets or sets the accepted subscription."
+            "description": "Whether the user accepted subscription for this user compliance."
           },
           "acceptedSms": {
             "type": "boolean",
-            "description": "Gets or sets the accepted SMS."
+            "description": "Whether the user accepted SMS for this user compliance."
           },
           "acceptedBaa": {
             "type": "boolean",
-            "description": "Gets or sets the accepted baa."
+            "description": "Whether the user accepted BAA for this user compliance."
           },
           "acceptedEmail": {
             "type": "boolean",
-            "description": "Gets or sets the accepted email."
+            "description": "Whether the user accepted email for this user compliance."
           },
           "trustedFormCertificates": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TrustedFormCertificate"
             },
-            "description": "Gets or sets the trusted form certificates.",
+            "description": "The TrustedForm certificates included with this user compliance.",
             "nullable": true
           },
           "licensedStates": {
@@ -7093,17 +6679,17 @@
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the licensed states."
+            "description": "The licensed states included with this user compliance."
           },
           "licensedProducts": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the licensed products."
+            "description": "The licensed products included with this user compliance."
           }
         },
-        "description": "Represents an User Compliance."
+        "description": "API DTO containing user compliance data used by Leadping API contracts."
       },
       "UserIdentity": {
         "type": "object",
@@ -7124,14 +6710,14 @@
         "properties": {
           "newLeadEmailEnabled": {
             "type": "boolean",
-            "description": "Gets or sets the new lead email enabled."
+            "description": "Whether new lead email is enabled for this user notification preferences."
           },
           "newLeadSmsEnabled": {
             "type": "boolean",
-            "description": "Gets or sets the new lead SMS enabled."
+            "description": "Whether new lead SMS is enabled for this user notification preferences."
           }
         },
-        "description": "Represents an User Notification Preferences."
+        "description": "API DTO containing user notification preferences data used by Leadping API contracts."
       },
       "UserRequest": {
         "required": [
@@ -7141,21 +6727,21 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "Gets or sets the email."
+            "description": "The email address associated with this user."
           },
           "firstName": {
             "type": "string",
-            "description": "Gets or sets the first name.",
+            "description": "The first name value for this user.",
             "nullable": true
           },
           "lastName": {
             "type": "string",
-            "description": "Gets or sets the last name.",
+            "description": "The date and time for the last name value on this user.",
             "nullable": true
           },
           "phone": {
             "type": "string",
-            "description": "Gets or sets the phone.",
+            "description": "The phone number associated with this user.",
             "nullable": true
           },
           "billingPlan": {
@@ -7182,17 +6768,17 @@
           },
           "autoRefillEnabled": {
             "type": "boolean",
-            "description": "Gets or sets the auto refill enabled."
+            "description": "Whether auto refill is enabled for this user."
           },
           "autoRefillAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the auto refill amount.",
+            "description": "The monetary auto refill amount for this user.",
             "format": "double",
             "nullable": true
           },
           "autoRefillTrigger": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the auto refill trigger.",
+            "description": "The auto refill trigger value for this user.",
             "format": "double",
             "nullable": true
           },
@@ -7250,28 +6836,28 @@
             "nullable": true
           }
         },
-        "description": "Represents the User Request payload."
+        "description": "Request payload for user."
       },
       "UserResponse": {
         "type": "object",
         "properties": {
           "email": {
             "type": "string",
-            "description": "Gets or sets the email."
+            "description": "The email address associated with this user."
           },
           "firstName": {
             "type": "string",
-            "description": "Gets or sets the first name.",
+            "description": "The first name value for this user.",
             "nullable": true
           },
           "lastName": {
             "type": "string",
-            "description": "Gets or sets the last name.",
+            "description": "The date and time for the last name value on this user.",
             "nullable": true
           },
           "phone": {
             "type": "string",
-            "description": "Gets or sets the phone.",
+            "description": "The phone number associated with this user.",
             "nullable": true
           },
           "billingPlan": {
@@ -7298,7 +6884,7 @@
           },
           "roles": {
             "type": "array",
-            "description": "Gets or sets the roles.",
+            "description": "The roles included with this user.",
             "nullable": true
           },
           "identities": {
@@ -7306,7 +6892,7 @@
             "items": {
               "$ref": "#/components/schemas/UserIdentity"
             },
-            "description": "Gets or sets the identities.",
+            "description": "The identities included with this user.",
             "nullable": true
           },
           "stripeInfo": {
@@ -7322,22 +6908,22 @@
           },
           "accountBalance": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the account balance.",
+            "description": "The account balance value for this user.",
             "format": "double"
           },
           "autoRefillEnabled": {
             "type": "boolean",
-            "description": "Gets or sets the auto refill enabled."
+            "description": "Whether auto refill is enabled for this user."
           },
           "autoRefillAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the auto refill amount.",
+            "description": "The monetary auto refill amount for this user.",
             "format": "double",
             "nullable": true
           },
           "autoRefillTrigger": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Gets or sets the auto refill trigger.",
+            "description": "The auto refill trigger value for this user.",
             "format": "double",
             "nullable": true
           },
@@ -7387,24 +6973,24 @@
           },
           "personalDataDeletionRequestedAt": {
             "type": "string",
-            "description": "Gets or sets when personal data deletion requested.",
+            "description": "The date and time for the personal data deletion requested at value on this user.",
             "format": "date-time",
             "nullable": true
           },
           "personalDataDeletedAt": {
             "type": "string",
-            "description": "Gets or sets when personal data deleted.",
+            "description": "The date and time for the personal data deleted at value on this user.",
             "format": "date-time",
             "nullable": true
           },
           "personalDataDeletionStatus": {
             "type": "string",
-            "description": "Gets or sets the personal data deletion status.",
+            "description": "The current personal data deletion status for this user.",
             "nullable": true
           },
           "personalDataDeletionReason": {
             "type": "string",
-            "description": "Gets or sets the personal data deletion reason.",
+            "description": "The human-readable personal data deletion reason explaining this user.",
             "nullable": true
           },
           "name": {
@@ -7423,19 +7009,19 @@
             "nullable": true
           }
         },
-        "description": "Represents the User Response returned by the API."
+        "description": "API response containing user data returned to callers."
       },
       "UserStripeInfo": {
         "type": "object",
         "properties": {
           "customerId": {
             "type": "string",
-            "description": "Gets or sets the customer identifier.",
+            "description": "The customer ID associated with this user Stripe info.",
             "nullable": true
           },
           "defaultPaymentMethodId": {
             "type": "string",
-            "description": "Default payment method (usually card) attached to the customer, for billing later.",
+            "description": "The default payment method ID associated with this user Stripe info.",
             "nullable": true
           },
           "subscriptionIds": {
@@ -7443,55 +7029,55 @@
             "items": {
               "type": "string"
             },
-            "description": "Gets or sets the subscription identifiers.",
+            "description": "The subscription ids included with this user Stripe info.",
             "nullable": true
           },
           "planSubscriptionId": {
             "type": "string",
-            "description": "Gets or sets the plan subscription identifier.",
+            "description": "The plan subscription ID associated with this user Stripe info.",
             "nullable": true
           },
           "planSubscriptionItemId": {
             "type": "string",
-            "description": "Gets or sets the plan subscription item identifier.",
+            "description": "The plan subscription item ID associated with this user Stripe info.",
             "nullable": true
           },
           "phoneSubscriptionId": {
             "type": "string",
-            "description": "Gets or sets the phone subscription identifier.",
+            "description": "The phone subscription ID associated with this user Stripe info.",
             "nullable": true
           },
           "phoneSubscriptionItemId": {
             "type": "string",
-            "description": "Gets or sets the phone subscription item identifier.",
+            "description": "The phone subscription item ID associated with this user Stripe info.",
             "nullable": true
           },
           "phoneNumberQuantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Gets or sets the phone number quantity.",
+            "description": "The phone number quantity value for this user Stripe info.",
             "format": "int64",
             "nullable": true
           },
           "cancelAt": {
             "type": "string",
-            "description": "Gets or sets when cancel.",
+            "description": "The date and time for the cancel at value on this user Stripe info.",
             "format": "date-time",
             "nullable": true
           },
           "lastSubscriptionEventAt": {
             "type": "string",
-            "description": "Gets or sets when last subscription event.",
+            "description": "The date and time for the last subscription event at value on this user Stripe info.",
             "format": "date-time",
             "nullable": true
           },
           "lastPaymentMethodEventAt": {
             "type": "string",
-            "description": "Gets or sets when last payment method event.",
+            "description": "The date and time for the last payment method event at value on this user Stripe info.",
             "format": "date-time",
             "nullable": true
           }
         },
-        "description": "Represents an User Stripe Info."
+        "description": "API DTO containing user stripe info data used by Leadping API contracts."
       },
       "WebsiteLifecycleStatus": {
         "enum": [
@@ -7523,16 +7109,10 @@
   },
   "tags": [
     {
-      "name": "leadping.Api"
-    },
-    {
       "name": "Conversations"
     },
     {
       "name": "Dispositions"
-    },
-    {
-      "name": "Health"
     },
     {
       "name": "Leads"
@@ -7542,9 +7122,6 @@
     },
     {
       "name": "Sources"
-    },
-    {
-      "name": "Suppressions"
     },
     {
       "name": "Users"
