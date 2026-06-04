@@ -6802,38 +6802,24 @@
             "format": "int32"
           },
           "user": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The user value for this automation."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The user value for this automation."
+            "description": "The user value for this automation.",
+            "nullable": true
           },
           "business": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The business value for this automation."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The business value for this automation."
+            "description": "The business value for this automation.",
+            "nullable": true
           },
           "name": {
             "type": "string"
@@ -7037,38 +7023,24 @@
             "description": "The health summary value for this automation."
           },
           "user": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The user value for this automation."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The user value for this automation."
+            "description": "The user value for this automation.",
+            "nullable": true
           },
           "business": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The business value for this automation."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The business value for this automation."
+            "description": "The business value for this automation.",
+            "nullable": true
           }
         },
         "description": "API DTO containing automation data used by Leadping API contracts."
@@ -7348,21 +7320,14 @@
             "nullable": true
           },
           "tenDlcDraft": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/TenDlcApplicationDraft"
-                  }
-                ],
-                "description": "The 10DLC draft value for this business activation state."
+                "$ref": "#/components/schemas/TenDlcApplicationDraft"
               }
             ],
-            "description": "The 10DLC draft value for this business activation state."
+            "description": "The 10DLC draft value for this business activation state.",
+            "nullable": true
           },
           "events": {
             "type": "array",
@@ -7649,21 +7614,14 @@
             "nullable": true
           },
           "address": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/StreetAddress"
-                  }
-                ],
-                "description": "The postal address associated with this business."
+                "$ref": "#/components/schemas/StreetAddress"
               }
             ],
-            "description": "The postal address associated with this business."
+            "description": "The postal address associated with this business.",
+            "nullable": true
           },
           "website": {
             "type": "string",
@@ -7691,21 +7649,14 @@
             "nullable": true
           },
           "einDocument": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNameValue"
-                  }
-                ],
-                "description": "The EIN document value for this business."
+                "$ref": "#/components/schemas/IdNameValue"
               }
             ],
-            "description": "The EIN document value for this business."
+            "description": "The EIN document value for this business.",
+            "nullable": true
           },
           "phones": {
             "type": "array",
@@ -7739,38 +7690,24 @@
             "nullable": true
           },
           "activation": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/BusinessActivationState"
-                  }
-                ],
-                "description": "The activation value for this business."
+                "$ref": "#/components/schemas/BusinessActivationState"
               }
             ],
-            "description": "The activation value for this business."
+            "description": "The activation value for this business.",
+            "nullable": true
           },
           "compliancePolicy": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/BusinessCompliancePolicy"
-                  }
-                ],
-                "description": "The compliance policy value for this business."
+                "$ref": "#/components/schemas/BusinessCompliancePolicy"
               }
             ],
-            "description": "The compliance policy value for this business."
+            "description": "The compliance policy value for this business.",
+            "nullable": true
           },
           "name": {
             "maxLength": 255,
@@ -7793,21 +7730,14 @@
             "nullable": true
           },
           "user": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The user value for this business."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The user value for this business."
+            "description": "The user value for this business.",
+            "nullable": true
           },
           "status": {
             "enum": [
@@ -7830,21 +7760,14 @@
             "nullable": true
           },
           "address": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/StreetAddress"
-                  }
-                ],
-                "description": "The postal address associated with this business."
+                "$ref": "#/components/schemas/StreetAddress"
               }
             ],
-            "description": "The postal address associated with this business."
+            "description": "The postal address associated with this business.",
+            "nullable": true
           },
           "vertical": {
             "type": "string",
@@ -7862,21 +7785,14 @@
             "nullable": true
           },
           "einDocument": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNameValue"
-                  }
-                ],
-                "description": "The EIN document value for this business."
+                "$ref": "#/components/schemas/IdNameValue"
               }
             ],
-            "description": "The EIN document value for this business."
+            "description": "The EIN document value for this business.",
+            "nullable": true
           },
           "domain": {
             "type": "string",
@@ -7897,21 +7813,14 @@
             "nullable": true
           },
           "site": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The site value for this business."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The site value for this business."
+            "description": "The site value for this business.",
+            "nullable": true
           },
           "setupStep": {
             "enum": [
@@ -7932,38 +7841,24 @@
             "nullable": true
           },
           "activation": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/BusinessActivationState"
-                  }
-                ],
-                "description": "The activation value for this business."
+                "$ref": "#/components/schemas/BusinessActivationState"
               }
             ],
-            "description": "The activation value for this business."
+            "description": "The activation value for this business.",
+            "nullable": true
           },
           "compliancePolicy": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/BusinessCompliancePolicy"
-                  }
-                ],
-                "description": "The compliance policy value for this business."
+                "$ref": "#/components/schemas/BusinessCompliancePolicy"
               }
             ],
-            "description": "The compliance policy value for this business."
+            "description": "The compliance policy value for this business.",
+            "nullable": true
           },
           "name": {
             "type": "string"
@@ -8442,21 +8337,14 @@
         "type": "object",
         "properties": {
           "compliance": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/UserCompliance"
-                  }
-                ],
-                "description": "The compliance value for this compliance update."
+                "$ref": "#/components/schemas/UserCompliance"
               }
             ],
-            "description": "The compliance value for this compliance update."
+            "description": "The compliance value for this compliance update.",
+            "nullable": true
           },
           "source": {
             "type": "string",
@@ -8534,21 +8422,14 @@
             "description": "Whether this conversation is unread."
           },
           "phoneNumber": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNameValue"
-                  }
-                ],
-                "description": "The phone number associated with this conversation."
+                "$ref": "#/components/schemas/IdNameValue"
               }
             ],
-            "description": "The phone number associated with this conversation."
+            "description": "The phone number associated with this conversation.",
+            "nullable": true
           },
           "outboundPhoneNumberOverrideId": {
             "type": "string",
@@ -9142,38 +9023,24 @@
             "nullable": true
           },
           "streetAddress": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/StreetAddress"
-                  }
-                ],
-                "description": "The street address value for this lead contact."
+                "$ref": "#/components/schemas/StreetAddress"
               }
             ],
-            "description": "The street address value for this lead contact."
+            "description": "The street address value for this lead contact.",
+            "nullable": true
           },
           "phone": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/Phone"
-                  }
-                ],
-                "description": "The phone number associated with this lead contact."
+                "$ref": "#/components/schemas/Phone"
               }
             ],
-            "description": "The phone number associated with this lead contact."
+            "description": "The phone number associated with this lead contact.",
+            "nullable": true
           },
           "email": {
             "type": "string",
@@ -10455,21 +10322,14 @@
             "nullable": true
           },
           "lookup": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/PhoneLookup"
-                  }
-                ],
-                "description": "The lookup value for this phone."
+                "$ref": "#/components/schemas/PhoneLookup"
               }
             ],
-            "description": "The lookup value for this phone."
+            "description": "The lookup value for this phone.",
+            "nullable": true
           }
         },
         "description": "API DTO containing phone data used by Leadping API contracts."
@@ -10544,21 +10404,14 @@
             "nullable": true
           },
           "location": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/PhoneNumberLocation"
-                  }
-                ],
-                "description": "The location value for this phone lookup."
+                "$ref": "#/components/schemas/PhoneNumberLocation"
               }
             ],
-            "description": "The location value for this phone lookup."
+            "description": "The location value for this phone lookup.",
+            "nullable": true
           },
           "id": {
             "type": "string"
@@ -10608,21 +10461,14 @@
             "nullable": true
           },
           "location": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/PhoneNumberLocation"
-                  }
-                ],
-                "description": "The location value for this phone number availability."
+                "$ref": "#/components/schemas/PhoneNumberLocation"
               }
             ],
-            "description": "The location value for this phone number availability."
+            "description": "The location value for this phone number availability.",
+            "nullable": true
           }
         },
         "description": "API response containing phone number availability data returned to callers."
@@ -10918,38 +10764,24 @@
             "description": "The number value for this phone number."
           },
           "business": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The business value for this phone number."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The business value for this phone number."
+            "description": "The business value for this phone number.",
+            "nullable": true
           },
           "user": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The user value for this phone number."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The user value for this phone number."
+            "description": "The user value for this phone number.",
+            "nullable": true
           },
           "teamId": {
             "type": "string",
@@ -11061,21 +10893,14 @@
             "description": "Whether this phone number is default."
           },
           "location": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/PhoneNumberLocation"
-                  }
-                ],
-                "description": "The location value for this phone number."
+                "$ref": "#/components/schemas/PhoneNumberLocation"
               }
             ],
-            "description": "The location value for this phone number."
+            "description": "The location value for this phone number.",
+            "nullable": true
           },
           "status": {
             "allOf": [
@@ -11245,21 +11070,14 @@
             "nullable": true
           },
           "location": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/PhoneNumberLocation"
-                  }
-                ],
-                "description": "The location value for this phone number search."
+                "$ref": "#/components/schemas/PhoneNumberLocation"
               }
             ],
-            "description": "The location value for this phone number search."
+            "description": "The location value for this phone number search.",
+            "nullable": true
           }
         },
         "description": "Request payload for phone number search."
@@ -11290,21 +11108,14 @@
             "description": "The number value for this phone number search result."
           },
           "location": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/PhoneNumberLocation"
-                  }
-                ],
-                "description": "The location value for this phone number search result."
+                "$ref": "#/components/schemas/PhoneNumberLocation"
               }
             ],
-            "description": "The location value for this phone number search result."
+            "description": "The location value for this phone number search result.",
+            "nullable": true
           }
         },
         "description": "API response containing phone number search result data returned to callers."
@@ -11337,21 +11148,14 @@
             "format": "int32"
           },
           "smsWarmup": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SmsWarmupStatusResponse"
-                  }
-                ],
-                "description": "The SMS warmup value for this phone number status."
+                "$ref": "#/components/schemas/SmsWarmupStatusResponse"
               }
             ],
-            "description": "The SMS warmup value for this phone number status."
+            "description": "The SMS warmup value for this phone number status.",
+            "nullable": true
           },
           "optOutMetrics": {
             "allOf": [
@@ -12625,38 +12429,24 @@
             "nullable": true
           },
           "user": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The user value for this source."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The user value for this source."
+            "description": "The user value for this source.",
+            "nullable": true
           },
           "business": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The business value for this source."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The business value for this source."
+            "description": "The business value for this source.",
+            "nullable": true
           },
           "costPerLead": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -12743,38 +12533,24 @@
             "description": "Whether this source is enabled."
           },
           "user": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The user value for this source."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The user value for this source."
+            "description": "The user value for this source.",
+            "nullable": true
           },
           "business": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The business value for this source."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The business value for this source."
+            "description": "The business value for this source.",
+            "nullable": true
           },
           "businessId": {
             "type": "string",
@@ -13753,72 +13529,44 @@
             "nullable": true
           },
           "business": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The business value for this user."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The business value for this user."
+            "description": "The business value for this user.",
+            "nullable": true
           },
           "currentBusiness": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The current business value for this user."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The current business value for this user."
+            "description": "The current business value for this user.",
+            "nullable": true
           },
           "compliance": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/UserCompliance"
-                  }
-                ],
-                "description": "The compliance value for this user."
+                "$ref": "#/components/schemas/UserCompliance"
               }
             ],
-            "description": "The compliance value for this user."
+            "description": "The compliance value for this user.",
+            "nullable": true
           },
           "notificationPreferences": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/UserNotificationPreferences"
-                  }
-                ],
-                "description": "The notification preferences value for this user."
+                "$ref": "#/components/schemas/UserNotificationPreferences"
               }
             ],
-            "description": "The notification preferences value for this user."
+            "description": "The notification preferences value for this user.",
+            "nullable": true
           },
           "name": {
             "maxLength": 255,
@@ -13888,21 +13636,14 @@
             "nullable": true
           },
           "stripeInfo": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/UserStripeInfo"
-                  }
-                ],
-                "description": "The Stripe info value for this user."
+                "$ref": "#/components/schemas/UserStripeInfo"
               }
             ],
-            "description": "The Stripe info value for this user."
+            "description": "The Stripe info value for this user.",
+            "nullable": true
           },
           "accountBalance": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -13926,72 +13667,44 @@
             "nullable": true
           },
           "business": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The business value for this user."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The business value for this user."
+            "description": "The business value for this user.",
+            "nullable": true
           },
           "currentBusiness": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/IdNamePair"
-                  }
-                ],
-                "description": "The current business value for this user."
+                "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The current business value for this user."
+            "description": "The current business value for this user.",
+            "nullable": true
           },
           "compliance": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/UserCompliance"
-                  }
-                ],
-                "description": "The compliance value for this user."
+                "$ref": "#/components/schemas/UserCompliance"
               }
             ],
-            "description": "The compliance value for this user."
+            "description": "The compliance value for this user.",
+            "nullable": true
           },
           "notificationPreferences": {
-            "oneOf": [
+            "type": "object",
+            "allOf": [
               {
-                "type": "object",
-                "nullable": true
-              },
-              {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/UserNotificationPreferences"
-                  }
-                ],
-                "description": "The notification preferences value for this user."
+                "$ref": "#/components/schemas/UserNotificationPreferences"
               }
             ],
-            "description": "The notification preferences value for this user."
+            "description": "The notification preferences value for this user.",
+            "nullable": true
           },
           "personalDataDeletionRequestedAt": {
             "type": "string",
