@@ -508,15 +508,17 @@
         "operationId": "Leads_CreateExternal",
         "parameters": [
           {
-            "name": "X-Leadping-Source-Id",
-            "in": "header",
+            "name": "sourceId",
+            "in": "query",
+            "description": "The Leadping source id supplied as a query string parameter.",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "X-Leadping-Source-Key",
-            "in": "header",
+            "name": "apiKey",
+            "in": "query",
+            "description": "The source API key supplied as a query string parameter.",
             "schema": {
               "type": "string"
             }
@@ -570,7 +572,7 @@
             }
           },
           "401": {
-            "description": "Authentication is required or the bearer token is invalid.",
+            "description": "Source credentials are missing or invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -580,7 +582,7 @@
             }
           },
           "403": {
-            "description": "The authenticated user is not authorized for this operation.",
+            "description": "The source is not allowed to accept traffic.",
             "content": {
               "application/json": {
                 "schema": {
@@ -601,15 +603,17 @@
         "operationId": "Leads_CreateIntake",
         "parameters": [
           {
-            "name": "X-Leadping-Source-Id",
-            "in": "header",
+            "name": "sourceId",
+            "in": "query",
+            "description": "The Leadping source id supplied as a query string parameter.",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "X-Leadping-Source-Key",
-            "in": "header",
+            "name": "apiKey",
+            "in": "query",
+            "description": "The source API key supplied as a query string parameter.",
             "schema": {
               "type": "string"
             }
@@ -653,7 +657,7 @@
             }
           },
           "401": {
-            "description": "Authentication is required or the bearer token is invalid.",
+            "description": "Source credentials are missing or invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -663,7 +667,329 @@
             }
           },
           "403": {
-            "description": "The authenticated user is not authorized for this operation.",
+            "description": "The source is not allowed to accept traffic.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Creates a lead externally using flat query string intake parameters.",
+        "operationId": "Leads_CreateIntakeFromQuery",
+        "parameters": [
+          {
+            "name": "FirstName",
+            "in": "query",
+            "description": "The first name value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "LastName",
+            "in": "query",
+            "description": "The date and time for the last name value on this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Email",
+            "in": "query",
+            "description": "The email address associated with this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Phone",
+            "in": "query",
+            "description": "The phone number associated with this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PhoneType",
+            "in": "query",
+            "description": "The phone type classification for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DateOfBirth",
+            "in": "query",
+            "description": "The date and time for the date of birth value on this lead intake.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "BirthDate",
+            "in": "query",
+            "description": "The date and time for the birth date value on this lead intake.",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "Address1",
+            "in": "query",
+            "description": "The address1 value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Address2",
+            "in": "query",
+            "description": "The address2 value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "City",
+            "in": "query",
+            "description": "The city value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "State",
+            "in": "query",
+            "description": "The current state for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Zip",
+            "in": "query",
+            "description": "The zip value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PostalCode",
+            "in": "query",
+            "description": "The postal code value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Gender",
+            "in": "query",
+            "description": "The gender value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SubId",
+            "in": "query",
+            "description": "The sub ID associated with this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SellerLeadId",
+            "in": "query",
+            "description": "The seller lead ID associated with this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SellerLeadIdentifier",
+            "in": "query",
+            "description": "The seller lead identifier value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "DirectPostPrice",
+            "in": "query",
+            "description": "The direct post price value for this lead intake.",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+              "format": "double"
+            }
+          },
+          {
+            "name": "Price",
+            "in": "query",
+            "description": "The monetary price for this lead intake.",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+              "format": "double"
+            }
+          },
+          {
+            "name": "UtmSource",
+            "in": "query",
+            "description": "The utm source value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UtmMedium",
+            "in": "query",
+            "description": "The utm medium value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UtmCampaign",
+            "in": "query",
+            "description": "The utm campaign value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UtmTerm",
+            "in": "query",
+            "description": "The utm term value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "UtmContent",
+            "in": "query",
+            "description": "The utm content value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Product",
+            "in": "query",
+            "description": "The product value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Vertical",
+            "in": "query",
+            "description": "The vertical value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Referrer",
+            "in": "query",
+            "description": "The referrer value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "LandingPage",
+            "in": "query",
+            "description": "The landing page value for this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TrustedFormUrl",
+            "in": "query",
+            "description": "The URL associated with this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ExternalId",
+            "in": "query",
+            "description": "The external ID associated with this lead intake.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SourceMetadata",
+            "in": "query",
+            "description": "The source metadata key-value data carried with this lead intake; values must be safe to expose in API responses.",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "sourceId",
+            "in": "query",
+            "description": "The Leadping source id supplied as a query string parameter.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "query",
+            "description": "The source API key supplied as a query string parameter.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The lead response was created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Source credentials are missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The source is not allowed to accept traffic.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4721,6 +5047,16 @@
           "utmContent": {
             "type": "string",
             "description": "The utm content value for this lead intake.",
+            "nullable": true
+          },
+          "product": {
+            "type": "string",
+            "description": "The product value for this lead intake.",
+            "nullable": true
+          },
+          "vertical": {
+            "type": "string",
+            "description": "The vertical value for this lead intake.",
             "nullable": true
           },
           "referrer": {
