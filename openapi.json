@@ -515,6 +515,20 @@
         "summary": "List current user's inbox conversations",
         "description": "Lists the current user's lead conversations with paging and sorting for inbox views, recent follow-up, and communication history.",
         "operationId": "Conversations_GetAllForCurrentUser",
+        "parameters": [
+          {
+            "name": "archiveFilter",
+            "in": "query",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/LeadArchiveFilter"
+                }
+              ],
+              "description": "Controls whether lead queries return active, archived, or all leads."
+            }
+          }
+        ],
         "requestBody": {
           "description": "Cancellation token.",
           "content": {
@@ -769,8 +783,8 @@
         "tags": [
           "Dispositions"
         ],
-        "summary": "Create a lead disposition outcome record",
-        "description": "Creates a disposition for a lead, recording follow-up outcome details that can support routing, reporting, and conversion review.",
+        "summary": "Set the current lead disposition",
+        "description": "Sets a lead's current structured outcome while recording the disposition change in history for audit, automation, and reporting.",
         "operationId": "Dispositions_Create",
         "requestBody": {
           "description": "The disposition data to create.",
@@ -800,7 +814,7 @@
         },
         "responses": {
           "201": {
-            "description": "Disposition was successfully created.",
+            "description": "Disposition was successfully updated and recorded.",
             "content": {
               "application/json": {
                 "schema": {
@@ -842,8 +856,8 @@
         "tags": [
           "Dispositions"
         ],
-        "summary": "Update a lead disposition outcome record",
-        "description": "Updates a disposition record for a lead, changing outcome details used by follow-up, reporting, and conversion review.",
+        "summary": "Update a lead disposition history entry",
+        "description": "Updates a disposition history entry and, when it is the current entry, updates the lead's current disposition.",
         "operationId": "Dispositions_Update",
         "parameters": [
           {
@@ -7786,6 +7800,126 @@
             "description": "Defines the supported SMS Traffic Type values.",
             "nullable": true
           },
+          "fromPhoneNumberId": {
+            "type": "string",
+            "nullable": true
+          },
+          "outboundPhoneNumberId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "toPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "telnyxId": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerMessageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "selectionReason": {
+            "enum": [
+              "StickyConversation",
+              "LeadAssigned",
+              "CampaignOrSource",
+              "Preferred",
+              "LocalArea",
+              "HealthyPool",
+              "FallbackDefault",
+              "ManualOverride"
+            ],
+            "type": "string",
+            "description": "Defines the supported Outgoing Number Selection Reason values.",
+            "nullable": true
+          },
+          "wasManuallyOverridden": {
+            "type": "boolean"
+          },
+          "campaignId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenDlcCampaignId": {
+            "type": "string",
+            "nullable": true
+          },
+          "complianceAction": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "billableAmount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "retryCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "queuedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sendingStartedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deliveredAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "receivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "failedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "undeliverableAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "blockedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nextRetryAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
           "scheduledFor": {
             "type": "string",
             "description": "The date and time for the scheduled for value on this activity.",
@@ -7855,6 +7989,7 @@
           "Call",
           "Voicemail",
           "Note",
+          "Disposition",
           "LeadCreated",
           "LeadUpdated",
           "Notification",
@@ -10708,6 +10843,33 @@
             "description": "The human-readable reason explaining the current conversation status.",
             "nullable": true
           },
+          "archivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "archiveReason": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadArchiveReason"
+              }
+            ],
+            "nullable": true
+          },
+          "isArchived": {
+            "type": "boolean"
+          },
+          "currentDisposition": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrentDispositionSummary"
+              }
+            ],
+            "description": "The current lifecycle disposition for the conversation's lead.",
+            "nullable": true
+          },
           "nextStep": {
             "type": "string",
             "description": "The recommended next action for the inbox user.",
@@ -10777,6 +10939,61 @@
           }
         },
         "description": "Request payload for create note."
+      },
+      "CurrentDispositionSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "enum": [
+              "Open",
+              "Qualified",
+              "Converted",
+              "Lost",
+              "Invalid",
+              "Duplicate"
+            ],
+            "type": "string",
+            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
+            "nullable": true
+          },
+          "outcome": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "changedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "changedByUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "changedByAutomationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "enum": [
+              "User",
+              "AI",
+              "Automation",
+              "System",
+              "API"
+            ],
+            "type": "string",
+            "description": "Known sources that can change a lead's current disposition.",
+            "nullable": true
+          }
+        },
+        "description": "Compact current disposition state stored directly on a lead and surfaced with conversation data."
       },
       "CustomerActivationHealth": {
         "type": "object",
@@ -11194,6 +11411,29 @@
           }
         }
       },
+      "DispositionCategory": {
+        "enum": [
+          "Open",
+          "Qualified",
+          "Converted",
+          "Lost",
+          "Invalid",
+          "Duplicate"
+        ],
+        "type": "string",
+        "description": "Controlled disposition categories used for reporting, automation, and analytics."
+      },
+      "DispositionChangeSource": {
+        "enum": [
+          "User",
+          "AI",
+          "Automation",
+          "System",
+          "API"
+        ],
+        "type": "string",
+        "description": "Known sources that can change a lead's current disposition."
+      },
       "DispositionExportResponse": {
         "type": "object",
         "properties": {
@@ -11245,6 +11485,64 @@
           "outcome": {
             "type": "string",
             "description": "The outcome value for this disposition export row.",
+            "nullable": true
+          },
+          "category": {
+            "enum": [
+              "Open",
+              "Qualified",
+              "Converted",
+              "Lost",
+              "Invalid",
+              "Duplicate"
+            ],
+            "type": "string",
+            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
+            "nullable": true
+          },
+          "oldDispositionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "oldDispositionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "oldDispositionOutcome": {
+            "type": "string",
+            "nullable": true
+          },
+          "newDispositionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "changeSource": {
+            "enum": [
+              "User",
+              "AI",
+              "Automation",
+              "System",
+              "API"
+            ],
+            "type": "string",
+            "description": "Known sources that can change a lead's current disposition.",
+            "nullable": true
+          },
+          "changedByUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "changedByAutomationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "changedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
             "nullable": true
           },
           "followUpStatus": {
@@ -11328,9 +11626,44 @@
             "type": "string",
             "description": "The outcome value for this disposition."
           },
+          "category": {
+            "enum": [
+              "Open",
+              "Qualified",
+              "Converted",
+              "Lost",
+              "Invalid",
+              "Duplicate"
+            ],
+            "type": "string",
+            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
+            "nullable": true
+          },
           "notes": {
             "type": "string",
             "description": "The operator or customer notes recorded for this disposition.",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason this disposition was changed.",
+            "nullable": true
+          },
+          "changeSource": {
+            "enum": [
+              "User",
+              "AI",
+              "Automation",
+              "System",
+              "API"
+            ],
+            "type": "string",
+            "description": "Known sources that can change a lead's current disposition.",
+            "nullable": true
+          },
+          "changedByAutomationId": {
+            "type": "string",
+            "description": "The automation that changed this disposition, when applicable.",
             "nullable": true
           },
           "timestamp": {
@@ -11413,9 +11746,68 @@
             "type": "string",
             "description": "The outcome value for this disposition."
           },
+          "category": {
+            "enum": [
+              "Open",
+              "Qualified",
+              "Converted",
+              "Lost",
+              "Invalid",
+              "Duplicate"
+            ],
+            "type": "string",
+            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
+            "nullable": true
+          },
+          "oldDispositionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "oldDispositionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "oldDispositionOutcome": {
+            "type": "string",
+            "nullable": true
+          },
+          "newDispositionId": {
+            "type": "string",
+            "nullable": true
+          },
           "notes": {
             "type": "string",
             "description": "The operator or customer notes recorded for this disposition."
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason this disposition was changed.",
+            "nullable": true
+          },
+          "changedByUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "changedByAutomationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "changedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "changeSource": {
+            "enum": [
+              "User",
+              "AI",
+              "Automation",
+              "System",
+              "API"
+            ],
+            "type": "string",
+            "description": "Known sources that can change a lead's current disposition.",
+            "nullable": true
           },
           "timestamp": {
             "type": "string",
@@ -12639,6 +13031,16 @@
           "isArchived": {
             "type": "boolean"
           },
+          "currentDisposition": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrentDispositionSummary"
+              }
+            ],
+            "description": "Compact current disposition state stored directly on a lead and surfaced with conversation data.",
+            "nullable": true
+          },
           "tags": {
             "type": "array",
             "items": {
@@ -12743,6 +13145,16 @@
           "isArchived": {
             "type": "boolean",
             "description": "Whether this lead is archived."
+          },
+          "currentDisposition": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrentDispositionSummary"
+              }
+            ],
+            "description": "The current lifecycle disposition for this lead.",
+            "nullable": true
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
