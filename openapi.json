@@ -5765,6 +5765,15 @@
         "summary": "List current-user lead activity events",
         "description": "Lists event records visible to the current user with paging, sorting, and filters across lead, SMS, call, and automation activity.",
         "operationId": "Events_GetAllForCurrentUser",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "Pagination, filtering, and sorting options.",
           "content": {
@@ -5883,6 +5892,80 @@
           },
           "400": {
             "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/conversations/{conversationId}": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "List event records for a conversation.",
+        "description": "Lists event records for one conversation with paging, including notes, messages, calls, and follow-up history.",
+        "operationId": "Events_GetAllForConversation",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "description": "The ID of the conversation.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Events for the conversation were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PagedResultOfEventTableRow"
+                    }
+                  ],
+                  "description": "A generic container for paginated results returned to the client."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6053,6 +6136,80 @@
           },
           "404": {
             "description": "Event was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/conversations/{conversationId}/notes": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Create a conversation note event.",
+        "description": "Creates a note event on a conversation so users can document lead context, handoffs, and follow-up details.",
+        "operationId": "Events_CreateNote",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "description": "The conversation identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The create note request payload for the operation.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateNoteRequest"
+                  }
+                ],
+                "description": "Request payload for create note."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateNoteRequest"
+                  }
+                ],
+                "description": "Request payload for create note."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the event table row.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/EventTableRow"
+                    }
+                  ],
+                  "description": "API DTO containing event data used by Leadping API contracts."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/json": {
                 "schema": {
@@ -7088,387 +7245,6 @@
           }
         }
       }
-    },
-    "/activities/all/my": {
-      "post": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "List current-user lead activity records",
-        "description": "Lists activity records visible to the current user with paging, sorting, and filters across lead communication and follow-up work.",
-        "operationId": "Activities_GetAllForCurrentUser",
-        "requestBody": {
-          "description": "Pagination, filtering, and sorting options.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Activities were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfActivityTableRow"
-                    }
-                  ],
-                  "description": "A generic container for paginated results returned to the client."
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/activities/conversations/{conversationId}": {
-      "post": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "List activity records for a conversation",
-        "description": "Lists activity records for one conversation with paging, including notes, messages, calls, and follow-up history.",
-        "operationId": "Activities_GetAllForConversation",
-        "parameters": [
-          {
-            "name": "conversationId",
-            "in": "path",
-            "description": "The ID of the conversation.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Pagination, filtering, and sorting options.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Activities for the conversation were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfActivityTableRow"
-                    }
-                  ],
-                  "description": "A generic container for paginated results returned to the client."
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/activities/leads/{leadId}": {
-      "post": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "List activity records for a business lead",
-        "description": "Lists activity records for one lead with paging, covering notes, messages, calls, dispositions, and automation work.",
-        "operationId": "Activities_GetAllForLead",
-        "parameters": [
-          {
-            "name": "leadId",
-            "in": "path",
-            "description": "The ID of the lead.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Pagination, filtering, and sorting options.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Activities for the lead were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfActivityTableRow"
-                    }
-                  ],
-                  "description": "A generic container for paginated results returned to the client."
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/activities/{activityId}": {
-      "get": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Get lead activity record details by ID",
-        "description": "Returns one activity record by ID, including type, timestamps, related lead or conversation, and summary details.",
-        "operationId": "Activities_GetById",
-        "parameters": [
-          {
-            "name": "activityId",
-            "in": "path",
-            "description": "The ID of the activity.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Activity was successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ActivityTableRow"
-                    }
-                  ],
-                  "description": "API DTO containing activity data used by Leadping API contracts."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Activity was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/activities/{activityId}/detail": {
-      "get": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Get full lead activity record payload by ID",
-        "description": "Returns detailed activity data by ID, including the full JSON payload for audit review, support, and workflow inspection.",
-        "operationId": "Activities_GetDetailById",
-        "parameters": [
-          {
-            "name": "activityId",
-            "in": "path",
-            "description": "The ID of the activity.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Activity details were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ActivityDetailResponse"
-                    }
-                  ],
-                  "description": "API response containing activity detail data returned to callers."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Activity was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/activities/conversations/{conversationId}/notes": {
-      "post": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Create a conversation note activity",
-        "description": "Creates a note activity on a conversation so users can document lead context, handoffs, and follow-up details.",
-        "operationId": "Activities_CreateNote",
-        "parameters": [
-          {
-            "name": "conversationId",
-            "in": "path",
-            "description": "The conversation identifier.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The create note request payload for the operation.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/CreateNoteRequest"
-                  }
-                ],
-                "description": "Request payload for create note."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/CreateNoteRequest"
-                  }
-                ],
-                "description": "Request payload for create note."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Returns the activity table row.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ActivityTableRow"
-                    }
-                  ],
-                  "description": "API DTO containing activity data used by Leadping API contracts."
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or failed validation.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
@@ -7628,79 +7404,6 @@
         },
         "description": "API DTO containing activation timeline event data used by Leadping API contracts."
       },
-      "ActivityDetailResponse": {
-        "type": "object",
-        "properties": {
-          "activityType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ActivityType"
-              }
-            ],
-            "description": "The activity type classification for this activity detail."
-          },
-          "activityCategory": {
-            "type": "string",
-            "description": "The activity category value for this activity detail."
-          },
-          "conversationId": {
-            "type": "string",
-            "description": "The conversation ID associated with this activity detail.",
-            "nullable": true
-          },
-          "leadId": {
-            "type": "string",
-            "description": "The lead ID associated with this activity detail.",
-            "nullable": true
-          },
-          "user": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IdNamePair"
-              }
-            ],
-            "description": "The user value for this activity detail."
-          },
-          "summary": {
-            "type": "string",
-            "description": "The summary value for this activity detail.",
-            "nullable": true
-          },
-          "direction": {
-            "type": "string",
-            "description": "The direction value for this activity detail.",
-            "nullable": true
-          },
-          "status": {
-            "enum": [
-              "Pending",
-              "InProgress",
-              "Completed",
-              "Failed",
-              "Cancelled"
-            ],
-            "type": "string",
-            "description": "Defines the supported Activity Status values.",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "description": "The unique identifier for the entity."
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "The date and time when the entity was created.",
-            "format": "date-time"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "description": "The date and time when the entity was last modified, if applicable.",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "description": "API response containing activity detail data returned to callers."
-      },
       "ActivityStatus": {
         "enum": [
           "Pending",
@@ -7711,248 +7414,6 @@
         ],
         "type": "string",
         "description": "Defines the supported Activity Status values."
-      },
-      "ActivityTableRow": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique ID for this activity."
-          },
-          "activityType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ActivityType"
-              }
-            ],
-            "description": "The activity type classification for this activity."
-          },
-          "activityCategory": {
-            "type": "string",
-            "description": "The activity category value for this activity."
-          },
-          "conversationId": {
-            "type": "string",
-            "description": "The conversation ID associated with this activity.",
-            "nullable": true
-          },
-          "leadId": {
-            "type": "string",
-            "description": "The lead ID associated with this activity.",
-            "nullable": true
-          },
-          "summary": {
-            "type": "string",
-            "description": "The summary value for this activity.",
-            "nullable": true
-          },
-          "direction": {
-            "type": "string",
-            "description": "The direction value for this activity.",
-            "nullable": true
-          },
-          "status": {
-            "enum": [
-              "Pending",
-              "InProgress",
-              "Completed",
-              "Cancelled",
-              "Scheduled",
-              "Queued",
-              "Sending",
-              "Sent",
-              "Received",
-              "Delivered",
-              "Undeliverable",
-              "Opted out",
-              "Blocked",
-              "Initiated",
-              "Ringing",
-              "Active",
-              "Ended",
-              "Missed",
-              "Voicemail",
-              "Failed",
-              "Canceled"
-            ],
-            "type": "string",
-            "description": "Defines the supported Activity Timeline Status values.",
-            "nullable": true
-          },
-          "statusReason": {
-            "type": "string",
-            "description": "The human-readable status reason explaining this activity.",
-            "nullable": true
-          },
-          "isWarmup": {
-            "type": "boolean",
-            "description": "Whether this activity is warmup."
-          },
-          "trafficType": {
-            "enum": [
-              "RealLead",
-              "Warmup",
-              "Test",
-              "SystemInternal",
-              "FailedAttempt"
-            ],
-            "type": "string",
-            "description": "Defines the supported SMS Traffic Type values.",
-            "nullable": true
-          },
-          "fromPhoneNumberId": {
-            "type": "string",
-            "nullable": true
-          },
-          "outboundPhoneNumberId": {
-            "type": "string",
-            "nullable": true
-          },
-          "fromPhoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "toPhoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "telnyxId": {
-            "type": "string",
-            "nullable": true
-          },
-          "providerMessageId": {
-            "type": "string",
-            "nullable": true
-          },
-          "selectionReason": {
-            "enum": [
-              "StickyConversation",
-              "LeadAssigned",
-              "CampaignOrSource",
-              "Preferred",
-              "LocalArea",
-              "HealthyPool",
-              "FallbackDefault",
-              "ManualOverride"
-            ],
-            "type": "string",
-            "description": "Defines the supported Outgoing Number Selection Reason values.",
-            "nullable": true
-          },
-          "wasManuallyOverridden": {
-            "type": "boolean"
-          },
-          "campaignId": {
-            "type": "string",
-            "nullable": true
-          },
-          "sourceId": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenDlcCampaignId": {
-            "type": "string",
-            "nullable": true
-          },
-          "complianceAction": {
-            "type": "string",
-            "nullable": true
-          },
-          "billingStatus": {
-            "type": "string",
-            "nullable": true
-          },
-          "billableAmount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "format": "double",
-            "nullable": true
-          },
-          "errorCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "retryCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "queuedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "sendingStartedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "sentAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "deliveredAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "receivedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "failedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "undeliverableAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "blockedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "nextRetryAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "scheduledFor": {
-            "type": "string",
-            "description": "The date and time for the scheduled for value on this activity.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "scheduledReason": {
-            "type": "string",
-            "description": "The human-readable scheduled reason explaining this activity.",
-            "nullable": true
-          },
-          "canceledAt": {
-            "type": "string",
-            "description": "The date and time for the canceled at value on this activity.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "cancelReason": {
-            "type": "string",
-            "description": "The human-readable cancel reason explaining this activity.",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "The date and time for the created at value on this activity.",
-            "format": "date-time"
-          },
-          "createdBy": {
-            "type": "string",
-            "description": "The date and time for the created by value on this activity."
-          }
-        },
-        "description": "API DTO containing activity data used by Leadping API contracts."
       },
       "ActivityTimelineStatus": {
         "enum": [
@@ -11996,6 +11457,67 @@
             "description": "The human-readable description of this event detail.",
             "nullable": true
           },
+          "eventCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityType": {
+            "enum": [
+              "Message",
+              "Sms",
+              "Mms",
+              "Call",
+              "Voicemail",
+              "Note",
+              "Disposition",
+              "LeadCreated",
+              "LeadUpdated",
+              "Notification",
+              "Payment",
+              "Warmup"
+            ],
+            "type": "string",
+            "description": "Defines the supported Activity Type values.",
+            "nullable": true
+          },
+          "activityCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "conversationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "enum": [
+              "Pending",
+              "InProgress",
+              "Completed",
+              "Failed",
+              "Cancelled"
+            ],
+            "type": "string",
+            "description": "Defines the supported Activity Status values.",
+            "nullable": true
+          },
+          "user": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "A minimal Record type with an (string), (string), and maximum JSON compatibility. The reason for this type (over something like KeyValuePair, dictionary) is because of JSON serialization support.",
+            "nullable": true
+          },
           "userId": {
             "type": "string",
             "description": "The user ID associated with this event detail."
@@ -12034,9 +11556,225 @@
             "type": "string",
             "description": "The event type classification for this event."
           },
+          "eventCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ActivityType"
+              }
+            ],
+            "description": "Defines the supported Activity Type values."
+          },
+          "activityCategory": {
+            "type": "string"
+          },
           "description": {
             "type": "string",
             "description": "The human-readable description of this event."
+          },
+          "conversationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "enum": [
+              "Pending",
+              "InProgress",
+              "Completed",
+              "Cancelled",
+              "Scheduled",
+              "Queued",
+              "Sending",
+              "Sent",
+              "Received",
+              "Delivered",
+              "Undeliverable",
+              "Opted out",
+              "Blocked",
+              "Initiated",
+              "Ringing",
+              "Active",
+              "Ended",
+              "Missed",
+              "Voicemail",
+              "Failed",
+              "Canceled"
+            ],
+            "type": "string",
+            "description": "Defines the supported Activity Timeline Status values.",
+            "nullable": true
+          },
+          "statusReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "isWarmup": {
+            "type": "boolean"
+          },
+          "trafficType": {
+            "enum": [
+              "RealLead",
+              "Warmup",
+              "Test",
+              "SystemInternal",
+              "FailedAttempt"
+            ],
+            "type": "string",
+            "description": "Defines the supported SMS Traffic Type values.",
+            "nullable": true
+          },
+          "fromPhoneNumberId": {
+            "type": "string",
+            "nullable": true
+          },
+          "outboundPhoneNumberId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "toPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "telnyxId": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerMessageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "selectionReason": {
+            "enum": [
+              "StickyConversation",
+              "LeadAssigned",
+              "CampaignOrSource",
+              "Preferred",
+              "LocalArea",
+              "HealthyPool",
+              "FallbackDefault",
+              "ManualOverride"
+            ],
+            "type": "string",
+            "description": "Defines the supported Outgoing Number Selection Reason values.",
+            "nullable": true
+          },
+          "wasManuallyOverridden": {
+            "type": "boolean"
+          },
+          "campaignId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenDlcCampaignId": {
+            "type": "string",
+            "nullable": true
+          },
+          "complianceAction": {
+            "type": "string",
+            "nullable": true
+          },
+          "billingStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "billableAmount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "retryCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "queuedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sendingStartedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deliveredAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "receivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "failedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "undeliverableAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "blockedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "nextRetryAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scheduledFor": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scheduledReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "canceledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cancelReason": {
+            "type": "string",
+            "nullable": true
           },
           "createdAt": {
             "type": "string",
@@ -13812,40 +13550,6 @@
           }
         },
         "description": "API response containing outgoing number selection data returned to callers."
-      },
-      "PagedResultOfActivityTableRow": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/ActivityTableRow"
-                }
-              ],
-              "description": "API DTO containing activity data used by Leadping API contracts."
-            },
-            "description": "The subset of items returned for the current page."
-          },
-          "pageSize": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
-            "format": "int32"
-          },
-          "totalCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
-          },
-          "continuationToken": {
-            "type": "string",
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page.",
-            "nullable": true
-          }
-        },
-        "description": "A generic container for paginated results returned to the client."
       },
       "PagedResultOfAutomationTableRow": {
         "type": "object",
@@ -18171,7 +17875,12 @@
             "type": "string"
           },
           "status": {
-            "type": "string"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserDataExportStatuses"
+              }
+            ],
+            "description": "Defines the supported user data export statuses values."
           },
           "requestedAt": {
             "type": "string",
@@ -18232,6 +17941,17 @@
             }
           }
         }
+      },
+      "UserDataExportStatuses": {
+        "enum": [
+          "Pending",
+          "Processing",
+          "Completed",
+          "Failed",
+          "Expired"
+        ],
+        "type": "string",
+        "description": "Defines the supported user data export statuses values."
       },
       "UserDunningInfo": {
         "type": "object",
@@ -19046,9 +18766,6 @@
     },
     {
       "name": "Businesses"
-    },
-    {
-      "name": "Activities"
     }
   ]
 }
