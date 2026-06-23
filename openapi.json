@@ -2,7 +2,7 @@
   "openapi": "3.0.4",
   "info": {
     "title": "Leadping API",
-    "description": "Leadping API",
+    "description": "Leadping API for lead intake, messaging, calling, automations, billing, business settings, and compliant lead communication workflows.",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -22,7 +22,7 @@
           "Analytics"
         ],
         "summary": "Get business lead communication analytics",
-        "description": "Returns current-business analytics for lead communication, including activity volume, response metrics, and date-range filtering.",
+        "description": "Returns current-business analytics for lead communication, including event volume, response metrics, and date-range filtering.",
         "operationId": "Analytics_GetCurrentBusiness",
         "parameters": [
           {
@@ -387,7 +387,7 @@
           "Automations"
         ],
         "summary": "Preview a lead follow-up automation",
-        "description": "Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up activity.",
+        "description": "Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.",
         "operationId": "Automations_Preview",
         "requestBody": {
           "description": "The automation preview request payload for the operation.",
@@ -520,12 +520,7 @@
             "name": "archiveFilter",
             "in": "query",
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/LeadArchiveFilter"
-                }
-              ],
-              "description": "Controls whether lead queries return active, archived, or all leads."
+              "type": "string"
             }
           }
         ],
@@ -650,7 +645,7 @@
           "Conversations"
         ],
         "summary": "List inbox conversations for a lead",
-        "description": "Lists conversations for one lead, helping users inspect communication threads, recent follow-up, and related activity.",
+        "description": "Lists conversations for one lead, helping users inspect communication threads, recent follow-up, and related events.",
         "operationId": "Conversations_GetConversationsByLead",
         "parameters": [
           {
@@ -985,7 +980,7 @@
           "Dispositions"
         ],
         "summary": "Delete a lead disposition outcome record",
-        "description": "Deletes a disposition from a lead when the outcome record should no longer appear in activity or reporting views.",
+        "description": "Deletes a disposition from a lead when the outcome record should no longer appear in event or reporting views.",
         "operationId": "Dispositions_Delete",
         "parameters": [
           {
@@ -1411,17 +1406,9 @@
         "operationId": "Leads_CreateExternal",
         "parameters": [
           {
-            "name": "sourceId",
+            "name": "sourceKey",
             "in": "query",
-            "description": "The Leadping source id supplied as a query string parameter.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "apiKey",
-            "in": "query",
-            "description": "The source API key supplied as a query string parameter.",
+            "description": "The Leadping source key supplied as a query string parameter.",
             "schema": {
               "type": "string"
             }
@@ -1522,17 +1509,9 @@
         "operationId": "Leads_CreateIntake",
         "parameters": [
           {
-            "name": "sourceId",
+            "name": "sourceKey",
             "in": "query",
-            "description": "The Leadping source id supplied as a query string parameter.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "apiKey",
-            "in": "query",
-            "description": "The source API key supplied as a query string parameter.",
+            "description": "The Leadping source key supplied as a query string parameter.",
             "schema": {
               "type": "string"
             }
@@ -1898,17 +1877,9 @@
             }
           },
           {
-            "name": "sourceId",
+            "name": "sourceKey",
             "in": "query",
-            "description": "The Leadping source id supplied as a query string parameter.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "apiKey",
-            "in": "query",
-            "description": "The source API key supplied as a query string parameter.",
+            "description": "The Leadping source key supplied as a query string parameter.",
             "schema": {
               "type": "string"
             }
@@ -2107,7 +2078,7 @@
           "Leads"
         ],
         "summary": "Delete a business lead record by ID",
-        "description": "Deletes a lead from the current business when it should no longer appear in communication, routing, or activity workflows.",
+        "description": "Deletes a lead from the current business when it should no longer appear in communication, routing, or event workflows.",
         "operationId": "Leads_Delete",
         "parameters": [
           {
@@ -2200,7 +2171,7 @@
           "Leads"
         ],
         "summary": "Archive a business lead record by ID",
-        "description": "Archives a lead without deleting history, removing it from active pipeline views while preserving communication and activity records.",
+        "description": "Archives a lead without deleting history, removing it from active pipeline views while preserving communication and event records.",
         "operationId": "Leads_Archive",
         "parameters": [
           {
@@ -2363,12 +2334,7 @@
             "name": "archiveFilter",
             "in": "query",
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/LeadArchiveFilter"
-                }
-              ],
-              "description": "Controls whether lead queries return active, archived, or all leads."
+              "type": "string"
             }
           }
         ],
@@ -3261,6 +3227,76 @@
         }
       }
     },
+    "/sources/{id}/metrics": {
+      "get": {
+        "tags": [
+          "Sources"
+        ],
+        "summary": "Get lead creation metrics for a business lead intake source",
+        "description": "The source lead creation metrics.",
+        "operationId": "Sources_GetMetrics",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the source to retrieve metrics for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startAt",
+            "in": "query",
+            "description": "Optional start date/time for the metric range.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "description": "Optional end date/time for the metric range.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "description": "Optional rolling day count when explicit dates are not provided.",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceMetricsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/tags": {
       "get": {
         "tags": [
@@ -3643,7 +3679,7 @@
           "Users"
         ],
         "summary": "Record current user account sign-in",
-        "description": "Records a successful sign-in for the current user, updating login metadata used for auditing and account activity.",
+        "description": "Records a successful sign-in for the current user, updating login metadata used for auditing and account events.",
         "operationId": "Users_RecordLoginForCurrentUser",
         "responses": {
           "200": {
@@ -3983,7 +4019,7 @@
           "Transactions"
         ],
         "summary": "List current-user billing transactions",
-        "description": "Lists current-user transactions with paging, sorting, and filters for wallet activity, billing history, and reconciliation.",
+        "description": "Lists current-user transactions with paging, sorting, and filters for wallet events, billing history, and reconciliation.",
         "operationId": "Transactions_GetAllForCurrentUser",
         "requestBody": {
           "description": "Pagination, filtering, and sorting options.",
@@ -4089,7 +4125,7 @@
           "Usage"
         ],
         "summary": "Get business messaging usage summary",
-        "description": "Returns current-business usage totals for the active billing period, including spend, limits, and activity summary data.",
+        "description": "Returns current-business usage totals for the active billing period, including spend, limits, and event summary data.",
         "operationId": "Usage_GetSummaryForCurrentBusiness",
         "parameters": [
           {
@@ -4376,7 +4412,7 @@
         "tags": [
           "PhoneNumbers"
         ],
-        "summary": "Get outgoing phone number for a conversation",
+        "summary": "Select conversation sender number",
         "description": "Selects the outgoing phone number for an existing conversation, considering assignments, overrides, and delivery eligibility.",
         "operationId": "PhoneNumbers_GetOutgoingForConversation",
         "parameters": [
@@ -4450,7 +4486,7 @@
         "tags": [
           "PhoneNumbers"
         ],
-        "summary": "Get outgoing phone number for a new lead message",
+        "summary": "Select new lead sender number",
         "description": "Selects an outgoing phone number for a new outbound lead message using destination, source, and delivery eligibility rules.",
         "operationId": "PhoneNumbers_GetOutgoingForNewOutbound",
         "requestBody": {
@@ -4513,7 +4549,7 @@
         "tags": [
           "PhoneNumbers"
         ],
-        "summary": "Validate outgoing phone number override",
+        "summary": "Validate sender number override",
         "description": "Validates a manual outgoing-number override before use, checking ownership, destination, and delivery eligibility.",
         "operationId": "PhoneNumbers_ValidateManualOverride",
         "requestBody": {
@@ -4576,7 +4612,7 @@
         "tags": [
           "PhoneNumbers"
         ],
-        "summary": "Set conversation outgoing phone number override",
+        "summary": "Set sender number override",
         "description": "Sets the outgoing phone number override for a conversation so future lead messages use the selected eligible number.",
         "operationId": "PhoneNumbers_SetConversationOverride",
         "parameters": [
@@ -4648,7 +4684,7 @@
         "tags": [
           "PhoneNumbers"
         ],
-        "summary": "Clear conversation outgoing phone number override",
+        "summary": "Clear sender number override",
         "description": "Clears a conversation's outgoing-number override so future lead messages return to automatic number selection.",
         "operationId": "PhoneNumbers_ClearConversationOverride",
         "parameters": [
@@ -5079,7 +5115,7 @@
           "PhoneNumbers"
         ],
         "summary": "Get business phone number warmup status",
-        "description": "Returns warmup status for a phone number, including readiness, limits, and recent activity used for delivery pacing.",
+        "description": "Returns warmup status for a phone number, including readiness, limits, and recent events used for delivery pacing.",
         "operationId": "PhoneNumbers_GetWarmupStatus",
         "parameters": [
           {
@@ -5358,7 +5394,7 @@
           "UserDataExports"
         ],
         "summary": "Request a current-user data export report",
-        "description": "Requests a data export for the current user, starting asynchronous report generation for account, lead, and activity records.",
+        "description": "Requests a data export for the current user, starting asynchronous report generation for account, lead, and event records.",
         "operationId": "UserDataExports_RequestCurrentUser",
         "responses": {
           "202": {
@@ -5762,8 +5798,8 @@
         "tags": [
           "Events"
         ],
-        "summary": "List current-user lead activity events",
-        "description": "Lists event records visible to the current user with paging, sorting, and filters across lead, SMS, call, and automation activity.",
+        "summary": "List current-user lead events",
+        "description": "Lists event records visible to the current user with paging, sorting, and filters across lead, SMS, call, and automation events.",
         "operationId": "Events_GetAllForCurrentUser",
         "parameters": [
           {
@@ -5834,8 +5870,8 @@
         "tags": [
           "Events"
         ],
-        "summary": "List business lead activity event history",
-        "description": "Lists event records for a business with paging and filters so admins can review lead communication and automation activity.",
+        "summary": "List business lead event history",
+        "description": "Lists event records for a business with paging and filters so admins can review lead communication and automation events.",
         "operationId": "Events_GetAllForBusiness",
         "parameters": [
           {
@@ -5982,8 +6018,8 @@
         "tags": [
           "Events"
         ],
-        "summary": "List activity event history for a lead",
-        "description": "Lists event records for one lead with paging, covering communication, routing, automation, and activity changes.",
+        "summary": "List event history for a lead",
+        "description": "Lists event records for one lead with paging, covering communication, routing, automation, and event changes.",
         "operationId": "Events_GetAllForLead",
         "parameters": [
           {
@@ -6056,7 +6092,7 @@
         "tags": [
           "Events"
         ],
-        "summary": "Get lead activity event details by ID",
+        "summary": "Get lead event details by ID",
         "description": "Returns one event record by ID, including event type, timestamps, related entities, and summary payload data.",
         "operationId": "Events_GetById",
         "parameters": [
@@ -6104,7 +6140,7 @@
         "tags": [
           "Events"
         ],
-        "summary": "Get full lead activity event payload by ID",
+        "summary": "Get full lead event payload by ID",
         "description": "Returns detailed event data by ID, including the full JSON payload for debugging, audit review, and workflow inspection.",
         "operationId": "Events_GetDetailById",
         "parameters": [
@@ -6583,7 +6619,7 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "List business switch options for current user",
+        "summary": "List business switch options",
         "description": "Lists businesses the authenticated user can switch into, including membership role and current-business selection data.",
         "operationId": "Businesses_GetSwitchOptions",
         "responses": {
@@ -7188,7 +7224,7 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Accept a business user invitation for current user",
+        "summary": "Accept business invitation",
         "description": "Accepts a business invitation for the signed-in user, creating membership and setting business access context.",
         "operationId": "Businesses_AcceptInvitation",
         "requestBody": {
@@ -7404,62 +7440,6 @@
         },
         "description": "API DTO containing activation timeline event data used by Leadping API contracts."
       },
-      "ActivityStatus": {
-        "enum": [
-          "Pending",
-          "InProgress",
-          "Completed",
-          "Failed",
-          "Cancelled"
-        ],
-        "type": "string",
-        "description": "Defines the supported Activity Status values."
-      },
-      "ActivityTimelineStatus": {
-        "enum": [
-          "Pending",
-          "InProgress",
-          "Completed",
-          "Cancelled",
-          "Scheduled",
-          "Queued",
-          "Sending",
-          "Sent",
-          "Received",
-          "Delivered",
-          "Undeliverable",
-          "Opted out",
-          "Blocked",
-          "Initiated",
-          "Ringing",
-          "Active",
-          "Ended",
-          "Missed",
-          "Voicemail",
-          "Failed",
-          "Canceled"
-        ],
-        "type": "string",
-        "description": "Defines the supported Activity Timeline Status values."
-      },
-      "ActivityType": {
-        "enum": [
-          "Message",
-          "Sms",
-          "Mms",
-          "Call",
-          "Voicemail",
-          "Note",
-          "Disposition",
-          "LeadCreated",
-          "LeadUpdated",
-          "Notification",
-          "Payment",
-          "Warmup"
-        ],
-        "type": "string",
-        "description": "Defines the supported Activity Type values."
-      },
       "AdminEnablementOverride": {
         "type": "object",
         "properties": {
@@ -7483,7 +7463,13 @@
         }
       },
       "AnalyticsBucketSize": {
-        "type": "integer"
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
       },
       "AnalyticsComparison": {
         "type": "object",
@@ -7627,9 +7613,9 @@
             "type": "string",
             "description": "The current status for this automation action run record."
           },
-          "integrationKey": {
+          "connectionKey": {
             "type": "string",
-            "description": "The integration key value for this automation action run record.",
+            "description": "The connection key value for this automation action run record.",
             "nullable": true
           },
           "startedAt": {
@@ -8389,6 +8375,10 @@
             "type": "boolean",
             "description": "Whether this automation is system managed."
           },
+          "triggerType": {
+            "type": "string",
+            "description": "The primary trigger type label for this automation."
+          },
           "triggerSummary": {
             "type": "string",
             "description": "The trigger summary value for this automation."
@@ -8420,6 +8410,11 @@
             "type": "string",
             "description": "The date and time for the last run error value on this automation.",
             "nullable": true
+          },
+          "modifiedAt": {
+            "type": "string",
+            "description": "The date and time this automation was last modified.",
+            "format": "date-time"
           },
           "healthSummary": {
             "type": "string",
@@ -8808,7 +8803,7 @@
           "website_setup",
           "domain_registration",
           "10dlc_application",
-          "integration_action",
+          "connection_action",
           "automation_run"
         ],
         "type": "string",
@@ -9380,6 +9375,36 @@
             ],
             "nullable": true
           },
+          "billingPlan": {
+            "enum": [
+              "Annual",
+              "Monthly"
+            ],
+            "type": "string",
+            "description": "Defines the supported Billing Plan values.",
+            "nullable": true
+          },
+          "subscriptionStatus": {
+            "enum": [
+              "Pending",
+              "Active",
+              "Overdue",
+              "Canceled"
+            ],
+            "type": "string",
+            "description": "Defines the supported Subscription Status values.",
+            "nullable": true
+          },
+          "stripeInfo": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BusinessStripeInfo"
+              }
+            ],
+            "description": "Stripe billing state owned by this business.",
+            "nullable": true
+          },
           "autoRefillEnabled": {
             "type": "boolean",
             "description": "Whether auto refill is enabled for this business wallet.",
@@ -9535,6 +9560,36 @@
             "description": "The wallet balance owned by this business.",
             "format": "double"
           },
+          "billingPlan": {
+            "enum": [
+              "Annual",
+              "Monthly"
+            ],
+            "type": "string",
+            "description": "Defines the supported Billing Plan values.",
+            "nullable": true
+          },
+          "subscriptionStatus": {
+            "enum": [
+              "Pending",
+              "Active",
+              "Overdue",
+              "Canceled"
+            ],
+            "type": "string",
+            "description": "Defines the supported Subscription Status values.",
+            "nullable": true
+          },
+          "stripeInfo": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BusinessStripeInfo"
+              }
+            ],
+            "description": "Stripe billing state owned by this business.",
+            "nullable": true
+          },
           "autoRefillEnabled": {
             "type": "boolean",
             "description": "Whether auto refill is enabled for this business wallet."
@@ -9643,7 +9698,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "The site value for this business.",
+            "description": "The website value for this business.",
             "nullable": true
           },
           "setupStep": {
@@ -9731,6 +9786,92 @@
         ],
         "type": "string",
         "description": "Defines the supported Business Status values."
+      },
+      "BusinessStripeInfo": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultPaymentMethodId": {
+            "type": "string",
+            "nullable": true
+          },
+          "subscriptionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "planSubscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "planSubscriptionItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneSubscriptionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneSubscriptionItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberQuantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int64",
+            "nullable": true
+          },
+          "businessUserSubscriptionItemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessUserQuantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int64",
+            "nullable": true
+          },
+          "cancelAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cancellation": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserSubscriptionCancellationInfo"
+              }
+            ],
+            "description": "Captured subscription cancellation feedback for retention and churn analysis.",
+            "nullable": true
+          },
+          "dunning": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserDunningInfo"
+              }
+            ],
+            "description": "Dunning state recorded after a failed recurring payment.",
+            "nullable": true
+          },
+          "lastSubscriptionEventAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPaymentMethodEventAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "Stripe billing state owned by a business account."
       },
       "BusinessSwitchOption": {
         "type": "object",
@@ -10310,12 +10451,21 @@
             "nullable": true
           },
           "archiveReason": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/LeadArchiveReason"
-              }
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
             ],
+            "type": "integer",
+            "description": "Defines why a lead was removed from the active working pipeline.",
+            "format": "int32",
             "nullable": true
           },
           "isArchived": {
@@ -10347,7 +10497,12 @@
                 "$ref": "#/components/schemas/IdNameValue"
               }
             ],
-            "description": "The phone number associated with this conversation.",
+            "description": "The Leadping sender phone number associated with this conversation.",
+            "nullable": true
+          },
+          "leadPhoneNumber": {
+            "type": "string",
+            "description": "The lead's primary contact phone number for this conversation.",
             "nullable": true
           },
           "outboundPhoneNumberOverrideId": {
@@ -11461,7 +11616,7 @@
             "type": "string",
             "nullable": true
           },
-          "activityType": {
+          "timelineType": {
             "enum": [
               "Message",
               "Sms",
@@ -11477,10 +11632,10 @@
               "Warmup"
             ],
             "type": "string",
-            "description": "Defines the supported Activity Type values.",
+            "description": "Defines the supported Event timeline type values.",
             "nullable": true
           },
-          "activityCategory": {
+          "timelineCategory": {
             "type": "string",
             "nullable": true
           },
@@ -11505,7 +11660,81 @@
               "Cancelled"
             ],
             "type": "string",
-            "description": "Defines the supported Activity Status values.",
+            "description": "Defines the supported Event status values.",
+            "nullable": true
+          },
+          "statusReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromPhoneNumberId": {
+            "type": "string",
+            "nullable": true
+          },
+          "outboundPhoneNumberId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fromPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "toPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerMessageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "queuedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scheduledFor": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sendingStartedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deliveredAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "receivedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "failedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "undeliverableAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "blockedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "canceledAt": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           },
           "user": {
@@ -11545,6 +11774,17 @@
         },
         "description": "API response containing event detail data returned to callers."
       },
+      "EventStatus": {
+        "enum": [
+          "Pending",
+          "InProgress",
+          "Completed",
+          "Failed",
+          "Cancelled"
+        ],
+        "type": "string",
+        "description": "Defines the supported Event status values."
+      },
       "EventTableRow": {
         "type": "object",
         "properties": {
@@ -11560,15 +11800,15 @@
             "type": "string",
             "nullable": true
           },
-          "activityType": {
+          "timelineType": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ActivityType"
+                "$ref": "#/components/schemas/EventTimelineType"
               }
             ],
-            "description": "Defines the supported Activity Type values."
+            "description": "Defines the supported Event timeline type values."
           },
-          "activityCategory": {
+          "timelineCategory": {
             "type": "string"
           },
           "description": {
@@ -11580,6 +11820,14 @@
             "nullable": true
           },
           "leadId": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedEntityType": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedEntityId": {
             "type": "string",
             "nullable": true
           },
@@ -11616,7 +11864,7 @@
               "Canceled"
             ],
             "type": "string",
-            "description": "Defines the supported Activity Timeline Status values.",
+            "description": "Defines the supported Event timeline status values.",
             "nullable": true
           },
           "statusReason": {
@@ -11787,6 +12035,51 @@
           }
         },
         "description": "API DTO containing event data used by Leadping API contracts."
+      },
+      "EventTimelineStatus": {
+        "enum": [
+          "Pending",
+          "InProgress",
+          "Completed",
+          "Cancelled",
+          "Scheduled",
+          "Queued",
+          "Sending",
+          "Sent",
+          "Received",
+          "Delivered",
+          "Undeliverable",
+          "Opted out",
+          "Blocked",
+          "Initiated",
+          "Ringing",
+          "Active",
+          "Ended",
+          "Missed",
+          "Voicemail",
+          "Failed",
+          "Canceled"
+        ],
+        "type": "string",
+        "description": "Defines the supported Event timeline status values."
+      },
+      "EventTimelineType": {
+        "enum": [
+          "Message",
+          "Sms",
+          "Mms",
+          "Call",
+          "Voicemail",
+          "Note",
+          "Disposition",
+          "LeadCreated",
+          "LeadUpdated",
+          "Notification",
+          "Payment",
+          "Warmup"
+        ],
+        "type": "string",
+        "description": "Defines the supported Event timeline type values."
       },
       "ExactMatchFilter": {
         "type": "object",
@@ -12088,12 +12381,22 @@
         "type": "string",
         "description": "Represents the status of an internal phone number in the system."
       },
-      "LeadArchiveFilter": {
-        "type": "integer",
-        "description": "Controls whether lead queries return active, archived, or all leads."
-      },
       "LeadArchiveReason": {
-        "type": "integer"
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "type": "integer",
+        "description": "Defines why a lead was removed from the active working pipeline.",
+        "format": "int32"
       },
       "LeadArchiveRequest": {
         "type": "object",
@@ -12754,12 +13057,21 @@
             "nullable": true
           },
           "archiveReason": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/LeadArchiveReason"
-              }
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
             ],
+            "type": "integer",
+            "description": "Defines why a lead was removed from the active working pipeline.",
+            "format": "int32",
             "nullable": true
           },
           "archiveNote": {
@@ -12871,13 +13183,21 @@
             "nullable": true
           },
           "archiveReason": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/LeadArchiveReason"
-              }
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
             ],
-            "description": "The reason the lead was archived.",
+            "type": "integer",
+            "description": "Defines why a lead was removed from the active working pipeline.",
+            "format": "int32",
             "nullable": true
           },
           "isArchived": {
@@ -15722,6 +16042,11 @@
             "type": "string",
             "description": "The lead ID associated with this SMS event."
           },
+          "leadName": {
+            "type": "string",
+            "description": "The display name for the lead associated with this SMS event.",
+            "nullable": true
+          },
           "fromPhoneNumberId": {
             "type": "string",
             "description": "The from phone number ID associated with this SMS event."
@@ -15861,6 +16186,25 @@
             "type": "boolean",
             "description": "Whether this SMS event is warmup."
           },
+          "isAutomated": {
+            "type": "boolean",
+            "description": "Whether this SMS event was generated by automation."
+          },
+          "outboundSource": {
+            "enum": [
+              "manual",
+              "automation",
+              "campaign",
+              "import",
+              "api",
+              "system_notification",
+              "warmup",
+              "retry"
+            ],
+            "type": "string",
+            "description": "Defines the source that requested outbound delivery.",
+            "nullable": true
+          },
           "trafficType": {
             "enum": [
               "RealLead",
@@ -15898,9 +16242,34 @@
             "type": "string",
             "description": "The user value for this SMS event."
           },
+          "actorUserId": {
+            "type": "string",
+            "description": "The actor user ID associated with this SMS event.",
+            "nullable": true
+          },
+          "actorDisplayName": {
+            "type": "string",
+            "description": "The actor display name associated with this SMS event.",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "description": "The display name for the user associated with this SMS event.",
+            "nullable": true
+          },
+          "senderName": {
+            "type": "string",
+            "description": "The resolved display name for the party that sent the message.",
+            "nullable": true
+          },
           "business": {
             "type": "string",
             "description": "The business value for this SMS event."
+          },
+          "businessName": {
+            "type": "string",
+            "description": "The display name for the business associated with this SMS event.",
+            "nullable": true
           }
         },
         "description": "API DTO containing SMS event data used by Leadping API contracts."
@@ -16462,6 +16831,28 @@
         "type": "string",
         "description": "An enumerator for sort direction during querying"
       },
+      "SourceMetricsResponse": {
+        "type": "object",
+        "properties": {
+          "range": {
+            "$ref": "#/components/schemas/AnalyticsDateRange"
+          },
+          "totalLeads": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
+            }
+          },
+          "generatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "SourceRequest": {
         "required": [
           "name"
@@ -16585,6 +16976,18 @@
           "apiKeyIssuedAt": {
             "type": "string",
             "description": "The date and time for the API key issued at value on this source.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "firstLeadReceivedAt": {
+            "type": "string",
+            "description": "The date and time when this source first accepted a lead.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastLeadReceivedAt": {
+            "type": "string",
+            "description": "The date and time when this source most recently accepted a lead.",
             "format": "date-time",
             "nullable": true
           },
@@ -16721,6 +17124,23 @@
             "type": "string",
             "description": "The API key preview value for this source."
           },
+          "apiKeyIssuedAt": {
+            "type": "string",
+            "description": "The date and time when the API key was issued.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "apiKeyLastUsedAt": {
+            "type": "string",
+            "description": "The date and time this source API key was last used.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "apiKeyTotalUses": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "The total number of tracked uses for this source API key.",
+            "format": "int64"
+          },
           "createdAt": {
             "type": "string",
             "description": "The date and time for the created at value on this source.",
@@ -16730,6 +17150,18 @@
             "type": "string",
             "description": "The date and time for the modified at value on this source.",
             "format": "date-time"
+          },
+          "firstLeadReceivedAt": {
+            "type": "string",
+            "description": "The date and time when this source first accepted a lead.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastLeadReceivedAt": {
+            "type": "string",
+            "description": "The date and time when this source most recently accepted a lead.",
+            "format": "date-time",
+            "nullable": true
           },
           "enabled": {
             "type": "boolean",
@@ -17452,7 +17884,7 @@
           "website",
           "domain",
           "10dlc",
-          "integration",
+          "connection",
           "automation"
         ],
         "type": "string",
@@ -18693,6 +19125,12 @@
         "type": "apiKey",
         "description": "JWT Authorization header using the Bearer scheme. (i.e. \"Bearer 1234abcdef\")",
         "name": "Authorization",
+        "in": "header"
+      },
+      "BusinessApiKey": {
+        "type": "apiKey",
+        "description": "Business API key header for customer integrations.",
+        "name": "X-Leadping-Api-Key",
         "in": "header"
       }
     }
