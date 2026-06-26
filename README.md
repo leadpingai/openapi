@@ -1,3 +1,7 @@
+[![](https://img.shields.io/github/last-commit/leadpingai/openapi?style=for-the-badge)](https://github.com/leadpingai/openapi/commits/main)
+[![](https://img.shields.io/github/license/leadpingai/openapi?style=for-the-badge)](https://github.com/leadpingai/openapi/blob/main/LICENSE)
+[![](https://img.shields.io/github/actions/workflow/status/leadpingai/openapi/codeql.yml?label=CodeQL&style=for-the-badge)](https://github.com/leadpingai/openapi/actions/workflows/codeql.yml)
+
 # Leadping OpenAPI
 
 Official OpenAPI specification for the Leadping API.
