@@ -5808,6 +5808,22 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "startAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
           }
         ],
         "requestBody": {
