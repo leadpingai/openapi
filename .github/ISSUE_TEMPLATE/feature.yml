@@ -1,0 +1,34 @@
+name: Feature request
+description: Suggest an OpenAPI contract improvement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What API documentation or contract gap are you trying to solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the endpoint, schema, example, or metadata you want added.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility considerations
+      description: Describe any SDK, client, or documentation compatibility concerns.
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Examples, links, or related API endpoints.
+    validations:
+      required: false

@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a problem in the OpenAPI specification.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for reporting a Leadping OpenAPI issue. Include enough detail for us to verify the contract mismatch."
+  - type: textarea
+    id: location
+    attributes:
+      label: Specification location
+      description: Endpoint, operation ID, schema, or file location.
+      placeholder: "GET /users/me, UserResponse, openapi.json path..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected contract
+      description: What should the OpenAPI document say?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual contract
+      description: What does the OpenAPI document say now?
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Describe affected SDKs, generated docs, or client behavior.
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Links, examples, or API responses.
+    validations:
+      required: false
