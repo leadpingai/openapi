@@ -1019,7 +1019,7 @@
           "Dispositions"
         ],
         "summary": "List lead disposition outcome history",
-        "description": "Lists disposition history for one lead so users can review outcomes, notes, and follow-up context.",
+        "description": "Lists disposition outcome history for one lead, including prior outcomes, notes, follow-up context, timestamps, and actor details used for audit review.",
         "operationId": "Dispositions_GetByLeadId",
         "parameters": [
           {
@@ -3242,7 +3242,7 @@
           "Sources"
         ],
         "summary": "Get lead creation metrics for a business lead intake source",
-        "description": "The source lead creation metrics.",
+        "description": "Returns lead creation metrics for one business intake source, including accepted, rejected, duplicate, validation, and recent activity counts for monitoring.",
         "operationId": "Sources_GetMetrics",
         "parameters": [
           {
@@ -4353,14 +4353,14 @@
         }
       }
     },
-    "/phone-numbers/all/my": {
+    "/phone-numbers/all/business": {
       "post": {
         "tags": [
           "PhoneNumbers"
         ],
-        "summary": "List business phone numbers for current user",
-        "description": "Lists phone numbers visible to the current user with paging, sorting, and filters for messaging, calling, and warmup management.",
-        "operationId": "PhoneNumbers_GetAllForCurrentUser",
+        "summary": "List phone numbers for the current business.",
+        "description": "Lists phone numbers visible to the current business with paging, sorting, and filters for messaging, calling, and warmup management.",
+        "operationId": "PhoneNumbers_GetAllForCurrentBusiness",
         "requestBody": {
           "description": "Pagination, filtering, and sorting options.",
           "content": {
@@ -5906,6 +5906,22 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "startAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
             }
           }
         ],
@@ -9467,6 +9483,21 @@
             "description": "Postal address for the business, lead, or contact represented by this business profile request.",
             "nullable": true
           },
+          "billingName": {
+            "type": "string",
+            "description": "Name used for invoices, receipts, and payment processor billing records.",
+            "nullable": true
+          },
+          "billingAddress": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StreetAddress"
+              }
+            ],
+            "description": "Postal address used for invoices, receipts, and payment processor billing records.",
+            "nullable": true
+          },
           "website": {
             "type": "string",
             "description": "Business website URL used for compliance, brand review, and lead attribution.",
@@ -9678,6 +9709,21 @@
               }
             ],
             "description": "Postal address for the business, lead, or contact represented by this business profile response.",
+            "nullable": true
+          },
+          "billingName": {
+            "type": "string",
+            "description": "Name used for invoices, receipts, and payment processor billing records.",
+            "nullable": true
+          },
+          "billingAddress": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StreetAddress"
+              }
+            ],
+            "description": "Postal address used for invoices, receipts, and payment processor billing records.",
             "nullable": true
           },
           "vertical": {
@@ -13741,7 +13787,47 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
           },
+          "smsUsedToday": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "smsLimitToday": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "smsRemainingThisHour": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "smsUsedThisHour": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "smsLimitThisHour": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
           "voiceRemainingToday": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "voiceUsedToday": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "voiceLimitToday": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "voiceRemainingThisHour": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "voiceUsedThisHour": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "voiceLimitThisHour": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "format": "int32"
           }
@@ -15418,6 +15504,16 @@
             "description": "Voice call warmup status for this phone number.",
             "nullable": true
           },
+          "outboundCapacity": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OutboundPhoneNumberCapacity"
+              }
+            ],
+            "description": "Current outbound SMS and voice capacity for this phone number.",
+            "nullable": true
+          },
           "optOutMetrics": {
             "allOf": [
               {
@@ -15488,6 +15584,11 @@
             "type": "string",
             "description": "Business summary connected to this phone number table row."
           },
+          "businessId": {
+            "type": "string",
+            "description": "Unique Leadping business identifier connected to this phone number table row.",
+            "nullable": true
+          },
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this phone number table row is active and available in the Leadping API."
@@ -15539,6 +15640,36 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Percent complete for the SMS sender warmup plan.",
             "format": "int32"
+          },
+          "callWarmupEnabled": {
+            "type": "boolean",
+            "description": "Indicates whether controlled voice call warmup is enabled for this phone number."
+          },
+          "callWarmupState": {
+            "enum": [
+              "Not Started",
+              "Not Eligible",
+              "Warming",
+              "Warmed",
+              "Paused",
+              "Needs Attention",
+              "Blocked"
+            ],
+            "type": "string",
+            "description": "Defines the supported health states for controlled internal voice call warmup.",
+            "nullable": true
+          },
+          "callWarmupStage": {
+            "enum": [
+              "Stage 0",
+              "Stage 1",
+              "Stage 2",
+              "Stage 3",
+              "Stage 4"
+            ],
+            "type": "string",
+            "description": "Defines the supported voice call warmup stages for a Leadping-managed phone number.",
+            "nullable": true
           },
           "isMessagingProgramApproved": {
             "type": "boolean",
@@ -17173,12 +17304,6 @@
             "description": "Masked preview of the source API key for display without exposing the secret.",
             "nullable": true
           },
-          "apiKeyIssuedAt": {
-            "type": "string",
-            "description": "UTC timestamp when Leadping issued the source API key.",
-            "format": "date-time",
-            "nullable": true
-          },
           "firstLeadReceivedAt": {
             "type": "string",
             "description": "UTC timestamp when this source first delivered a lead to Leadping.",
@@ -17323,12 +17448,6 @@
           "apiKeyPreview": {
             "type": "string",
             "description": "Masked preview of the source API key for display without exposing the secret."
-          },
-          "apiKeyIssuedAt": {
-            "type": "string",
-            "description": "UTC timestamp when Leadping issued the source API key.",
-            "format": "date-time",
-            "nullable": true
           },
           "apiKeyLastUsedAt": {
             "type": "string",
