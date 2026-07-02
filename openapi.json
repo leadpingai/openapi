@@ -1505,7 +1505,11 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          { },
+          { }
+        ]
       }
     },
     "/leads/intake": {
@@ -1598,7 +1602,11 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          { },
+          { }
+        ]
       },
       "get": {
         "tags": [
@@ -1940,7 +1948,11 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          { },
+          { }
+        ]
       }
     },
     "/leads/{id}": {
@@ -19482,6 +19494,12 @@
         "description": "Leadping source key for external lead intake using the Authorization header. Example: \"Authorization: Bearer lp_src_...\".",
         "name": "Authorization",
         "in": "header"
+      },
+      "SourceKeyQuery": {
+        "type": "apiKey",
+        "description": "Leadping source key supplied as the sourceKey query parameter. Supported only by lead ingestion endpoints.",
+        "name": "sourceKey",
+        "in": "query"
       }
     }
   },
