@@ -1417,7 +1417,7 @@
           {
             "name": "sourceKey",
             "in": "query",
-            "description": "The Leadping source key supplied as a query string parameter.",
+            "description": "The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...",
             "schema": {
               "type": "string"
             }
@@ -1520,7 +1520,7 @@
           {
             "name": "sourceKey",
             "in": "query",
-            "description": "The Leadping source key supplied as a query string parameter.",
+            "description": "The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...",
             "schema": {
               "type": "string"
             }
@@ -1888,7 +1888,7 @@
           {
             "name": "sourceKey",
             "in": "query",
-            "description": "The Leadping source key supplied as a query string parameter.",
+            "description": "The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...",
             "schema": {
               "type": "string"
             }
@@ -19467,14 +19467,20 @@
     "securitySchemes": {
       "Bearer": {
         "type": "apiKey",
-        "description": "JWT Authorization header using the Bearer scheme. (i.e. \"Bearer 1234abcdef\")",
+        "description": "Authorization header using the Bearer scheme. Accepted values are Entra JWT access tokens, Leadping business API keys beginning with lp_ but not lp_src_, and Leadping source keys beginning with lp_src_.",
         "name": "Authorization",
         "in": "header"
       },
       "BusinessApiKey": {
         "type": "apiKey",
-        "description": "Business API key header for customer integrations.",
-        "name": "X-Leadping-Api-Key",
+        "description": "Leadping business API key using the Authorization header. Example: \"Authorization: Bearer lp_...\".",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "SourceKey": {
+        "type": "apiKey",
+        "description": "Leadping source key for external lead intake using the Authorization header. Example: \"Authorization: Bearer lp_src_...\".",
+        "name": "Authorization",
         "in": "header"
       }
     }
