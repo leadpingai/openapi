@@ -3907,6 +3907,225 @@
         }
       }
     },
+    "/suppressions": {
+      "post": {
+        "tags": [
+          "Suppressions"
+        ],
+        "summary": "Creates or reactivates a suppression entry for a recipient.",
+        "description": "The suppression entry response was created successfully.",
+        "operationId": "Suppressions_Suppress",
+        "requestBody": {
+          "description": "The suppression entry request payload for the operation.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SuppressionEntryRequest"
+                  }
+                ],
+                "description": "Request payload for suppression entry."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SuppressionEntryRequest"
+                  }
+                ],
+                "description": "Request payload for suppression entry."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The suppression entry response was created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuppressionEntryResponse"
+                    }
+                  ],
+                  "description": "API response containing suppression entry data returned to callers."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/suppressions/release": {
+      "post": {
+        "tags": [
+          "Suppressions"
+        ],
+        "summary": "Releases an active suppression entry for a recipient.",
+        "description": "Returns the suppression entry response.",
+        "operationId": "Suppressions_Release",
+        "requestBody": {
+          "description": "The suppression entry request payload for the operation.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SuppressionEntryRequest"
+                  }
+                ],
+                "description": "Request payload for suppression entry."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SuppressionEntryRequest"
+                  }
+                ],
+                "description": "Request payload for suppression entry."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the suppression entry response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuppressionEntryResponse"
+                    }
+                  ],
+                  "description": "API response containing suppression entry data returned to callers."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/suppressions/check": {
+      "post": {
+        "tags": [
+          "Suppressions"
+        ],
+        "summary": "Checks whether the recipient is blocked by an active suppression entry.",
+        "description": "Returns the suppression check result.",
+        "operationId": "Suppressions_Check",
+        "requestBody": {
+          "description": "The suppression entry request payload for the operation.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SuppressionEntryRequest"
+                  }
+                ],
+                "description": "Request payload for suppression entry."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SuppressionEntryRequest"
+                  }
+                ],
+                "description": "Request payload for suppression entry."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the suppression check result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuppressionCheckResult"
+                    }
+                  ],
+                  "description": "API response containing suppression check result data returned to callers."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/tags": {
       "get": {
         "tags": [
@@ -4761,6 +4980,24 @@
         "summary": "List current-user billing transactions",
         "description": "Lists current-user transactions with paging, sorting, and filters for wallet events, billing history, and reconciliation.",
         "operationId": "Transactions_GetAllForCurrentUser",
+        "parameters": [
+          {
+            "name": "startAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
         "requestBody": {
           "description": "Pagination, filtering, and sorting options.",
           "content": {
@@ -5040,6 +5277,281 @@
           },
           "400": {
             "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phone-call/initiate": {
+      "post": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Initiates a phone call.",
+        "description": "Returns the call details with a 200 status code.",
+        "operationId": "Calls_InitiateCall",
+        "requestBody": {
+          "description": "The call initiation request containing phone number and optional metadata.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InitiateCallRequest"
+                  }
+                ],
+                "description": "Request schema for the Leadping API phone call initiation request, including the fields clients can send."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InitiateCallRequest"
+                  }
+                ],
+                "description": "Request schema for the Leadping API phone call initiation request, including the fields clients can send."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Calls was successfully initiated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PhoneCallResponse"
+                    }
+                  ],
+                  "description": "Response schema for the Leadping API phone call returned to authenticated clients."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phone-call/{callId}/hangup": {
+      "post": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Ends a phone call.",
+        "description": "Returns the call details with a 200 status code.",
+        "operationId": "Calls_HangupCall",
+        "parameters": [
+          {
+            "name": "callId",
+            "in": "path",
+            "description": "The unique identifier of the call to end.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Calls was successfully ended.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PhoneCallResponse"
+                    }
+                  ],
+                  "description": "Response schema for the Leadping API phone call returned to authenticated clients."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified call was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phone-call/{callId}/status": {
+      "get": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Gets call status.",
+        "description": "Returns the call details with a 200 status code.",
+        "operationId": "Calls_GetCallStatus",
+        "parameters": [
+          {
+            "name": "callId",
+            "in": "path",
+            "description": "The unique identifier of the call to check.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Calls status was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PhoneCallResponse"
+                    }
+                  ],
+                  "description": "Response schema for the Leadping API phone call returned to authenticated clients."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/phone-call/{callId}/transfer": {
+      "post": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Transfers a call.",
+        "description": "Returns the call details with a 200 status code.",
+        "operationId": "Calls_TransferCall",
+        "parameters": [
+          {
+            "name": "callId",
+            "in": "path",
+            "description": "The unique identifier of the call to transfer.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newPhoneNumber",
+            "in": "query",
+            "description": "The phone number to transfer the call to.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Calls was successfully transferred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PhoneCallResponse"
+                    }
+                  ],
+                  "description": "Response schema for the Leadping API phone call returned to authenticated clients."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified call was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6337,6 +6849,79 @@
           },
           "401": {
             "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/telephony/login": {
+      "post": {
+        "tags": [
+          "Telephony"
+        ],
+        "summary": "Generates a WebRTC login token.",
+        "description": "Returns the telephony login response with a 200 status code.",
+        "operationId": "Telephony_Login",
+        "requestBody": {
+          "description": "The telephony login request containing connection details.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TelephonyLoginRequest"
+                  }
+                ],
+                "description": "Request model for telephony login token generation."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TelephonyLoginRequest"
+                  }
+                ],
+                "description": "Request model for telephony login token generation."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Login token was successfully generated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/TelephonyLoginResponse"
+                    }
+                  ],
+                  "description": "Response model for telephony login token generation."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The user is not authenticated.",
             "content": {
               "application/json": {
                 "schema": {
@@ -14104,6 +14689,119 @@
         },
         "description": "A minimal Record type with an Id (string), Name (string), nullable Value (string?) and maximum JSON compatibility"
       },
+      "InitiateCallRequest": {
+        "type": "object",
+        "properties": {
+          "fromPhoneNumberId": {
+            "type": "string",
+            "description": "Sender phone number ID used for this outbound SMS or call.",
+            "nullable": true
+          },
+          "conversationId": {
+            "type": "string",
+            "description": "Conversation ID that links this phone call initiation request to the Leadping inbox thread.",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "description": "Lead ID associated with the outbound call request."
+          },
+          "selectionReason": {
+            "enum": [
+              "StickyConversation",
+              "LeadAssigned",
+              "CampaignOrSource",
+              "Preferred",
+              "LocalArea",
+              "HealthyPool",
+              "FallbackDefault",
+              "ManualOverride"
+            ],
+            "type": "string",
+            "description": "Defines the supported Outgoing Number Selection Reason values.",
+            "nullable": true
+          },
+          "wasManuallyOverridden": {
+            "type": "boolean",
+            "description": "Indicates whether a user manually overrode Leadping's automatic number selection for this phone call initiation request."
+          },
+          "campaignId": {
+            "type": "string",
+            "description": "Messaging campaign identifier associated with this phone call initiation request.",
+            "nullable": true
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "Lead source ID used for call attribution and sender selection.",
+            "nullable": true
+          },
+          "isAutomated": {
+            "type": "boolean",
+            "description": "Indicates whether automation created or triggered this phone call initiation request."
+          },
+          "outboundSource": {
+            "enum": [
+              "manual",
+              "automation",
+              "campaign",
+              "import",
+              "api",
+              "system_notification",
+              "warmup",
+              "retry"
+            ],
+            "type": "string",
+            "description": "Defines the source that requested outbound delivery.",
+            "nullable": true
+          },
+          "outboundPriority": {
+            "enum": [
+              "critical_internal_notification",
+              "fresh_inbound_lead_response",
+              "manual_user_initiated",
+              "active_conversation_reply",
+              "automation_follow_up",
+              "campaign_message",
+              "imported_lead_campaign",
+              "warmup",
+              "retry"
+            ],
+            "type": "string",
+            "description": "Defines priority classes used when pacing outbound delivery.",
+            "nullable": true
+          },
+          "automationId": {
+            "type": "string",
+            "description": "Automation ID connected to this workflow, run, or event.",
+            "nullable": true
+          },
+          "importBatchId": {
+            "type": "string",
+            "description": "Bulk import batch ID that created or updated this lead.",
+            "nullable": true
+          },
+          "isImportedLead": {
+            "type": "boolean",
+            "description": "Indicates whether this record originated from a bulk import rather than a real-time lead source."
+          },
+          "outboundIdempotencyKey": {
+            "type": "string",
+            "description": "Idempotency key used to prevent duplicate outbound delivery.",
+            "nullable": true
+          },
+          "outboundDeliveryRequestId": {
+            "type": "string",
+            "description": "Outbound delivery request ID connected to this decision or attempt.",
+            "nullable": true
+          },
+          "outboundReservationId": {
+            "type": "string",
+            "description": "Outbound reservation ID used to throttle and track delivery capacity.",
+            "nullable": true
+          }
+        },
+        "description": "Request schema for the Leadping API phone call initiation request, including the fields clients can send."
+      },
       "InternalPhoneNumberStatus": {
         "enum": [
           "Unregistered",
@@ -16125,6 +16823,162 @@
           }
         },
         "description": "Public Leadping API schema for lead phone number data."
+      },
+      "PhoneCallResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneCallStatus"
+              }
+            ],
+            "description": "Current lifecycle status for this phone call in the Leadping API."
+          },
+          "statusReason": {
+            "type": "string",
+            "description": "Human-readable reason explaining the current status of this phone call.",
+            "nullable": true
+          },
+          "direction": {
+            "type": "string",
+            "description": "Communication direction for this phone call, such as inbound or outbound.",
+            "nullable": true
+          },
+          "conversationId": {
+            "type": "string",
+            "description": "Conversation ID that links this phone call to the Leadping inbox thread.",
+            "nullable": true
+          },
+          "leadId": {
+            "type": "string",
+            "description": "Lead ID associated with the call conversation or outreach attempt.",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number used by this phone call for calls, SMS, lookup, or routing."
+          },
+          "toPhoneNumber": {
+            "type": "string",
+            "description": "Recipient phone number used for this communication.",
+            "nullable": true
+          },
+          "fromPhoneNumberId": {
+            "type": "string",
+            "description": "Sender phone number ID used for this outbound SMS or call.",
+            "nullable": true
+          },
+          "fromPhoneNumber": {
+            "type": "string",
+            "description": "Sender phone number used for this communication.",
+            "nullable": true
+          },
+          "callerId": {
+            "type": "string",
+            "description": "Caller ID phone number presented during the outbound call.",
+            "nullable": true
+          },
+          "selectionReason": {
+            "enum": [
+              "StickyConversation",
+              "LeadAssigned",
+              "CampaignOrSource",
+              "Preferred",
+              "LocalArea",
+              "HealthyPool",
+              "FallbackDefault",
+              "ManualOverride"
+            ],
+            "type": "string",
+            "description": "Defines the supported Outgoing Number Selection Reason values.",
+            "nullable": true
+          },
+          "wasManuallyOverridden": {
+            "type": "boolean",
+            "description": "Indicates whether a user manually overrode Leadping's automatic number selection for this phone call."
+          },
+          "campaignId": {
+            "type": "string",
+            "description": "Messaging campaign identifier associated with this phone call.",
+            "nullable": true
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "Lead source ID used for attribution and routing on this call.",
+            "nullable": true
+          },
+          "endedAt": {
+            "type": "string",
+            "description": "UTC timestamp when the call ended.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "queuedAt": {
+            "type": "string",
+            "description": "UTC timestamp when Leadping queued this phone call for processing.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ringingAt": {
+            "type": "string",
+            "description": "UTC timestamp when the call started ringing.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "answeredAt": {
+            "type": "string",
+            "description": "UTC timestamp when the call was answered.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "durationSeconds": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Call duration in seconds.",
+            "format": "int32",
+            "nullable": true
+          },
+          "billingStatus": {
+            "type": "string",
+            "description": "Billing state for this communication, charge, or transaction.",
+            "nullable": true
+          },
+          "billableAmount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Monetary amount billed for this Leadping communication or transaction.",
+            "format": "double",
+            "nullable": true
+          },
+          "recordingUrl": {
+            "type": "string",
+            "description": "URL for the call recording, when the provider makes one available.",
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Structured metadata used for attribution, integrations, and reporting on this phone call.",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the entity."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The date and time when the entity was created.",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "description": "The date and time when the entity was last modified, if applicable.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "Response schema for the Leadping API phone call returned to authenticated clients."
       },
       "PhoneCallStatus": {
         "enum": [
@@ -19294,6 +20148,268 @@
         "type": "string",
         "description": "Defines the supported Subscription Status values."
       },
+      "SuppressionCheckResult": {
+        "type": "object",
+        "properties": {
+          "allowed": {
+            "type": "boolean",
+            "description": "Whether this ion check result allows ed."
+          },
+          "businessId": {
+            "type": "string",
+            "description": "The business ID associated with this ion check result.",
+            "nullable": true
+          },
+          "recipientIdentifier": {
+            "type": "string",
+            "description": "The recipient identifier value for this ion check result.",
+            "nullable": true
+          },
+          "normalizedPhoneNumber": {
+            "type": "string",
+            "description": "The phone number associated with this ion check result.",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "description": "The normalized email value for this ion check result.",
+            "nullable": true
+          },
+          "channel": {
+            "type": "string",
+            "description": "The channel value for this ion check result.",
+            "nullable": true
+          },
+          "suppressionEntryId": {
+            "type": "string",
+            "description": "The suppression entry ID associated with this ion check result.",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "description": "The source value on the active suppression entry that blocked this check.",
+            "nullable": true
+          },
+          "suppressedAt": {
+            "type": "string",
+            "description": "The date and time the blocking suppression became active.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "customerReason": {
+            "type": "string",
+            "description": "The human-readable customer reason explaining this ion check result.",
+            "nullable": true
+          },
+          "adminReason": {
+            "type": "string",
+            "description": "The human-readable admin reason explaining this ion check result.",
+            "nullable": true
+          }
+        },
+        "description": "API response containing suppression check result data returned to callers."
+      },
+      "SuppressionEntryAudit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID for this ion entry audit."
+          },
+          "status": {
+            "type": "string",
+            "description": "The current status for this ion entry audit."
+          },
+          "source": {
+            "type": "string",
+            "description": "The source value for this ion entry audit."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "The date and time for the timestamp value on this ion entry audit.",
+            "format": "date-time"
+          },
+          "actorId": {
+            "type": "string",
+            "description": "The actor ID associated with this ion entry audit.",
+            "nullable": true
+          },
+          "sourceEventId": {
+            "type": "string",
+            "description": "The source event ID associated with this ion entry audit.",
+            "nullable": true
+          },
+          "providerEventId": {
+            "type": "string",
+            "description": "The provider event ID associated with this ion entry audit.",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "description": "The human-readable reason explaining this ion entry audit.",
+            "nullable": true
+          },
+          "safeMetadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "The safe metadata key-value data carried with this ion entry audit; values must be safe to expose in API responses."
+          }
+        },
+        "description": "API DTO containing ion entry audit data used by Leadping API contracts."
+      },
+      "SuppressionEntryRequest": {
+        "type": "object",
+        "properties": {
+          "businessId": {
+            "type": "string",
+            "description": "The business ID associated with this ion entry."
+          },
+          "recipientIdentifier": {
+            "type": "string",
+            "description": "The recipient identifier value for this ion entry.",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "The phone number associated with this ion entry.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address associated with this ion entry.",
+            "nullable": true
+          },
+          "channel": {
+            "type": "string",
+            "description": "The channel value for this ion entry."
+          },
+          "source": {
+            "type": "string",
+            "description": "The source value for this ion entry."
+          },
+          "reason": {
+            "type": "string",
+            "description": "The human-readable reason explaining this ion entry.",
+            "nullable": true
+          },
+          "actorId": {
+            "type": "string",
+            "description": "The actor ID associated with this ion entry.",
+            "nullable": true
+          },
+          "sourceEventId": {
+            "type": "string",
+            "description": "The source event ID associated with this ion entry.",
+            "nullable": true
+          },
+          "providerEventId": {
+            "type": "string",
+            "description": "The provider event ID associated with this ion entry.",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "The date and time for the timestamp value on this ion entry.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "safeMetadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "The safe metadata key-value data carried with this ion entry; values must be safe to expose in API responses."
+          }
+        },
+        "description": "Request payload for suppression entry."
+      },
+      "SuppressionEntryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID for this ion entry.",
+            "nullable": true
+          },
+          "businessId": {
+            "type": "string",
+            "description": "The business ID associated with this ion entry.",
+            "nullable": true
+          },
+          "recipientIdentifier": {
+            "type": "string",
+            "description": "The recipient identifier value for this ion entry.",
+            "nullable": true
+          },
+          "normalizedPhoneNumber": {
+            "type": "string",
+            "description": "The phone number associated with this ion entry.",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "description": "The normalized email value for this ion entry.",
+            "nullable": true
+          },
+          "channel": {
+            "type": "string",
+            "description": "The channel value for this ion entry.",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "description": "The source value for this ion entry.",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "The current status for this ion entry.",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "description": "The human-readable reason explaining this ion entry.",
+            "nullable": true
+          },
+          "sourceEventId": {
+            "type": "string",
+            "description": "The source event ID associated with this ion entry.",
+            "nullable": true
+          },
+          "providerEventId": {
+            "type": "string",
+            "description": "The provider event ID associated with this ion entry.",
+            "nullable": true
+          },
+          "suppressedAt": {
+            "type": "string",
+            "description": "The date and time for the suppressed at value on this ion entry.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "releasedAt": {
+            "type": "string",
+            "description": "The date and time for the released at value on this ion entry.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "audit": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SuppressionEntryAudit"
+                }
+              ],
+              "description": "API DTO containing ion entry audit data used by Leadping API contracts."
+            },
+            "description": "The audit included with this ion entry."
+          }
+        },
+        "description": "API response containing suppression entry data returned to callers."
+      },
       "TagRequest": {
         "type": "object",
         "properties": {
@@ -19401,6 +20517,46 @@
           }
         },
         "description": "Summary schema for Leadping API tag summary data used in dashboards and reports."
+      },
+      "TelephonyLoginRequest": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Stable device identifier generated by the Leadping mobile app.",
+            "nullable": true
+          },
+          "deviceName": {
+            "type": "string",
+            "description": "Human-readable device name captured by the Leadping mobile app.",
+            "nullable": true
+          }
+        },
+        "description": "Request model for telephony login token generation."
+      },
+      "TelephonyLoginResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The username value for this telephony login."
+          },
+          "password": {
+            "type": "string",
+            "description": "The password value for this telephony login."
+          },
+          "expiresAt": {
+            "type": "string",
+            "description": "The date and time for the expires at value on this telephony login.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "callbackToken": {
+            "type": "string",
+            "description": "The callback token value for this telephony login."
+          }
+        },
+        "description": "Response model for telephony login token generation."
       },
       "TenDlcApplicationDraft": {
         "type": "object",
@@ -19567,7 +20723,8 @@
           },
           "leadId": {
             "type": "string",
-            "description": "Lead ID connected to this transaction when the charge came from lead activity."
+            "description": "Lead ID connected to this transaction when the charge came from lead activity.",
+            "nullable": true
           },
           "leadName": {
             "type": "string",
@@ -19713,7 +20870,8 @@
           },
           "leadId": {
             "type": "string",
-            "description": "Lead ID connected to this transaction when the charge came from lead activity."
+            "description": "Lead ID connected to this transaction when the charge came from lead activity.",
+            "nullable": true
           },
           "leadName": {
             "type": "string",
@@ -21122,6 +22280,9 @@
       "name": "Sources"
     },
     {
+      "name": "Suppressions"
+    },
+    {
       "name": "Tags"
     },
     {
@@ -21140,10 +22301,16 @@
       "name": "Wallets"
     },
     {
+      "name": "Calls"
+    },
+    {
       "name": "PhoneNumbers"
     },
     {
       "name": "Sms"
+    },
+    {
+      "name": "Telephony"
     },
     {
       "name": "UserDataExports"
