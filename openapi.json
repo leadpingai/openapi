@@ -21614,7 +21614,8 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "Email address for the person represented by this user profile request."
+            "description": "Email address for the person represented by this user profile request.",
+            "nullable": true
           },
           "firstName": {
             "type": "string",
@@ -22224,7 +22225,7 @@
     "securitySchemes": {
       "Bearer": {
         "type": "apiKey",
-        "description": "Authorization header using the Bearer scheme. Accepted values are Entra JWT access tokens, Leadping business API keys beginning with lp_ but not lp_src_, and Leadping source keys beginning with lp_src_.",
+        "description": "Authorization header using the Bearer scheme. Accepted values are Leadping user JWT access tokens, Leadping business API keys beginning with lp_ but not lp_src_, and Leadping source keys beginning with lp_src_ on lead ingestion endpoints only.",
         "name": "Authorization",
         "in": "header"
       },
@@ -22236,7 +22237,7 @@
       },
       "SourceKey": {
         "type": "apiKey",
-        "description": "Leadping source key for external lead intake using the Authorization header. Example: \"Authorization: Bearer lp_src_...\".",
+        "description": "Leadping source key for lead ingestion endpoints only using the Authorization header. Example: \"Authorization: Bearer lp_src_...\".",
         "name": "Authorization",
         "in": "header"
       },
