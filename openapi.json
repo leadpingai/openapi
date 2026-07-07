@@ -3832,7 +3832,7 @@
         "tags": [
           "Sources"
         ],
-        "summary": "Get lead creation metrics for a business lead intake source",
+        "summary": "Get source lead metrics.",
         "description": "Returns lead creation metrics for one business intake source, including accepted, rejected, duplicate, validation, and recent activity counts for monitoring.",
         "operationId": "Sources_GetMetrics",
         "parameters": [
@@ -3912,8 +3912,8 @@
         "tags": [
           "Suppressions"
         ],
-        "summary": "Creates or reactivates a suppression entry for a recipient.",
-        "description": "The suppression entry response was created successfully.",
+        "summary": "Create or reactivate suppression.",
+        "description": "Creates or reactivates a Leadping suppression entry that blocks future outreach to a recipient across the selected communication channel.",
         "operationId": "Suppressions_Suppress",
         "requestBody": {
           "description": "The suppression entry request payload for the operation.",
@@ -3986,7 +3986,7 @@
           "Suppressions"
         ],
         "summary": "Releases an active suppression entry for a recipient.",
-        "description": "Returns the suppression entry response.",
+        "description": "Releases an active Leadping suppression entry so a recipient can be contacted again, returning the updated suppression record when available.",
         "operationId": "Suppressions_Release",
         "requestBody": {
           "description": "The suppression entry request payload for the operation.",
@@ -4058,8 +4058,8 @@
         "tags": [
           "Suppressions"
         ],
-        "summary": "Checks whether the recipient is blocked by an active suppression entry.",
-        "description": "Returns the suppression check result.",
+        "summary": "Check recipient suppression status.",
+        "description": "Checks whether a recipient is blocked by an active Leadping suppression entry before sending messages or placing calls through the selected channel.",
         "operationId": "Suppressions_Check",
         "requestBody": {
           "description": "The suppression entry request payload for the operation.",
@@ -5304,7 +5304,7 @@
           "Calls"
         ],
         "summary": "Initiates a phone call.",
-        "description": "Returns the call details with a 200 status code.",
+        "description": "Starts an outbound Leadping phone call for an authenticated user and returns the provider call identifiers, status, and routing details.",
         "operationId": "Calls_InitiateCall",
         "requestBody": {
           "description": "The call initiation request containing phone number and optional metadata.",
@@ -5377,7 +5377,7 @@
           "Calls"
         ],
         "summary": "Ends a phone call.",
-        "description": "Returns the call details with a 200 status code.",
+        "description": "Ends an active Leadping phone call by call ID and returns the updated call record, including status and provider routing details.",
         "operationId": "Calls_HangupCall",
         "parameters": [
           {
@@ -5445,7 +5445,7 @@
           "Calls"
         ],
         "summary": "Gets call status.",
-        "description": "Returns the call details with a 200 status code.",
+        "description": "Retrieves the latest status for a Leadping phone call by call ID, including provider state and call details for tracking progress.",
         "operationId": "Calls_GetCallStatus",
         "parameters": [
           {
@@ -5503,7 +5503,7 @@
           "Calls"
         ],
         "summary": "Transfers a call.",
-        "description": "Returns the call details with a 200 status code.",
+        "description": "Transfers an active Leadping phone call to a new phone number and returns the updated call record with status and routing details.",
         "operationId": "Calls_TransferCall",
         "parameters": [
           {
@@ -6866,7 +6866,7 @@
           "Telephony"
         ],
         "summary": "Generates a WebRTC login token.",
-        "description": "Returns the telephony login response with a 200 status code.",
+        "description": "Generates a Leadping WebRTC login token so authenticated agents can connect to telephony services and place or receive browser-based calls.",
         "operationId": "Telephony_Login",
         "requestBody": {
           "description": "The telephony login request containing connection details.",
@@ -9073,8 +9073,8 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Gets a paged list of API keys owned by the current business.",
-        "description": "Returns a paged result of current-business API keys.",
+        "summary": "List current business API keys.",
+        "description": "Retrieves a paged list of API keys owned by the caller's current Leadping business, with support for filtering, sorting, and pagination.",
         "operationId": "Businesses_GetAllApiKeysForCurrentUser",
         "requestBody": {
           "description": "Pagination, filtering, and sorting options.",
