@@ -4785,6 +4785,45 @@
         }
       }
     },
+    "/payment-methods": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Gets all cards attached to the current business billing customer.",
+        "operationId": "PaymentMethods_GetAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/StripePaymentMethodResponse"
+                      }
+                    ],
+                    "description": "API DTO containing stripe payment method data used by Leadping API contracts."
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/payment-methods/{id}": {
       "get": {
         "tags": [
@@ -4893,6 +4932,62 @@
           },
           "400": {
             "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-methods/{id}/default": {
+      "post": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Makes a card the default payment method for the current business.",
+        "operationId": "PaymentMethods_MakeDefault",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/StripePaymentMethodResponse"
+                    }
+                  ],
+                  "description": "API DTO containing stripe payment method data used by Leadping API contracts."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -11067,6 +11162,63 @@
         },
         "description": "API DTO containing business compliance policy data used by Leadping API contracts."
       },
+      "BusinessDunningInfo": {
+        "type": "object",
+        "properties": {
+          "stage": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentFailedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastFailedInvoiceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastFailedInvoiceStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "retryAttemptCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "nextRetryAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "gracePeriodEndsAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "outboundRestrictedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "outboundSuspendedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finalCancellationAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "Dunning state recorded after a failed recurring payment."
+      },
       "BusinessInvitationRequest": {
         "type": "object",
         "properties": {
@@ -11842,6 +11994,12 @@
             "format": "int64",
             "nullable": true
           },
+          "businessUserAssignedQuantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of paid business-user seats currently assigned to a member or open invitation.\nThis can be lower than long? BusinessStripeInfo.BusinessUserQuantity while an annual seat is\navailable for reassignment during its paid term.",
+            "format": "int64",
+            "nullable": true
+          },
           "cancelAt": {
             "type": "string",
             "format": "date-time",
@@ -11851,7 +12009,7 @@
             "type": "object",
             "allOf": [
               {
-                "$ref": "#/components/schemas/UserSubscriptionCancellationInfo"
+                "$ref": "#/components/schemas/BusinessSubscriptionCancellationInfo"
               }
             ],
             "description": "Captured subscription cancellation feedback for retention and churn analysis.",
@@ -11861,7 +12019,7 @@
             "type": "object",
             "allOf": [
               {
-                "$ref": "#/components/schemas/UserDunningInfo"
+                "$ref": "#/components/schemas/BusinessDunningInfo"
               }
             ],
             "description": "Dunning state recorded after a failed recurring payment.",
@@ -11879,6 +12037,57 @@
           }
         },
         "description": "Stripe billing state owned by a business account."
+      },
+      "BusinessSubscriptionCancellationInfo": {
+        "type": "object",
+        "properties": {
+          "reasonCode": {
+            "type": "string",
+            "description": "The normalized cancellation reason code selected by the user.",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "description": "The human-readable cancellation reason selected by the user.",
+            "nullable": true
+          },
+          "competitor": {
+            "type": "string",
+            "description": "The competitor named by the user, when applicable.",
+            "nullable": true
+          },
+          "missingFeature": {
+            "type": "string",
+            "description": "The missing feature named by the user, when applicable.",
+            "nullable": true
+          },
+          "technicalIssues": {
+            "type": "string",
+            "description": "The technical issue details supplied by the user, when applicable.",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional cancellation notes supplied by the user.",
+            "nullable": true
+          },
+          "cancelAtPeriodEnd": {
+            "type": "boolean",
+            "description": "Whether the cancellation was scheduled for period end."
+          },
+          "requestedByUserId": {
+            "type": "string",
+            "description": "The user who requested cancellation.",
+            "nullable": true
+          },
+          "requestedAt": {
+            "type": "string",
+            "description": "The date and time when cancellation was requested.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "Captured subscription cancellation feedback for retention and churn analysis."
       },
       "BusinessSwitchOption": {
         "type": "object",
@@ -11955,6 +12164,10 @@
             "description": "The activation summary value for this business switch option.",
             "nullable": true
           },
+          "hasPaymentMethod": {
+            "type": "boolean",
+            "description": "Whether the business has a default billing payment method."
+          },
           "readyForCustomerTraffic": {
             "type": "boolean",
             "description": "Whether ready for customer traffic applies to this business switch option."
@@ -12016,6 +12229,41 @@
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "The account balance value for this business.",
             "format": "double",
+            "nullable": true
+          },
+          "billingPlan": {
+            "enum": [
+              "Annual",
+              "Monthly"
+            ],
+            "type": "string",
+            "description": "Defines the supported Billing Plan values.",
+            "nullable": true
+          },
+          "subscriptionStatus": {
+            "enum": [
+              "Pending",
+              "Active",
+              "Overdue",
+              "Canceled"
+            ],
+            "type": "string",
+            "description": "Defines the supported Subscription Status values.",
+            "nullable": true
+          },
+          "lastSubscriptionEventAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "subscriptionCancelAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentFailedAt": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           },
           "phone": {
@@ -16802,6 +17050,11 @@
       "Phone": {
         "type": "object",
         "properties": {
+          "phoneIdentityId": {
+            "type": "string",
+            "description": "Identifier of the canonical phone identity stored by Leadping.",
+            "nullable": true
+          },
           "number": {
             "type": "string",
             "description": "E.164 phone number exposed by this lead phone number."
@@ -19754,7 +20007,7 @@
           },
           "apiKeyPreview": {
             "type": "string",
-            "description": "Masked preview of the source API key for display without exposing the secret.",
+            "description": "Masked preview of the source API key for compact display.",
             "nullable": true
           },
           "firstLeadReceivedAt": {
@@ -19900,7 +20153,7 @@
           },
           "apiKeyPreview": {
             "type": "string",
-            "description": "Masked preview of the source API key for display without exposing the secret."
+            "description": "Masked preview of the source API key for compact display."
           },
           "apiKeyLastUsedAt": {
             "type": "string",
@@ -21352,20 +21605,6 @@
             },
             "description": "The TrustedForm certificates included with this user compliance.",
             "nullable": true
-          },
-          "licensedStates": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The licensed states included with this user compliance."
-          },
-          "licensedProducts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The licensed products included with this user compliance."
           }
         },
         "description": "API DTO containing user compliance data used by Leadping API contracts."
@@ -21473,63 +21712,6 @@
         "type": "string",
         "description": "Defines the supported user data export statuses values."
       },
-      "UserDunningInfo": {
-        "type": "object",
-        "properties": {
-          "stage": {
-            "type": "string",
-            "nullable": true
-          },
-          "paymentFailedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lastFailedInvoiceId": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastFailedInvoiceStatus": {
-            "type": "string",
-            "nullable": true
-          },
-          "retryAttemptCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "nextRetryAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "gracePeriodEndsAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "outboundRestrictedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "outboundSuspendedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "finalCancellationAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lastUpdatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "description": "Dunning state recorded after a failed recurring payment."
-      },
       "UserIdentity": {
         "type": "object",
         "properties": {
@@ -21555,9 +21737,18 @@
             "type": "boolean",
             "description": "Whether payment failed notifications are enabled for this user notification preferences."
           },
+          "paymentFailedSmsEnabled": {
+            "type": "boolean"
+          },
           "lowWalletBalanceEnabled": {
             "type": "boolean",
             "description": "Whether low wallet balance notifications are enabled for this user notification preferences."
+          },
+          "lowWalletBalanceEmailEnabled": {
+            "type": "boolean"
+          },
+          "lowWalletBalanceSmsEnabled": {
+            "type": "boolean"
           },
           "tenDlcStatusEnabled": {
             "type": "boolean",
@@ -21579,13 +21770,31 @@
             "type": "boolean",
             "description": "Whether missed call notifications are enabled for this user notification preferences."
           },
+          "missedCallEmailEnabled": {
+            "type": "boolean"
+          },
+          "missedCallSmsEnabled": {
+            "type": "boolean"
+          },
           "unreadSmsEnabled": {
             "type": "boolean",
             "description": "Whether unread SMS notifications are enabled for this user notification preferences."
           },
+          "unreadSmsEmailEnabled": {
+            "type": "boolean"
+          },
+          "unreadSmsSmsEnabled": {
+            "type": "boolean"
+          },
           "automationFailedEnabled": {
             "type": "boolean",
             "description": "Whether automation failed notifications are enabled for this user notification preferences."
+          },
+          "automationFailedEmailEnabled": {
+            "type": "boolean"
+          },
+          "automationFailedSmsEnabled": {
+            "type": "boolean"
           },
           "billingEmailEnabled": {
             "type": "boolean",
@@ -21598,6 +21807,12 @@
           "subscriptionRenewingEnabled": {
             "type": "boolean",
             "description": "Whether subscription renewing notifications are enabled for this user notification preferences."
+          },
+          "subscriptionRenewingEmailEnabled": {
+            "type": "boolean"
+          },
+          "subscriptionRenewingSmsEnabled": {
+            "type": "boolean"
           },
           "usageLimitHitEnabled": {
             "type": "boolean",
@@ -21639,27 +21854,6 @@
             ],
             "type": "string",
             "description": "Defines the supported Billing Plan values.",
-            "nullable": true
-          },
-          "subscriptionStatus": {
-            "enum": [
-              "Pending",
-              "Active",
-              "Overdue",
-              "Canceled"
-            ],
-            "type": "string",
-            "description": "Defines the supported Subscription Status values.",
-            "nullable": true
-          },
-          "business": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IdNamePair"
-              }
-            ],
-            "description": "Business summary connected to this user profile request.",
             "nullable": true
           },
           "currentBusiness": {
@@ -21761,6 +21955,16 @@
             "description": "Defines the supported Subscription Status values.",
             "nullable": true
           },
+          "stripeInfo": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BusinessStripeInfo"
+              }
+            ],
+            "description": "Stripe state for the user's currently selected business.",
+            "nullable": true
+          },
           "roles": {
             "type": "array",
             "description": "The roles included with this user.",
@@ -21777,26 +21981,6 @@
               "description": "Represents a user's sign-in identity, including information about the identity provider and method of authentication."
             },
             "description": "The identities included with this user.",
-            "nullable": true
-          },
-          "stripeInfo": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserStripeInfo"
-              }
-            ],
-            "description": "The Stripe info value for this user.",
-            "nullable": true
-          },
-          "business": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IdNamePair"
-              }
-            ],
-            "description": "The business value for this user.",
             "nullable": true
           },
           "currentBusiness": {
@@ -21892,163 +22076,12 @@
         },
         "description": "API response containing user data returned to callers."
       },
-      "UserStripeInfo": {
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "string",
-            "description": "The customer ID associated with this user Stripe info.",
-            "nullable": true
-          },
-          "defaultPaymentMethodId": {
-            "type": "string",
-            "description": "The default payment method ID associated with this user Stripe info.",
-            "nullable": true
-          },
-          "subscriptionIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The subscription ids included with this user Stripe info.",
-            "nullable": true
-          },
-          "planSubscriptionId": {
-            "type": "string",
-            "description": "The plan subscription ID associated with this user Stripe info.",
-            "nullable": true
-          },
-          "planSubscriptionItemId": {
-            "type": "string",
-            "description": "The plan subscription item ID associated with this user Stripe info.",
-            "nullable": true
-          },
-          "phoneSubscriptionId": {
-            "type": "string",
-            "description": "The phone subscription ID associated with this user Stripe info.",
-            "nullable": true
-          },
-          "phoneSubscriptionItemId": {
-            "type": "string",
-            "description": "The phone subscription item ID associated with this user Stripe info.",
-            "nullable": true
-          },
-          "phoneNumberQuantity": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The phone number quantity value for this user Stripe info.",
-            "format": "int64",
-            "nullable": true
-          },
-          "businessUserSubscriptionItemId": {
-            "type": "string",
-            "description": "The business user subscription item ID associated with this user Stripe info.",
-            "nullable": true
-          },
-          "businessUserQuantity": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The business user license quantity value for this user Stripe info.",
-            "format": "int64",
-            "nullable": true
-          },
-          "cancelAt": {
-            "type": "string",
-            "description": "The date and time for the cancel at value on this user Stripe info.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "cancellation": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserSubscriptionCancellationInfo"
-              }
-            ],
-            "description": "The captured subscription cancellation feedback for retention and churn analysis.",
-            "nullable": true
-          },
-          "dunning": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserDunningInfo"
-              }
-            ],
-            "description": "The active dunning state after a failed recurring payment.",
-            "nullable": true
-          },
-          "lastSubscriptionEventAt": {
-            "type": "string",
-            "description": "The date and time for the last subscription event at value on this user Stripe info.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lastPaymentMethodEventAt": {
-            "type": "string",
-            "description": "The date and time for the last payment method event at value on this user Stripe info.",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "description": "API DTO containing user stripe info data used by Leadping API contracts."
-      },
-      "UserSubscriptionCancellationInfo": {
-        "type": "object",
-        "properties": {
-          "reasonCode": {
-            "type": "string",
-            "description": "The normalized cancellation reason code selected by the user.",
-            "nullable": true
-          },
-          "reason": {
-            "type": "string",
-            "description": "The human-readable cancellation reason selected by the user.",
-            "nullable": true
-          },
-          "competitor": {
-            "type": "string",
-            "description": "The competitor named by the user, when applicable.",
-            "nullable": true
-          },
-          "missingFeature": {
-            "type": "string",
-            "description": "The missing feature named by the user, when applicable.",
-            "nullable": true
-          },
-          "technicalIssues": {
-            "type": "string",
-            "description": "The technical issue details supplied by the user, when applicable.",
-            "nullable": true
-          },
-          "notes": {
-            "type": "string",
-            "description": "Additional cancellation notes supplied by the user.",
-            "nullable": true
-          },
-          "cancelAtPeriodEnd": {
-            "type": "boolean",
-            "description": "Whether the cancellation was scheduled for period end."
-          },
-          "requestedByUserId": {
-            "type": "string",
-            "description": "The user who requested cancellation.",
-            "nullable": true
-          },
-          "requestedAt": {
-            "type": "string",
-            "description": "The date and time when cancellation was requested.",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "description": "Captured subscription cancellation feedback for retention and churn analysis."
-      },
       "WalletCreditSourceType": {
         "enum": [
           "purchase",
           "promo",
           "admin_adjustment",
           "refund_adjustment",
-          "migration",
           "chargeback_reversal",
           "compromise_restoration"
         ],
@@ -22117,7 +22150,6 @@
               "promo",
               "admin_adjustment",
               "refund_adjustment",
-              "migration",
               "chargeback_reversal",
               "compromise_restoration"
             ],
