@@ -4790,7 +4790,7 @@
         "tags": [
           "PaymentMethods"
         ],
-        "summary": "Gets all cards attached to the current business billing customer.",
+        "summary": "List payment methods",
         "operationId": "PaymentMethods_GetAll",
         "responses": {
           "200": {
@@ -4958,7 +4958,7 @@
         "tags": [
           "PaymentMethods"
         ],
-        "summary": "Makes a card the default payment method for the current business.",
+        "summary": "Set default payment method",
         "operationId": "PaymentMethods_MakeDefault",
         "parameters": [
           {
