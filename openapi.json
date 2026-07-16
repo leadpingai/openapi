@@ -1354,406 +1354,6 @@
         }
       }
     },
-    "/feedback/admin": {
-      "get": {
-        "tags": [
-          "Feedback"
-        ],
-        "summary": "List product feedback for admin triage",
-        "description": "Lists submitted feedback for admin triage with query filters, paging, status, and category review fields.",
-        "operationId": "Feedback_GetAllForAdmin",
-        "parameters": [
-          {
-            "name": "Status",
-            "in": "query",
-            "description": "Current lifecycle status for this feedback admin query request in the Leadping API.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Type",
-            "in": "query",
-            "description": "Type classification used to route and interpret this feedback admin query request in the Leadping API.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "BusinessId",
-            "in": "query",
-            "description": "Business ID used to filter feedback items for admin review.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Area",
-            "in": "query",
-            "description": "Product area or app section connected to this feedback admin query request.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Search",
-            "in": "query",
-            "description": "Search text used to filter Leadping API results.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "CreatedStart",
-            "in": "query",
-            "description": "Start of the created-at date range filter for Leadping API results.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "CreatedEnd",
-            "in": "query",
-            "description": "End of the created-at date range filter for Leadping API results.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "description": "Maximum number of results requested for this Leadping API page.",
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "ContinuationToken",
-            "in": "query",
-            "description": "Pagination token used to request the next page of Leadping API results.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfFeedbackResponse"
-                    }
-                  ],
-                  "description": "A generic container for paginated results returned to the client."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/feedback/admin/all": {
-      "post": {
-        "tags": [
-          "Feedback"
-        ],
-        "summary": "List product feedback for admin triage",
-        "description": "Lists submitted feedback for admin triage with table search, paging, and sorting in the request body.",
-        "operationId": "Feedback_GetAllForAdmin",
-        "parameters": [
-          {
-            "name": "Status",
-            "in": "query",
-            "description": "Current lifecycle status for this feedback admin query request in the Leadping API.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Type",
-            "in": "query",
-            "description": "Type classification used to route and interpret this feedback admin query request in the Leadping API.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "BusinessId",
-            "in": "query",
-            "description": "Business ID used to filter feedback items for admin review.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Area",
-            "in": "query",
-            "description": "Product area or app section connected to this feedback admin query request.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Search",
-            "in": "query",
-            "description": "Search text used to filter Leadping API results.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "CreatedStart",
-            "in": "query",
-            "description": "Start of the created-at date range filter for Leadping API results.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "CreatedEnd",
-            "in": "query",
-            "description": "End of the created-at date range filter for Leadping API results.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "description": "Maximum number of results requested for this Leadping API page.",
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "ContinuationToken",
-            "in": "query",
-            "description": "Pagination token used to request the next page of Leadping API results.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfFeedbackResponse"
-                    }
-                  ],
-                  "description": "A generic container for paginated results returned to the client."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/feedback/admin/{id}": {
-      "get": {
-        "tags": [
-          "Feedback"
-        ],
-        "summary": "Get product feedback for admin triage",
-        "description": "Returns one feedback item for admin triage, including business context, submitted details, status, and review fields.",
-        "operationId": "Feedback_GetForAdmin",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/FeedbackResponse"
-                    }
-                  ],
-                  "description": "Response schema for the Leadping API feedback item response returned to authenticated clients."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Feedback"
-        ],
-        "summary": "Update product feedback triage fields",
-        "description": "Updates admin triage fields on a feedback item, such as status, priority, notes, or reviewed metadata.",
-        "operationId": "Feedback_UpdateForAdmin",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/FeedbackAdminUpdateRequest"
-                  }
-                ],
-                "description": "Request schema for the Leadping API feedback admin update request, including the fields clients can send."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/FeedbackAdminUpdateRequest"
-                  }
-                ],
-                "description": "Request schema for the Leadping API feedback admin update request, including the fields clients can send."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/FeedbackResponse"
-                    }
-                  ],
-                  "description": "Response schema for the Leadping API feedback item response returned to authenticated clients."
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/leads": {
       "post": {
         "tags": [
@@ -9505,29 +9105,6 @@
         },
         "description": "API DTO containing activation timeline event data used by Leadping API contracts."
       },
-      "AdminEnablementOverride": {
-        "type": "object",
-        "properties": {
-          "enabled": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "reason": {
-            "type": "string",
-            "nullable": true
-          },
-          "updatedByUserId": {
-            "type": "string",
-            "nullable": true
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "description": "Admin override that can enable or disable this record independently of normal status checks."
-      },
       "AnalyticsBucketSize": {
         "enum": [
           0,
@@ -9535,6 +9112,7 @@
           2
         ],
         "type": "integer",
+        "description": "Bucket size associated with this Leadping analytics date range.",
         "format": "int32"
       },
       "AnalyticsComparison": {
@@ -9542,54 +9120,71 @@
         "properties": {
           "current": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Metric value for the current reporting period.",
             "format": "double"
           },
           "previous": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Metric value for the preceding comparison period.",
             "format": "double"
           },
           "changePercent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Percentage change between the current and previous reporting periods.",
             "format": "double",
             "nullable": true
           },
           "direction": {
-            "type": "string"
+            "type": "string",
+            "description": "Direction classification for this Leadping analytics comparison."
           }
-        }
+        },
+        "description": "Date and time when this Leadping customer analytics summary was leads comparison."
       },
       "AnalyticsDateRange": {
         "type": "object",
         "properties": {
           "startAt": {
             "type": "string",
+            "description": "Date and time when this Leadping analytics date range was start.",
             "format": "date-time"
           },
           "endAt": {
             "type": "string",
+            "description": "Date and time when this Leadping analytics date range was end.",
             "format": "date-time"
           },
           "bucketSize": {
-            "$ref": "#/components/schemas/AnalyticsBucketSize"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AnalyticsBucketSize"
+              }
+            ],
+            "description": "Bucket size associated with this Leadping analytics date range."
           }
-        }
+        },
+        "description": "Range associated with this Leadping customer analytics."
       },
       "AnalyticsTrendPointOfdecimal": {
         "type": "object",
         "properties": {
           "startAt": {
             "type": "string",
+            "description": "Date and time when this Leadping analytics trend point was start.",
             "format": "date-time"
           },
           "endAt": {
             "type": "string",
+            "description": "Date and time when this Leadping analytics trend point was end.",
             "format": "date-time"
           },
           "label": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable label for this Leadping analytics trend point."
           },
           "value": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Value associated with this Leadping analytics trend point.",
             "format": "double"
           }
         }
@@ -9599,17 +9194,21 @@
         "properties": {
           "startAt": {
             "type": "string",
+            "description": "Date and time when this Leadping analytics trend point was start.",
             "format": "date-time"
           },
           "endAt": {
             "type": "string",
+            "description": "Date and time when this Leadping analytics trend point was end.",
             "format": "date-time"
           },
           "label": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable label for this Leadping analytics trend point."
           },
           "value": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Value associated with this Leadping analytics trend point.",
             "format": "int32"
           }
         }
@@ -9665,11 +9264,6 @@
             "type": "string",
             "description": "Automation action type, such as send SMS or create task."
           },
-          "executionKey": {
-            "type": "string",
-            "description": "Idempotency key used to identify a unique automation workflow execution.",
-            "nullable": true
-          },
           "order": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Sort order used to evaluate or display this automation action run record.",
@@ -9678,11 +9272,6 @@
           "status": {
             "type": "string",
             "description": "Current lifecycle status for this automation action run record in the Leadping API."
-          },
-          "connectionKey": {
-            "type": "string",
-            "description": "Stable integration connection key used by this automation action.",
-            "nullable": true
           },
           "startedAt": {
             "type": "string",
@@ -9716,16 +9305,6 @@
             "type": "string",
             "description": "UTC timestamp when Leadping will retry this automation action run record.",
             "format": "date-time",
-            "nullable": true
-          },
-          "output": {
-            "type": "string",
-            "description": "Generated output returned by this automation action run record.",
-            "nullable": true
-          },
-          "error": {
-            "type": "string",
-            "description": "Error text returned while processing this automation action run record.",
             "nullable": true
           },
           "failureCode": {
@@ -9933,26 +9512,6 @@
             "description": "Indicates whether this automation configuration request is active and available in the Leadping API.",
             "nullable": true
           },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
-          },
-          "businessId": {
-            "type": "string",
-            "description": "Business ID that owns this automation configuration.",
-            "nullable": true
-          },
-          "createdByUserId": {
-            "type": "string",
-            "description": "User ID of the person who created this automation configuration request.",
-            "nullable": true
-          },
           "scope": {
             "type": "string",
             "description": "Scope that limits where this automation configuration request applies in Leadping.",
@@ -9962,15 +9521,6 @@
             "type": "string",
             "description": "Visibility level that controls who can see this automation configuration request.",
             "nullable": true
-          },
-          "managementLevel": {
-            "type": "string",
-            "description": "Management level that controls whether Leadping or the business owns this automation setting.",
-            "nullable": true
-          },
-          "isSystemManaged": {
-            "type": "boolean",
-            "description": "Indicates whether Leadping manages this automation configuration request automatically instead of a user."
           },
           "triggers": {
             "type": "array",
@@ -10131,16 +9681,6 @@
             "description": "Indicates whether this automation configuration response is active and available in the Leadping API.",
             "nullable": true
           },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
-          },
           "businessId": {
             "type": "string",
             "description": "Business ID that owns this automation.",
@@ -10215,11 +9755,6 @@
           "lastRunStatus": {
             "type": "string",
             "description": "Status from the most recent automation run.",
-            "nullable": true
-          },
-          "lastRunError": {
-            "type": "string",
-            "description": "Most recent automation run error message, if the last run failed.",
             "nullable": true
           },
           "recentRuns": {
@@ -10308,16 +9843,6 @@
             "description": "Automation trigger type that starts the workflow.",
             "nullable": true
           },
-          "sourceEventId": {
-            "type": "string",
-            "description": "Source event ID that triggered this workflow or outbound delivery.",
-            "nullable": true
-          },
-          "executionKey": {
-            "type": "string",
-            "description": "Idempotency key used to identify a unique automation workflow execution.",
-            "nullable": true
-          },
           "status": {
             "type": "string",
             "description": "Current lifecycle status for this automation run record in the Leadping API."
@@ -10348,11 +9873,6 @@
             "format": "date-time",
             "nullable": true
           },
-          "error": {
-            "type": "string",
-            "description": "Error text returned while processing this automation run record.",
-            "nullable": true
-          },
           "failureCode": {
             "type": "string",
             "description": "Machine-readable failure code for troubleshooting this automation run record.",
@@ -10362,13 +9882,6 @@
             "type": "string",
             "description": "Human-readable reason explaining why Leadping skipped this automation run.",
             "nullable": true
-          },
-          "contextSnapshot": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Snapshot of request context captured when this automation run record was created."
           },
           "actions": {
             "type": "array",
@@ -10403,16 +9916,6 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this automation table row is active and available in the Leadping API."
-          },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
           },
           "businessId": {
             "type": "string",
@@ -10472,11 +9975,6 @@
             "type": "string",
             "description": "UTC timestamp when this automation last ran.",
             "format": "date-time",
-            "nullable": true
-          },
-          "lastRunError": {
-            "type": "string",
-            "description": "Most recent automation run error message, if the last run failed.",
             "nullable": true
           },
           "modifiedAt": {
@@ -10565,79 +10063,93 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique Leadping identifier for the automation workflow action."
           },
           "stepId": {
             "type": "string",
+            "description": "Unique identifier of the step associated with this Leadping automation workflow action.",
             "nullable": true
           },
           "stepOrder": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Step order associated with this Leadping automation workflow action.",
             "format": "int32"
           },
           "stepDisplayName": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable step display name associated with this Leadping automation workflow action."
           },
           "actionType": {
-            "type": "string"
+            "type": "string",
+            "description": "Action type classification for this Leadping automation workflow action."
           },
           "actionTypeDisplay": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable action type display for this Leadping automation workflow action."
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description": "Current status for this Leadping automation workflow action."
           },
           "statusDisplay": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable status display for this Leadping automation workflow action."
           },
           "scheduledAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow action was scheduled.",
             "format": "date-time",
             "nullable": true
           },
           "startedAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow action started.",
             "format": "date-time",
             "nullable": true
           },
           "completedAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow action completed.",
             "format": "date-time",
             "nullable": true
           },
           "failedAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow action failed.",
             "format": "date-time",
             "nullable": true
           },
           "skippedAt": {
             "type": "string",
+            "description": "Date and time when the workflow action was skipped.",
             "format": "date-time",
             "nullable": true
           },
           "retryCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of retry records represented by this Leadping automation workflow action.",
             "format": "int32"
           },
           "nextRetryAt": {
             "type": "string",
+            "description": "Date and time when the next retry is scheduled.",
             "format": "date-time",
             "nullable": true
           },
           "userSummary": {
             "type": "string",
+            "description": "Human-readable user summary for this Leadping automation workflow action.",
             "nullable": true
           },
           "safeReason": {
             "type": "string",
+            "description": "Safe reason associated with this Leadping automation workflow action.",
             "nullable": true
           },
           "failureCode": {
             "type": "string",
-            "nullable": true
-          },
-          "adminDiagnostics": {
-            "type": "string",
+            "description": "Reason or diagnostic code that explains the current outcome for this Leadping automation workflow action.",
             "nullable": true
           }
         },
@@ -10647,39 +10159,44 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique Leadping identifier for the automation workflow event."
           },
           "stepId": {
             "type": "string",
+            "description": "Unique identifier of the step associated with this Leadping automation workflow event.",
             "nullable": true
           },
           "actionId": {
             "type": "string",
+            "description": "Unique identifier of the action associated with this Leadping automation workflow event.",
             "nullable": true
           },
           "eventType": {
-            "type": "string"
+            "type": "string",
+            "description": "Event type classification for this Leadping automation workflow event."
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description": "Current status for this Leadping automation workflow event."
           },
           "statusDisplay": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable status display for this Leadping automation workflow event."
           },
           "summary": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable summary for this Leadping automation workflow event."
           },
           "reasonCode": {
             "type": "string",
+            "description": "Reason or diagnostic code that explains the current outcome for this Leadping automation workflow event.",
             "nullable": true
           },
           "occurredAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow event event occurred.",
             "format": "date-time"
-          },
-          "adminDiagnostics": {
-            "type": "string",
-            "nullable": true
           }
         },
         "description": "User-safe workflow history event returned for lead automation status."
@@ -10688,130 +10205,141 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique Leadping identifier for the automation workflow run."
           },
           "businessId": {
             "type": "string",
+            "description": "Unique identifier of the business associated with this Leadping automation workflow run.",
             "nullable": true
           },
           "leadId": {
             "type": "string",
+            "description": "Unique identifier of the lead associated with this Leadping automation workflow run.",
             "nullable": true
           },
           "automationId": {
             "type": "string",
+            "description": "Unique identifier of the automation associated with this Leadping automation workflow run.",
             "nullable": true
           },
           "automationName": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable automation name associated with this Leadping automation workflow run."
           },
           "triggerType": {
             "type": "string",
+            "description": "Trigger type classification for this Leadping automation workflow run.",
             "nullable": true
           },
           "triggerDisplay": {
             "type": "string",
+            "description": "Human-readable trigger display for this Leadping automation workflow run.",
             "nullable": true
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description": "Current status for this Leadping automation workflow run."
           },
           "statusDisplay": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable status display for this Leadping automation workflow run."
           },
           "currentStepId": {
             "type": "string",
+            "description": "Unique identifier of the current step associated with this Leadping automation workflow run.",
             "nullable": true
           },
           "currentStepName": {
             "type": "string",
+            "description": "Human-readable current step name associated with this Leadping automation workflow run.",
             "nullable": true
           },
           "currentStepOrder": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Current step order associated with this Leadping automation workflow run.",
             "format": "int32",
             "nullable": true
           },
           "nextExecutionAt": {
             "type": "string",
+            "description": "Date and time when the next execution is scheduled.",
             "format": "date-time",
             "nullable": true
           },
           "lastExecutionAt": {
             "type": "string",
+            "description": "Date and time of the most recent execution for this Leadping automation workflow run.",
             "format": "date-time",
             "nullable": true
           },
           "startedAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow run started.",
             "format": "date-time"
           },
           "updatedAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow run was last updated.",
             "format": "date-time"
           },
           "completedAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow run completed.",
             "format": "date-time",
             "nullable": true
           },
           "failedAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow run failed.",
             "format": "date-time",
             "nullable": true
           },
           "cancelledAt": {
             "type": "string",
+            "description": "Date and time when the automation workflow run was cancelled.",
             "format": "date-time",
             "nullable": true
           },
           "retryCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of retry records represented by this Leadping automation workflow run.",
             "format": "int32"
           },
           "maxRetryCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of max retry records represented by this Leadping automation workflow run.",
             "format": "int32"
           },
           "nextRetryAt": {
             "type": "string",
+            "description": "Date and time when the next retry is scheduled.",
             "format": "date-time",
             "nullable": true
           },
           "lastErrorCode": {
             "type": "string",
+            "description": "Reason or diagnostic code that explains the current outcome for this Leadping automation workflow run.",
             "nullable": true
           },
           "lastErrorMessage": {
             "type": "string",
+            "description": "Human-readable last error message for this Leadping automation workflow run.",
             "nullable": true
           },
           "skipReasonCode": {
             "type": "string",
+            "description": "Reason or diagnostic code that explains the current outcome for this Leadping automation workflow run.",
             "nullable": true
           },
           "skipReasonDisplay": {
             "type": "string",
+            "description": "Human-readable skip reason display for this Leadping automation workflow run.",
             "nullable": true
           },
           "lastActionSummary": {
             "type": "string",
-            "nullable": true
-          },
-          "correlationId": {
-            "type": "string",
-            "nullable": true
-          },
-          "sourceEventId": {
-            "type": "string",
-            "nullable": true
-          },
-          "executionKey": {
-            "type": "string",
-            "nullable": true
-          },
-          "internalErrorDetails": {
-            "type": "string",
+            "description": "Human-readable last action summary for this Leadping automation workflow run.",
             "nullable": true
           },
           "actions": {
@@ -10823,7 +10351,8 @@
                 }
               ],
               "description": "User-safe action status returned for lead automation workflow visibility."
-            }
+            },
+            "description": "Collection of actions included with this Leadping automation workflow run."
           },
           "events": {
             "type": "array",
@@ -10834,7 +10363,8 @@
                 }
               ],
               "description": "User-safe workflow history event returned for lead automation status."
-            }
+            },
+            "description": "Collection of events included with this Leadping automation workflow run."
           }
         },
         "description": "User-safe automation workflow run status returned for a lead."
@@ -10843,7 +10373,8 @@
         "type": "object",
         "properties": {
           "leadId": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier of the lead associated with this Leadping automation workflow status."
           },
           "runs": {
             "type": "array",
@@ -10854,7 +10385,8 @@
                 }
               ],
               "description": "User-safe automation workflow run status returned for a lead."
-            }
+            },
+            "description": "Collection of runs included with this Leadping automation workflow status."
           }
         },
         "description": "Automation workflow status collection for a lead."
@@ -11162,63 +10694,6 @@
         },
         "description": "API DTO containing business compliance policy data used by Leadping API contracts."
       },
-      "BusinessDunningInfo": {
-        "type": "object",
-        "properties": {
-          "stage": {
-            "type": "string",
-            "nullable": true
-          },
-          "paymentFailedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lastFailedInvoiceId": {
-            "type": "string",
-            "nullable": true
-          },
-          "lastFailedInvoiceStatus": {
-            "type": "string",
-            "nullable": true
-          },
-          "retryAttemptCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "nextRetryAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "gracePeriodEndsAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "outboundRestrictedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "outboundSuspendedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "finalCancellationAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lastUpdatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "description": "Dunning state recorded after a failed recurring payment."
-      },
       "BusinessInvitationRequest": {
         "type": "object",
         "properties": {
@@ -11492,46 +10967,6 @@
             "description": "Indicates whether this business profile request is active and available in the Leadping API.",
             "nullable": true
           },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
-          },
-          "billingPlan": {
-            "enum": [
-              "Annual",
-              "Monthly"
-            ],
-            "type": "string",
-            "description": "Defines the supported Billing Plan values.",
-            "nullable": true
-          },
-          "subscriptionStatus": {
-            "enum": [
-              "Pending",
-              "Active",
-              "Overdue",
-              "Canceled"
-            ],
-            "type": "string",
-            "description": "Defines the supported Subscription Status values.",
-            "nullable": true
-          },
-          "stripeInfo": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BusinessStripeInfo"
-              }
-            ],
-            "description": "Stripe customer and subscription state associated with this business or user.",
-            "nullable": true
-          },
           "autoRefillEnabled": {
             "type": "boolean",
             "description": "Indicates whether automatic wallet refill is enabled for the business.",
@@ -11627,34 +11062,6 @@
             "description": "Phone numbers assigned to this business.",
             "nullable": true
           },
-          "setupStep": {
-            "enum": [
-              "DomainFinding",
-              "DomainOptionsFound",
-              "SiteGenerating",
-              "SiteGenerated",
-              "BrandSubmitted",
-              "BrandApproved",
-              "CampaignSubmitted",
-              "CampaignApproved",
-              "CarrierReviewing",
-              "TenDlcComplete",
-              "Complete"
-            ],
-            "type": "string",
-            "description": "Defines the supported Business Setup Step values.",
-            "nullable": true
-          },
-          "activation": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BusinessActivationState"
-              }
-            ],
-            "description": "Business activation state covering site, billing, compliance, and telephony readiness.",
-            "nullable": true
-          },
           "compliancePolicy": {
             "type": "object",
             "allOf": [
@@ -11722,16 +11129,6 @@
             "description": "Defines the supported Subscription Status values.",
             "nullable": true
           },
-          "stripeInfo": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BusinessStripeInfo"
-              }
-            ],
-            "description": "Stripe customer and subscription state associated with this business or user.",
-            "nullable": true
-          },
           "autoRefillEnabled": {
             "type": "boolean",
             "description": "Indicates whether automatic wallet refill is enabled for the business."
@@ -11761,16 +11158,6 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this business profile response is active and available in the Leadping API."
-          },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
           },
           "phone": {
             "type": "string",
@@ -11946,149 +11333,6 @@
         "type": "string",
         "description": "Defines the supported Business Status values."
       },
-      "BusinessStripeInfo": {
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "string",
-            "nullable": true
-          },
-          "defaultPaymentMethodId": {
-            "type": "string",
-            "nullable": true
-          },
-          "subscriptionIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "planSubscriptionId": {
-            "type": "string",
-            "nullable": true
-          },
-          "planSubscriptionItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneSubscriptionId": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneSubscriptionItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumberQuantity": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int64",
-            "nullable": true
-          },
-          "businessUserSubscriptionItemId": {
-            "type": "string",
-            "nullable": true
-          },
-          "businessUserQuantity": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int64",
-            "nullable": true
-          },
-          "businessUserAssignedQuantity": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Number of paid business-user seats currently assigned to a member or open invitation.\nThis can be lower than long? BusinessStripeInfo.BusinessUserQuantity while an annual seat is\navailable for reassignment during its paid term.",
-            "format": "int64",
-            "nullable": true
-          },
-          "cancelAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "cancellation": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BusinessSubscriptionCancellationInfo"
-              }
-            ],
-            "description": "Captured subscription cancellation feedback for retention and churn analysis.",
-            "nullable": true
-          },
-          "dunning": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BusinessDunningInfo"
-              }
-            ],
-            "description": "Dunning state recorded after a failed recurring payment.",
-            "nullable": true
-          },
-          "lastSubscriptionEventAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lastPaymentMethodEventAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "description": "Stripe billing state owned by a business account."
-      },
-      "BusinessSubscriptionCancellationInfo": {
-        "type": "object",
-        "properties": {
-          "reasonCode": {
-            "type": "string",
-            "description": "The normalized cancellation reason code selected by the user.",
-            "nullable": true
-          },
-          "reason": {
-            "type": "string",
-            "description": "The human-readable cancellation reason selected by the user.",
-            "nullable": true
-          },
-          "competitor": {
-            "type": "string",
-            "description": "The competitor named by the user, when applicable.",
-            "nullable": true
-          },
-          "missingFeature": {
-            "type": "string",
-            "description": "The missing feature named by the user, when applicable.",
-            "nullable": true
-          },
-          "technicalIssues": {
-            "type": "string",
-            "description": "The technical issue details supplied by the user, when applicable.",
-            "nullable": true
-          },
-          "notes": {
-            "type": "string",
-            "description": "Additional cancellation notes supplied by the user.",
-            "nullable": true
-          },
-          "cancelAtPeriodEnd": {
-            "type": "boolean",
-            "description": "Whether the cancellation was scheduled for period end."
-          },
-          "requestedByUserId": {
-            "type": "string",
-            "description": "The user who requested cancellation.",
-            "nullable": true
-          },
-          "requestedAt": {
-            "type": "string",
-            "description": "The date and time when cancellation was requested.",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "description": "Captured subscription cancellation feedback for retention and churn analysis."
-      },
       "BusinessSwitchOption": {
         "type": "object",
         "properties": {
@@ -12253,16 +11497,19 @@
           },
           "lastSubscriptionEventAt": {
             "type": "string",
+            "description": "Date and time when this Leadping business table row was last subscription event.",
             "format": "date-time",
             "nullable": true
           },
           "subscriptionCancelAt": {
             "type": "string",
+            "description": "Date and time when this Leadping business table row was subscription cancel.",
             "format": "date-time",
             "nullable": true
           },
           "paymentFailedAt": {
             "type": "string",
+            "description": "Date and time when this Leadping business table row was payment failed.",
             "format": "date-time",
             "nullable": true
           },
@@ -12287,16 +11534,6 @@
           "enabled": {
             "type": "boolean",
             "description": "Whether this business is enabled."
-          },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "The admin force enablement override on this business.",
-            "nullable": true
           },
           "apiKeyPreview": {
             "type": "string",
@@ -12509,16 +11746,6 @@
             "description": "The billing status for this user's business license.",
             "nullable": true
           },
-          "licenseStripeSubscriptionId": {
-            "type": "string",
-            "description": "The Stripe subscription ID containing this user's business license item.",
-            "nullable": true
-          },
-          "licenseStripeSubscriptionItemId": {
-            "type": "string",
-            "description": "The Stripe subscription item ID used for business user licenses.",
-            "nullable": true
-          },
           "licenseQuantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The quantity on the shared business user license item after this change.",
@@ -12616,11 +11843,6 @@
             "type": "string",
             "description": "Unique Leadping identifier for this call event table row."
           },
-          "telnyxId": {
-            "type": "string",
-            "description": "Telnyx identifier connected to this phone number, call, or SMS event.",
-            "nullable": true
-          },
           "leadId": {
             "type": "string",
             "description": "Lead ID associated with this call event.",
@@ -12644,11 +11866,6 @@
           "fromPhoneNumberId": {
             "type": "string",
             "description": "Sender phone number ID used for this outbound SMS or call.",
-            "nullable": true
-          },
-          "billingPhoneNumberId": {
-            "type": "string",
-            "description": "Phone number identifier used for billing reconciliation.",
             "nullable": true
           },
           "fromPhoneNumber": {
@@ -12700,11 +11917,6 @@
             "type": "string",
             "description": "Communication direction for this call event table row, such as inbound or outbound."
           },
-          "providerStatus": {
-            "type": "string",
-            "description": "Provider lifecycle or delivery status for this call event table row.",
-            "nullable": true
-          },
           "createdAt": {
             "type": "string",
             "description": "UTC timestamp when this call event table row was created.",
@@ -12748,14 +11960,6 @@
           "recordingUrl": {
             "type": "string",
             "description": "URL for the call recording, when the provider makes one available.",
-            "nullable": true
-          },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Structured metadata used for attribution, integrations, and reporting on this call event table row.",
             "nullable": true
           },
           "user": {
@@ -12931,7 +12135,8 @@
             "nullable": true
           },
           "isArchived": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether the Leadping conversation has been archived."
           },
           "currentDisposition": {
             "type": "object",
@@ -12999,10 +12204,12 @@
         "properties": {
           "latitude": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "description": "Latitude of the geographic coordinate in decimal degrees, from -90 through 90.",
             "format": "double"
           },
           "longitude": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "description": "Longitude of the geographic coordinate in decimal degrees, from -180 through 180.",
             "format": "double"
           }
         },
@@ -13083,33 +12290,41 @@
         "type": "object",
         "properties": {
           "overallStatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Current overall status for this Leadping customer activation health."
           },
           "items": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomerActivationHealthItem"
-            }
+            },
+            "description": "Collection of items included with this Leadping customer activation health."
           }
-        }
+        },
+        "description": "Activation health associated with this Leadping customer analytics."
       },
       "CustomerActivationHealthItem": {
         "type": "object",
         "properties": {
           "key": {
-            "type": "string"
+            "type": "string",
+            "description": "Key associated with this Leadping customer activation health item."
           },
           "label": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable label for this Leadping customer activation health item."
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description": "Current status for this Leadping customer activation health item."
           },
           "detail": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable detail for this Leadping customer activation health item."
           },
           "actionHref": {
             "type": "string",
+            "description": "Relative URL for the recommended follow-up action.",
             "nullable": true
           }
         }
@@ -13144,40 +12359,78 @@
         "type": "object",
         "properties": {
           "range": {
-            "$ref": "#/components/schemas/AnalyticsDateRange"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AnalyticsDateRange"
+              }
+            ],
+            "description": "Range associated with this Leadping customer analytics."
           },
           "summary": {
-            "$ref": "#/components/schemas/CustomerAnalyticsSummary"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerAnalyticsSummary"
+              }
+            ],
+            "description": "Human-readable summary for this Leadping customer analytics."
           },
           "leadTrend": {
-            "$ref": "#/components/schemas/CustomerLeadTrend"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerLeadTrend"
+              }
+            ],
+            "description": "Lead trend associated with this Leadping customer analytics."
           },
           "responseMetrics": {
-            "$ref": "#/components/schemas/CustomerResponseMetrics"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerResponseMetrics"
+              }
+            ],
+            "description": "Response metrics associated with this Leadping customer analytics."
           },
           "communicationUsage": {
-            "$ref": "#/components/schemas/CustomerCommunicationUsage"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerCommunicationUsage"
+              }
+            ],
+            "description": "Communication usage associated with this Leadping customer analytics."
           },
           "leadSources": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomerLeadSourceBreakdown"
-            }
+            },
+            "description": "Collection of lead sources included with this Leadping customer analytics."
           },
           "automationHealth": {
-            "$ref": "#/components/schemas/CustomerAutomationHealth"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerAutomationHealth"
+              }
+            ],
+            "description": "Automation health associated with this Leadping customer analytics."
           },
           "activationHealth": {
-            "$ref": "#/components/schemas/CustomerActivationHealth"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerActivationHealth"
+              }
+            ],
+            "description": "Activation health associated with this Leadping customer analytics."
           },
           "needsAttention": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomerNeedsAttentionItem"
-            }
+            },
+            "description": "Date and time when this Leadping customer analytics was needs attention."
           },
           "generatedAt": {
             "type": "string",
+            "description": "Date and time when this Leadping customer analytics was generated.",
             "format": "date-time"
           }
         }
@@ -13187,94 +12440,121 @@
         "properties": {
           "leads": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of leads represented by this Leadping customer analytics summary.",
             "format": "int32"
           },
           "leadsComparison": {
-            "$ref": "#/components/schemas/AnalyticsComparison"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AnalyticsComparison"
+              }
+            ],
+            "description": "Date and time when this Leadping customer analytics summary was leads comparison."
           },
           "averageResponseMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Average time, in minutes, before a lead receives a response.",
             "format": "double",
             "nullable": true
           },
           "medianResponseMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Median response minutes measured in minutes.",
             "format": "double",
             "nullable": true
           },
           "respondedWithinFiveMinutesPercent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Responded within five minutes percent expressed as a percentage.",
             "format": "double"
           },
           "missedLeads": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of missed leads represented by this Leadping customer analytics summary.",
             "format": "int32"
           },
           "unreadMessages": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of unread messages represented by this Leadping customer analytics summary.",
             "format": "int32"
           },
           "missedCalls": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of calls missed during the reporting period.",
             "format": "int32"
           },
           "smsSent": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of SMS messages sent during the reporting period.",
             "format": "int32"
           },
           "smsReceived": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of SMS messages received during the reporting period.",
             "format": "int32"
           },
           "callsPlaced": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of outbound calls placed during the reporting period.",
             "format": "int32"
           },
           "callsReceived": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of inbound calls received during the reporting period.",
             "format": "int32"
           },
           "callMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Total connected call duration, in minutes, during the reporting period.",
             "format": "double"
           },
           "usageSpend": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Usage spend represented by this Leadping customer analytics summary.",
             "format": "double"
           },
           "walletBalance": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Wallet balance represented by this Leadping customer analytics summary.",
             "format": "double"
           },
           "billingStatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Current billing status for this Leadping customer analytics summary."
           },
           "walletStatus": {
-            "type": "string"
+            "type": "string",
+            "description": "Current wallet status for this Leadping customer analytics summary."
           }
-        }
+        },
+        "description": "Human-readable summary for this Leadping customer analytics."
       },
       "CustomerAutomationHealth": {
         "type": "object",
         "properties": {
           "automationCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of automation records represented by this Leadping customer automation health.",
             "format": "int32"
           },
           "enabledCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of enabled records represented by this Leadping customer automation health.",
             "format": "int32"
           },
           "executions": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of executions represented by this Leadping customer automation health.",
             "format": "int32"
           },
           "successCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of success records represented by this Leadping customer automation health.",
             "format": "int32"
           },
           "failureCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of failure records represented by this Leadping customer automation health.",
             "format": "int32"
           },
           "lastFailure": {
@@ -13284,95 +12564,122 @@
                 "$ref": "#/components/schemas/CustomerFailingAutomation"
               }
             ],
+            "description": "Last failure associated with this Leadping customer automation health.",
             "nullable": true
           },
           "failingAutomations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CustomerFailingAutomation"
-            }
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CustomerFailingAutomation"
+                }
+              ],
+              "description": "Last failure associated with this Leadping customer automation health."
+            },
+            "description": "Collection of failing automations included with this Leadping customer automation health."
           }
-        }
+        },
+        "description": "Automation health associated with this Leadping customer analytics."
       },
       "CustomerCommunicationUsage": {
         "type": "object",
         "properties": {
           "smsSent": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of SMS messages sent during the reporting period.",
             "format": "int32"
           },
           "smsReceived": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of SMS messages received during the reporting period.",
             "format": "int32"
           },
           "failedOrBlockedSms": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of SMS messages that failed or were blocked during the reporting period.",
             "format": "int32"
           },
           "callsPlaced": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of outbound calls placed during the reporting period.",
             "format": "int32"
           },
           "callsReceived": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of inbound calls received during the reporting period.",
             "format": "int32"
           },
           "answeredCalls": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of calls answered during the reporting period.",
             "format": "int32"
           },
           "missedCalls": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of calls missed during the reporting period.",
             "format": "int32"
           },
           "callMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Total connected call duration, in minutes, during the reporting period.",
             "format": "double"
           },
           "usageSpend": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Usage spend represented by this Leadping customer communication usage.",
             "format": "double"
           },
           "trend": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomerCommunicationUsagePoint"
-            }
+            },
+            "description": "Collection of trend included with this Leadping customer communication usage."
           }
-        }
+        },
+        "description": "Communication usage associated with this Leadping customer analytics."
       },
       "CustomerCommunicationUsagePoint": {
         "type": "object",
         "properties": {
           "startAt": {
             "type": "string",
+            "description": "Date and time when this Leadping customer communication usage point was start.",
             "format": "date-time"
           },
           "endAt": {
             "type": "string",
+            "description": "Date and time when this Leadping customer communication usage point was end.",
             "format": "date-time"
           },
           "label": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable label for this Leadping customer communication usage point."
           },
           "smsSent": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of SMS messages sent during the reporting period.",
             "format": "int32"
           },
           "smsReceived": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of SMS messages received during the reporting period.",
             "format": "int32"
           },
           "calls": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of calls represented by this Leadping customer communication usage point.",
             "format": "int32"
           },
           "callMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Total connected call duration, in minutes, during the reporting period.",
             "format": "double"
           },
           "spend": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Spend represented by this Leadping customer communication usage point.",
             "format": "double"
           }
         }
@@ -13382,34 +12689,42 @@
         "properties": {
           "automationId": {
             "type": "string",
+            "description": "Unique identifier of the automation associated with this Leadping customer failing automation.",
             "nullable": true
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable name of the customer failing automation."
           },
           "failedAt": {
             "type": "string",
+            "description": "Date and time when the customer failing automation failed.",
             "format": "date-time",
             "nullable": true
           },
           "error": {
             "type": "string",
+            "description": "Error associated with this Leadping customer failing automation.",
             "nullable": true
           }
-        }
+        },
+        "description": "Last failure associated with this Leadping customer automation health."
       },
       "CustomerLeadSourceBreakdown": {
         "type": "object",
         "properties": {
           "source": {
-            "type": "string"
+            "type": "string",
+            "description": "Source classification for this Leadping customer lead source breakdown."
           },
           "leads": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of leads represented by this Leadping customer lead source breakdown.",
             "format": "int32"
           },
           "percent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Percent expressed as a percentage.",
             "format": "double"
           }
         }
@@ -13419,37 +12734,50 @@
         "properties": {
           "total": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of total records represented by this Leadping customer lead trend.",
             "format": "int32"
           },
           "comparison": {
-            "$ref": "#/components/schemas/AnalyticsComparison"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AnalyticsComparison"
+              }
+            ],
+            "description": "Date and time when this Leadping customer lead trend was comparison."
           },
           "points": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
-            }
+            },
+            "description": "Collection of points included with this Leadping customer lead trend."
           }
-        }
+        },
+        "description": "Lead trend associated with this Leadping customer analytics."
       },
       "CustomerNeedsAttentionItem": {
         "type": "object",
         "properties": {
           "severity": {
-            "type": "string"
+            "type": "string",
+            "description": "Severity associated with this Leadping customer needs attention item."
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable title for this Leadping customer needs attention item."
           },
           "detail": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable detail for this Leadping customer needs attention item."
           },
           "actionHref": {
             "type": "string",
+            "description": "Relative URL for the recommended follow-up action.",
             "nullable": true
           },
           "actionText": {
             "type": "string",
+            "description": "Action text associated with this Leadping customer needs attention item.",
             "nullable": true
           }
         }
@@ -13459,41 +12787,50 @@
         "properties": {
           "averageMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Average minutes measured in minutes.",
             "format": "double",
             "nullable": true
           },
           "medianMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Median minutes measured in minutes.",
             "format": "double",
             "nullable": true
           },
           "respondedWithinFiveMinutesPercent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Responded within five minutes percent expressed as a percentage.",
             "format": "double"
           },
           "respondedLeads": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of responded leads represented by this Leadping customer response metrics.",
             "format": "int32"
           },
           "unrespondedLeads": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of unresponded leads represented by this Leadping customer response metrics.",
             "format": "int32"
           },
           "unreadMessages": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of unread messages represented by this Leadping customer response metrics.",
             "format": "int32"
           },
           "missedCalls": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of calls missed during the reporting period.",
             "format": "int32"
           },
           "averageMinutesTrend": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AnalyticsTrendPointOfdecimal"
-            }
+            },
+            "description": "Collection of average minutes trend included with this Leadping customer response metrics."
           }
-        }
+        },
+        "description": "Response metrics associated with this Leadping customer analytics."
       },
       "DispositionCategory": {
         "enum": [
@@ -13586,18 +12923,22 @@
           },
           "oldDispositionId": {
             "type": "string",
+            "description": "Unique identifier of the old disposition associated with this Leadping disposition export row.",
             "nullable": true
           },
           "oldDispositionType": {
             "type": "string",
+            "description": "Old disposition type classification for this Leadping disposition export row.",
             "nullable": true
           },
           "oldDispositionOutcome": {
             "type": "string",
+            "description": "Old disposition outcome associated with this Leadping disposition export row.",
             "nullable": true
           },
           "newDispositionId": {
             "type": "string",
+            "description": "Unique identifier of the new disposition associated with this Leadping disposition export row.",
             "nullable": true
           },
           "changeSource": {
@@ -13614,19 +12955,23 @@
           },
           "changedByUserId": {
             "type": "string",
+            "description": "Unique identifier of the Leadping user who made the change.",
             "nullable": true
           },
           "changedByAutomationId": {
             "type": "string",
+            "description": "Unique identifier of the automation that changed the disposition, when applicable.",
             "nullable": true
           },
           "changedAt": {
             "type": "string",
+            "description": "Date and time when the disposition change occurred.",
             "format": "date-time",
             "nullable": true
           },
           "reason": {
             "type": "string",
+            "description": "Human-readable explanation for the current disposition export row outcome.",
             "nullable": true
           },
           "followUpStatus": {
@@ -13845,18 +13190,22 @@
           },
           "oldDispositionId": {
             "type": "string",
+            "description": "Unique identifier of the old disposition associated with this Leadping disposition.",
             "nullable": true
           },
           "oldDispositionType": {
             "type": "string",
+            "description": "Old disposition type classification for this Leadping disposition.",
             "nullable": true
           },
           "oldDispositionOutcome": {
             "type": "string",
+            "description": "Old disposition outcome associated with this Leadping disposition.",
             "nullable": true
           },
           "newDispositionId": {
             "type": "string",
+            "description": "Unique identifier of the new disposition associated with this Leadping disposition.",
             "nullable": true
           },
           "notes": {
@@ -13870,14 +13219,17 @@
           },
           "changedByUserId": {
             "type": "string",
+            "description": "Unique identifier of the Leadping user who made the change.",
             "nullable": true
           },
           "changedByAutomationId": {
             "type": "string",
+            "description": "Unique identifier of the automation that changed the disposition, when applicable.",
             "nullable": true
           },
           "changedAt": {
             "type": "string",
+            "description": "Date and time when the disposition change occurred.",
             "format": "date-time",
             "nullable": true
           },
@@ -14161,11 +13513,6 @@
             "description": "Recipient phone number used for this communication.",
             "nullable": true
           },
-          "providerMessageId": {
-            "type": "string",
-            "description": "Provider message identifier for SMS delivery tracking and reconciliation.",
-            "nullable": true
-          },
           "queuedAt": {
             "type": "string",
             "description": "UTC timestamp when Leadping queued this event detail response for processing.",
@@ -14369,10 +13716,6 @@
             "description": "Human-readable reason explaining the current status of this event timeline table row.",
             "nullable": true
           },
-          "isWarmup": {
-            "type": "boolean",
-            "description": "Indicates whether this event timeline table row is part of Leadping sender warmup traffic."
-          },
           "trafficType": {
             "enum": [
               "RealLead",
@@ -14405,16 +13748,6 @@
             "description": "Recipient phone number used for this communication.",
             "nullable": true
           },
-          "telnyxId": {
-            "type": "string",
-            "description": "Telnyx identifier connected to this phone number, call, or SMS event.",
-            "nullable": true
-          },
-          "providerMessageId": {
-            "type": "string",
-            "description": "Provider message identifier for SMS delivery tracking and reconciliation.",
-            "nullable": true
-          },
           "selectionReason": {
             "enum": [
               "StickyConversation",
@@ -14442,11 +13775,6 @@
           "sourceId": {
             "type": "string",
             "description": "Lead source ID used for event attribution.",
-            "nullable": true
-          },
-          "tenDlcCampaignId": {
-            "type": "string",
-            "description": "10DLC campaign identifier associated with this sender or SMS event.",
             "nullable": true
           },
           "complianceAction": {
@@ -14631,58 +13959,6 @@
         },
         "description": "A generic object for handling exact match filtering during querying"
       },
-      "FeedbackAdminUpdateRequest": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "enum": [
-              "bug",
-              "confusing",
-              "feature_request",
-              "missing_capability",
-              "other"
-            ],
-            "type": "string",
-            "description": "Defines the type of product feedback submitted from inside Leadping.",
-            "nullable": true
-          },
-          "status": {
-            "enum": [
-              "new",
-              "reviewed",
-              "planned",
-              "in_progress",
-              "shipped",
-              "closed",
-              "ignored"
-            ],
-            "type": "string",
-            "description": "Defines admin triage statuses for durable product feedback.",
-            "nullable": true
-          },
-          "area": {
-            "type": "string",
-            "description": "Product area or app section connected to this feedback admin update request.",
-            "nullable": true
-          },
-          "adminNote": {
-            "type": "string",
-            "description": "Internal admin note used to track feedback review or resolution.",
-            "nullable": true
-          },
-          "externalIssueUrl": {
-            "type": "string",
-            "description": "External issue tracker URL linked to this feedback item.",
-            "nullable": true
-          },
-          "duplicateOfFeedbackItemId": {
-            "type": "string",
-            "description": "Feedback item ID that this item duplicates, when applicable.",
-            "nullable": true
-          }
-        },
-        "description": "Request schema for the Leadping API feedback admin update request, including the fields clients can send."
-      },
       "FeedbackCreateRequest": {
         "type": "object",
         "properties": {
@@ -14776,87 +14052,15 @@
             "type": "boolean",
             "description": "Indicates whether the submitter permits Leadping support to contact them about the feedback."
           },
-          "userAgent": {
-            "type": "string",
-            "description": "Browser or client user agent captured when this feedback item response was submitted.",
-            "nullable": true
-          },
           "clientVersion": {
             "type": "string",
             "description": "Client application version that submitted this feedback item response.",
-            "nullable": true
-          },
-          "serverVersion": {
-            "type": "string",
-            "description": "Leadping API server version that processed this feedback item response.",
-            "nullable": true
-          },
-          "environment": {
-            "type": "string",
-            "description": "Deployment environment where this feedback item response was captured or processed.",
-            "nullable": true
-          },
-          "subscriptionPlanSnapshot": {
-            "type": "string",
-            "description": "Billing plan snapshot captured when the user submitted the feedback.",
-            "nullable": true
-          },
-          "businessNameSnapshot": {
-            "type": "string",
-            "description": "Business name snapshot captured when the user submitted the feedback.",
-            "nullable": true
-          },
-          "userEmailSnapshot": {
-            "type": "string",
-            "description": "User email snapshot captured when the user submitted the feedback.",
-            "nullable": true
-          },
-          "userDisplayNameSnapshot": {
-            "type": "string",
-            "description": "User display name snapshot captured when the user submitted the feedback.",
-            "nullable": true
-          },
-          "adminNote": {
-            "type": "string",
-            "description": "Internal admin note used to track feedback review or resolution.",
-            "nullable": true
-          },
-          "externalIssueUrl": {
-            "type": "string",
-            "description": "External issue tracker URL linked to this feedback item.",
-            "nullable": true
-          },
-          "duplicateOfFeedbackItemId": {
-            "type": "string",
-            "description": "Feedback item ID that this item duplicates, when applicable.",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
             "description": "UTC timestamp when this feedback item response was created.",
             "format": "date-time"
-          },
-          "reviewedAt": {
-            "type": "string",
-            "description": "UTC timestamp when an admin reviewed this feedback item response.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "closedAt": {
-            "type": "string",
-            "description": "UTC timestamp when this feedback item response was closed.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "reviewedByUserId": {
-            "type": "string",
-            "description": "User ID of the admin who reviewed this item.",
-            "nullable": true
-          },
-          "closedByUserId": {
-            "type": "string",
-            "description": "User ID of the person who closed this item.",
-            "nullable": true
           }
         },
         "description": "Response schema for the Leadping API feedback item response returned to authenticated clients."
@@ -14954,21 +14158,6 @@
             "type": "string",
             "description": "Lead ID associated with the outbound call request."
           },
-          "selectionReason": {
-            "enum": [
-              "StickyConversation",
-              "LeadAssigned",
-              "CampaignOrSource",
-              "Preferred",
-              "LocalArea",
-              "HealthyPool",
-              "FallbackDefault",
-              "ManualOverride"
-            ],
-            "type": "string",
-            "description": "Defines the supported Outgoing Number Selection Reason values.",
-            "nullable": true
-          },
           "wasManuallyOverridden": {
             "type": "boolean",
             "description": "Indicates whether a user manually overrode Leadping's automatic number selection for this phone call initiation request."
@@ -14983,85 +14172,13 @@
             "description": "Lead source ID used for call attribution and sender selection.",
             "nullable": true
           },
-          "isAutomated": {
-            "type": "boolean",
-            "description": "Indicates whether automation created or triggered this phone call initiation request."
-          },
-          "outboundSource": {
-            "enum": [
-              "manual",
-              "automation",
-              "campaign",
-              "import",
-              "api",
-              "system_notification",
-              "warmup",
-              "retry"
-            ],
-            "type": "string",
-            "description": "Defines the source that requested outbound delivery.",
-            "nullable": true
-          },
-          "outboundPriority": {
-            "enum": [
-              "critical_internal_notification",
-              "fresh_inbound_lead_response",
-              "manual_user_initiated",
-              "active_conversation_reply",
-              "automation_follow_up",
-              "campaign_message",
-              "imported_lead_campaign",
-              "warmup",
-              "retry"
-            ],
-            "type": "string",
-            "description": "Defines priority classes used when pacing outbound delivery.",
-            "nullable": true
-          },
-          "automationId": {
-            "type": "string",
-            "description": "Automation ID connected to this workflow, run, or event.",
-            "nullable": true
-          },
-          "importBatchId": {
-            "type": "string",
-            "description": "Bulk import batch ID that created or updated this lead.",
-            "nullable": true
-          },
-          "isImportedLead": {
-            "type": "boolean",
-            "description": "Indicates whether this record originated from a bulk import rather than a real-time lead source."
-          },
           "outboundIdempotencyKey": {
             "type": "string",
             "description": "Idempotency key used to prevent duplicate outbound delivery.",
             "nullable": true
-          },
-          "outboundDeliveryRequestId": {
-            "type": "string",
-            "description": "Outbound delivery request ID connected to this decision or attempt.",
-            "nullable": true
-          },
-          "outboundReservationId": {
-            "type": "string",
-            "description": "Outbound reservation ID used to throttle and track delivery capacity.",
-            "nullable": true
           }
         },
         "description": "Request schema for the Leadping API phone call initiation request, including the fields clients can send."
-      },
-      "InternalPhoneNumberStatus": {
-        "enum": [
-          "Unregistered",
-          "Provisioning",
-          "FailedProvisioning",
-          "Active",
-          "Expired",
-          "Suspended",
-          "PendingRelease"
-        ],
-        "type": "string",
-        "description": "Represents the status of an internal phone number in the system."
       },
       "LeadArchiveReason": {
         "enum": [
@@ -15660,16 +14777,6 @@
             "description": "Indicates whether this lead request is active and available in the Leadping API.",
             "nullable": true
           },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
-          },
           "tagIds": {
             "type": "array",
             "items": {
@@ -15723,16 +14830,6 @@
             "type": "boolean",
             "description": "Indicates whether this lead response is active and available in the Leadping API."
           },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
-          },
           "archivedAt": {
             "type": "string",
             "description": "UTC timestamp when this record was archived.",
@@ -15768,7 +14865,8 @@
             "nullable": true
           },
           "isArchived": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether the lead has been archived in Leadping."
           },
           "currentDisposition": {
             "type": "object",
@@ -15854,16 +14952,6 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this lead table row is active and available in the Leadping API."
-          },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
           },
           "archivedAt": {
             "type": "string",
@@ -16151,43 +15239,52 @@
         "properties": {
           "smsCapacityRemainingToday": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "SMS capacity remaining today for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "voiceCapacityRemainingToday": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Voice capacity remaining today for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "healthyPhoneNumbers": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of healthy phone numbers represented by this Leadping outbound capacity overview.",
             "format": "int32"
           },
           "limitedPhoneNumbers": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of limited phone numbers represented by this Leadping outbound capacity overview.",
             "format": "int32"
           },
           "coolingPhoneNumbers": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of cooling phone numbers represented by this Leadping outbound capacity overview.",
             "format": "int32"
           },
           "scheduledCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of scheduled records represented by this Leadping outbound capacity overview.",
             "format": "int32"
           },
           "blockedCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of blocked records represented by this Leadping outbound capacity overview.",
             "format": "int32"
           },
           "phoneNumbers": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/OutboundPhoneNumberCapacity"
-            }
+            },
+            "description": "Collection of phone numbers included with this Leadping outbound capacity overview."
           },
           "recentDecisions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/OutboundQueueItem"
-            }
+            },
+            "description": "Collection of recent decisions included with this Leadping outbound capacity overview."
           }
         }
       },
@@ -16201,21 +15298,6 @@
         ],
         "type": "string",
         "description": "Defines outbound delivery channels protected by delivery control."
-      },
-      "OutboundDeliveryPriority": {
-        "enum": [
-          "critical_internal_notification",
-          "fresh_inbound_lead_response",
-          "manual_user_initiated",
-          "active_conversation_reply",
-          "automation_follow_up",
-          "campaign_message",
-          "imported_lead_campaign",
-          "warmup",
-          "retry"
-        ],
-        "type": "string",
-        "description": "Defines priority classes used when pacing outbound delivery."
       },
       "OutboundDeliverySource": {
         "enum": [
@@ -16280,10 +15362,12 @@
         "properties": {
           "phoneNumberId": {
             "type": "string",
+            "description": "Unique identifier of the phone number associated with this Leadping outbound phone number capacity.",
             "nullable": true
           },
           "phoneNumber": {
             "type": "string",
+            "description": "Phone number associated with this Leadping outbound phone number capacity.",
             "nullable": true
           },
           "healthStatus": {
@@ -16292,54 +15376,66 @@
                 "$ref": "#/components/schemas/PhoneNumberOutboundHealthStatus"
               }
             ],
-            "description": "Defines phone-number outbound health states used by pacing."
+            "description": "Current health status for this Leadping outbound phone number capacity."
           },
           "smsRemainingToday": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "SMS remaining today for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "smsUsedToday": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "SMS used today for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "smsLimitToday": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of SMS limit today represented by this Leadping outbound phone number capacity.",
             "format": "int32"
           },
           "smsRemainingThisHour": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "SMS remaining this hour for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "smsUsedThisHour": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "SMS used this hour for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "smsLimitThisHour": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of SMS limit this hour represented by this Leadping outbound phone number capacity.",
             "format": "int32"
           },
           "voiceRemainingToday": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Voice remaining today for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "voiceUsedToday": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Voice used today for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "voiceLimitToday": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Voice limit today associated with this Leadping outbound phone number capacity.",
             "format": "int32"
           },
           "voiceRemainingThisHour": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Voice remaining this hour for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "voiceUsedThisHour": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Voice used this hour for the applicable messaging or voice capacity window.",
             "format": "int32"
           },
           "voiceLimitThisHour": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Voice limit this hour associated with this Leadping outbound phone number capacity.",
             "format": "int32"
           }
         }
@@ -16349,6 +15445,7 @@
         "properties": {
           "id": {
             "type": "string",
+            "description": "Unique Leadping identifier for the outbound queue item.",
             "nullable": true
           },
           "channel": {
@@ -16357,7 +15454,7 @@
                 "$ref": "#/components/schemas/OutboundDeliveryChannel"
               }
             ],
-            "description": "Defines outbound delivery channels protected by delivery control."
+            "description": "Channel classification for this Leadping outbound queue item."
           },
           "source": {
             "allOf": [
@@ -16365,7 +15462,7 @@
                 "$ref": "#/components/schemas/OutboundDeliverySource"
               }
             ],
-            "description": "Defines the source that requested outbound delivery."
+            "description": "Source classification for this Leadping outbound queue item."
           },
           "status": {
             "allOf": [
@@ -16373,7 +15470,7 @@
                 "$ref": "#/components/schemas/OutboundDeliveryStatus"
               }
             ],
-            "description": "Defines durable outbound delivery request statuses."
+            "description": "Current status for this Leadping outbound queue item."
           },
           "reasonCode": {
             "enum": [
@@ -16407,15 +15504,18 @@
           },
           "reason": {
             "type": "string",
+            "description": "Human-readable explanation for the current outbound queue item outcome.",
             "nullable": true
           },
           "scheduledSendAt": {
             "type": "string",
+            "description": "Date and time when this Leadping outbound queue item was scheduled send.",
             "format": "date-time",
             "nullable": true
           },
           "phoneNumber": {
             "type": "string",
+            "description": "Phone number associated with this Leadping outbound queue item.",
             "nullable": true
           }
         }
@@ -16753,40 +15853,6 @@
                 }
               ],
               "description": "List item schema for Leadping API event timeline table row results shown in searchable tables."
-            },
-            "description": "The subset of items returned for the current page."
-          },
-          "pageSize": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
-            "format": "int32"
-          },
-          "totalCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
-          },
-          "continuationToken": {
-            "type": "string",
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page.",
-            "nullable": true
-          }
-        },
-        "description": "A generic container for paginated results returned to the client."
-      },
-      "PagedResultOfFeedbackResponse": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/FeedbackResponse"
-                }
-              ],
-              "description": "Response schema for the Leadping API feedback item response returned to authenticated clients."
             },
             "description": "The subset of items returned for the current page."
           },
@@ -17207,14 +16273,6 @@
             "description": "URL for the call recording, when the provider makes one available.",
             "nullable": true
           },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Structured metadata used for attribution, integrations, and reporting on this phone call.",
-            "nullable": true
-          },
           "id": {
             "type": "string",
             "description": "The unique identifier for the entity."
@@ -17284,23 +16342,14 @@
             "description": "An enumerator describing phone line types",
             "nullable": true
           },
-          "carrierType": {
-            "enum": [
-              "FixedLine",
-              "Mobile",
-              "Voip",
-              "FixedLineOrMobile",
-              "TollFree",
-              "PremiumRate",
-              "SharedCost",
-              "PersonalNumber",
-              "Pager",
-              "Uan",
-              "Voicemail",
-              "Unknown"
+          "carrier": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneLookupCarrier"
+              }
             ],
-            "type": "string",
-            "description": "An enumerator describing carrier types",
+            "description": "Complete carrier metadata reported for this phone number.",
             "nullable": true
           },
           "location": {
@@ -17330,6 +16379,56 @@
           }
         },
         "description": "Public Leadping API schema for phone lookup result data."
+      },
+      "PhoneLookupCarrier": {
+        "type": "object",
+        "properties": {
+          "mobileCountryCode": {
+            "type": "string",
+            "description": "Mobile country code (MCC) reported by the carrier lookup.",
+            "nullable": true
+          },
+          "mobileNetworkCode": {
+            "type": "string",
+            "description": "Mobile network code (MNC) reported by the carrier lookup.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the phone lookup carrier.",
+            "nullable": true
+          },
+          "normalizedCarrier": {
+            "type": "string",
+            "description": "Normalized carrier name used for consistent matching and reporting.",
+            "nullable": true
+          },
+          "type": {
+            "enum": [
+              "FixedLine",
+              "Mobile",
+              "Voip",
+              "FixedLineOrMobile",
+              "TollFree",
+              "PremiumRate",
+              "SharedCost",
+              "PersonalNumber",
+              "Pager",
+              "Uan",
+              "Voicemail",
+              "Unknown"
+            ],
+            "type": "string",
+            "description": "An enumerator describing carrier types",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "Reason or diagnostic code that explains the current outcome for this Leadping phone lookup carrier.",
+            "nullable": true
+          }
+        },
+        "description": "Complete carrier metadata returned by a phone number lookup provider."
       },
       "PhoneNumberAvailabilityRequest": {
         "type": "object",
@@ -17375,145 +16474,6 @@
           }
         },
         "description": "Response schema for the Leadping API phone number availability result returned to authenticated clients."
-      },
-      "PhoneNumberBillingAttribution": {
-        "type": "object",
-        "properties": {
-          "businessId": {
-            "type": "string",
-            "description": "Business ID responsible for billing this phone number.",
-            "nullable": true
-          },
-          "businessName": {
-            "type": "string",
-            "description": "Business display name used in phone number billing records.",
-            "nullable": true
-          },
-          "userId": {
-            "type": "string",
-            "description": "User ID associated with phone number billing responsibility, when applicable.",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "description": "Display name for the user connected to this phone number billing attribution.",
-            "nullable": true
-          },
-          "subscriptionItemId": {
-            "type": "string",
-            "description": "Stripe subscription item identifier used for phone number billing.",
-            "nullable": true
-          },
-          "monthlyAmount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "Monthly subscription amount for the business billing plan.",
-            "format": "double",
-            "nullable": true
-          },
-          "channel": {
-            "type": "string",
-            "description": "Communication channel used for this phone number billing attribution, such as SMS or voice.",
-            "nullable": true
-          }
-        },
-        "description": "Public Leadping API schema for phone number billing attribution data."
-      },
-      "PhoneNumberCapabilities": {
-        "type": "object",
-        "properties": {
-          "sms": {
-            "type": "boolean",
-            "description": "SMS readiness details for this phone number or business."
-          },
-          "voice": {
-            "type": "boolean",
-            "description": "Voice readiness details for this phone number or business."
-          },
-          "warmup": {
-            "type": "boolean",
-            "description": "Warmup status data for this sender or phone number."
-          },
-          "testing": {
-            "type": "boolean",
-            "description": "Indicates whether the request should run in test mode."
-          }
-        },
-        "description": "Public Leadping API schema for phone number capabilities data."
-      },
-      "PhoneNumberEventRecord": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique Leadping identifier for this phone number event record."
-          },
-          "type": {
-            "type": "string",
-            "description": "Type classification used to route and interpret this phone number event record in the Leadping API."
-          },
-          "title": {
-            "type": "string",
-            "description": "Short title displayed for this phone number event record."
-          },
-          "details": {
-            "type": "string",
-            "description": "Additional human-readable details that explain this phone number event record.",
-            "nullable": true
-          },
-          "state": {
-            "enum": [
-              "Available",
-              "Assigned",
-              "Pending verification",
-              "Ready for SMS",
-              "Ready for voice",
-              "Restricted",
-              "Suspended",
-              "Failed",
-              "Released",
-              "Pending release",
-              "Warmup-only",
-              "Internal/test-only"
-            ],
-            "type": "string",
-            "description": "Leadping-owned inventory state for phone-number assignment and routing.",
-            "nullable": true
-          },
-          "actorId": {
-            "type": "string",
-            "description": "Actor ID for the user, system, or integration that performed the action.",
-            "nullable": true
-          },
-          "actorName": {
-            "type": "string",
-            "description": "Display name for the actor that performed the action.",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "UTC timestamp when this phone number event record was created.",
-            "format": "date-time"
-          }
-        },
-        "description": "History record schema for Leadping API phone number event record data exposed in automation and audit views."
-      },
-      "PhoneNumberInventoryState": {
-        "enum": [
-          "Available",
-          "Assigned",
-          "Pending verification",
-          "Ready for SMS",
-          "Ready for voice",
-          "Restricted",
-          "Suspended",
-          "Failed",
-          "Released",
-          "Pending release",
-          "Warmup-only",
-          "Internal/test-only"
-        ],
-        "type": "string",
-        "description": "Leadping-owned inventory state for phone-number assignment and routing."
       },
       "PhoneNumberLocation": {
         "type": "object",
@@ -17587,11 +16547,6 @@
             "type": "string",
             "description": "Short preview of the SMS or conversation text for this phone number messaging event."
           },
-          "providerStatus": {
-            "type": "string",
-            "description": "Provider lifecycle or delivery status for this phone number messaging event.",
-            "nullable": true
-          },
           "isOptOut": {
             "type": "boolean",
             "description": "Indicates whether the recipient has opted out of further SMS communication."
@@ -17644,21 +16599,6 @@
         "type": "string",
         "description": "Defines phone-number outbound health states used by pacing."
       },
-      "PhoneNumberProviderLifecycleState": {
-        "enum": [
-          "Unknown",
-          "Requested",
-          "Purchasing",
-          "Purchased",
-          "Provisioning",
-          "Active",
-          "Failed",
-          "Released",
-          "Suspended"
-        ],
-        "type": "string",
-        "description": "Defines the supported Phone Number Provider Lifecycle State values."
-      },
       "PhoneNumberRequest": {
         "required": [
           "name"
@@ -17677,16 +16617,6 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this phone number update request is active and available in the Leadping API."
-          },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
           },
           "name": {
             "maxLength": 255,
@@ -17719,129 +16649,9 @@
             "description": "Business summary connected to this phone number.",
             "nullable": true
           },
-          "user": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IdNamePair"
-              }
-            ],
-            "description": "User summary connected to this phone number.",
-            "nullable": true
-          },
-          "teamId": {
-            "type": "string",
-            "description": "Team ID used to route calls and messages for this phone number.",
-            "nullable": true
-          },
-          "campaignId": {
-            "type": "string",
-            "description": "Messaging campaign identifier associated with this phone number.",
-            "nullable": true
-          },
-          "sourceId": {
-            "type": "string",
-            "description": "Lead source ID assigned to this phone number for attribution and routing.",
-            "nullable": true
-          },
           "leadpingOwned": {
             "type": "boolean",
             "description": "Indicates whether Leadping provisions and manages this phone number."
-          },
-          "provider": {
-            "type": "string",
-            "description": "Telephony or payment provider connected to this phone number.",
-            "nullable": true
-          },
-          "providerPhoneNumberId": {
-            "type": "string",
-            "description": "Provider phone number identifier used to reconcile Leadping inventory with Telnyx.",
-            "nullable": true
-          },
-          "providerOrderId": {
-            "type": "string",
-            "description": "Provider order identifier returned during phone number provisioning.",
-            "nullable": true
-          },
-          "providerOrderStatus": {
-            "type": "string",
-            "description": "Provider order status returned during phone number provisioning.",
-            "nullable": true
-          },
-          "providerStatus": {
-            "type": "string",
-            "description": "Provider lifecycle or delivery status for this phone number.",
-            "nullable": true
-          },
-          "providerError": {
-            "type": "string",
-            "description": "Provider error message captured while syncing this phone number.",
-            "nullable": true
-          },
-          "providerSyncedAt": {
-            "type": "string",
-            "description": "UTC timestamp when Leadping last synchronized this phone number with the provider.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "providerReleasedAt": {
-            "type": "string",
-            "description": "UTC timestamp when the provider released this phone number.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "providerReleaseRequestedAt": {
-            "type": "string",
-            "description": "UTC timestamp when release was requested for this provider phone number.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "providerReleaseHoldStartsAt": {
-            "type": "string",
-            "description": "UTC timestamp when the provider release hold starts for this phone number.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "providerReleaseScheduledAt": {
-            "type": "string",
-            "description": "UTC timestamp when provider release is scheduled for this phone number.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "providerReleaseReason": {
-            "type": "string",
-            "description": "Reason supplied when requesting provider release of this phone number.",
-            "nullable": true
-          },
-          "providerReleaseRequestedByUserId": {
-            "type": "string",
-            "description": "User ID of the person who requested provider release of this phone number.",
-            "nullable": true
-          },
-          "providerReleaseRequestedByName": {
-            "type": "string",
-            "description": "Display name of the person who requested provider release of this phone number.",
-            "nullable": true
-          },
-          "providerReleaseUnassignAtHoldStart": {
-            "type": "boolean",
-            "description": "Indicates whether Leadping should unassign the phone number when the provider release hold starts."
-          },
-          "inventoryState": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberInventoryState"
-              }
-            ],
-            "description": "Leadping inventory state for this phone number."
-          },
-          "capabilities": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberCapabilities"
-              }
-            ],
-            "description": "SMS and voice capabilities available on this phone number."
           },
           "routing": {
             "allOf": [
@@ -17850,30 +16660,6 @@
               }
             ],
             "description": "Routing metadata that connects this phone number to teams, campaigns, and sources."
-          },
-          "tenDlc": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberTenDlcAssociation"
-              }
-            ],
-            "description": "10DLC registration and campaign association for this phone number."
-          },
-          "billing": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberBillingAttribution"
-              }
-            ],
-            "description": "Billing attribution used to charge this phone number to the correct business and subscription item."
-          },
-          "isPreferred": {
-            "type": "boolean",
-            "description": "Indicates whether this phone number is preferred for outbound communication."
-          },
-          "isDefault": {
-            "type": "boolean",
-            "description": "Indicates whether this phone number is the default sender for the business."
           },
           "location": {
             "type": "object",
@@ -17885,155 +16671,17 @@
             "description": "Geographic location metadata for the phone number, lead, or lookup result.",
             "nullable": true
           },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InternalPhoneNumberStatus"
-              }
-            ],
-            "description": "Current lifecycle status for this phone number in the Leadping API."
-          },
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this phone number is active and available in the Leadping API."
           },
-          "adminEnablementOverride": {
-            "type": "object",
+          "warmup": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
+                "$ref": "#/components/schemas/PhoneNumberWarmup"
               }
             ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
-          },
-          "isInternalPool": {
-            "type": "boolean",
-            "description": "Indicates whether this phone number belongs to an internal Leadping number pool."
-          },
-          "isApprovedTestDestination": {
-            "type": "boolean",
-            "description": "Indicates whether this phone number is approved for test messages or calls."
-          },
-          "isMessagingProgramApproved": {
-            "type": "boolean",
-            "description": "Indicates whether this phone number is approved for the configured messaging program."
-          },
-          "warmupEnabled": {
-            "type": "boolean",
-            "description": "Indicates whether SMS sender warmup is enabled for this phone number."
-          },
-          "warmupState": {
-            "enum": [
-              "Not Started",
-              "Warming",
-              "Healthy",
-              "Needs Attention",
-              "Paused",
-              "Blocked",
-              "Ready"
-            ],
-            "type": "string",
-            "description": "Defines the supported SMS Warmup Health State values.",
-            "nullable": true
-          },
-          "healthStatus": {
-            "enum": [
-              "Not Started",
-              "Warming",
-              "Healthy",
-              "Needs Attention",
-              "Paused",
-              "Blocked",
-              "Ready"
-            ],
-            "type": "string",
-            "description": "Defines the supported SMS Warmup Health State values.",
-            "nullable": true
-          },
-          "warmupHealthScore": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Numeric sender warmup health score used by Leadping to assess deliverability readiness.",
-            "format": "int32"
-          },
-          "warmupProgressPercent": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Percent complete for the SMS sender warmup plan.",
-            "format": "int32"
-          },
-          "warmupNextActionAt": {
-            "type": "string",
-            "description": "UTC timestamp when the next SMS warmup action is due for this phone number.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "warmupPauseReason": {
-            "type": "string",
-            "description": "Human-readable reason SMS sender warmup is paused.",
-            "nullable": true
-          },
-          "callWarmupEnabled": {
-            "type": "boolean",
-            "description": "Indicates whether controlled voice call warmup is enabled for this phone number."
-          },
-          "callWarmupState": {
-            "enum": [
-              "Not Started",
-              "Not Eligible",
-              "Warming",
-              "Warmed",
-              "Paused",
-              "Needs Attention",
-              "Blocked"
-            ],
-            "type": "string",
-            "description": "Defines the supported health states for controlled internal voice call warmup.",
-            "nullable": true
-          },
-          "callWarmupStage": {
-            "enum": [
-              "Stage 0",
-              "Stage 1",
-              "Stage 2",
-              "Stage 3",
-              "Stage 4"
-            ],
-            "type": "string",
-            "description": "Defines the supported voice call warmup stages for a Leadping-managed phone number.",
-            "nullable": true
-          },
-          "callWarmupNextActionAt": {
-            "type": "string",
-            "description": "UTC timestamp when the next voice call warmup action is due for this phone number.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "callWarmupPauseReason": {
-            "type": "string",
-            "description": "Human-readable reason voice call warmup is paused.",
-            "nullable": true
-          },
-          "callWarmupHealthReason": {
-            "type": "string",
-            "description": "Human-readable reason explaining voice call warmup health.",
-            "nullable": true
-          },
-          "healthReason": {
-            "type": "string",
-            "description": "Human-readable reason explaining the current health status.",
-            "nullable": true
-          },
-          "events": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/PhoneNumberEventRecord"
-                }
-              ],
-              "description": "History record schema for Leadping API phone number event record data exposed in automation and audit views."
-            },
-            "description": "Timeline events and provider events associated with this phone number."
+            "description": "SMS and voice warmup state for this phone number."
           },
           "name": {
             "type": "string",
@@ -18068,14 +16716,6 @@
             "type": "boolean",
             "description": "Indicates whether the phone number can be used for voice calls."
           },
-          "warmupOnly": {
-            "type": "boolean",
-            "description": "Indicates whether this phone number should only be used for warmup traffic."
-          },
-          "internalTestOnly": {
-            "type": "boolean",
-            "description": "Indicates whether this record is restricted to internal Leadping testing."
-          },
           "teamId": {
             "type": "string",
             "description": "Team ID used to route calls and messages for this phone number.",
@@ -18089,16 +16729,6 @@
           "campaignId": {
             "type": "string",
             "description": "Messaging campaign identifier associated with this phone number routing metadata.",
-            "nullable": true
-          },
-          "messagingProfileId": {
-            "type": "string",
-            "description": "Messaging profile identifier used for SMS routing with the provider.",
-            "nullable": true
-          },
-          "voiceConnectionId": {
-            "type": "string",
-            "description": "Leadping v oi ce co nn ec ti o n ID that links this phone number routing metadata to the related record.",
             "nullable": true
           }
         },
@@ -18175,19 +16805,9 @@
             "description": "Indicates whether this phone number can currently send SMS messages.",
             "format": "int32"
           },
-          "messagesWarmed": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Number of warmup SMS messages completed for this sender.",
-            "format": "int32"
-          },
           "callsPossible": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Indicates whether this phone number can currently place outbound calls.",
-            "format": "int32"
-          },
-          "warmupCallsMade": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Number of voice warmup calls completed for this phone number.",
             "format": "int32"
           },
           "smsWarmup": {
@@ -18198,16 +16818,6 @@
               }
             ],
             "description": "SMS sender warmup status for this phone number.",
-            "nullable": true
-          },
-          "callWarmup": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberWarmupStatusResponse"
-              }
-            ],
-            "description": "Voice call warmup status for this phone number.",
             "nullable": true
           },
           "outboundCapacity": {
@@ -18274,18 +16884,6 @@
             "type": "string",
             "description": "Type classification used to route and interpret this phone number table row in the Leadping API."
           },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InternalPhoneNumberStatus"
-              }
-            ],
-            "description": "Current lifecycle status for this phone number table row in the Leadping API."
-          },
-          "user": {
-            "type": "string",
-            "description": "User summary connected to this phone number table row."
-          },
           "business": {
             "type": "string",
             "description": "Business summary connected to this phone number table row."
@@ -18299,121 +16897,17 @@
             "type": "boolean",
             "description": "Indicates whether this phone number table row is active and available in the Leadping API."
           },
-          "adminEnablementOverride": {
-            "type": "object",
+          "warmup": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
+                "$ref": "#/components/schemas/PhoneNumberWarmup"
               }
             ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
-          },
-          "warmupState": {
-            "enum": [
-              "Not Started",
-              "Warming",
-              "Healthy",
-              "Needs Attention",
-              "Paused",
-              "Blocked",
-              "Ready"
-            ],
-            "type": "string",
-            "description": "Defines the supported SMS Warmup Health State values.",
-            "nullable": true
-          },
-          "healthStatus": {
-            "enum": [
-              "Not Started",
-              "Warming",
-              "Healthy",
-              "Needs Attention",
-              "Paused",
-              "Blocked",
-              "Ready"
-            ],
-            "type": "string",
-            "description": "Defines the supported SMS Warmup Health State values.",
-            "nullable": true
-          },
-          "warmupHealthScore": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Numeric sender warmup health score used by Leadping to assess deliverability readiness.",
-            "format": "int32"
-          },
-          "warmupProgressPercent": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Percent complete for the SMS sender warmup plan.",
-            "format": "int32"
-          },
-          "callWarmupEnabled": {
-            "type": "boolean",
-            "description": "Indicates whether controlled voice call warmup is enabled for this phone number."
-          },
-          "callWarmupState": {
-            "enum": [
-              "Not Started",
-              "Not Eligible",
-              "Warming",
-              "Warmed",
-              "Paused",
-              "Needs Attention",
-              "Blocked"
-            ],
-            "type": "string",
-            "description": "Defines the supported health states for controlled internal voice call warmup.",
-            "nullable": true
-          },
-          "callWarmupStage": {
-            "enum": [
-              "Stage 0",
-              "Stage 1",
-              "Stage 2",
-              "Stage 3",
-              "Stage 4"
-            ],
-            "type": "string",
-            "description": "Defines the supported voice call warmup stages for a Leadping-managed phone number.",
-            "nullable": true
-          },
-          "isMessagingProgramApproved": {
-            "type": "boolean",
-            "description": "Indicates whether this phone number is approved for the configured messaging program."
-          },
-          "inventoryState": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberInventoryState"
-              }
-            ],
-            "description": "Leadping inventory state for this phone number."
-          },
-          "providerLifecycleState": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberProviderLifecycleState"
-              }
-            ],
-            "description": "Provider lifecycle state used to determine phone number readiness."
-          },
-          "providerStatus": {
-            "type": "string",
-            "description": "Provider lifecycle or delivery status for this phone number table row.",
-            "nullable": true
-          },
-          "providerReconciliationStatus": {
-            "type": "string",
-            "description": "Reconciliation status comparing Leadping data with provider data.",
-            "nullable": true
+            "description": "Warmup state for this phone number."
           },
           "ownership": {
             "type": "string",
             "description": "Ownership classification for this phone number, such as Leadping-owned or customer-owned."
-          },
-          "capabilities": {
-            "type": "string",
-            "description": "SMS and voice capabilities available on this phone number."
           },
           "routingSummary": {
             "type": "string",
@@ -18427,78 +16921,13 @@
             "type": "boolean",
             "description": "Indicates whether voice calling is ready for this business or phone number."
           },
-          "warmupOnly": {
-            "type": "boolean",
-            "description": "Indicates whether this phone number should only be used for warmup traffic."
-          },
-          "internalTestOnly": {
-            "type": "boolean",
-            "description": "Indicates whether this record is restricted to internal Leadping testing."
-          },
-          "tenDlcCampaignId": {
-            "type": "string",
-            "description": "10DLC campaign identifier associated with this sender or SMS event.",
-            "nullable": true
-          },
           "tenDlcCampaignStatus": {
             "type": "string",
             "description": "10DLC campaign status associated with this sender or SMS event.",
             "nullable": true
-          },
-          "billingAttribution": {
-            "type": "string",
-            "description": "Billing attribution used to reconcile this phone number with subscription billing.",
-            "nullable": true
           }
         },
         "description": "List item schema for Leadping API phone number table row results shown in searchable tables."
-      },
-      "PhoneNumberTenDlcAssociation": {
-        "type": "object",
-        "properties": {
-          "brandId": {
-            "type": "string",
-            "description": "10DLC brand identifier associated with this phone number or campaign.",
-            "nullable": true
-          },
-          "campaignId": {
-            "type": "string",
-            "description": "Messaging campaign identifier associated with this phone number 10DLC association.",
-            "nullable": true
-          },
-          "campaignStatus": {
-            "type": "string",
-            "description": "10DLC campaign status reported by the messaging provider.",
-            "nullable": true
-          },
-          "assignmentStatus": {
-            "type": "string",
-            "description": "Provider assignment status for linking the phone number to a 10DLC campaign.",
-            "nullable": true
-          },
-          "messagingProfileId": {
-            "type": "string",
-            "description": "Messaging profile identifier used for SMS routing with the provider.",
-            "nullable": true
-          },
-          "statusUpdatedAt": {
-            "type": "string",
-            "description": "UTC timestamp when s ta tu su pd at e d occurred for this phone number 10DLC association.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "failureReason": {
-            "type": "string",
-            "description": "Human-readable reason explaining why this phone number 10DLC association failed.",
-            "nullable": true
-          },
-          "lastProviderEventId": {
-            "type": "string",
-            "description": "Most recent provider event identifier processed for this phone number 10DLC association.",
-            "nullable": true
-          }
-        },
-        "description": "Public Leadping API schema for phone number 10DLC association data."
       },
       "PhoneNumberTrafficMetricsResponse": {
         "type": "object",
@@ -18588,243 +17017,81 @@
         },
         "description": "Time-series data point schema for Leadping API phone number traffic trend bucket charts and metrics."
       },
-      "PhoneNumberWarmupCallResponse": {
+      "PhoneNumberWarmup": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
+          "enabled": {
+            "type": "boolean",
+            "description": "Indicates whether the phone number warmup is enabled in Leadping."
           },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberWarmupCallStatus"
-              }
+          "state": {
+            "enum": [
+              "Not Started",
+              "Warming",
+              "Healthy",
+              "Needs Attention",
+              "Paused",
+              "Blocked",
+              "Ready"
             ],
-            "description": "Defines the durable state machine statuses for voice call warmup attempts."
-          },
-          "sourcePhoneNumberId": {
-            "type": "string"
-          },
-          "sourcePhoneNumber": {
-            "type": "string"
-          },
-          "destinationPhoneNumberId": {
-            "type": "string"
-          },
-          "destinationPhoneNumber": {
-            "type": "string"
-          },
-          "scheduledAt": {
             "type": "string",
-            "format": "date-time"
-          },
-          "answeredAt": {
-            "type": "string",
-            "format": "date-time",
+            "description": "Defines the supported SMS Warmup Health State values.",
             "nullable": true
           },
-          "completedAt": {
+          "healthStatus": {
+            "enum": [
+              "Not Started",
+              "Warming",
+              "Healthy",
+              "Needs Attention",
+              "Paused",
+              "Blocked",
+              "Ready"
+            ],
             "type": "string",
-            "format": "date-time",
+            "description": "Defines the supported SMS Warmup Health State values.",
             "nullable": true
           },
-          "targetDurationSeconds": {
+          "healthScore": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Current warmup health score used to assess phone number readiness.",
             "format": "int32"
           },
-          "actualConnectedDurationSeconds": {
+          "progressPercent": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32",
-            "nullable": true
-          },
-          "failureReason": {
-            "type": "string",
-            "nullable": true
+            "description": "Warmup completion percentage, from 0 through 100.",
+            "format": "int32"
           }
         },
-        "description": "API response containing a voice call warmup attempt."
-      },
-      "PhoneNumberWarmupCallStatus": {
-        "enum": [
-          "Created",
-          "Scheduled",
-          "Placing",
-          "Ringing",
-          "Answered",
-          "Connected",
-          "Completed",
-          "Failed",
-          "Canceled",
-          "Skipped",
-          "TimedOut"
-        ],
-        "type": "string",
-        "description": "Defines the durable state machine statuses for voice call warmup attempts."
-      },
-      "PhoneNumberWarmupHealthStatus": {
-        "enum": [
-          "Not Started",
-          "Not Eligible",
-          "Warming",
-          "Warmed",
-          "Paused",
-          "Needs Attention",
-          "Blocked"
-        ],
-        "type": "string",
-        "description": "Defines the supported health states for controlled internal voice call warmup."
-      },
-      "PhoneNumberWarmupStage": {
-        "enum": [
-          "Stage 0",
-          "Stage 1",
-          "Stage 2",
-          "Stage 3",
-          "Stage 4"
-        ],
-        "type": "string",
-        "description": "Defines the supported voice call warmup stages for a Leadping-managed phone number."
-      },
-      "PhoneNumberWarmupStatusResponse": {
-        "type": "object",
-        "properties": {
-          "phoneNumberId": {
-            "type": "string"
-          },
-          "phoneNumber": {
-            "type": "string"
-          },
-          "warmupEnabled": {
-            "type": "boolean"
-          },
-          "networkWarmupOptIn": {
-            "type": "boolean"
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberWarmupHealthStatus"
-              }
-            ],
-            "description": "Defines the supported health states for controlled internal voice call warmup."
-          },
-          "stage": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberWarmupStage"
-              }
-            ],
-            "description": "Defines the supported voice call warmup stages for a Leadping-managed phone number."
-          },
-          "callsToday": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "callsThisHour": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "dailyCap": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "hourlyCap": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "minTargetDurationSeconds": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "maxTargetDurationSeconds": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "timeZoneId": {
-            "type": "string"
-          },
-          "lowConfidenceTimeZone": {
-            "type": "boolean"
-          },
-          "lastSuccessfulWarmupAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "nextEligibleAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "startAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "completedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "consecutiveSuccessfulCalls": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "consecutiveFailedCalls": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "totalSuccessfulCalls": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "totalFailedCalls": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32"
-          },
-          "failureReason": {
-            "type": "string",
-            "nullable": true
-          },
-          "eligibilityReasons": {
-            "type": "array"
-          },
-          "recentCalls": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/PhoneNumberWarmupCallResponse"
-                }
-              ],
-              "description": "API response containing a voice call warmup attempt."
-            }
-          }
-        },
-        "description": "API response containing voice call warmup status for a Leadping-managed phone number."
+        "description": "Warmup state for a Leadping phone number."
       },
       "ProblemDetails": {
         "type": "object",
         "properties": {
           "type": {
             "type": "string",
+            "description": "URI reference that identifies the problem type.",
             "nullable": true
           },
           "title": {
             "type": "string",
+            "description": "Short, human-readable summary of the problem.",
             "nullable": true
           },
           "status": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "HTTP status code returned for the problem.",
             "format": "int32",
             "nullable": true
           },
           "detail": {
             "type": "string",
+            "description": "Human-readable explanation specific to this occurrence of the problem.",
             "nullable": true
           },
           "instance": {
             "type": "string",
+            "description": "URI reference that identifies this specific occurrence of the problem.",
             "nullable": true
           }
         }
@@ -18947,21 +17214,6 @@
             "description": "Sender phone number ID used for this outbound SMS or call.",
             "nullable": true
           },
-          "selectionReason": {
-            "enum": [
-              "StickyConversation",
-              "LeadAssigned",
-              "CampaignOrSource",
-              "Preferred",
-              "LocalArea",
-              "HealthyPool",
-              "FallbackDefault",
-              "ManualOverride"
-            ],
-            "type": "string",
-            "description": "Defines the supported Outgoing Number Selection Reason values.",
-            "nullable": true
-          },
           "wasManuallyOverridden": {
             "type": "boolean",
             "description": "Indicates whether a user manually overrode Leadping's automatic number selection for this SMS send request."
@@ -18980,69 +17232,6 @@
             "type": "string",
             "description": "Body text for the SMS message or communication represented by this SMS send request."
           },
-          "isAutomated": {
-            "type": "boolean",
-            "description": "Indicates whether automation created or triggered this SMS send request."
-          },
-          "outboundSource": {
-            "enum": [
-              "manual",
-              "automation",
-              "campaign",
-              "import",
-              "api",
-              "system_notification",
-              "warmup",
-              "retry"
-            ],
-            "type": "string",
-            "description": "Defines the source that requested outbound delivery.",
-            "nullable": true
-          },
-          "outboundPriority": {
-            "enum": [
-              "critical_internal_notification",
-              "fresh_inbound_lead_response",
-              "manual_user_initiated",
-              "active_conversation_reply",
-              "automation_follow_up",
-              "campaign_message",
-              "imported_lead_campaign",
-              "warmup",
-              "retry"
-            ],
-            "type": "string",
-            "description": "Defines priority classes used when pacing outbound delivery.",
-            "nullable": true
-          },
-          "automationId": {
-            "type": "string",
-            "description": "Automation ID connected to this workflow, run, or event.",
-            "nullable": true
-          },
-          "importBatchId": {
-            "type": "string",
-            "description": "Bulk import batch ID that created or updated this lead.",
-            "nullable": true
-          },
-          "isImportedLead": {
-            "type": "boolean",
-            "description": "Indicates whether this record originated from a bulk import rather than a real-time lead source."
-          },
-          "hasRequiredConsent": {
-            "type": "boolean",
-            "description": "Indicates whether the lead has the consent required for compliant outreach."
-          },
-          "outboundDeliveryRequestId": {
-            "type": "string",
-            "description": "Outbound delivery request ID connected to this decision or attempt.",
-            "nullable": true
-          },
-          "outboundReservationId": {
-            "type": "string",
-            "description": "Outbound reservation ID used to throttle and track delivery capacity.",
-            "nullable": true
-          },
           "outboundIdempotencyKey": {
             "type": "string",
             "description": "Idempotency key used to prevent duplicate outbound delivery.",
@@ -19057,16 +17246,6 @@
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this SMS event table row."
-          },
-          "telnyxId": {
-            "type": "string",
-            "description": "Telnyx identifier connected to this phone number, call, or SMS event.",
-            "nullable": true
-          },
-          "providerMessageId": {
-            "type": "string",
-            "description": "Provider message identifier for SMS delivery tracking and reconciliation.",
-            "nullable": true
           },
           "conversationId": {
             "type": "string",
@@ -19217,10 +17396,6 @@
             "description": "Human-readable error message returned while processing this SMS event table row.",
             "nullable": true
           },
-          "isWarmup": {
-            "type": "boolean",
-            "description": "Indicates whether this SMS event table row is part of Leadping sender warmup traffic."
-          },
           "isAutomated": {
             "type": "boolean",
             "description": "Indicates whether automation created or triggered this SMS event table row."
@@ -19250,11 +17425,6 @@
             ],
             "type": "string",
             "description": "Defines the supported SMS Traffic Type values.",
-            "nullable": true
-          },
-          "tenDlcCampaignId": {
-            "type": "string",
-            "description": "10DLC campaign identifier associated with this sender or SMS event.",
             "nullable": true
           },
           "billableAmount": {
@@ -19332,16 +17502,6 @@
       "SmsResponse": {
         "type": "object",
         "properties": {
-          "telnyxId": {
-            "type": "string",
-            "description": "Telnyx identifier connected to this phone number, call, or SMS event.",
-            "nullable": true
-          },
-          "providerMessageId": {
-            "type": "string",
-            "description": "Provider message identifier for SMS delivery tracking and reconciliation.",
-            "nullable": true
-          },
           "conversationId": {
             "type": "string",
             "description": "Conversation ID that links this SMS message to the Leadping inbox thread."
@@ -19513,10 +17673,6 @@
             "description": "Human-readable error message returned while processing this SMS message.",
             "nullable": true
           },
-          "isWarmup": {
-            "type": "boolean",
-            "description": "Indicates whether this SMS message is part of Leadping sender warmup traffic."
-          },
           "trafficType": {
             "enum": [
               "RealLead",
@@ -19538,11 +17694,6 @@
           "billingStatus": {
             "type": "string",
             "description": "Billing state for this communication, charge, or transaction.",
-            "nullable": true
-          },
-          "tenDlcCampaignId": {
-            "type": "string",
-            "description": "10DLC campaign identifier associated with this sender or SMS event.",
             "nullable": true
           },
           "complianceAction": {
@@ -19578,90 +17729,6 @@
         ],
         "type": "string",
         "description": "Defines the supported SMS Traffic Type values."
-      },
-      "SmsWarmupActionResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique ID for this SMS warmup action."
-          },
-          "conversationId": {
-            "type": "string",
-            "description": "The conversation ID associated with this SMS warmup action."
-          },
-          "fromPhoneNumber": {
-            "type": "string",
-            "description": "The phone number associated with this SMS warmup action."
-          },
-          "toPhoneNumber": {
-            "type": "string",
-            "description": "The phone number associated with this SMS warmup action."
-          },
-          "body": {
-            "type": "string",
-            "description": "The body value for this SMS warmup action."
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SmsWarmupActionStatus"
-              }
-            ],
-            "description": "The current status for this SMS warmup action."
-          },
-          "actionType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SmsWarmupActionType"
-              }
-            ],
-            "description": "The action type classification for this SMS warmup action."
-          },
-          "scheduledAt": {
-            "type": "string",
-            "description": "The date and time for the scheduled at value on this SMS warmup action.",
-            "format": "date-time"
-          },
-          "executedAt": {
-            "type": "string",
-            "description": "The date and time for the executed at value on this SMS warmup action.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "failureReason": {
-            "type": "string",
-            "description": "The human-readable failure reason explaining this SMS warmup action.",
-            "nullable": true
-          }
-        },
-        "description": "API response containing SMS warmup action data returned to callers."
-      },
-      "SmsWarmupActionStatus": {
-        "enum": [
-          "Scheduled",
-          "Sending",
-          "Sent",
-          "Delivered",
-          "Received",
-          "Failed",
-          "Skipped",
-          "Paused",
-          "Blocked",
-          "Cancelled"
-        ],
-        "type": "string",
-        "description": "Defines the supported SMS Warmup Action Status values."
-      },
-      "SmsWarmupActionType": {
-        "enum": [
-          "OutboundMessage",
-          "ReplyMessage",
-          "HealthCheck",
-          "Audit"
-        ],
-        "type": "string",
-        "description": "Defines the supported SMS Warmup Action Type values."
       },
       "SmsWarmupHealthState": {
         "enum": [
@@ -19705,113 +17772,9 @@
             "description": "The progress percent metric for this SMS warmup status.",
             "format": "int32"
           },
-          "sentCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The sent count for this SMS warmup status.",
-            "format": "int32"
-          },
-          "receivedCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The received count for this SMS warmup status.",
-            "format": "int32"
-          },
-          "deliveredCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The delivered count for this SMS warmup status.",
-            "format": "int32"
-          },
-          "failureCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The failure count for this SMS warmup status.",
-            "format": "int32"
-          },
-          "carrierRejectionCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The carrier rejection count for this SMS warmup status.",
-            "format": "int32"
-          },
-          "optOutSignalCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The opt out signal count for this SMS warmup status.",
-            "format": "int32"
-          },
-          "spamSignalCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The spam signal count for this SMS warmup status.",
-            "format": "int32"
-          },
-          "deliverySuccessRate": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The delivery success rate metric for this SMS warmup status.",
-            "format": "double"
-          },
-          "nextScheduledActionAt": {
-            "type": "string",
-            "description": "The date and time for the next scheduled action at value on this SMS warmup status.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lastSuccessfulMessageAt": {
-            "type": "string",
-            "description": "The date and time for the last successful message at value on this SMS warmup status.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lastHealthSnapshotAt": {
-            "type": "string",
-            "description": "The date and time for the last health snapshot at value on this SMS warmup status.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "startedAt": {
-            "type": "string",
-            "description": "The date and time for the started at value on this SMS warmup status.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "completedAt": {
-            "type": "string",
-            "description": "The date and time for the completed at value on this SMS warmup status.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "pauseReason": {
-            "type": "string",
-            "description": "The human-readable pause reason explaining this SMS warmup status.",
-            "nullable": true
-          },
-          "blockReason": {
-            "type": "string",
-            "description": "The human-readable block reason explaining this SMS warmup status.",
-            "nullable": true
-          },
           "warmupEnabled": {
             "type": "boolean",
             "description": "Whether warmup is enabled for this SMS warmup status."
-          },
-          "isInternalPool": {
-            "type": "boolean",
-            "description": "Whether this SMS warmup status is internal pool."
-          },
-          "isApprovedTestDestination": {
-            "type": "boolean",
-            "description": "Whether this SMS warmup status is approved test destination."
-          },
-          "isMessagingProgramApproved": {
-            "type": "boolean",
-            "description": "Whether this SMS warmup status is messaging program approved."
-          },
-          "globalWarmupEnabled": {
-            "type": "boolean",
-            "description": "Whether global warmup is enabled for this SMS warmup status."
-          },
-          "canPause": {
-            "type": "boolean",
-            "description": "Whether the caller can pause this SMS warmup status."
-          },
-          "canResume": {
-            "type": "boolean",
-            "description": "Whether the caller can resume this SMS warmup status."
           },
           "uiState": {
             "allOf": [
@@ -19820,18 +17783,6 @@
               }
             ],
             "description": "The current UI state for this SMS warmup status."
-          },
-          "recentActions": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/SmsWarmupActionResponse"
-                }
-              ],
-              "description": "API response containing SMS warmup action data returned to callers."
-            },
-            "description": "The recent actions included with this SMS warmup status."
           }
         },
         "description": "API response containing SMS warmup status data returned to callers."
@@ -19870,20 +17821,28 @@
         "type": "object",
         "properties": {
           "range": {
-            "$ref": "#/components/schemas/AnalyticsDateRange"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AnalyticsDateRange"
+              }
+            ],
+            "description": "Range associated with this Leadping source metrics."
           },
           "totalLeads": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of leads records represented by this Leadping source metrics.",
             "format": "int32"
           },
           "points": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
-            }
+            },
+            "description": "Collection of points included with this Leadping source metrics."
           },
           "generatedAt": {
             "type": "string",
+            "description": "Date and time when the source metrics was generated.",
             "format": "date-time"
           }
         }
@@ -19903,24 +17862,9 @@
             "type": "boolean",
             "description": "Indicates whether this lead source request is active and available in the Leadping API."
           },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
-          },
           "regenerateApiKey": {
             "type": "boolean",
             "description": "Indicates whether Leadping should issue a new API key for this source."
-          },
-          "businessId": {
-            "type": "string",
-            "description": "Business ID that owns or will own this lead source.",
-            "nullable": true
           },
           "costPerLead": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -19945,15 +17889,6 @@
           "requiresTrustedForm": {
             "type": "boolean",
             "description": "Indicates whether leads from this source must include a TrustedForm certificate for consent proof."
-          },
-          "complianceApproved": {
-            "type": "boolean",
-            "description": "Indicates whether the business or sender passed compliance review."
-          },
-          "complianceNotes": {
-            "type": "string",
-            "description": "Compliance notes captured for admin review.",
-            "nullable": true
           },
           "defaultTagIds": {
             "type": "array",
@@ -19994,16 +17929,6 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this lead source response is active and available in the Leadping API."
-          },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
           },
           "apiKeyPreview": {
             "type": "string",
@@ -20089,11 +18014,6 @@
           "complianceApproved": {
             "type": "boolean",
             "description": "Indicates whether the business or sender passed compliance review."
-          },
-          "complianceNotes": {
-            "type": "string",
-            "description": "Compliance notes captured for admin review.",
-            "nullable": true
           },
           "defaultTagIds": {
             "type": "array",
@@ -20191,16 +18111,6 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this lead source table row is active and available in the Leadping API."
-          },
-          "adminEnablementOverride": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AdminEnablementOverride"
-              }
-            ],
-            "description": "Admin override that can enable or disable this record independently of normal status checks.",
-            "nullable": true
           },
           "user": {
             "type": "object",
@@ -20453,11 +18363,6 @@
             "type": "string",
             "description": "The human-readable customer reason explaining this ion check result.",
             "nullable": true
-          },
-          "adminReason": {
-            "type": "string",
-            "description": "The human-readable admin reason explaining this ion check result.",
-            "nullable": true
           }
         },
         "description": "API response containing suppression check result data returned to callers."
@@ -20485,16 +18390,6 @@
           "actorId": {
             "type": "string",
             "description": "The actor ID associated with this ion entry audit.",
-            "nullable": true
-          },
-          "sourceEventId": {
-            "type": "string",
-            "description": "The source event ID associated with this ion entry audit.",
-            "nullable": true
-          },
-          "providerEventId": {
-            "type": "string",
-            "description": "The provider event ID associated with this ion entry audit.",
             "nullable": true
           },
           "reason": {
@@ -20538,42 +18433,10 @@
             "type": "string",
             "description": "The channel value for this ion entry."
           },
-          "source": {
-            "type": "string",
-            "description": "The source value for this ion entry."
-          },
           "reason": {
             "type": "string",
             "description": "The human-readable reason explaining this ion entry.",
             "nullable": true
-          },
-          "actorId": {
-            "type": "string",
-            "description": "The actor ID associated with this ion entry.",
-            "nullable": true
-          },
-          "sourceEventId": {
-            "type": "string",
-            "description": "The source event ID associated with this ion entry.",
-            "nullable": true
-          },
-          "providerEventId": {
-            "type": "string",
-            "description": "The provider event ID associated with this ion entry.",
-            "nullable": true
-          },
-          "timestamp": {
-            "type": "string",
-            "description": "The date and time for the timestamp value on this ion entry.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "safeMetadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "The safe metadata key-value data carried with this ion entry; values must be safe to expose in API responses."
           }
         },
         "description": "Request payload for suppression entry."
@@ -20624,16 +18487,6 @@
           "reason": {
             "type": "string",
             "description": "The human-readable reason explaining this ion entry.",
-            "nullable": true
-          },
-          "sourceEventId": {
-            "type": "string",
-            "description": "The source event ID associated with this ion entry.",
-            "nullable": true
-          },
-          "providerEventId": {
-            "type": "string",
-            "description": "The provider event ID associated with this ion entry.",
             "nullable": true
           },
           "suppressedAt": {
@@ -20955,10 +18808,6 @@
       "TransactionResponse": {
         "type": "object",
         "properties": {
-          "accountId": {
-            "type": "string",
-            "description": "Leadping account identifier used for wallet and transaction reconciliation."
-          },
           "accountName": {
             "type": "string",
             "description": "Display name of the wallet or account used for this transaction.",
@@ -21005,11 +18854,6 @@
             "description": "Payment gateway status returned for this transaction.",
             "nullable": true
           },
-          "gatewayId": {
-            "type": "string",
-            "description": "Payment gateway identifier linked to this transaction.",
-            "nullable": true
-          },
           "platformFeeAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Leadping platform fee amount included in the transaction.",
@@ -21025,13 +18869,6 @@
             "type": "string",
             "description": "Human-readable description that explains this billing transaction response to API users.",
             "nullable": true
-          },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Structured metadata used for attribution, integrations, and reporting on this billing transaction response."
           },
           "paymentMethodDisplay": {
             "type": "string",
@@ -21053,20 +18890,6 @@
               }
             ],
             "description": "Processing status for this wallet transaction."
-          },
-          "correlationId": {
-            "type": "string",
-            "description": "Correlation ID used to trace this workflow or request across Leadping services.",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string",
-            "description": "Display name or identifier for the person or system that created this billing transaction response."
-          },
-          "modifiedBy": {
-            "type": "string",
-            "description": "Display name or identifier for the person or system that last modified this billing transaction response.",
-            "nullable": true
           },
           "id": {
             "type": "string",
@@ -21101,10 +18924,6 @@
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this billing transaction table row."
-          },
-          "accountId": {
-            "type": "string",
-            "description": "Leadping account identifier used for wallet and transaction reconciliation."
           },
           "accountName": {
             "type": "string",
@@ -21171,10 +18990,6 @@
             "type": "string",
             "description": "UTC timestamp when this billing transaction table row was created.",
             "format": "date-time"
-          },
-          "createdBy": {
-            "type": "string",
-            "description": "Display name or identifier for the person or system that created this billing transaction table row."
           }
         },
         "description": "List item schema for Leadping API billing transaction table row results shown in searchable tables."
@@ -21251,10 +19066,6 @@
             "type": "string",
             "description": "The unit label for this usage counter."
           },
-          "adminOnly": {
-            "type": "boolean",
-            "description": "Whether this usage counter is only shown to admins."
-          },
           "sortOrder": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The display order for this usage counter.",
@@ -21269,11 +19080,6 @@
           "id": {
             "type": "string",
             "description": "The unique ID for this usage ledger."
-          },
-          "idempotencyKey": {
-            "type": "string",
-            "description": "The idempotency key value for this usage ledger.",
-            "nullable": true
           },
           "businessId": {
             "type": "string",
@@ -21313,16 +19119,6 @@
           "phoneNumber": {
             "type": "string",
             "description": "The phone number associated with this usage ledger.",
-            "nullable": true
-          },
-          "sourceEventId": {
-            "type": "string",
-            "description": "The source event ID associated with this usage ledger.",
-            "nullable": true
-          },
-          "correlationId": {
-            "type": "string",
-            "description": "The correlation ID associated with this usage ledger.",
             "nullable": true
           },
           "channel": {
@@ -21382,25 +19178,9 @@
             "description": "The monetary customer charge amount for this usage ledger.",
             "format": "double"
           },
-          "providerCostAmount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The monetary provider cost amount for this usage ledger.",
-            "format": "double",
-            "nullable": true
-          },
-          "internalCostAmount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The monetary internal cost amount for this usage ledger.",
-            "format": "double",
-            "nullable": true
-          },
           "isBillable": {
             "type": "boolean",
             "description": "Whether this usage ledger is billable."
-          },
-          "isInternal": {
-            "type": "boolean",
-            "description": "Whether this usage ledger is internal."
           },
           "description": {
             "type": "string",
@@ -21467,16 +19247,6 @@
             "description": "The monetary customer charge amount for this usage summary line.",
             "format": "double"
           },
-          "providerCostAmount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The monetary provider cost amount for this usage summary line.",
-            "format": "double"
-          },
-          "internalCostAmount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The monetary internal cost amount for this usage summary line.",
-            "format": "double"
-          },
           "recordCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The record count for this usage summary line.",
@@ -21503,16 +19273,6 @@
             "description": "The customer charge total for this usage summary.",
             "format": "double"
           },
-          "providerCostTotal": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The provider cost total for this usage summary.",
-            "format": "double"
-          },
-          "internalCostTotal": {
-            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
-            "description": "The internal cost total for this usage summary.",
-            "format": "double"
-          },
           "billableQuantityTotal": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "The billable quantity total for this usage summary.",
@@ -21531,16 +19291,6 @@
           "failedCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The failed count for this usage summary.",
-            "format": "int32"
-          },
-          "billingBlockedCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The billing blocked count for this usage summary.",
-            "format": "int32"
-          },
-          "nonBillableInternalCount": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The non billable internal count for this usage summary.",
             "format": "int32"
           },
           "lines": {
@@ -21613,16 +19363,20 @@
         "type": "object",
         "properties": {
           "category": {
-            "type": "string"
+            "type": "string",
+            "description": "Category classification for this Leadping user data export file."
           },
           "fileName": {
-            "type": "string"
+            "type": "string",
+            "description": "Human-readable file name associated with this Leadping user data export file."
           },
           "contentType": {
-            "type": "string"
+            "type": "string",
+            "description": "Media type of the generated file or response content."
           },
           "rowCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of row records represented by this Leadping user data export file.",
             "format": "int32"
           }
         }
@@ -21631,7 +19385,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique Leadping identifier for the user data export."
           },
           "status": {
             "allOf": [
@@ -21639,65 +19394,78 @@
                 "$ref": "#/components/schemas/UserDataExportStatuses"
               }
             ],
-            "description": "Defines the supported user data export statuses values."
+            "description": "Current status for this Leadping user data export."
           },
           "requestedAt": {
             "type": "string",
+            "description": "Date and time when the user data export was requested.",
             "format": "date-time"
           },
           "startedAt": {
             "type": "string",
+            "description": "Date and time when the user data export started.",
             "format": "date-time",
             "nullable": true
           },
           "completedAt": {
             "type": "string",
+            "description": "Date and time when the user data export completed.",
             "format": "date-time",
             "nullable": true
           },
           "failedAt": {
             "type": "string",
+            "description": "Date and time when the user data export failed.",
             "format": "date-time",
             "nullable": true
           },
           "expiresAt": {
             "type": "string",
+            "description": "Date and time when the user data export expires.",
             "format": "date-time"
           },
           "message": {
             "type": "string",
+            "description": "Human-readable message for this Leadping user data export.",
             "nullable": true
           },
           "downloadUrl": {
             "type": "string",
+            "description": "Temporary URL for downloading the completed Leadping data export.",
             "nullable": true
           },
           "fileName": {
             "type": "string",
+            "description": "Human-readable file name associated with this Leadping user data export.",
             "nullable": true
           },
           "contentType": {
             "type": "string",
+            "description": "Media type of the generated file or response content.",
             "nullable": true
           },
           "sizeBytes": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "File size in bytes.",
             "format": "int64",
             "nullable": true
           },
           "downloadCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of download records represented by this Leadping user data export.",
             "format": "int32"
           },
           "maxDownloadCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of max download records represented by this Leadping user data export.",
             "format": "int32"
           },
           "files": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserDataExportFile"
-            }
+            },
+            "description": "Collection of files included with this Leadping user data export."
           }
         }
       },
@@ -21738,17 +19506,20 @@
             "description": "Whether payment failed notifications are enabled for this user notification preferences."
           },
           "paymentFailedSmsEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether payment failed SMS functionality is enabled for this Leadping user notification preferences."
           },
           "lowWalletBalanceEnabled": {
             "type": "boolean",
             "description": "Whether low wallet balance notifications are enabled for this user notification preferences."
           },
           "lowWalletBalanceEmailEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether low wallet balance email functionality is enabled for this Leadping user notification preferences."
           },
           "lowWalletBalanceSmsEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether low wallet balance SMS functionality is enabled for this Leadping user notification preferences."
           },
           "tenDlcStatusEnabled": {
             "type": "boolean",
@@ -21771,30 +19542,36 @@
             "description": "Whether missed call notifications are enabled for this user notification preferences."
           },
           "missedCallEmailEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether missed call email functionality is enabled for this Leadping user notification preferences."
           },
           "missedCallSmsEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether missed call SMS functionality is enabled for this Leadping user notification preferences."
           },
           "unreadSmsEnabled": {
             "type": "boolean",
             "description": "Whether unread SMS notifications are enabled for this user notification preferences."
           },
           "unreadSmsEmailEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether unread SMS email functionality is enabled for this Leadping user notification preferences."
           },
           "unreadSmsSmsEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether unread SMS SMS functionality is enabled for this Leadping user notification preferences."
           },
           "automationFailedEnabled": {
             "type": "boolean",
             "description": "Whether automation failed notifications are enabled for this user notification preferences."
           },
           "automationFailedEmailEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether automation failed email functionality is enabled for this Leadping user notification preferences."
           },
           "automationFailedSmsEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether automation failed SMS functionality is enabled for this Leadping user notification preferences."
           },
           "billingEmailEnabled": {
             "type": "boolean",
@@ -21809,10 +19586,12 @@
             "description": "Whether subscription renewing notifications are enabled for this user notification preferences."
           },
           "subscriptionRenewingEmailEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether subscription renewing email functionality is enabled for this Leadping user notification preferences."
           },
           "subscriptionRenewingSmsEnabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether subscription renewing SMS functionality is enabled for this Leadping user notification preferences."
           },
           "usageLimitHitEnabled": {
             "type": "boolean",
@@ -21953,16 +19732,6 @@
             ],
             "type": "string",
             "description": "Defines the supported Subscription Status values.",
-            "nullable": true
-          },
-          "stripeInfo": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BusinessStripeInfo"
-              }
-            ],
-            "description": "Stripe state for the user's currently selected business.",
             "nullable": true
           },
           "roles": {
@@ -22178,21 +19947,6 @@
           "originalTransactionId": {
             "type": "string",
             "description": "Original wallet transaction ID referenced by a reversal, refund, or adjustment.",
-            "nullable": true
-          },
-          "stripePaymentIntentId": {
-            "type": "string",
-            "description": "Stripe payment intent identifier linked to this billing transaction.",
-            "nullable": true
-          },
-          "stripeChargeId": {
-            "type": "string",
-            "description": "Stripe charge identifier linked to this billing transaction.",
-            "nullable": true
-          },
-          "stripeInvoiceId": {
-            "type": "string",
-            "description": "Stripe invoice identifier linked to this billing transaction.",
             "nullable": true
           },
           "nextCreditExpirationAt": {
