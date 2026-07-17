@@ -11321,6 +11321,22 @@
             "description": "Defines the supported Business Status values.",
             "nullable": true
           },
+          "setupStatus": {
+            "enum": [
+              "Personal",
+              "Business",
+              "Details",
+              "Compliance",
+              "Phone",
+              "Plan",
+              "Billing",
+              "Review",
+              "Complete"
+            ],
+            "type": "string",
+            "description": "Defines the supported User Setup Status values.",
+            "nullable": true
+          },
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this business profile response is active and available in the Leadping API."
@@ -19900,6 +19916,21 @@
           }
         },
         "description": "API response containing user data returned to callers."
+      },
+      "UserSetupStatus": {
+        "enum": [
+          "Personal",
+          "Business",
+          "Details",
+          "Compliance",
+          "Phone",
+          "Plan",
+          "Billing",
+          "Review",
+          "Complete"
+        ],
+        "type": "string",
+        "description": "Defines the supported User Setup Status values."
       },
       "WalletCreditSourceType": {
         "enum": [
