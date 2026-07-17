@@ -9087,9 +9087,14 @@
             "type": "string",
             "description": "The current status for this activation timeline event."
           },
-          "actorName": {
-            "type": "string",
-            "description": "The actor name value for this activation timeline event.",
+          "actor": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this actor.",
             "nullable": true
           },
           "failureReason": {
@@ -9112,7 +9117,7 @@
           2
         ],
         "type": "integer",
-        "description": "Bucket size associated with this Leadping analytics date range.",
+        "description": "Defines the supported analytics bucket size values.",
         "format": "int32"
       },
       "AnalyticsComparison": {
@@ -10218,14 +10223,15 @@
             "description": "Unique identifier of the lead associated with this Leadping automation workflow run.",
             "nullable": true
           },
-          "automationId": {
-            "type": "string",
-            "description": "Unique identifier of the automation associated with this Leadping automation workflow run.",
+          "automation": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this automation.",
             "nullable": true
-          },
-          "automationName": {
-            "type": "string",
-            "description": "Human-readable automation name associated with this Leadping automation workflow run."
           },
           "triggerType": {
             "type": "string",
@@ -10245,14 +10251,14 @@
             "type": "string",
             "description": "Human-readable status display for this Leadping automation workflow run."
           },
-          "currentStepId": {
-            "type": "string",
-            "description": "Unique identifier of the current step associated with this Leadping automation workflow run.",
-            "nullable": true
-          },
-          "currentStepName": {
-            "type": "string",
-            "description": "Human-readable current step name associated with this Leadping automation workflow run.",
+          "currentStep": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this currentStep.",
             "nullable": true
           },
           "currentStepOrder": {
@@ -10724,13 +10730,13 @@
             "type": "string",
             "description": "The unique ID for this business invitation."
           },
-          "businessId": {
-            "type": "string",
-            "description": "The business ID associated with this business invitation."
-          },
-          "businessName": {
-            "type": "string",
-            "description": "The business name value for this business invitation."
+          "business": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this business."
           },
           "email": {
             "type": "string",
@@ -10842,13 +10848,13 @@
             "type": "string",
             "description": "The unique ID for this business invitation."
           },
-          "businessId": {
-            "type": "string",
-            "description": "The business ID associated with this business invitation."
-          },
-          "businessName": {
-            "type": "string",
-            "description": "The business name value for this business invitation."
+          "business": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this business."
           },
           "email": {
             "type": "string",
@@ -11440,24 +11446,15 @@
             "type": "string",
             "description": "The human-readable name shown for this business."
           },
-          "businessId": {
-            "type": "string",
-            "description": "The business ID that owns this row when the row represents a child business resource.",
+          "business": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this business.",
             "nullable": true
-          },
-          "businessName": {
-            "type": "string",
-            "description": "The business name that owns this row when the row represents a child business resource.",
-            "nullable": true
-          },
-          "userId": {
-            "type": "string",
-            "description": "The user ID value for this business.",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "description": "The user name value for this business."
           },
           "industry": {
             "type": "string",
@@ -11796,13 +11793,13 @@
             "type": "string",
             "description": "The unique ID for this business user."
           },
-          "userId": {
-            "type": "string",
-            "description": "The user ID associated with this business user."
-          },
-          "userName": {
-            "type": "string",
-            "description": "The user name value for this business user."
+          "user": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this user."
           },
           "userEmail": {
             "type": "string",
@@ -11972,24 +11969,6 @@
           }
         },
         "description": "List item schema for Leadping API call event table row results shown in searchable tables."
-      },
-      "CarrierType": {
-        "enum": [
-          "FixedLine",
-          "Mobile",
-          "Voip",
-          "FixedLineOrMobile",
-          "TollFree",
-          "PremiumRate",
-          "SharedCost",
-          "PersonalNumber",
-          "Pager",
-          "Uan",
-          "Voicemail",
-          "Unknown"
-        ],
-        "type": "string",
-        "description": "An enumerator describing carrier types"
       },
       "ChangeBillingPlanRequest": {
         "type": "object",
@@ -15002,23 +14981,25 @@
             "format": "double",
             "nullable": true
           },
-          "businessId": {
-            "type": "string",
-            "description": "Business ID that owns this lead.",
+          "business": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this business.",
             "nullable": true
           },
-          "sourceId": {
-            "type": "string",
-            "description": "Lead source ID that created or supplied this lead.",
+          "source": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this source.",
             "nullable": true
-          },
-          "businessName": {
-            "type": "string",
-            "description": "Business display name shown for this lead."
-          },
-          "sourceName": {
-            "type": "string",
-            "description": "Lead source display name shown for this lead."
           },
           "tags": {
             "type": "array",
@@ -15059,18 +15040,6 @@
         },
         "description": "Request schema for the Leadping API lead tag update request, including the fields clients can send."
       },
-      "LineType": {
-        "enum": [
-          "Wireline",
-          "Wireless",
-          "VoWiFi",
-          "VoIP",
-          "PrePaidWireless",
-          "Unknown"
-        ],
-        "type": "string",
-        "description": "An enumerator describing phone line types"
-      },
       "MaritalStatusType": {
         "enum": [
           "Married",
@@ -15085,14 +15054,13 @@
       "MobileDevicePreferences": {
         "type": "object",
         "properties": {
-          "deviceId": {
-            "type": "string",
-            "description": "Stable device identifier generated by the Leadping mobile app."
-          },
-          "deviceName": {
-            "type": "string",
-            "description": "Human-readable device name captured by the Leadping mobile app.",
-            "nullable": true
+          "device": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this device."
           },
           "inboundPhoneCallsEnabled": {
             "type": "boolean",
@@ -16129,16 +16097,6 @@
             "type": "string",
             "description": "Type classification used to route and interpret this lead phone number in the Leadping API.",
             "nullable": true
-          },
-          "lookup": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneLookup"
-              }
-            ],
-            "description": "Phone lookup details returned by the provider or Leadping enrichment service.",
-            "nullable": true
           }
         },
         "description": "Public Leadping API schema for lead phone number data."
@@ -16316,119 +16274,6 @@
         ],
         "type": "string",
         "description": "Defines the supported Phone Call Status values."
-      },
-      "PhoneLookup": {
-        "type": "object",
-        "properties": {
-          "number": {
-            "type": "string",
-            "description": "E.164 phone number exposed by this phone lookup result.",
-            "nullable": true
-          },
-          "isValid": {
-            "type": "boolean",
-            "description": "Indicates whether this phone lookup result passed validation."
-          },
-          "lineType": {
-            "enum": [
-              "Wireline",
-              "Wireless",
-              "VoWiFi",
-              "VoIP",
-              "PrePaidWireless",
-              "Unknown"
-            ],
-            "type": "string",
-            "description": "An enumerator describing phone line types",
-            "nullable": true
-          },
-          "carrier": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneLookupCarrier"
-              }
-            ],
-            "description": "Complete carrier metadata reported for this phone number.",
-            "nullable": true
-          },
-          "location": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberLocation"
-              }
-            ],
-            "description": "Geographic location metadata for the phone number, lead, or lookup result.",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "description": "Gets or sets id."
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "Gets or sets created at.",
-            "format": "date-time"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "description": "Gets or sets modified at.",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "description": "Public Leadping API schema for phone lookup result data."
-      },
-      "PhoneLookupCarrier": {
-        "type": "object",
-        "properties": {
-          "mobileCountryCode": {
-            "type": "string",
-            "description": "Mobile country code (MCC) reported by the carrier lookup.",
-            "nullable": true
-          },
-          "mobileNetworkCode": {
-            "type": "string",
-            "description": "Mobile network code (MNC) reported by the carrier lookup.",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "Human-readable name of the phone lookup carrier.",
-            "nullable": true
-          },
-          "normalizedCarrier": {
-            "type": "string",
-            "description": "Normalized carrier name used for consistent matching and reporting.",
-            "nullable": true
-          },
-          "type": {
-            "enum": [
-              "FixedLine",
-              "Mobile",
-              "Voip",
-              "FixedLineOrMobile",
-              "TollFree",
-              "PremiumRate",
-              "SharedCost",
-              "PersonalNumber",
-              "Pager",
-              "Uan",
-              "Voicemail",
-              "Unknown"
-            ],
-            "type": "string",
-            "description": "An enumerator describing carrier types",
-            "nullable": true
-          },
-          "errorCode": {
-            "type": "string",
-            "description": "Reason or diagnostic code that explains the current outcome for this Leadping phone lookup carrier.",
-            "nullable": true
-          }
-        },
-        "description": "Complete carrier metadata returned by a phone number lookup provider."
       },
       "PhoneNumberAvailabilityRequest": {
         "type": "object",
@@ -16639,6 +16484,11 @@
             "type": "string",
             "description": "E.164 phone number exposed by this phone number."
           },
+          "phoneIdentityId": {
+            "type": "string",
+            "description": "Identifier of the canonical phone identity for this number.",
+            "nullable": true
+          },
           "business": {
             "type": "object",
             "allOf": [
@@ -16660,16 +16510,6 @@
               }
             ],
             "description": "Routing metadata that connects this phone number to teams, campaigns, and sources."
-          },
-          "location": {
-            "type": "object",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneNumberLocation"
-              }
-            ],
-            "description": "Geographic location metadata for the phone number, lead, or lookup result.",
-            "nullable": true
           },
           "enabled": {
             "type": "boolean",
@@ -16875,10 +16715,6 @@
           "number": {
             "type": "string",
             "description": "E.164 phone number exposed by this phone number table row."
-          },
-          "location": {
-            "type": "string",
-            "description": "Geographic location metadata for the phone number, lead, or lookup result."
           },
           "type": {
             "type": "string",
@@ -17252,14 +17088,13 @@
             "description": "Conversation ID that links this SMS event table row to the Leadping inbox thread.",
             "nullable": true
           },
-          "leadId": {
-            "type": "string",
-            "description": "Lead ID associated with this SMS event."
-          },
-          "leadName": {
-            "type": "string",
-            "description": "Lead display name shown for this SMS event.",
-            "nullable": true
+          "lead": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this lead."
           },
           "fromPhoneNumberId": {
             "type": "string",
@@ -18627,14 +18462,14 @@
       "TelephonyLoginRequest": {
         "type": "object",
         "properties": {
-          "deviceId": {
-            "type": "string",
-            "description": "Stable device identifier generated by the Leadping mobile app.",
-            "nullable": true
-          },
-          "deviceName": {
-            "type": "string",
-            "description": "Human-readable device name captured by the Leadping mobile app.",
+          "device": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this device.",
             "nullable": true
           }
         },
@@ -18808,29 +18643,24 @@
       "TransactionResponse": {
         "type": "object",
         "properties": {
-          "accountName": {
-            "type": "string",
-            "description": "Display name of the wallet or account used for this transaction.",
+          "business": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this business.",
             "nullable": true
           },
-          "businessId": {
-            "type": "string",
-            "description": "Business ID charged or credited by this wallet transaction.",
-            "nullable": true
-          },
-          "businessName": {
-            "type": "string",
-            "description": "Business display name shown for this wallet transaction.",
-            "nullable": true
-          },
-          "leadId": {
-            "type": "string",
-            "description": "Lead ID connected to this transaction when the charge came from lead activity.",
-            "nullable": true
-          },
-          "leadName": {
-            "type": "string",
-            "description": "Lead display name shown for lead-related wallet transactions.",
+          "lead": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this lead.",
             "nullable": true
           },
           "amount": {
@@ -18925,29 +18755,24 @@
             "type": "string",
             "description": "Unique Leadping identifier for this billing transaction table row."
           },
-          "accountName": {
-            "type": "string",
-            "description": "Display name of the wallet or account used for this transaction.",
+          "business": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this business.",
             "nullable": true
           },
-          "businessId": {
-            "type": "string",
-            "description": "Business ID charged or credited by this wallet transaction.",
-            "nullable": true
-          },
-          "businessName": {
-            "type": "string",
-            "description": "Business display name shown for this wallet transaction.",
-            "nullable": true
-          },
-          "leadId": {
-            "type": "string",
-            "description": "Lead ID connected to this transaction when the charge came from lead activity.",
-            "nullable": true
-          },
-          "leadName": {
-            "type": "string",
-            "description": "Lead display name shown for lead-related wallet transactions.",
+          "lead": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this lead.",
             "nullable": true
           },
           "amount": {
@@ -19081,34 +18906,34 @@
             "type": "string",
             "description": "The unique ID for this usage ledger."
           },
-          "businessId": {
-            "type": "string",
-            "description": "The business ID associated with this usage ledger.",
+          "business": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this business.",
             "nullable": true
           },
-          "businessName": {
-            "type": "string",
-            "description": "The business name value for this usage ledger.",
+          "user": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this user.",
             "nullable": true
           },
-          "userId": {
-            "type": "string",
-            "description": "The user ID associated with this usage ledger.",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "description": "The user name value for this usage ledger.",
-            "nullable": true
-          },
-          "leadId": {
-            "type": "string",
-            "description": "The lead ID associated with this usage ledger.",
-            "nullable": true
-          },
-          "leadName": {
-            "type": "string",
-            "description": "The lead name value for this usage ledger.",
+          "lead": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "The ID and name for this lead.",
             "nullable": true
           },
           "phoneNumberId": {
