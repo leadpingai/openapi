@@ -56,7 +56,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CustomerAnalyticsResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CustomerAnalyticsResponse"
+                    }
+                  ],
+                  "description": "Response model containing customer analytics data returned by the Leadping API."
                 }
               }
             }
@@ -3069,7 +3074,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/OutboundCapacityOverview"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/OutboundCapacityOverview"
+                    }
+                  ],
+                  "description": "Represents outbound capacity overview data used by Leadping."
                 }
               }
             }
@@ -3479,7 +3489,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SourceMetricsResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SourceMetricsResponse"
+                    }
+                  ],
+                  "description": "Response model containing source metrics data returned by the Leadping API."
                 }
               }
             }
@@ -4364,614 +4379,6 @@
           },
           "400": {
             "description": "The request was invalid or failed validation.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/payment-methods": {
-      "get": {
-        "tags": [
-          "PaymentMethods"
-        ],
-        "summary": "List payment methods",
-        "operationId": "PaymentMethods_GetAll",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/StripePaymentMethodResponse"
-                      }
-                    ],
-                    "description": "API DTO containing stripe payment method data used by Leadping API contracts."
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/payment-methods/{id}": {
-      "get": {
-        "tags": [
-          "PaymentMethods"
-        ],
-        "summary": "Get a business billing payment method",
-        "description": "Returns one payment method for the current user or business, including card metadata used for billing management.",
-        "operationId": "PaymentMethods_Get",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of the payment method to retrieve.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Payment method was successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/StripePaymentMethodResponse"
-                    }
-                  ],
-                  "description": "API DTO containing stripe payment method data used by Leadping API contracts."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified payment method was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "PaymentMethods"
-        ],
-        "summary": "Delete a business billing payment method",
-        "description": "Deletes a payment method so it is no longer available for wallet funding, invoices, or billing account management.",
-        "operationId": "PaymentMethods_Delete",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of the payment method to delete.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Payment method was successfully deleted.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified payment method was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/payment-methods/{id}/default": {
-      "post": {
-        "tags": [
-          "PaymentMethods"
-        ],
-        "summary": "Set default payment method",
-        "operationId": "PaymentMethods_MakeDefault",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/StripePaymentMethodResponse"
-                    }
-                  ],
-                  "description": "API DTO containing stripe payment method data used by Leadping API contracts."
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/transactions/{id}": {
-      "get": {
-        "tags": [
-          "Transactions"
-        ],
-        "summary": "Get a current-user billing transaction",
-        "description": "Returns one transaction visible to the current user, including amount, status, wallet context, and billing metadata.",
-        "operationId": "Transactions_GetForCurrentUser",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of the transaction to retrieve.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Transaction was successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/TransactionResponse"
-                    }
-                  ],
-                  "description": "Response schema for the Leadping API billing transaction response returned to authenticated clients."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified transaction was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "The user does not own this transaction.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/transactions/all/my": {
-      "post": {
-        "tags": [
-          "Transactions"
-        ],
-        "summary": "List current-user billing transactions",
-        "description": "Lists current-user transactions with paging, sorting, and filters for wallet events, billing history, and reconciliation.",
-        "operationId": "Transactions_GetAllForCurrentUser",
-        "parameters": [
-          {
-            "name": "startAt",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "endAt",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Pagination, filtering, and sorting options.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Transactions were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfTransactionTableRow"
-                    }
-                  ],
-                  "description": "A generic container for paginated results returned to the client."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/usage/all/my": {
-      "post": {
-        "tags": [
-          "Usage"
-        ],
-        "summary": "List business messaging usage ledger entries",
-        "description": "Lists current-business usage ledger entries with paging, sorting, and filters for messaging, billing, and wallet review.",
-        "operationId": "Usage_GetAllForCurrentBusiness",
-        "requestBody": {
-          "description": "The filtering, sorting, and pagination options.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Returns the paged usage ledger table row.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfUsageLedgerTableRow"
-                    }
-                  ],
-                  "description": "A generic container for paginated results returned to the client."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/usage/summary/my": {
-      "get": {
-        "tags": [
-          "Usage"
-        ],
-        "summary": "Get business messaging usage summary",
-        "description": "Returns current-business usage totals for the active billing period, including spend, limits, and event summary data.",
-        "operationId": "Usage_GetSummaryForCurrentBusiness",
-        "parameters": [
-          {
-            "name": "periodStart",
-            "in": "query",
-            "description": "The period start.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "periodEnd",
-            "in": "query",
-            "description": "The period end.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the usage summary response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/UsageSummaryResponse"
-                    }
-                  ],
-                  "description": "API DTO containing usage summary response data."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/wallets/{id}": {
-      "get": {
-        "tags": [
-          "Wallets"
-        ],
-        "summary": "Get a business wallet balance by ID",
-        "description": "Returns one wallet by ID, including balance, billing context, and funding status for account payment workflows.",
-        "operationId": "Wallets_Get",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of the wallet to retrieve.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Wallet was successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/WalletResponse"
-                    }
-                  ],
-                  "description": "Response schema for the Leadping API billing wallet response returned to authenticated clients."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified wallet was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/wallets/me": {
-      "get": {
-        "tags": [
-          "Wallets"
-        ],
-        "summary": "Get the current business wallet balance",
-        "description": "Returns the current business wallet, including balance and funding status used for communication delivery and billing.",
-        "operationId": "Wallets_GetForCurrentBusiness",
-        "responses": {
-          "200": {
-            "description": "Wallet was successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/WalletResponse"
-                    }
-                  ],
-                  "description": "Response schema for the Leadping API billing wallet response returned to authenticated clients."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The current business wallet was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6642,7 +6049,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserDataExportResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/UserDataExportResponse"
+                    }
+                  ],
+                  "description": "Response model containing user data export data returned by the Leadping API."
                 }
               }
             }
@@ -6684,7 +6096,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserDataExportResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/UserDataExportResponse"
+                    }
+                  ],
+                  "description": "Response model containing user data export data returned by the Leadping API."
                 }
               }
             }
@@ -8946,6 +8363,614 @@
           }
         }
       }
+    },
+    "/payment-methods": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "List payment methods",
+        "operationId": "PaymentMethods_GetAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/StripePaymentMethodResponse"
+                      }
+                    ],
+                    "description": "API DTO containing stripe payment method data used by Leadping API contracts."
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-methods/{id}": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Get a business billing payment method",
+        "description": "Returns one payment method for the current user or business, including card metadata used for billing management.",
+        "operationId": "PaymentMethods_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the payment method to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment method was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/StripePaymentMethodResponse"
+                    }
+                  ],
+                  "description": "API DTO containing stripe payment method data used by Leadping API contracts."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified payment method was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Delete a business billing payment method",
+        "description": "Deletes a payment method so it is no longer available for wallet funding, invoices, or billing account management.",
+        "operationId": "PaymentMethods_Delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the payment method to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Payment method was successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified payment method was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-methods/{id}/default": {
+      "post": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Set default payment method",
+        "operationId": "PaymentMethods_MakeDefault",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/StripePaymentMethodResponse"
+                    }
+                  ],
+                  "description": "API DTO containing stripe payment method data used by Leadping API contracts."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{id}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get a current-user billing transaction",
+        "description": "Returns one transaction visible to the current user, including amount, status, wallet context, and billing metadata.",
+        "operationId": "Transactions_GetForCurrentUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the transaction to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/TransactionResponse"
+                    }
+                  ],
+                  "description": "Response schema for the Leadping API billing transaction response returned to authenticated clients."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified transaction was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The user does not own this transaction.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/all/my": {
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "List current-user billing transactions",
+        "description": "Lists current-user transactions with paging, sorting, and filters for wallet events, billing history, and reconciliation.",
+        "operationId": "Transactions_GetAllForCurrentUser",
+        "parameters": [
+          {
+            "name": "startAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Pagination, filtering, and sorting options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Transactions were successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PagedResultOfTransactionTableRow"
+                    }
+                  ],
+                  "description": "A generic container for paginated results returned to the client."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/all/my": {
+      "post": {
+        "tags": [
+          "Usage"
+        ],
+        "summary": "List business messaging usage ledger entries",
+        "description": "Lists current-business usage ledger entries with paging, sorting, and filters for messaging, billing, and wallet review.",
+        "operationId": "Usage_GetAllForCurrentBusiness",
+        "requestBody": {
+          "description": "The filtering, sorting, and pagination options.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the paged usage ledger table row.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PagedResultOfUsageLedgerTableRow"
+                    }
+                  ],
+                  "description": "A generic container for paginated results returned to the client."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/summary/my": {
+      "get": {
+        "tags": [
+          "Usage"
+        ],
+        "summary": "Get business messaging usage summary",
+        "description": "Returns current-business usage totals for the active billing period, including spend, limits, and event summary data.",
+        "operationId": "Usage_GetSummaryForCurrentBusiness",
+        "parameters": [
+          {
+            "name": "periodStart",
+            "in": "query",
+            "description": "The period start.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "periodEnd",
+            "in": "query",
+            "description": "The period end.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the usage summary response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/UsageSummaryResponse"
+                    }
+                  ],
+                  "description": "API DTO containing usage summary response data."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wallets/{id}": {
+      "get": {
+        "tags": [
+          "Wallets"
+        ],
+        "summary": "Get a business wallet balance by ID",
+        "description": "Returns one wallet by ID, including balance, billing context, and funding status for account payment workflows.",
+        "operationId": "Wallets_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the wallet to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wallet was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/WalletResponse"
+                    }
+                  ],
+                  "description": "Response schema for the Leadping API billing wallet response returned to authenticated clients."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified wallet was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wallets/me": {
+      "get": {
+        "tags": [
+          "Wallets"
+        ],
+        "summary": "Get the current business wallet balance",
+        "description": "Returns the current business wallet, including balance and funding status used for communication delivery and billing.",
+        "operationId": "Wallets_GetForCurrentBusiness",
+        "responses": {
+          "200": {
+            "description": "Wallet was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/WalletResponse"
+                    }
+                  ],
+                  "description": "Response schema for the Leadping API billing wallet response returned to authenticated clients."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The current business wallet was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -9144,7 +9169,7 @@
             "description": "Direction classification for this Leadping analytics comparison."
           }
         },
-        "description": "Date and time when this Leadping customer analytics summary was leads comparison."
+        "description": "Represents analytics comparison data exposed by Leadping analytics."
       },
       "AnalyticsDateRange": {
         "type": "object",
@@ -9168,7 +9193,7 @@
             "description": "Bucket size associated with this Leadping analytics date range."
           }
         },
-        "description": "Range associated with this Leadping customer analytics."
+        "description": "Represents analytics date range data exposed by Leadping analytics."
       },
       "AnalyticsTrendPointOfdecimal": {
         "type": "object",
@@ -9192,7 +9217,8 @@
             "description": "Value associated with this Leadping analytics trend point.",
             "format": "double"
           }
-        }
+        },
+        "description": "Represents analytics trend point data exposed by Leadping analytics."
       },
       "AnalyticsTrendPointOfint": {
         "type": "object",
@@ -9216,7 +9242,8 @@
             "description": "Value associated with this Leadping analytics trend point.",
             "format": "int32"
           }
-        }
+        },
+        "description": "Represents analytics trend point data exposed by Leadping analytics."
       },
       "AutomationAction": {
         "type": "object",
@@ -10656,6 +10683,66 @@
         },
         "description": "API DTO containing business activation state data used by Leadping API contracts."
       },
+      "BusinessBillingState": {
+        "type": "object",
+        "properties": {
+          "hasStripeCustomer": {
+            "type": "boolean",
+            "description": "Indicates whether the business has a Stripe customer account."
+          },
+          "hasPaymentMethod": {
+            "type": "boolean",
+            "description": "Indicates whether the business has a saved default payment method."
+          },
+          "phoneNumberQuantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Gets or sets the number of phone numbers included in the business subscription.",
+            "format": "int64",
+            "nullable": true
+          },
+          "businessUserQuantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Gets or sets the number of user licenses included in the business subscription.",
+            "format": "int64",
+            "nullable": true
+          },
+          "businessUserAssignedQuantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Gets or sets the number of user licenses currently assigned by the business.",
+            "format": "int64",
+            "nullable": true
+          },
+          "cancelAt": {
+            "type": "string",
+            "description": "Gets or sets when the active subscription is scheduled to cancel.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dunning": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BusinessDunningInfo"
+              }
+            ],
+            "description": "Gets or sets the customer-safe payment recovery state for the business.",
+            "nullable": true
+          },
+          "lastSubscriptionEventAt": {
+            "type": "string",
+            "description": "Gets or sets when Leadping last processed a subscription event for the business.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPaymentMethodEventAt": {
+            "type": "string",
+            "description": "Gets or sets when Leadping last processed a payment-method event for the business.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "Customer-safe billing state for a Leadping business."
+      },
       "BusinessCompliancePolicy": {
         "type": "object",
         "properties": {
@@ -10699,6 +10786,69 @@
           }
         },
         "description": "API DTO containing business compliance policy data used by Leadping API contracts."
+      },
+      "BusinessDunningInfo": {
+        "type": "object",
+        "properties": {
+          "stage": {
+            "type": "string",
+            "description": "Current stage for this Leadping business dunning info.",
+            "nullable": true
+          },
+          "paymentFailedAt": {
+            "type": "string",
+            "description": "Date and time when this Leadping business dunning info was payment failed.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastFailedInvoiceStatus": {
+            "type": "string",
+            "description": "Current last failed invoice status for this Leadping business dunning info.",
+            "nullable": true
+          },
+          "retryAttemptCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Total number of retry attempt records represented by this Leadping business dunning info.",
+            "format": "int32"
+          },
+          "nextRetryAt": {
+            "type": "string",
+            "description": "Date and time when the next retry is scheduled.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "gracePeriodEndsAt": {
+            "type": "string",
+            "description": "Date and time when this Leadping business dunning info was grace period ends.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "outboundRestrictedAt": {
+            "type": "string",
+            "description": "Date and time when this Leadping business dunning info was outbound restricted.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "outboundSuspendedAt": {
+            "type": "string",
+            "description": "Date and time when this Leadping business dunning info was outbound suspended.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "finalCancellationAt": {
+            "type": "string",
+            "description": "Date and time when this Leadping business dunning info was final cancellation.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastUpdatedAt": {
+            "type": "string",
+            "description": "Date and time when this Leadping business dunning info was last updated.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "Dunning state recorded after a failed recurring payment."
       },
       "BusinessInvitationRequest": {
         "type": "object",
@@ -11133,6 +11283,16 @@
             ],
             "type": "string",
             "description": "Defines the supported Subscription Status values.",
+            "nullable": true
+          },
+          "billingState": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BusinessBillingState"
+              }
+            ],
+            "description": "Customer-safe billing state for this business.",
             "nullable": true
           },
           "autoRefillEnabled": {
@@ -12275,12 +12435,17 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CustomerActivationHealthItem"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CustomerActivationHealthItem"
+                }
+              ],
+              "description": "Represents customer activation health item data exposed by Leadping analytics."
             },
             "description": "Collection of items included with this Leadping customer activation health."
           }
         },
-        "description": "Activation health associated with this Leadping customer analytics."
+        "description": "Represents customer activation health data exposed by Leadping analytics."
       },
       "CustomerActivationHealthItem": {
         "type": "object",
@@ -12306,7 +12471,8 @@
             "description": "Relative URL for the recommended follow-up action.",
             "nullable": true
           }
-        }
+        },
+        "description": "Represents customer activation health item data exposed by Leadping analytics."
       },
       "CustomerActivationStatus": {
         "enum": [
@@ -12380,7 +12546,12 @@
           "leadSources": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CustomerLeadSourceBreakdown"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CustomerLeadSourceBreakdown"
+                }
+              ],
+              "description": "Represents customer lead source breakdown data exposed by Leadping analytics."
             },
             "description": "Collection of lead sources included with this Leadping customer analytics."
           },
@@ -12403,7 +12574,12 @@
           "needsAttention": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CustomerNeedsAttentionItem"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CustomerNeedsAttentionItem"
+                }
+              ],
+              "description": "Represents customer needs attention item data exposed by Leadping analytics."
             },
             "description": "Date and time when this Leadping customer analytics was needs attention."
           },
@@ -12412,7 +12588,8 @@
             "description": "Date and time when this Leadping customer analytics was generated.",
             "format": "date-time"
           }
-        }
+        },
+        "description": "Response model containing customer analytics data returned by the Leadping API."
       },
       "CustomerAnalyticsSummary": {
         "type": "object",
@@ -12506,7 +12683,7 @@
             "description": "Current wallet status for this Leadping customer analytics summary."
           }
         },
-        "description": "Human-readable summary for this Leadping customer analytics."
+        "description": "Represents customer analytics summary data exposed by Leadping analytics."
       },
       "CustomerAutomationHealth": {
         "type": "object",
@@ -12554,12 +12731,12 @@
                   "$ref": "#/components/schemas/CustomerFailingAutomation"
                 }
               ],
-              "description": "Last failure associated with this Leadping customer automation health."
+              "description": "Represents customer failing automation data exposed by Leadping analytics."
             },
             "description": "Collection of failing automations included with this Leadping customer automation health."
           }
         },
-        "description": "Automation health associated with this Leadping customer analytics."
+        "description": "Represents customer automation health data exposed by Leadping analytics."
       },
       "CustomerCommunicationUsage": {
         "type": "object",
@@ -12612,12 +12789,17 @@
           "trend": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CustomerCommunicationUsagePoint"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CustomerCommunicationUsagePoint"
+                }
+              ],
+              "description": "Represents customer communication usage point data exposed by Leadping analytics."
             },
             "description": "Collection of trend included with this Leadping customer communication usage."
           }
         },
-        "description": "Communication usage associated with this Leadping customer analytics."
+        "description": "Represents customer communication usage data exposed by Leadping analytics."
       },
       "CustomerCommunicationUsagePoint": {
         "type": "object",
@@ -12661,7 +12843,8 @@
             "description": "Spend represented by this Leadping customer communication usage point.",
             "format": "double"
           }
-        }
+        },
+        "description": "Represents customer communication usage point data exposed by Leadping analytics."
       },
       "CustomerFailingAutomation": {
         "type": "object",
@@ -12687,7 +12870,7 @@
             "nullable": true
           }
         },
-        "description": "Last failure associated with this Leadping customer automation health."
+        "description": "Represents customer failing automation data exposed by Leadping analytics."
       },
       "CustomerLeadSourceBreakdown": {
         "type": "object",
@@ -12706,7 +12889,8 @@
             "description": "Percent expressed as a percentage.",
             "format": "double"
           }
-        }
+        },
+        "description": "Represents customer lead source breakdown data exposed by Leadping analytics."
       },
       "CustomerLeadTrend": {
         "type": "object",
@@ -12727,12 +12911,17 @@
           "points": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
+                }
+              ],
+              "description": "Represents analytics trend point data exposed by Leadping analytics."
             },
             "description": "Collection of points included with this Leadping customer lead trend."
           }
         },
-        "description": "Lead trend associated with this Leadping customer analytics."
+        "description": "Represents customer lead trend data exposed by Leadping analytics."
       },
       "CustomerNeedsAttentionItem": {
         "type": "object",
@@ -12759,7 +12948,8 @@
             "description": "Action text associated with this Leadping customer needs attention item.",
             "nullable": true
           }
-        }
+        },
+        "description": "Represents customer needs attention item data exposed by Leadping analytics."
       },
       "CustomerResponseMetrics": {
         "type": "object",
@@ -12804,12 +12994,17 @@
           "averageMinutesTrend": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AnalyticsTrendPointOfdecimal"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AnalyticsTrendPointOfdecimal"
+                }
+              ],
+              "description": "Represents analytics trend point data exposed by Leadping analytics."
             },
             "description": "Collection of average minutes trend included with this Leadping customer response metrics."
           }
         },
-        "description": "Response metrics associated with this Leadping customer analytics."
+        "description": "Represents customer response metrics data exposed by Leadping analytics."
       },
       "DispositionCategory": {
         "enum": [
@@ -15243,18 +15438,29 @@
           "phoneNumbers": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/OutboundPhoneNumberCapacity"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/OutboundPhoneNumberCapacity"
+                }
+              ],
+              "description": "Represents outbound phone number capacity data used by Leadping."
             },
             "description": "Collection of phone numbers included with this Leadping outbound capacity overview."
           },
           "recentDecisions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/OutboundQueueItem"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/OutboundQueueItem"
+                }
+              ],
+              "description": "Represents outbound queue item data used by Leadping."
             },
             "description": "Collection of recent decisions included with this Leadping outbound capacity overview."
           }
-        }
+        },
+        "description": "Represents outbound capacity overview data used by Leadping."
       },
       "OutboundDeliveryChannel": {
         "enum": [
@@ -15406,7 +15612,8 @@
             "description": "Voice limit this hour associated with this Leadping outbound phone number capacity.",
             "format": "int32"
           }
-        }
+        },
+        "description": "Represents outbound phone number capacity data used by Leadping."
       },
       "OutboundQueueItem": {
         "type": "object",
@@ -15486,7 +15693,8 @@
             "description": "Phone number associated with this Leadping outbound queue item.",
             "nullable": true
           }
-        }
+        },
+        "description": "Represents outbound queue item data used by Leadping."
       },
       "OutgoingNumberChannel": {
         "enum": [
@@ -17671,7 +17879,12 @@
           "points": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
+                }
+              ],
+              "description": "Represents analytics trend point data exposed by Leadping analytics."
             },
             "description": "Collection of points included with this Leadping source metrics."
           },
@@ -17680,7 +17893,8 @@
             "description": "Date and time when the source metrics was generated.",
             "format": "date-time"
           }
-        }
+        },
+        "description": "Response model containing source metrics data returned by the Leadping API."
       },
       "SourceRequest": {
         "required": [
@@ -19204,7 +19418,8 @@
             "description": "Total number of row records represented by this Leadping user data export file.",
             "format": "int32"
           }
-        }
+        },
+        "description": "Response model containing user data export file data returned by the Leadping API."
       },
       "UserDataExportResponse": {
         "type": "object",
@@ -19288,11 +19503,17 @@
           "files": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/UserDataExportFile"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/UserDataExportFile"
+                }
+              ],
+              "description": "Response model containing user data export file data returned by the Leadping API."
             },
             "description": "Collection of files included with this Leadping user data export."
           }
-        }
+        },
+        "description": "Response model containing user data export data returned by the Leadping API."
       },
       "UserDataExportStatuses": {
         "enum": [
@@ -19557,6 +19778,16 @@
             ],
             "type": "string",
             "description": "Defines the supported Subscription Status values.",
+            "nullable": true
+          },
+          "billingState": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BusinessBillingState"
+              }
+            ],
+            "description": "Customer-safe billing state for the user's currently selected business.",
             "nullable": true
           },
           "roles": {
@@ -19901,18 +20132,6 @@
       "name": "Users"
     },
     {
-      "name": "PaymentMethods"
-    },
-    {
-      "name": "Transactions"
-    },
-    {
-      "name": "Usage"
-    },
-    {
-      "name": "Wallets"
-    },
-    {
       "name": "Calls"
     },
     {
@@ -19938,6 +20157,18 @@
     },
     {
       "name": "Businesses"
+    },
+    {
+      "name": "PaymentMethods"
+    },
+    {
+      "name": "Transactions"
+    },
+    {
+      "name": "Usage"
+    },
+    {
+      "name": "Wallets"
     }
   ]
 }
