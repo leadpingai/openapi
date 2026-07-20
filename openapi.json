@@ -2715,6 +2715,169 @@
         }
       }
     },
+    "/lead-statuses": {
+      "get": {
+        "tags": [
+          "LeadStatuses"
+        ],
+        "summary": "Get all",
+        "operationId": "LeadStatuses_GetAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeadStatusResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "LeadStatuses"
+        ],
+        "summary": "Create",
+        "operationId": "LeadStatuses_Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadStatusRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadStatusRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadStatusResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadStatusResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lead-statuses/{id}": {
+      "put": {
+        "tags": [
+          "LeadStatuses"
+        ],
+        "summary": "Update",
+        "operationId": "LeadStatuses_Update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadStatusRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadStatusRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadStatusResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadStatusResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "LeadStatuses"
+        ],
+        "summary": "Archive",
+        "operationId": "LeadStatuses_Archive",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/notifications/me": {
       "post": {
         "tags": [
@@ -7421,6 +7584,75 @@
           }
         }
       },
+      "post": {
+        "tags": [
+          "Businesses"
+        ],
+        "summary": "Creates a business owned by the current user and selects it as their active business.",
+        "operationId": "Businesses_CreateForCurrentUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BusinessRequest"
+                  }
+                ],
+                "description": "Request schema for the Leadping API business profile request, including the fields clients can send."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BusinessRequest"
+                  }
+                ],
+                "description": "Request schema for the Leadping API business profile request, including the fields clients can send."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BusinessResponse"
+                    }
+                  ],
+                  "description": "Response schema for the Leadping API business profile response returned to authenticated clients."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "tags": [
           "Businesses"
@@ -8396,6 +8628,35 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-methods/invoices": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Lists actual Stripe invoices for the current business.",
+        "operationId": "PaymentMethods_GetInvoices",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/StripeInvoiceResponse"
+                      }
+                    ],
+                    "description": "Customer-safe Stripe invoice summary for billing history."
+                  }
                 }
               }
             }
@@ -10712,6 +10973,27 @@
             "format": "int64",
             "nullable": true
           },
+          "pendingBillingPlan": {
+            "enum": [
+              "Annual",
+              "Monthly"
+            ],
+            "type": "string",
+            "description": "Defines the supported Billing Plan values.",
+            "nullable": true
+          },
+          "billingPlanChangeEffectiveAt": {
+            "type": "string",
+            "description": "Date and time when the scheduled billing plan change takes effect.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "planRenewalAt": {
+            "type": "string",
+            "description": "Current plan renewal date.",
+            "format": "date-time",
+            "nullable": true
+          },
           "cancelAt": {
             "type": "string",
             "description": "Gets or sets when the active subscription is scheduled to cancel.",
@@ -11170,6 +11452,11 @@
             "description": "Postal address used for invoices, receipts, and payment processor billing records.",
             "nullable": true
           },
+          "billingTaxId": {
+            "type": "string",
+            "description": "Tax identifier printed on billing documents. This may differ from the business verification EIN.",
+            "nullable": true
+          },
           "website": {
             "type": "string",
             "description": "Business website URL used for compliance, brand review, and lead attribution.",
@@ -11374,6 +11661,11 @@
               }
             ],
             "description": "Postal address used for invoices, receipts, and payment processor billing records.",
+            "nullable": true
+          },
+          "billingTaxId": {
+            "type": "string",
+            "description": "Tax identifier printed on billing documents. This may differ from the business verification EIN.",
             "nullable": true
           },
           "vertical": {
@@ -15098,6 +15390,73 @@
         },
         "description": "Response schema for the Leadping API lead response returned to authenticated clients."
       },
+      "LeadStatusRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "enum": [
+              "Open",
+              "Qualified",
+              "Converted",
+              "Lost",
+              "Invalid",
+              "Duplicate"
+            ],
+            "type": "string",
+            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
+            "nullable": true
+          },
+          "sortOrder": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32",
+            "nullable": true
+          }
+        }
+      },
+      "LeadStatusResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "businessId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "category": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DispositionCategory"
+              }
+            ],
+            "description": "Controlled disposition categories used for reporting, automation, and analytics."
+          },
+          "sortOrder": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "isArchived": {
+            "type": "boolean"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "LeadTableRow": {
         "type": "object",
         "properties": {
@@ -18159,7 +18518,8 @@
           "modifiedAt": {
             "type": "string",
             "description": "UTC timestamp when this lead source table row was last modified.",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "firstLeadReceivedAt": {
             "type": "string",
@@ -18322,6 +18682,34 @@
           }
         },
         "description": "A minimal, serializable record type for physical mailing addresses, with support for international formats and compatibility with common APIs."
+      },
+      "StripeInvoiceResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "amount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "status": {
+            "type": "string"
+          },
+          "hostedInvoiceUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "description": "Customer-safe Stripe invoice summary for billing history."
       },
       "StripePaymentMethodResponse": {
         "required": [
@@ -19563,6 +19951,27 @@
       "UserNotificationPreferences": {
         "type": "object",
         "properties": {
+          "smsConsentOptedIn": {
+            "type": "boolean",
+            "description": "Whether the user has consented to receive Leadping account notification SMS messages.",
+            "nullable": true
+          },
+          "smsConsentUpdatedAt": {
+            "type": "string",
+            "description": "When the user's Leadping notification SMS consent was last changed.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "smsConsentTrustedFormCertificate": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TrustedFormCertificate"
+              }
+            ],
+            "description": "The TrustedForm certificate captured for the user's most recent SMS opt-in.",
+            "nullable": true
+          },
           "paymentFailedEnabled": {
             "type": "boolean",
             "description": "Whether payment failed notifications are enabled for this user notification preferences."
@@ -20143,6 +20552,9 @@
     },
     {
       "name": "Leads"
+    },
+    {
+      "name": "LeadStatuses"
     },
     {
       "name": "Notifications"
