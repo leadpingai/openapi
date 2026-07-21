@@ -2721,6 +2721,7 @@
           "LeadStatuses"
         ],
         "summary": "Get all",
+        "description": "Lists the current business's active lead statuses for organizing and tracking leads through the sales workflow.",
         "operationId": "LeadStatuses_GetAll",
         "responses": {
           "200": {
@@ -2743,6 +2744,7 @@
           "LeadStatuses"
         ],
         "summary": "Create",
+        "description": "Creates a reusable lead status for the current business to categorize leads in its sales workflow.",
         "operationId": "LeadStatuses_Create",
         "requestBody": {
           "content": {
@@ -2789,6 +2791,7 @@
           "LeadStatuses"
         ],
         "summary": "Update",
+        "description": "Updates the name, color, and display order of a lead status owned by the current business.",
         "operationId": "LeadStatuses_Update",
         "parameters": [
           {
@@ -2843,6 +2846,7 @@
           "LeadStatuses"
         ],
         "summary": "Archive",
+        "description": "Archives a lead status for the current business so it is unavailable for new assignments while existing lead history is preserved.",
         "operationId": "LeadStatuses_Archive",
         "parameters": [
           {
@@ -2878,6 +2882,63 @@
         }
       }
     },
+    "/notifications/{id}": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Gets one notification for the current user and business.",
+        "operationId": "Notifications_GetForCurrentUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The notification ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/NotificationResponse"
+                    }
+                  ],
+                  "description": "API DTO containing notification data used by Leadping API contracts."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/notifications/me": {
       "post": {
         "tags": [
@@ -2886,6 +2947,26 @@
         "summary": "List notifications for current user",
         "description": "Lists current-user notifications with paging, sorting, and filters for operational alerts, announcements, and follow-up updates.",
         "operationId": "Notifications_GetAllForCurrentUser",
+        "parameters": [
+          {
+            "name": "startAt",
+            "in": "query",
+            "description": "Inclusive beginning of the created date range.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "description": "Exclusive end of the created date range.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
         "requestBody": {
           "description": "Request data options for pagination, filtering, and sorting.",
           "content": {
@@ -7589,6 +7670,7 @@
           "Businesses"
         ],
         "summary": "Creates a business owned by the current user and selects it as their active business.",
+        "description": "Creates a business account for the authenticated user, assigns them as its owner, and makes it their active business context.",
         "operationId": "Businesses_CreateForCurrentUser",
         "requestBody": {
           "content": {
@@ -8412,6 +8494,67 @@
         }
       }
     },
+    "/businesses/me/10dlc/notes": {
+      "put": {
+        "tags": [
+          "Businesses"
+        ],
+        "summary": "Updates the shared 10DLC notes for the current business.",
+        "operationId": "Businesses_UpdateCurrentBusinessTenDlcNotes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenDlcNotesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenDlcNotesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BusinessResponse"
+                    }
+                  ],
+                  "description": "Response schema for the Leadping API business profile response returned to authenticated clients."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/businesses/api-keys/my": {
       "post": {
         "tags": [
@@ -8602,6 +8745,7 @@
           "PaymentMethods"
         ],
         "summary": "List payment methods",
+        "description": "Lists the payment methods available to the current business for billing, invoice payments, and wallet funding.",
         "operationId": "PaymentMethods_GetAll",
         "responses": {
           "200": {
@@ -8641,6 +8785,7 @@
           "PaymentMethods"
         ],
         "summary": "Lists actual Stripe invoices for the current business.",
+        "description": "Returns the current business's Stripe invoices with their amounts, payment status, billing period, and hosted invoice details.",
         "operationId": "PaymentMethods_GetInvoices",
         "responses": {
           "200": {
@@ -8655,8 +8800,61 @@
                         "$ref": "#/components/schemas/StripeInvoiceResponse"
                       }
                     ],
-                    "description": "Customer-safe Stripe invoice summary for billing history."
+                    "description": "Customer-safe Leadping invoice summary for billing."
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-methods/invoices/{invoiceId}/pdf-access": {
+      "get": {
+        "tags": [
+          "PaymentMethods"
+        ],
+        "summary": "Creates a short-lived URL for viewing or downloading a private invoice PDF.",
+        "operationId": "PaymentMethods_GetInvoicePdfAccess",
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "download",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/InvoicePdfAccessResponse"
+                    }
+                  ],
+                  "description": "Short-lived access details for a private Leadping invoice PDF."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -8799,6 +8997,7 @@
           "PaymentMethods"
         ],
         "summary": "Set default payment method",
+        "description": "Sets a payment method as the default for the current business's future invoices and billing activity.",
         "operationId": "PaymentMethods_MakeDefault",
         "parameters": [
           {
@@ -14662,6 +14861,19 @@
         },
         "description": "Request schema for the Leadping API phone call initiation request, including the fields clients can send."
       },
+      "InvoicePdfAccessResponse": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "description": "Short-lived access details for a private Leadping invoice PDF."
+      },
       "LeadArchiveReason": {
         "enum": [
           0,
@@ -15655,6 +15867,90 @@
         "type": "string",
         "description": "Defines the supported Notification Priority values."
       },
+      "NotificationResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationType"
+              }
+            ],
+            "description": "The type classification for this notification."
+          },
+          "priority": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationPriority"
+              }
+            ],
+            "description": "The priority value for this notification."
+          },
+          "userId": {
+            "type": "string",
+            "description": "The user ID associated with this notification."
+          },
+          "message": {
+            "type": "string",
+            "description": "The message value for this notification."
+          },
+          "details": {
+            "type": "string",
+            "description": "The details value for this notification.",
+            "nullable": true
+          },
+          "readAt": {
+            "type": "string",
+            "description": "The date and time for the read at value on this notification.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isRead": {
+            "type": "boolean",
+            "description": "Whether this notification is read."
+          },
+          "actionUrl": {
+            "type": "string",
+            "description": "The URL associated with this notification.",
+            "nullable": true
+          },
+          "actionButtonText": {
+            "type": "string",
+            "description": "The action button text value for this notification.",
+            "nullable": true
+          },
+          "relatedEntityId": {
+            "type": "string",
+            "description": "The related entity ID associated with this notification.",
+            "nullable": true
+          },
+          "relatedEntityType": {
+            "type": "string",
+            "description": "The related entity type classification for this notification.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name for the entity."
+          },
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the entity."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The date and time when the entity was created.",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "description": "The date and time when the entity was last modified, if applicable.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "API DTO containing notification data used by Leadping API contracts."
+      },
       "NotificationTableRow": {
         "type": "object",
         "properties": {
@@ -15909,6 +16205,10 @@
       "OutboundPhoneNumberCapacity": {
         "type": "object",
         "properties": {
+          "capacityAvailable": {
+            "type": "boolean",
+            "description": "Indicates whether Leadping successfully calculated capacity for this phone number."
+          },
           "phoneNumberId": {
             "type": "string",
             "description": "Unique identifier of the phone number associated with this Leadping outbound phone number capacity.",
@@ -18286,6 +18586,11 @@
             "type": "boolean",
             "description": "Indicates whether this lead source request is active and available in the Leadping API."
           },
+          "apiKey": {
+            "type": "string",
+            "description": "Source API key used to authenticate inbound lead delivery to Leadping.",
+            "nullable": true
+          },
           "regenerateApiKey": {
             "type": "boolean",
             "description": "Indicates whether Leadping should issue a new API key for this source."
@@ -18353,6 +18658,11 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this lead source response is active and available in the Leadping API."
+          },
+          "apiKey": {
+            "type": "string",
+            "description": "Source API key used to authenticate inbound lead delivery to Leadping. Unlike a business API key, this value remains available to authorized source users.",
+            "nullable": true
           },
           "apiKeyPreview": {
             "type": "string",
@@ -18494,6 +18804,10 @@
           "description": {
             "type": "string",
             "description": "Human-readable description that explains this lead source table row to API users."
+          },
+          "apiKey": {
+            "type": "string",
+            "description": "Source API key used to authenticate inbound lead delivery to Leadping. Unlike a business API key, this value remains available to authorized source users."
           },
           "apiKeyPreview": {
             "type": "string",
@@ -18704,12 +19018,11 @@
           "status": {
             "type": "string"
           },
-          "hostedInvoiceUrl": {
-            "type": "string",
-            "nullable": true
+          "hasPdf": {
+            "type": "boolean"
           }
         },
-        "description": "Customer-safe Stripe invoice summary for billing history."
+        "description": "Customer-safe Leadping invoice summary for billing."
       },
       "StripePaymentMethodResponse": {
         "required": [
@@ -19257,6 +19570,16 @@
         ],
         "type": "string",
         "description": "Defines the supported 10DLC Application Status values."
+      },
+      "TenDlcNotesRequest": {
+        "type": "object",
+        "properties": {
+          "notes": {
+            "maxLength": 4000,
+            "type": "string",
+            "nullable": true
+          }
+        }
       },
       "TransactionResponse": {
         "type": "object",
