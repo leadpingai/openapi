@@ -5507,7 +5507,7 @@
           "PhoneNumbers"
         ],
         "summary": "Update business phone number settings",
-        "description": "Updates phone number settings such as display name, assignment, messaging options, or warmup configuration.",
+        "description": "Updates phone number settings such as its optional label, assignment, messaging options, or warmup configuration.",
         "operationId": "PhoneNumbers_Update",
         "parameters": [
           {
@@ -5798,7 +5798,7 @@
           "PhoneNumbers"
         ],
         "summary": "Get business phone number provider status",
-        "description": "Returns provider and Leadping status for a phone number, including messaging readiness, assignments, and verification state.",
+        "description": "Returns provider and Leadping status for a phone number, including messaging warmup, assignments, and verification state.",
         "operationId": "PhoneNumbers_GetStatus",
         "parameters": [
           {
@@ -5849,7 +5849,7 @@
                       "$ref": "#/components/schemas/PhoneNumberStatusResponse"
                     }
                   ],
-                  "description": "Response schema for the Leadping API phone number readiness status returned to authenticated clients."
+                  "description": "Response schema for the Leadping API phone number warmup status returned to authenticated clients."
                 }
               }
             }
@@ -5893,7 +5893,7 @@
           "PhoneNumbers"
         ],
         "summary": "Get business phone number warmup status",
-        "description": "Returns warmup status for a phone number, including readiness, limits, and recent events used for delivery pacing.",
+        "description": "Returns warmup status for a phone number, including limits and recent events used for delivery pacing.",
         "operationId": "PhoneNumbers_GetWarmupStatus",
         "parameters": [
           {
@@ -5944,7 +5944,7 @@
                       "$ref": "#/components/schemas/PhoneNumberStatusResponse"
                     }
                   ],
-                  "description": "Response schema for the Leadping API phone number readiness status returned to authenticated clients."
+                  "description": "Response schema for the Leadping API phone number warmup status returned to authenticated clients."
                 }
               }
             }
@@ -12072,6 +12072,24 @@
             "description": "Defines the supported Customer Activation Status values.",
             "nullable": true
           },
+          "tenDlcStatus": {
+            "enum": [
+              "NotStarted",
+              "DraftGenerated",
+              "DraftNeedsAdminReview",
+              "ReadyToSubmit",
+              "Submitted",
+              "PendingTelnyxReview",
+              "Approved",
+              "Rejected",
+              "NeedsChanges",
+              "ResubmissionReady",
+              "Failed"
+            ],
+            "type": "string",
+            "description": "Defines the supported 10DLC Application Status values.",
+            "nullable": true
+          },
           "needsAdminReview": {
             "type": "boolean",
             "description": "Whether needs admin review applies to this business switch option."
@@ -12728,6 +12746,11 @@
           "lastName": {
             "type": "string",
             "description": "Last name of the lead, user, or contact represented by this conversation response."
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address used to resolve the lead's avatar when available.",
+            "nullable": true
           },
           "lastSnippet": {
             "type": "string",
@@ -14014,16 +14037,14 @@
           },
           "healthStatus": {
             "enum": [
-              "Not Started",
-              "Warming",
+              "Not Evaluated",
+              "Evaluating",
               "Healthy",
               "Needs Attention",
-              "Paused",
-              "Blocked",
-              "Ready"
+              "Blocked"
             ],
             "type": "string",
-            "description": "Defines the supported SMS Warmup Health State values.",
+            "description": "Defines the supported SMS readiness health assessments.",
             "nullable": true
           },
           "healthLabel": {
@@ -16242,6 +16263,12 @@
             "description": "Number of SMS limit today represented by this Leadping outbound phone number capacity.",
             "format": "int32"
           },
+          "smsDailyResetsAt": {
+            "type": "string",
+            "description": "Next midnight Eastern time, when SMS daily capacity resets.",
+            "format": "date-time",
+            "nullable": true
+          },
           "smsRemainingThisHour": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "SMS remaining this hour for the applicable messaging or voice capacity window.",
@@ -16256,6 +16283,12 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Number of SMS limit this hour represented by this Leadping outbound phone number capacity.",
             "format": "int32"
+          },
+          "smsHourlyResetsAt": {
+            "type": "string",
+            "description": "Start of the next Eastern time hour, when SMS hourly capacity resets.",
+            "format": "date-time",
+            "nullable": true
           },
           "voiceRemainingToday": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -16272,6 +16305,12 @@
             "description": "Voice limit today associated with this Leadping outbound phone number capacity.",
             "format": "int32"
           },
+          "voiceDailyResetsAt": {
+            "type": "string",
+            "description": "Next midnight Eastern time, when voice daily capacity resets.",
+            "format": "date-time",
+            "nullable": true
+          },
           "voiceRemainingThisHour": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Voice remaining this hour for the applicable messaging or voice capacity window.",
@@ -16286,6 +16325,12 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Voice limit this hour associated with this Leadping outbound phone number capacity.",
             "format": "int32"
+          },
+          "voiceHourlyResetsAt": {
+            "type": "string",
+            "description": "Start of the next Eastern time hour, when voice hourly capacity resets.",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "description": "Represents outbound phone number capacity data used by Leadping."
@@ -16485,16 +16530,14 @@
           },
           "healthStatus": {
             "enum": [
-              "Not Started",
-              "Warming",
+              "Not Evaluated",
+              "Evaluating",
               "Healthy",
               "Needs Attention",
-              "Paused",
-              "Blocked",
-              "Ready"
+              "Blocked"
             ],
             "type": "string",
-            "description": "Defines the supported SMS Warmup Health State values.",
+            "description": "Defines the supported SMS readiness health assessments.",
             "nullable": true
           },
           "healthLabel": {
@@ -17327,6 +17370,50 @@
         "type": "string",
         "description": "Defines phone-number outbound health states used by pacing."
       },
+      "PhoneNumberReadiness": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Indicates whether phone number warmup is enabled in Leadping."
+          },
+          "state": {
+            "enum": [
+              "Not Started",
+              "In Progress",
+              "Paused",
+              "Blocked",
+              "Ready"
+            ],
+            "type": "string",
+            "description": "Defines the supported SMS readiness states.",
+            "nullable": true
+          },
+          "healthStatus": {
+            "enum": [
+              "Not Evaluated",
+              "Evaluating",
+              "Healthy",
+              "Needs Attention",
+              "Blocked"
+            ],
+            "type": "string",
+            "description": "Defines the supported SMS readiness health assessments.",
+            "nullable": true
+          },
+          "healthScore": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Current warmup health score used to assess phone number warmup.",
+            "format": "int32"
+          },
+          "progressPercent": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Warmup completion percentage, from 0 through 100.",
+            "format": "int32"
+          }
+        },
+        "description": "Messaging and calling warmup for a Leadping phone number."
+      },
       "PhoneNumberRequest": {
         "required": [
           "name"
@@ -17401,10 +17488,10 @@
           "warmup": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/PhoneNumberWarmup"
+                "$ref": "#/components/schemas/PhoneNumberReadiness"
               }
             ],
-            "description": "SMS and voice warmup state for this phone number."
+            "description": "SMS and call warmup for this phone number."
           },
           "name": {
             "type": "string",
@@ -17521,7 +17608,7 @@
         "properties": {
           "number": {
             "type": "string",
-            "description": "E.164 phone number exposed by this phone number readiness status."
+            "description": "E.164 phone number exposed by this phone number warmup status."
           },
           "messagesPossible": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -17537,10 +17624,10 @@
             "type": "object",
             "allOf": [
               {
-                "$ref": "#/components/schemas/SmsWarmupStatusResponse"
+                "$ref": "#/components/schemas/SmsReadinessStatusResponse"
               }
             ],
-            "description": "SMS sender warmup status for this phone number.",
+            "description": "SMS warmup status for this phone number.",
             "nullable": true
           },
           "outboundCapacity": {
@@ -17582,7 +17669,7 @@
             "description": "Recent workflow events returned for timeline and troubleshooting."
           }
         },
-        "description": "Response schema for the Leadping API phone number readiness status returned to authenticated clients."
+        "description": "Response schema for the Leadping API phone number warmup status returned to authenticated clients."
       },
       "PhoneNumberTableRow": {
         "type": "object",
@@ -17593,7 +17680,7 @@
           },
           "name": {
             "type": "string",
-            "description": "Display name for this phone number table row in the Leadping API."
+            "description": "Optional display label for this phone number table row in the Leadping API."
           },
           "number": {
             "type": "string",
@@ -17619,7 +17706,7 @@
           "warmup": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/PhoneNumberWarmup"
+                "$ref": "#/components/schemas/PhoneNumberReadiness"
               }
             ],
             "description": "Warmup state for this phone number."
@@ -17681,6 +17768,21 @@
             "description": "Number of outbound calls that failed during this metrics window.",
             "format": "int32"
           },
+          "callConnectedCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of outbound calls that connected during this metrics window.",
+            "format": "int32"
+          },
+          "callShortCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of connected outbound calls shorter than 30 seconds during this metrics window.",
+            "format": "int32"
+          },
+          "callInvalidNumberCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Number of outbound calls that failed because the destination number was invalid during this metrics window.",
+            "format": "int32"
+          },
           "trend": {
             "type": "array",
             "items": {
@@ -17735,54 +17837,6 @@
           }
         },
         "description": "Time-series data point schema for Leadping API phone number traffic trend bucket charts and metrics."
-      },
-      "PhoneNumberWarmup": {
-        "type": "object",
-        "properties": {
-          "enabled": {
-            "type": "boolean",
-            "description": "Indicates whether the phone number warmup is enabled in Leadping."
-          },
-          "state": {
-            "enum": [
-              "Not Started",
-              "Warming",
-              "Healthy",
-              "Needs Attention",
-              "Paused",
-              "Blocked",
-              "Ready"
-            ],
-            "type": "string",
-            "description": "Defines the supported SMS Warmup Health State values.",
-            "nullable": true
-          },
-          "healthStatus": {
-            "enum": [
-              "Not Started",
-              "Warming",
-              "Healthy",
-              "Needs Attention",
-              "Paused",
-              "Blocked",
-              "Ready"
-            ],
-            "type": "string",
-            "description": "Defines the supported SMS Warmup Health State values.",
-            "nullable": true
-          },
-          "healthScore": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Current warmup health score used to assess phone number readiness.",
-            "format": "int32"
-          },
-          "progressPercent": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "Warmup completion percentage, from 0 through 100.",
-            "format": "int32"
-          }
-        },
-        "description": "Warmup state for a Leadping phone number."
       },
       "ProblemDetails": {
         "type": "object",
@@ -18217,6 +18271,102 @@
         "type": "string",
         "description": "Defines the supported SMS Message Status values."
       },
+      "SmsReadinessHealthStatus": {
+        "enum": [
+          "Not Evaluated",
+          "Evaluating",
+          "Healthy",
+          "Needs Attention",
+          "Blocked"
+        ],
+        "type": "string",
+        "description": "Defines the supported SMS readiness health assessments."
+      },
+      "SmsReadinessState": {
+        "enum": [
+          "Not Started",
+          "In Progress",
+          "Paused",
+          "Blocked",
+          "Ready"
+        ],
+        "type": "string",
+        "description": "Defines the supported SMS readiness states."
+      },
+      "SmsReadinessStatusResponse": {
+        "type": "object",
+        "properties": {
+          "phoneNumberId": {
+            "type": "string",
+            "description": "The phone number ID associated with this SMS warmup status."
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "The phone number associated with this SMS warmup status."
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SmsReadinessState"
+              }
+            ],
+            "description": "The current state for this SMS warmup status."
+          },
+          "healthStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SmsReadinessHealthStatus"
+              }
+            ],
+            "description": "The current delivery-health assessment for this SMS warmup status."
+          },
+          "healthScore": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "The health score metric for this SMS warmup status.",
+            "format": "int32"
+          },
+          "progressPercent": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "The progress percent metric for this SMS warmup status.",
+            "format": "int32"
+          },
+          "warmupEnabled": {
+            "type": "boolean",
+            "description": "Whether warmup is enabled for this SMS warmup status."
+          },
+          "uiState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SmsReadinessUiState"
+              }
+            ],
+            "description": "The current UI state for this SMS warmup status."
+          }
+        },
+        "description": "API response containing SMS warmup status data returned to callers."
+      },
+      "SmsReadinessUiState": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SmsReadinessState"
+              }
+            ],
+            "description": "The human-readable label shown for this SMS readiness UI state."
+          },
+          "tone": {
+            "type": "string",
+            "description": "The tone value for this SMS readiness UI state."
+          },
+          "description": {
+            "type": "string",
+            "description": "The human-readable description of this SMS readiness UI state."
+          }
+        },
+        "description": "API DTO containing SMS readiness UI state data used by Leadping API contracts."
+      },
       "SmsResponse": {
         "type": "object",
         "properties": {
@@ -18447,85 +18597,6 @@
         ],
         "type": "string",
         "description": "Defines the supported SMS Traffic Type values."
-      },
-      "SmsWarmupHealthState": {
-        "enum": [
-          "Not Started",
-          "Warming",
-          "Healthy",
-          "Needs Attention",
-          "Paused",
-          "Blocked",
-          "Ready"
-        ],
-        "type": "string",
-        "description": "Defines the supported SMS Warmup Health State values."
-      },
-      "SmsWarmupStatusResponse": {
-        "type": "object",
-        "properties": {
-          "phoneNumberId": {
-            "type": "string",
-            "description": "The phone number ID associated with this SMS warmup status."
-          },
-          "phoneNumber": {
-            "type": "string",
-            "description": "The phone number associated with this SMS warmup status."
-          },
-          "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SmsWarmupHealthState"
-              }
-            ],
-            "description": "The current status for this SMS warmup status."
-          },
-          "healthScore": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The health score metric for this SMS warmup status.",
-            "format": "int32"
-          },
-          "progressPercent": {
-            "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "description": "The progress percent metric for this SMS warmup status.",
-            "format": "int32"
-          },
-          "warmupEnabled": {
-            "type": "boolean",
-            "description": "Whether warmup is enabled for this SMS warmup status."
-          },
-          "uiState": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SmsWarmupUiState"
-              }
-            ],
-            "description": "The current UI state for this SMS warmup status."
-          }
-        },
-        "description": "API response containing SMS warmup status data returned to callers."
-      },
-      "SmsWarmupUiState": {
-        "type": "object",
-        "properties": {
-          "label": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SmsWarmupHealthState"
-              }
-            ],
-            "description": "The human-readable label shown for this SMS warmup UI state."
-          },
-          "tone": {
-            "type": "string",
-            "description": "The tone value for this SMS warmup UI state."
-          },
-          "description": {
-            "type": "string",
-            "description": "The human-readable description of this SMS warmup UI state."
-          }
-        },
-        "description": "API DTO containing SMS warmup ui state data used by Leadping API contracts."
       },
       "SortDirection": {
         "enum": [
