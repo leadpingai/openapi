@@ -2744,7 +2744,7 @@
           "LeadStatuses"
         ],
         "summary": "Create",
-        "description": "Creates a reusable lead status for the current business to categorize leads in its sales workflow.",
+        "description": "Creates a reusable lead status for the current business to categorize, organize, and track leads consistently throughout its sales and follow-up workflow.",
         "operationId": "LeadStatuses_Create",
         "requestBody": {
           "content": {
@@ -2791,7 +2791,7 @@
           "LeadStatuses"
         ],
         "summary": "Update",
-        "description": "Updates the name, color, and display order of a lead status owned by the current business.",
+        "description": "Updates the name, color, and display order of a lead status owned by the current business so pipeline stages remain clear and consistently organized.",
         "operationId": "LeadStatuses_Update",
         "parameters": [
           {
@@ -2887,7 +2887,8 @@
         "tags": [
           "Notifications"
         ],
-        "summary": "Gets one notification for the current user and business.",
+        "summary": "Get a notification",
+        "description": "Returns one notification for the current user and business, including its content, read state, delivery context, and relevant account activity.",
         "operationId": "Notifications_GetForCurrentUser",
         "parameters": [
           {
@@ -7669,7 +7670,7 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Creates a business owned by the current user and selects it as their active business.",
+        "summary": "Create a business account",
         "description": "Creates a business account for the authenticated user, assigns them as its owner, and makes it their active business context.",
         "operationId": "Businesses_CreateForCurrentUser",
         "requestBody": {
@@ -8499,7 +8500,8 @@
         "tags": [
           "Businesses"
         ],
-        "summary": "Updates the shared 10DLC notes for the current business.",
+        "summary": "Update business 10DLC notes",
+        "description": "Updates the shared 10DLC registration notes for the current business, keeping carrier review context and messaging compliance details current.",
         "operationId": "Businesses_UpdateCurrentBusinessTenDlcNotes",
         "requestBody": {
           "content": {
@@ -8814,7 +8816,8 @@
         "tags": [
           "PaymentMethods"
         ],
-        "summary": "Creates a short-lived URL for viewing or downloading a private invoice PDF.",
+        "summary": "Get invoice PDF access",
+        "description": "Creates a short-lived, secure URL that lets the current business view or download a private Stripe invoice PDF without exposing a permanent file link.",
         "operationId": "PaymentMethods_GetInvoicePdfAccess",
         "parameters": [
           {
