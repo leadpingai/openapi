@@ -9597,6 +9597,7 @@
       },
       "AnalyticsBucketSize": {
         "enum": [
+          3,
           0,
           1,
           2
@@ -10980,6 +10981,11 @@
               }
             ],
             "description": "The current 10DLC status for this business activation state."
+          },
+          "tenDlcApplicationId": {
+            "type": "string",
+            "description": "Identifier of the first-class 10DLC application entity for this business.",
+            "nullable": true
           },
           "customerFacingStatus": {
             "type": "string",
@@ -12654,6 +12660,24 @@
           }
         },
         "description": "List item schema for Leadping API call event table row results shown in searchable tables."
+      },
+      "CarrierType": {
+        "enum": [
+          "FixedLine",
+          "Mobile",
+          "Voip",
+          "FixedLineOrMobile",
+          "TollFree",
+          "PremiumRate",
+          "SharedCost",
+          "PersonalNumber",
+          "Pager",
+          "Uan",
+          "Voicemail",
+          "Unknown"
+        ],
+        "type": "string",
+        "description": "An enumerator describing carrier types"
       },
       "ChangeBillingPlanRequest": {
         "type": "object",
@@ -14599,6 +14623,11 @@
             "type": "string",
             "description": "Display name for the person or system that created this event timeline table row.",
             "nullable": true
+          },
+          "actorEmail": {
+            "type": "string",
+            "description": "Email address for the person who created this event timeline table row.",
+            "nullable": true
           }
         },
         "description": "List item schema for Leadping API event timeline table row results shown in searchable tables."
@@ -15533,6 +15562,16 @@
             ],
             "description": "Contact details for the lead or customer represented by this lead response."
           },
+          "phoneIdentity": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneIdentityResponse"
+              }
+            ],
+            "description": "Canonical phone identity and provider lookup details for this lead.",
+            "nullable": true
+          },
           "customer": {
             "allOf": [
               {
@@ -15842,6 +15881,18 @@
           }
         },
         "description": "Request schema for the Leadping API lead tag update request, including the fields clients can send."
+      },
+      "LineType": {
+        "enum": [
+          "Wireline",
+          "Wireless",
+          "VoWiFi",
+          "VoIP",
+          "PrePaidWireless",
+          "Unknown"
+        ],
+        "type": "string",
+        "description": "An enumerator describing phone line types"
       },
       "MaritalStatusType": {
         "enum": [
@@ -17201,6 +17252,179 @@
         "type": "string",
         "description": "Defines the supported Phone Call Status values."
       },
+      "PhoneIdentityResponse": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "The canonical E.164 phone number."
+          },
+          "lookup": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneLookup"
+              }
+            ],
+            "description": "Provider lookup and enrichment data for the number.",
+            "nullable": true
+          },
+          "lastEnrichedAt": {
+            "type": "string",
+            "description": "The most recent time lookup data was enriched.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name for the entity."
+          },
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the entity."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The date and time when the entity was created.",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "description": "The date and time when the entity was last modified, if applicable.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "Response schema for a canonical phone identity returned by the Leadping API."
+      },
+      "PhoneLocationSource": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "description": "The resolution method, such as telnyx-city-state, coordinates, phone-number, or state-default."
+          },
+          "query": {
+            "type": "string",
+            "description": "The city, state, coordinates, phone number, or representative ZIP used by the method.",
+            "nullable": true
+          }
+        },
+        "description": "Describes how a phone location value was resolved."
+      },
+      "PhoneLookup": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "E.164 phone number exposed by this phone lookup result.",
+            "nullable": true
+          },
+          "isValid": {
+            "type": "boolean",
+            "description": "Indicates whether this phone lookup result passed validation."
+          },
+          "lineType": {
+            "enum": [
+              "Wireline",
+              "Wireless",
+              "VoWiFi",
+              "VoIP",
+              "PrePaidWireless",
+              "Unknown"
+            ],
+            "type": "string",
+            "description": "An enumerator describing phone line types",
+            "nullable": true
+          },
+          "carrier": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneLookupCarrier"
+              }
+            ],
+            "description": "Complete carrier metadata reported for this phone number.",
+            "nullable": true
+          },
+          "location": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneNumberLocation"
+              }
+            ],
+            "description": "Geographic location metadata for the phone number, lead, or lookup result.",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "Gets or sets id."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Gets or sets created at.",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "description": "Gets or sets modified at.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "Public Leadping API schema for phone lookup result data."
+      },
+      "PhoneLookupCarrier": {
+        "type": "object",
+        "properties": {
+          "mobileCountryCode": {
+            "type": "string",
+            "description": "Mobile country code (MCC) reported by the carrier lookup.",
+            "nullable": true
+          },
+          "mobileNetworkCode": {
+            "type": "string",
+            "description": "Mobile network code (MNC) reported by the carrier lookup.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the phone lookup carrier.",
+            "nullable": true
+          },
+          "normalizedCarrier": {
+            "type": "string",
+            "description": "Normalized carrier name used for consistent matching and reporting.",
+            "nullable": true
+          },
+          "type": {
+            "enum": [
+              "FixedLine",
+              "Mobile",
+              "Voip",
+              "FixedLineOrMobile",
+              "TollFree",
+              "PremiumRate",
+              "SharedCost",
+              "PersonalNumber",
+              "Pager",
+              "Uan",
+              "Voicemail",
+              "Unknown"
+            ],
+            "type": "string",
+            "description": "An enumerator describing carrier types",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "Reason or diagnostic code that explains the current outcome for this Leadping phone lookup carrier.",
+            "nullable": true
+          }
+        },
+        "description": "Complete carrier metadata returned by a phone number lookup provider."
+      },
       "PhoneNumberAvailabilityRequest": {
         "type": "object",
         "properties": {
@@ -17259,6 +17483,16 @@
             "description": "State, province, or region for the lead or business postal address.",
             "nullable": true
           },
+          "canonicalCity": {
+            "type": "string",
+            "description": "Canonical city resolved by Leadping from its ZIP-code geography data.",
+            "nullable": true
+          },
+          "canonicalState": {
+            "type": "string",
+            "description": "Canonical state or territory abbreviation resolved by Leadping.",
+            "nullable": true
+          },
           "countryCode": {
             "type": "string",
             "description": "Country code for the phone number or location represented by this phone number location.",
@@ -17274,9 +17508,29 @@
             "description": "Latitude and longitude coordinate for this phone number location.",
             "nullable": true
           },
+          "coordinateSource": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneLocationSource"
+              }
+            ],
+            "description": "Describes how the coordinate was resolved.",
+            "nullable": true
+          },
           "timeZoneId": {
             "type": "string",
             "description": "IANA or Windows time zone identifier used for local scheduling and reporting.",
+            "nullable": true
+          },
+          "timeZoneSource": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneLocationSource"
+              }
+            ],
+            "description": "Describes how the time zone was resolved.",
             "nullable": true
           }
         },
@@ -17410,6 +17664,18 @@
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Warmup completion percentage, from 0 through 100.",
             "format": "int32"
+          },
+          "callStage": {
+            "enum": [
+              "Stage 0",
+              "Stage 1",
+              "Stage 2",
+              "Stage 3",
+              "Stage 4"
+            ],
+            "type": "string",
+            "description": "Defines the supported voice call warmup stages for a Leadping-managed phone number.",
+            "nullable": true
           }
         },
         "description": "Messaging and calling warmup for a Leadping phone number."
@@ -17539,6 +17805,11 @@
           "campaignId": {
             "type": "string",
             "description": "Messaging campaign identifier associated with this phone number routing metadata.",
+            "nullable": true
+          },
+          "tenDlcApplicationId": {
+            "type": "string",
+            "description": "Leadping 10DLC application entity associated with this phone number.",
             "nullable": true
           }
         },
@@ -17837,6 +18108,17 @@
           }
         },
         "description": "Time-series data point schema for Leadping API phone number traffic trend bucket charts and metrics."
+      },
+      "PhoneNumberWarmupStage": {
+        "enum": [
+          "Stage 0",
+          "Stage 1",
+          "Stage 2",
+          "Stage 3",
+          "Stage 4"
+        ],
+        "type": "string",
+        "description": "Defines the supported voice call warmup stages for a Leadping-managed phone number."
       },
       "ProblemDetails": {
         "type": "object",
