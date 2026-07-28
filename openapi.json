@@ -12768,11 +12768,13 @@
           },
           "firstName": {
             "type": "string",
-            "description": "First name of the lead, user, or contact represented by this conversation response."
+            "description": "First name of the lead, user, or contact represented by this conversation response.",
+            "nullable": true
           },
           "lastName": {
             "type": "string",
-            "description": "Last name of the lead, user, or contact represented by this conversation response."
+            "description": "Last name of the lead, user, or contact represented by this conversation response.",
+            "nullable": true
           },
           "email": {
             "type": "string",
@@ -15741,11 +15743,13 @@
           },
           "firstName": {
             "type": "string",
-            "description": "First name of the lead, user, or contact represented by this lead table row."
+            "description": "First name of the lead, user, or contact represented by this lead table row.",
+            "nullable": true
           },
           "lastName": {
             "type": "string",
-            "description": "Last name of the lead, user, or contact represented by this lead table row."
+            "description": "Last name of the lead, user, or contact represented by this lead table row.",
+            "nullable": true
           },
           "phone": {
             "type": "string",
