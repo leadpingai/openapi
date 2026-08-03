@@ -582,6 +582,81 @@
         }
       }
     },
+    "/contact/website": {
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Submit a contact request from a generated customer website.",
+        "description": "Delivers the inquiry to the generated website's provisioned support address, then redirects the visitor to the site's confirmation state.",
+        "operationId": "Contact_SubmitWebsite",
+        "requestBody": {
+          "description": "Honeypot field that must remain empty for legitimate submissions.",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "maxLength": 200,
+                    "type": "string"
+                  },
+                  "Email": {
+                    "maxLength": 320,
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "maxLength": 50,
+                    "type": "string"
+                  },
+                  "Message": {
+                    "maxLength": 10000,
+                    "type": "string"
+                  },
+                  "SmsConsent": {
+                    "type": "boolean"
+                  },
+                  "ReturnUrl": {
+                    "maxLength": 2048,
+                    "type": "string"
+                  },
+                  "CompanyWebsite": {
+                    "maxLength": 500,
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "303": {
+            "description": "See Other"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/conversations/my": {
       "post": {
         "tags": [
@@ -1151,6 +1226,67 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dispositions/all/my": {
+      "post": {
+        "tags": [
+          "Dispositions"
+        ],
+        "summary": "Get all for current business",
+        "operationId": "Dispositions_GetAllForCurrentBusiness",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PagedResultOfDispositionResponse"
+                    }
+                  ],
+                  "description": "A generic container for paginated results returned to the client."
                 }
               }
             }
@@ -2731,7 +2867,12 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/LeadStatusResponse"
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/LeadStatusResponse"
+                      }
+                    ],
+                    "description": "Represents a configurable status that can be assigned to leads."
                   }
                 }
               }
@@ -2750,12 +2891,22 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LeadStatusRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadStatusRequest"
+                  }
+                ],
+                "description": "Defines the editable values used to create or update a lead status."
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LeadStatusRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadStatusRequest"
+                  }
+                ],
+                "description": "Defines the editable values used to create or update a lead status."
               }
             }
           },
@@ -2767,17 +2918,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/LeadStatusResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusResponse"
+                    }
+                  ],
+                  "description": "Represents a configurable status that can be assigned to leads."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LeadStatusResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusResponse"
+                    }
+                  ],
+                  "description": "Represents a configurable status that can be assigned to leads."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LeadStatusResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusResponse"
+                    }
+                  ],
+                  "description": "Represents a configurable status that can be assigned to leads."
                 }
               }
             }
@@ -2807,12 +2973,22 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LeadStatusRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadStatusRequest"
+                  }
+                ],
+                "description": "Defines the editable values used to create or update a lead status."
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LeadStatusRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadStatusRequest"
+                  }
+                ],
+                "description": "Defines the editable values used to create or update a lead status."
               }
             }
           },
@@ -2824,17 +3000,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/LeadStatusResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusResponse"
+                    }
+                  ],
+                  "description": "Represents a configurable status that can be assigned to leads."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LeadStatusResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusResponse"
+                    }
+                  ],
+                  "description": "Represents a configurable status that can be assigned to leads."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LeadStatusResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusResponse"
+                    }
+                  ],
+                  "description": "Represents a configurable status that can be assigned to leads."
                 }
               }
             }
@@ -3986,6 +4177,123 @@
         }
       }
     },
+    "/suppressions/all/my": {
+      "post": {
+        "tags": [
+          "Suppressions"
+        ],
+        "summary": "Get all for current business",
+        "operationId": "Suppressions_GetAllForCurrentBusiness",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PagedResultOfSuppressionEntryResponse"
+                    }
+                  ],
+                  "description": "A generic container for paginated results returned to the client."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/suppressions/{id}": {
+      "get": {
+        "tags": [
+          "Suppressions"
+        ],
+        "summary": "Get",
+        "operationId": "Suppressions_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuppressionEntryResponse"
+                    }
+                  ],
+                  "description": "API response containing suppression entry data returned to callers."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/tags": {
       "get": {
         "tags": [
@@ -4421,53 +4729,6 @@
           },
           "400": {
             "description": "The request was invalid or failed validation.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users/me/last-login": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "summary": "Record current user account sign-in",
-        "description": "Records a successful sign-in for the current user, updating login metadata used for auditing and account events.",
-        "operationId": "Users_RecordLoginForCurrentUser",
-        "responses": {
-          "200": {
-            "description": "Returns the user response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/UserResponse"
-                    }
-                  ],
-                  "description": "API response containing user data returned to callers."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The requested resource was not found.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6130,6 +6391,109 @@
             "description": "Unauthorized",
             "content": {
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sms/media": {
+      "post": {
+        "tags": [
+          "Sms"
+        ],
+        "summary": "Uploads media for a subsequent MMS send.",
+        "operationId": "Sms_UploadMedia",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ContentType": {
+                    "type": "string"
+                  },
+                  "ContentDisposition": {
+                    "type": "string"
+                  },
+                  "Headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "Length": {
+                    "pattern": "^-?(?:0|[1-9]\\d*)$",
+                    "format": "int64"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "FileName": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/MessageMediaAttachment"
+                    }
+                  ],
+                  "description": "Media attached to an SMS/MMS conversation event."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/MessageMediaAttachment"
+                    }
+                  ],
+                  "description": "Media attached to an SMS/MMS conversation event."
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/MessageMediaAttachment"
+                    }
+                  ],
+                  "description": "Media attached to an SMS/MMS conversation event."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -8507,12 +8871,22 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TenDlcNotesRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TenDlcNotesRequest"
+                  }
+                ],
+                "description": "Updates the internal notes associated with a 10DLC application."
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TenDlcNotesRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TenDlcNotesRequest"
+                  }
+                ],
+                "description": "Updates the internal notes associated with a 10DLC application."
               }
             }
           },
@@ -9486,8 +9860,7 @@
           "estimatedAnnualCost": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "The estimated annual cost value for this activation domain option.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "availabilityStatus": {
             "type": "string",
@@ -9625,8 +9998,7 @@
           "changePercent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Percentage change between the current and previous reporting periods.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "direction": {
             "type": "string",
@@ -9867,6 +10239,24 @@
         },
         "description": "Public Leadping API schema for automation condition group data."
       },
+      "AutomationConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this connection."
+          },
+          "sourceNodeId": {
+            "type": "string",
+            "description": "Graph node identifier where the connection begins."
+          },
+          "targetNodeId": {
+            "type": "string",
+            "description": "Graph node identifier where the connection ends."
+          }
+        },
+        "description": "A directed connection between two nodes in an automation graph."
+      },
       "AutomationPreviewActionResult": {
         "type": "object",
         "properties": {
@@ -10054,6 +10444,18 @@
             },
             "description": "Automation actions configured or returned for this workflow."
           },
+          "connections": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AutomationConnection"
+                }
+              ],
+              "description": "A directed connection between two nodes in an automation graph."
+            },
+            "description": "Directed connections between nodes in this automation graph."
+          },
           "version": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Version number for this automation configuration request schema or saved configuration.",
@@ -10160,6 +10562,18 @@
               "description": "Public Leadping API schema for automation action data."
             },
             "description": "Automation actions configured or returned for this workflow."
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AutomationConnection"
+                }
+              ],
+              "description": "A directed connection between two nodes in an automation graph."
+            },
+            "description": "Directed connections between nodes in this automation graph."
           }
         },
         "description": "Public Leadping API schema for automation request snapshot data."
@@ -10241,6 +10655,18 @@
               "description": "Public Leadping API schema for automation action data."
             },
             "description": "Automation actions configured or returned for this workflow."
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AutomationConnection"
+                }
+              ],
+              "description": "A directed connection between two nodes in an automation graph."
+            },
+            "description": "Directed connections between nodes in this automation graph."
           },
           "lastRunAt": {
             "type": "string",
@@ -10755,8 +11181,7 @@
           "currentStepOrder": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Current step order associated with this Leadping automation workflow run.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "nextExecutionAt": {
             "type": "string",
@@ -10890,6 +11315,8 @@
       },
       "BillableUnit": {
         "enum": [
+          "lead_received",
+          "phone_identity_lookup",
           "sms_segment",
           "mms_message",
           "email_message",
@@ -10898,6 +11325,7 @@
           "warmup_sms_segment",
           "warmup_voice_minute",
           "website_setup",
+          "openai_operation",
           "domain_registration",
           "10dlc_application",
           "connection_action",
@@ -11101,6 +11529,40 @@
             },
             "description": "The domain options included with this business activation state."
           },
+          "domainSearchStage": {
+            "enum": [
+              "Queued",
+              "AskingOpenAi",
+              "CheckingCloudflare",
+              "Ranking",
+              "Complete",
+              "Failed"
+            ],
+            "type": "string",
+            "description": "Defines the stages of a domain search.",
+            "nullable": true
+          },
+          "domainSearchId": {
+            "type": "string",
+            "description": "Identifies the active domain search run.",
+            "nullable": true
+          },
+          "domainSearchAttempt": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "The current domain generation attempt.",
+            "format": "int32"
+          },
+          "availableDomainCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "The number of registrar-verified domains found by the current search.",
+            "format": "int32"
+          },
+          "domainSearchUpdatedAt": {
+            "type": "string",
+            "description": "The last time domain search progress changed.",
+            "format": "date-time",
+            "nullable": true
+          },
           "selectedDomain": {
             "type": "string",
             "description": "The selected domain value for this business activation state.",
@@ -11110,6 +11572,17 @@
             "type": "string",
             "description": "The date and time for the domain approved at value on this business activation state.",
             "format": "date-time",
+            "nullable": true
+          },
+          "domainPurchasedAt": {
+            "type": "string",
+            "description": "The date and time the selected domain was purchased.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "websiteGenerationResult": {
+            "type": "string",
+            "description": "The latest persisted website generation progress message.",
             "nullable": true
           },
           "websiteUrl": {
@@ -11166,20 +11639,17 @@
           "phoneNumberQuantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Gets or sets the number of phone numbers included in the business subscription.",
-            "format": "int64",
-            "nullable": true
+            "format": "int64"
           },
           "businessUserQuantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Gets or sets the number of user licenses included in the business subscription.",
-            "format": "int64",
-            "nullable": true
+            "format": "int64"
           },
           "businessUserAssignedQuantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Gets or sets the number of user licenses currently assigned by the business.",
-            "format": "int64",
-            "nullable": true
+            "format": "int64"
           },
           "pendingBillingPlan": {
             "enum": [
@@ -11199,6 +11669,12 @@
           "planRenewalAt": {
             "type": "string",
             "description": "Current plan renewal date.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "planPeriodStartAt": {
+            "type": "string",
+            "description": "Start of the current plan billing period.",
             "format": "date-time",
             "nullable": true
           },
@@ -11445,8 +11921,7 @@
           "licenseQuantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The quantity on the shared business user license subscription item after this change.",
-            "format": "int64",
-            "nullable": true
+            "format": "int64"
           },
           "licenseRenewalDate": {
             "type": "string",
@@ -11563,8 +12038,7 @@
           "licenseQuantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The quantity on the shared business user license subscription item after this change.",
-            "format": "int64",
-            "nullable": true
+            "format": "int64"
           },
           "licenseRenewalDate": {
             "type": "string",
@@ -11621,14 +12095,12 @@
           "autoRefillAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Wallet refill amount charged when automatic refill is triggered.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "autoRefillTrigger": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Wallet balance threshold that triggers automatic refill.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "phone": {
             "type": "string",
@@ -11797,14 +12269,12 @@
           "autoRefillAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Wallet refill amount charged when automatic refill is triggered.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "autoRefillTrigger": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Wallet balance threshold that triggers automatic refill.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "status": {
             "enum": [
@@ -12085,7 +12555,7 @@
             "enum": [
               "NotStarted",
               "DraftGenerated",
-              "DraftNeedsAdminReview",
+              "DraftIncomplete",
               "ReadyToSubmit",
               "Submitted",
               "PendingTelnyxReview",
@@ -12163,8 +12633,7 @@
           "accountBalance": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "The account balance value for this business.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "billingPlan": {
             "enum": [
@@ -12229,6 +12698,14 @@
           "apiKeyPreview": {
             "type": "string",
             "description": "The masked API key preview owned by this business.",
+            "nullable": true
+          },
+          "apiKeyPermissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "WorkOS permission slugs granted to this business API key.",
             "nullable": true
           },
           "apiKeyIssuedAt": {
@@ -12328,7 +12805,7 @@
             "enum": [
               "NotStarted",
               "DraftGenerated",
-              "DraftNeedsAdminReview",
+              "DraftIncomplete",
               "ReadyToSubmit",
               "Submitted",
               "PendingTelnyxReview",
@@ -12440,8 +12917,7 @@
           "licenseQuantity": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The quantity on the shared business user license item after this change.",
-            "format": "int64",
-            "nullable": true
+            "format": "int64"
           },
           "licenseRenewalDate": {
             "type": "string",
@@ -12539,6 +13015,11 @@
             "description": "Lead ID associated with this call event.",
             "nullable": true
           },
+          "leadName": {
+            "type": "string",
+            "description": "Display name for the lead associated with this call event.",
+            "nullable": true
+          },
           "businessId": {
             "type": "string",
             "description": "Business ID associated with this call event.",
@@ -12628,20 +13109,17 @@
           "duration": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Call duration or processing duration represented by this call event table row.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "billableSeconds": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Billable call duration in seconds.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "billableAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Monetary amount billed for this Leadping communication or transaction.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "billingStatus": {
             "type": "string",
@@ -12660,6 +13138,11 @@
           "business": {
             "type": "string",
             "description": "Business summary connected to this call event table row."
+          },
+          "businessName": {
+            "type": "string",
+            "description": "Display name for the business associated with this call event.",
+            "nullable": true
           }
         },
         "description": "List item schema for Leadping API call event table row results shown in searchable tables."
@@ -12791,6 +13274,10 @@
             "description": "UTC timestamp when the most recent conversation event occurred.",
             "format": "date-time",
             "nullable": true
+          },
+          "lastEventIsInternalNote": {
+            "type": "boolean",
+            "description": "Indicates that the most recent conversation activity is an internal note."
           },
           "status": {
             "enum": [
@@ -13169,14 +13656,12 @@
           "averageResponseMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Average time, in minutes, before a lead receives a response.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "medianResponseMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Median response minutes measured in minutes.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "respondedWithinFiveMinutesPercent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -13516,14 +14001,12 @@
           "averageMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Average minutes measured in minutes.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "medianMinutes": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Median minutes measured in minutes.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "respondedWithinFiveMinutesPercent": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -14049,6 +14532,18 @@
         },
         "description": "Response model for disposition data."
       },
+      "DomainSearchStage": {
+        "enum": [
+          "Queued",
+          "AskingOpenAi",
+          "CheckingCloudflare",
+          "Ranking",
+          "Complete",
+          "Failed"
+        ],
+        "type": "string",
+        "description": "Defines the stages of a domain search."
+      },
       "EligibleOutgoingNumberResponse": {
         "type": "object",
         "properties": {
@@ -14409,6 +14904,18 @@
             "description": "Short human-readable summary of this event timeline table row for lists, timelines, and notifications.",
             "nullable": true
           },
+          "media": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MessageMediaAttachment"
+                }
+              ],
+              "description": "Media attached to an SMS/MMS conversation event."
+            },
+            "description": "Media attached to an MMS timeline event."
+          },
           "direction": {
             "type": "string",
             "description": "Communication direction for this event timeline table row, such as inbound or outbound.",
@@ -14521,8 +15028,7 @@
           "billableAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Monetary amount billed for this Leadping communication or transaction.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "errorCode": {
             "type": "string",
@@ -14920,10 +15426,12 @@
         "type": "object",
         "properties": {
           "url": {
-            "type": "string"
+            "type": "string",
+            "description": "Short-lived URL that can be used to download the invoice PDF."
           },
           "expiresAt": {
             "type": "string",
+            "description": "Date and time after which the download URL is no longer valid.",
             "format": "date-time"
           }
         },
@@ -15115,14 +15623,12 @@
           "directPostPrice": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Direct-post price supplied by the lead source during intake.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Lead price or transaction price supplied to the Leadping API.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "utmSource": {
             "type": "string",
@@ -15284,14 +15790,12 @@
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Lead price or transaction price supplied to the Leadping API.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "directPostPrice": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Direct-post price supplied by the lead source during intake.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "product": {
             "type": "string",
@@ -15376,6 +15880,12 @@
             "type": "string",
             "description": "TrustedForm certificate URL used as proof of consumer consent."
           },
+          "trustedFormCheckedAt": {
+            "type": "string",
+            "description": "UTC timestamp when Leadping last successfully validated the TrustedForm certificate URL.",
+            "format": "date-time",
+            "nullable": true
+          },
           "userId": {
             "type": "string",
             "description": "User ID associated with this lead's attribution metadata.",
@@ -15407,14 +15917,12 @@
           "height": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Lead height provided for qualification workflows that require demographic details.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "weight": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Relative weighting used to rank or score this lead demographic profile.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "birthDate": {
             "type": "string",
@@ -15437,8 +15945,7 @@
           "income": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Lead income amount or range supplied for qualification workflows.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "isHomeowner": {
             "type": "boolean",
@@ -15448,14 +15955,12 @@
           "monthsAtResidence": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Number of months the lead has lived at the current residence.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "creditScore": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Lead credit score range or score supplied by the intake source.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "hasBankruptcy": {
             "type": "boolean",
@@ -15483,8 +15988,7 @@
           "numberOfDependents": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Number of dependents reported by the lead.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "hasMedicalCondition": {
             "type": "boolean",
@@ -15672,10 +16176,12 @@
         "properties": {
           "name": {
             "type": "string",
+            "description": "Display name for the lead status.",
             "nullable": true
           },
           "color": {
             "type": "string",
+            "description": "Display color for the lead status.",
             "nullable": true
           },
           "category": {
@@ -15693,25 +16199,30 @@
           },
           "sortOrder": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "format": "int32",
-            "nullable": true
+            "description": "Relative display order for the lead status.",
+            "format": "int32"
           }
-        }
+        },
+        "description": "Defines the editable values used to create or update a lead status."
       },
       "LeadStatusResponse": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique identifier for the lead status."
           },
           "businessId": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifier of the business that owns the lead status."
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Display name of the lead status."
           },
           "color": {
-            "type": "string"
+            "type": "string",
+            "description": "Display color assigned to the lead status."
           },
           "category": {
             "allOf": [
@@ -15719,20 +16230,24 @@
                 "$ref": "#/components/schemas/DispositionCategory"
               }
             ],
-            "description": "Controlled disposition categories used for reporting, automation, and analytics."
+            "description": "Disposition category represented by the lead status."
           },
           "sortOrder": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Relative display order of the lead status.",
             "format": "int32"
           },
           "isArchived": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether the lead status has been archived."
           },
           "modifiedAt": {
             "type": "string",
+            "description": "Date and time when the lead status was last modified.",
             "format": "date-time"
           }
-        }
+        },
+        "description": "Represents a configurable status that can be assigned to leads."
       },
       "LeadTableRow": {
         "type": "object",
@@ -15827,8 +16342,7 @@
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Lead price or transaction price supplied to the Leadping API.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "business": {
             "type": "object",
@@ -15911,6 +16425,36 @@
         ],
         "type": "string",
         "description": "Defines the supported Marital Status Type values."
+      },
+      "MessageMediaAttachment": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL from which the media attachment can be retrieved."
+          },
+          "contentType": {
+            "type": "string",
+            "description": "MIME content type of the media attachment.",
+            "nullable": true
+          },
+          "size": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "Size of the media attachment in bytes.",
+            "format": "int64"
+          },
+          "sha256": {
+            "type": "string",
+            "description": "SHA-256 digest of the media content, when available.",
+            "nullable": true
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Original file name of the media attachment, when available.",
+            "nullable": true
+          }
+        },
+        "description": "Media attached to an SMS/MMS conversation event."
       },
       "MobileDevicePreferences": {
         "type": "object",
@@ -16260,9 +16804,6 @@
           "phone_number_daily_limit_reached",
           "phone_number_hourly_limit_reached",
           "phone_number_minute_limit_reached",
-          "business_daily_limit_reached",
-          "business_hourly_limit_reached",
-          "business_minute_limit_reached",
           "lead_daily_limit_reached",
           "lead_hourly_limit_reached",
           "lead_recently_contacted",
@@ -16433,9 +16974,6 @@
               "phone_number_daily_limit_reached",
               "phone_number_hourly_limit_reached",
               "phone_number_minute_limit_reached",
-              "business_daily_limit_reached",
-              "business_hourly_limit_reached",
-              "business_minute_limit_reached",
               "lead_daily_limit_reached",
               "lead_hourly_limit_reached",
               "lead_recently_contacted",
@@ -16680,8 +17218,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -16714,8 +17251,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -16748,8 +17284,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -16782,8 +17317,40 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
+            "format": "int32"
+          },
+          "continuationToken": {
+            "type": "string",
+            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page.",
             "nullable": true
+          }
+        },
+        "description": "A generic container for paginated results returned to the client."
+      },
+      "PagedResultOfDispositionResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DispositionResponse"
+                }
+              ],
+              "description": "Response model for disposition data."
+            },
+            "description": "The subset of items returned for the current page."
+          },
+          "pageSize": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "format": "int32"
+          },
+          "totalCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -16816,8 +17383,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -16850,8 +17416,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -16884,8 +17449,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -16918,8 +17482,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -16952,8 +17515,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -16986,8 +17548,40 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
+            "format": "int32"
+          },
+          "continuationToken": {
+            "type": "string",
+            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page.",
             "nullable": true
+          }
+        },
+        "description": "A generic container for paginated results returned to the client."
+      },
+      "PagedResultOfSuppressionEntryResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/SuppressionEntryResponse"
+                }
+              ],
+              "description": "API response containing suppression entry data returned to callers."
+            },
+            "description": "The subset of items returned for the current page."
+          },
+          "pageSize": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "format": "int32"
+          },
+          "totalCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -17020,8 +17614,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -17054,8 +17647,7 @@
           "totalCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "continuationToken": {
             "type": "string",
@@ -17196,8 +17788,7 @@
           "durationSeconds": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "Call duration in seconds.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "billingStatus": {
             "type": "string",
@@ -17207,8 +17798,7 @@
           "billableAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Monetary amount billed for this Leadping communication or transaction.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "recordingUrl": {
             "type": "string",
@@ -17276,6 +17866,16 @@
             "description": "Provider lookup and enrichment data for the number.",
             "nullable": true
           },
+          "providerEnrichment": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneLookupProviderSnapshot"
+              }
+            ],
+            "description": "Lossless provider response retained for administrative diagnostics.",
+            "nullable": true
+          },
           "lastEnrichedAt": {
             "type": "string",
             "description": "The most recent time lookup data was enriched.",
@@ -17327,6 +17927,21 @@
             "description": "E.164 phone number exposed by this phone lookup result.",
             "nullable": true
           },
+          "nationalFormat": {
+            "type": "string",
+            "description": "Provider-formatted national phone number.",
+            "nullable": true
+          },
+          "recordType": {
+            "type": "string",
+            "description": "Provider record discriminator.",
+            "nullable": true
+          },
+          "fraud": {
+            "type": "string",
+            "description": "Fraud value returned by the provider, when available.",
+            "nullable": true
+          },
           "isValid": {
             "type": "boolean",
             "description": "Indicates whether this phone lookup result passed validation."
@@ -17352,6 +17967,26 @@
               }
             ],
             "description": "Complete carrier metadata reported for this phone number.",
+            "nullable": true
+          },
+          "callerName": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneLookupCallerName"
+              }
+            ],
+            "description": "Caller-name data returned by the provider.",
+            "nullable": true
+          },
+          "portability": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneLookupPortability"
+              }
+            ],
+            "description": "Complete portability data returned by Telnyx.",
             "nullable": true
           },
           "location": {
@@ -17381,6 +18016,22 @@
           }
         },
         "description": "Public Leadping API schema for phone lookup result data."
+      },
+      "PhoneLookupCallerName": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Caller name associated with the phone number, when reported by the provider.",
+            "nullable": true
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "Provider error code returned when caller-name data could not be resolved.",
+            "nullable": true
+          }
+        },
+        "description": "Caller-name data returned by the phone lookup provider."
       },
       "PhoneLookupCarrier": {
         "type": "object",
@@ -17432,6 +18083,100 @@
         },
         "description": "Complete carrier metadata returned by a phone number lookup provider."
       },
+      "PhoneLookupPortability": {
+        "type": "object",
+        "properties": {
+          "alternativeSpid": {
+            "type": "string",
+            "description": "Alternative service provider identifier reported for the number.",
+            "nullable": true
+          },
+          "alternativeCarrierName": {
+            "type": "string",
+            "description": "Name of the carrier associated with the alternative service provider identifier.",
+            "nullable": true
+          },
+          "alternativeCarrierType": {
+            "type": "string",
+            "description": "Carrier type associated with the alternative service provider identifier.",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "description": "City reported by the portability lookup.",
+            "nullable": true
+          },
+          "lineType": {
+            "type": "string",
+            "description": "Provider-native line type reported by the portability lookup.",
+            "nullable": true
+          },
+          "localRoutingNumber": {
+            "type": "string",
+            "description": "Local routing number used to route calls for the ported number.",
+            "nullable": true
+          },
+          "operatingCompanyNumber": {
+            "type": "string",
+            "description": "Operating company number associated with the phone number.",
+            "nullable": true
+          },
+          "portedDate": {
+            "type": "string",
+            "description": "Date on which the phone number was ported, as reported by the provider.",
+            "nullable": true
+          },
+          "portedStatus": {
+            "type": "string",
+            "description": "Current number-portability status reported by the provider.",
+            "nullable": true
+          },
+          "spid": {
+            "type": "string",
+            "description": "Service provider identifier currently associated with the number.",
+            "nullable": true
+          },
+          "carrierName": {
+            "type": "string",
+            "description": "Name of the carrier currently serving the number.",
+            "nullable": true
+          },
+          "carrierType": {
+            "type": "string",
+            "description": "Type of carrier currently serving the number.",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "description": "State or region reported by the portability lookup.",
+            "nullable": true
+          }
+        },
+        "description": "Number-portability and routing data returned by Telnyx."
+      },
+      "PhoneLookupProviderSnapshot": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string"
+          },
+          "lookupType": {
+            "type": "string"
+          },
+          "schemaVersion": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "format": "int32"
+          },
+          "retrievedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "rawRecordJson": {
+            "type": "string"
+          }
+        },
+        "description": "Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later."
+      },
       "PhoneNumberAvailabilityRequest": {
         "type": "object",
         "properties": {
@@ -17456,8 +18201,7 @@
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Lead price or transaction price supplied to the Leadping API.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "currency": {
             "type": "string",
@@ -18143,8 +18887,7 @@
           "status": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "HTTP status code returned for the problem.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "detail": {
             "type": "string",
@@ -18294,6 +19037,13 @@
             "type": "string",
             "description": "Body text for the SMS message or communication represented by this SMS send request."
           },
+          "mediaUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Public HTTPS media URLs to attach. Supplying at least one URL sends the message as MMS."
+          },
           "outboundIdempotencyKey": {
             "type": "string",
             "description": "Idempotency key used to prevent duplicate outbound delivery.",
@@ -18341,6 +19091,18 @@
           "text": {
             "type": "string",
             "description": "Body text for the SMS message or communication represented by this SMS event table row."
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MessageMediaAttachment"
+                }
+              ],
+              "description": "Media attached to an SMS/MMS conversation event."
+            },
+            "description": "Media attached to this SMS/MMS event."
           },
           "status": {
             "enum": [
@@ -18491,8 +19253,7 @@
           "billableAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Monetary amount billed for this Leadping communication or transaction.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "billingStatus": {
             "type": "string",
@@ -18713,6 +19474,18 @@
             "type": "string",
             "description": "Body text for the SMS message or communication represented by this SMS message."
           },
+          "media": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/MessageMediaAttachment"
+                }
+              ],
+              "description": "Media attached to an SMS/MMS conversation event."
+            },
+            "description": "Media attached to this message. A non-empty collection identifies an MMS message."
+          },
           "status": {
             "enum": [
               "draft",
@@ -18845,8 +19618,7 @@
           "billableAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Monetary amount billed for this Leadping communication or transaction.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "billingStatus": {
             "type": "string",
@@ -18958,8 +19730,7 @@
           "costPerLead": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Configured cost charged when this source creates a billable lead.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "allowedStates": {
             "type": "array",
@@ -19084,8 +19855,7 @@
           "costPerLead": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Configured cost charged when this source creates a billable lead.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "allowedStates": {
             "type": "array",
@@ -19259,8 +20029,7 @@
           "costPerLead": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Configured cost charged when this source creates a billable lead.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "allowedStates": {
             "type": "array",
@@ -19361,25 +20130,31 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Provider identifier for the invoice."
           },
           "number": {
             "type": "string",
+            "description": "Human-readable invoice number, when assigned.",
             "nullable": true
           },
           "createdAt": {
             "type": "string",
+            "description": "Date and time when the invoice was created.",
             "format": "date-time"
           },
           "amount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "description": "Total invoice amount in the invoice currency.",
             "format": "double"
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description": "Current provider-reported invoice status."
           },
           "hasPdf": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates whether a downloadable PDF is available for the invoice."
           }
         },
         "description": "Customer-safe Leadping invoice summary for billing."
@@ -19863,8 +20638,7 @@
           "expectedMonthlyVolume": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The expected monthly volume value for this 10DLC application draft.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "leadSource": {
             "type": "string",
@@ -19888,6 +20662,22 @@
               "type": "string"
             },
             "description": "The missing fields included with this 10DLC application draft."
+          },
+          "brandStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TenDlcRegistrationStatus"
+              }
+            ],
+            "description": "The current provider review status for the submitted brand."
+          },
+          "campaignStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TenDlcRegistrationStatus"
+              }
+            ],
+            "description": "The current provider review status for the submitted campaign."
           },
           "lastSubmittedAt": {
             "type": "string",
@@ -19918,7 +20708,7 @@
         "enum": [
           "NotStarted",
           "DraftGenerated",
-          "DraftNeedsAdminReview",
+          "DraftIncomplete",
           "ReadyToSubmit",
           "Submitted",
           "PendingTelnyxReview",
@@ -19937,9 +20727,22 @@
           "notes": {
             "maxLength": 4000,
             "type": "string",
+            "description": "Notes to store with the 10DLC application, or null to clear them.",
             "nullable": true
           }
-        }
+        },
+        "description": "Updates the internal notes associated with a 10DLC application."
+      },
+      "TenDlcRegistrationStatus": {
+        "enum": [
+          "NotSubmitted",
+          "Pending",
+          "Approved",
+          "Rejected",
+          "Failed"
+        ],
+        "type": "string",
+        "description": "Defines the provider lifecycle for an individual 10DLC brand or campaign."
       },
       "TransactionResponse": {
         "type": "object",
@@ -19974,11 +20777,56 @@
             "description": "Net monetary amount after fees, credits, or adjustments.",
             "format": "double"
           },
+          "billedAmount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "billingChannel": {
+            "enum": [
+              "lead",
+              "sms",
+              "mms",
+              "email",
+              "voice",
+              "phone_number",
+              "warmup",
+              "website",
+              "openai",
+              "domain",
+              "10dlc",
+              "connection",
+              "automation"
+            ],
+            "type": "string",
+            "description": "Defines the supported Usage Channel values.",
+            "nullable": true
+          },
+          "billableUnit": {
+            "enum": [
+              "lead_received",
+              "phone_identity_lookup",
+              "sms_segment",
+              "mms_message",
+              "email_message",
+              "voice_minute",
+              "phone_number_month",
+              "warmup_sms_segment",
+              "warmup_voice_minute",
+              "website_setup",
+              "openai_operation",
+              "domain_registration",
+              "10dlc_application",
+              "connection_action",
+              "automation_run"
+            ],
+            "type": "string",
+            "description": "Defines the supported Billable Unit values.",
+            "nullable": true
+          },
           "gatewayFeeAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Payment gateway fee amount charged for the wallet transaction.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "gatewayStatus": {
             "type": "string",
@@ -19988,8 +20836,7 @@
           "platformFeeAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Leadping platform fee amount included in the transaction.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "notes": {
             "type": "string",
@@ -20086,6 +20933,72 @@
             "description": "Net monetary amount after fees, credits, or adjustments.",
             "format": "double"
           },
+          "billedAmount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "quantity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "unitPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "format": "double"
+          },
+          "billingChannel": {
+            "enum": [
+              "lead",
+              "sms",
+              "mms",
+              "email",
+              "voice",
+              "phone_number",
+              "warmup",
+              "website",
+              "openai",
+              "domain",
+              "10dlc",
+              "connection",
+              "automation"
+            ],
+            "type": "string",
+            "description": "Defines the supported Usage Channel values.",
+            "nullable": true
+          },
+          "billableUnit": {
+            "enum": [
+              "lead_received",
+              "phone_identity_lookup",
+              "sms_segment",
+              "mms_message",
+              "email_message",
+              "voice_minute",
+              "phone_number_month",
+              "warmup_sms_segment",
+              "warmup_voice_minute",
+              "website_setup",
+              "openai_operation",
+              "domain_registration",
+              "10dlc_application",
+              "connection_action",
+              "automation_run"
+            ],
+            "type": "string",
+            "description": "Defines the supported Billable Unit values.",
+            "nullable": true
+          },
+          "sourceEventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceEventType": {
+            "type": "string",
+            "nullable": true
+          },
+          "pricingVersion": {
+            "type": "string",
+            "nullable": true
+          },
           "transactionType": {
             "allOf": [
               {
@@ -20157,6 +21070,7 @@
       },
       "UsageChannel": {
         "enum": [
+          "lead",
           "sms",
           "mms",
           "email",
@@ -20164,6 +21078,7 @@
           "phone_number",
           "warmup",
           "website",
+          "openai",
           "domain",
           "10dlc",
           "connection",
@@ -20266,7 +21181,7 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/UsageRecordStatus"
+                "$ref": "#/components/schemas/UsageStatus"
               }
             ],
             "description": "The current status for this usage ledger."
@@ -20279,20 +21194,17 @@
           "durationSeconds": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The duration seconds value for this usage ledger.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "billableSeconds": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The billable seconds value for this usage ledger.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "smsSegments": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The SMS segments value for this usage ledger.",
-            "format": "int32",
-            "nullable": true
+            "format": "int32"
           },
           "unitPrice": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -20321,7 +21233,7 @@
         },
         "description": "API DTO containing usage ledger data used by Leadping API contracts."
       },
-      "UsageRecordStatus": {
+      "UsageStatus": {
         "enum": [
           "recorded",
           "rated",
@@ -20358,7 +21270,7 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/UsageRecordStatus"
+                "$ref": "#/components/schemas/UsageStatus"
               }
             ],
             "description": "The current status for this usage summary line."
@@ -20404,7 +21316,7 @@
             "description": "The billable quantity total for this usage summary.",
             "format": "double"
           },
-          "usageRecordCount": {
+          "transactionCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "The usage record count for this usage summary.",
             "format": "int32"
@@ -20574,8 +21486,7 @@
           "sizeBytes": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "description": "File size in bytes.",
-            "format": "int64",
-            "nullable": true
+            "format": "int64"
           },
           "downloadCount": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -20756,6 +21667,7 @@
       },
       "UserRequest": {
         "required": [
+          "phone",
           "name"
         ],
         "type": "object",
@@ -20777,8 +21689,7 @@
           },
           "phone": {
             "type": "string",
-            "description": "Phone details for the lead, user, or business represented by this user profile request.",
-            "nullable": true
+            "description": "Phone details for the lead, user, or business represented by this user profile request."
           },
           "timeZoneId": {
             "type": "string",
@@ -21064,8 +21975,7 @@
           "balance": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Wallet or account balance after this transaction is applied.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "balanceCalculatedAt": {
             "type": "string",
@@ -21076,14 +21986,12 @@
           "amountPurchased": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Amount of wallet credit purchased in this deposit.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "amountRemaining": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Amount of wallet credit still available for future usage.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "currency": {
             "type": "string",
@@ -21147,14 +22055,12 @@
           "nextExpiringCreditAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Amount of wallet credit scheduled to expire next.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "expiredCreditAmount": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
             "description": "Amount of wallet credit that has expired.",
-            "format": "double",
-            "nullable": true
+            "format": "double"
           },
           "name": {
             "type": "string",
@@ -21200,13 +22106,13 @@
     "securitySchemes": {
       "Bearer": {
         "type": "apiKey",
-        "description": "Authorization header using the Bearer scheme. Accepted values are Leadping user JWT access tokens, Leadping business API keys beginning with lp_ but not lp_src_, and Leadping source keys beginning with lp_src_ on lead ingestion endpoints only.",
+        "description": "Authorization header using the Bearer scheme. Accepted values are Leadping user JWT access tokens, WorkOS organization API keys beginning with sk_, and Leadping source keys beginning with lp_src_ on lead ingestion endpoints only.",
         "name": "Authorization",
         "in": "header"
       },
       "BusinessApiKey": {
         "type": "apiKey",
-        "description": "Leadping business API key using the Authorization header. Example: \"Authorization: Bearer lp_...\".",
+        "description": "WorkOS organization API key created and managed through Leadping. Example: \"Authorization: Bearer sk_...\".",
         "name": "Authorization",
         "in": "header"
       },
