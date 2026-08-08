@@ -11614,6 +11614,11 @@
             "description": "Email address used to resolve the lead's avatar when available.",
             "nullable": true
           },
+          "avatarUrl": {
+            "type": "string",
+            "description": "Optional profile image URL explicitly associated with the lead.",
+            "nullable": true
+          },
           "lastSnippet": {
             "type": "string",
             "description": "Most recent message preview shown for the conversation.",
@@ -13391,6 +13396,11 @@
           "email": {
             "type": "string",
             "description": "Email address for the person represented by this lead contact profile.",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "description": "Optional profile image URL for the contact. Clients fall back to Gravatar\nand then initials when this value is not supplied.",
             "nullable": true
           }
         },
