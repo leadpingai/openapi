@@ -963,466 +963,6 @@
         }
       }
     },
-    "/dispositions": {
-      "post": {
-        "tags": [
-          "Dispositions"
-        ],
-        "summary": "Set the current lead disposition",
-        "description": "Sets a lead's current structured outcome while recording the disposition change in history for audit, automation, and reporting.",
-        "operationId": "Dispositions_Create",
-        "requestBody": {
-          "description": "The disposition data to create.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/DispositionRequest"
-                  }
-                ],
-                "description": "Request model for creating or updating a disposition."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/DispositionRequest"
-                  }
-                ],
-                "description": "Request model for creating or updating a disposition."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Disposition was successfully updated and recorded.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/DispositionResponse"
-                    }
-                  ],
-                  "description": "Response model for disposition data."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "A related resource was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or malformed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/dispositions/{id}": {
-      "put": {
-        "tags": [
-          "Dispositions"
-        ],
-        "summary": "Update a lead disposition history entry",
-        "description": "Updates a disposition history entry and, when it is the current entry, updates the lead's current disposition.",
-        "operationId": "Dispositions_Update",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of the disposition.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The disposition request payload for the operation.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/DispositionRequest"
-                  }
-                ],
-                "description": "Request model for creating or updating a disposition."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/DispositionRequest"
-                  }
-                ],
-                "description": "Request model for creating or updating a disposition."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Returns the disposition response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/DispositionResponse"
-                    }
-                  ],
-                  "description": "Response model for disposition data."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or failed validation.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Dispositions"
-        ],
-        "summary": "Get a lead disposition outcome record",
-        "description": "Returns one disposition record so users can review a lead outcome, related notes, and follow-up context.",
-        "operationId": "Dispositions_Get",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of the disposition to retrieve.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Disposition was successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/DispositionResponse"
-                    }
-                  ],
-                  "description": "Response model for disposition data."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified disposition was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Dispositions"
-        ],
-        "summary": "Delete a lead disposition outcome record",
-        "description": "Deletes a disposition from a lead when the outcome record should no longer appear in event or reporting views.",
-        "operationId": "Dispositions_Delete",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The ID of the disposition to delete.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Disposition was successfully deleted.",
-            "content": {
-              "application/json": { }
-            }
-          },
-          "404": {
-            "description": "The specified disposition was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/dispositions/all/my": {
-      "post": {
-        "tags": [
-          "Dispositions"
-        ],
-        "summary": "Get all for current organization",
-        "operationId": "Dispositions_GetAllForCurrentOrganization",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfDispositionResponse"
-                    }
-                  ],
-                  "description": "A generic container for paginated results returned to the client."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/dispositions/lead/{leadId}": {
-      "get": {
-        "tags": [
-          "Dispositions"
-        ],
-        "summary": "List lead disposition outcome history",
-        "description": "Lists disposition outcome history for one lead, including prior outcomes, notes, follow-up context, timestamps, and actor details used for audit review.",
-        "operationId": "Dispositions_GetByLeadId",
-        "parameters": [
-          {
-            "name": "leadId",
-            "in": "path",
-            "description": "The ID of the lead to get dispositions for.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Dispositions were successfully retrieved.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/DispositionResponse"
-                      }
-                    ],
-                    "description": "Response model for disposition data."
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified lead was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/dispositions/lead/{leadId}/export": {
-      "get": {
-        "tags": [
-          "Dispositions"
-        ],
-        "summary": "Export lead disposition outcome history",
-        "description": "Exports disposition data for one lead, packaging outcome history for reporting, audit review, or handoff workflows.",
-        "operationId": "Dispositions_ExportByLeadId",
-        "parameters": [
-          {
-            "name": "leadId",
-            "in": "path",
-            "description": "The lead identifier.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Returns the disposition export response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/DispositionExportResponse"
-                    }
-                  ],
-                  "description": "API response containing disposition export data returned to callers."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/feedback": {
       "post": {
         "tags": [
@@ -2851,6 +2391,477 @@
         }
       }
     },
+    "/leads/{leadId}/status": {
+      "put": {
+        "tags": [
+          "LeadStatusChanges"
+        ],
+        "summary": "Set a lead's current status",
+        "description": "Sets the lead's current structured status and records the change for audit, automation, and reporting.",
+        "operationId": "LeadStatusChanges_SetCurrent",
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "description": "The lead identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The new status and related workflow data.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadStatusChangeRequest"
+                  }
+                ],
+                "description": "Request model for creating or updating a lead status change."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadStatusChangeRequest"
+                  }
+                ],
+                "description": "Request model for creating or updating a lead status change."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The lead status was successfully updated and recorded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusChangeResponse"
+                    }
+                  ],
+                  "description": "Response model for lead status change data."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A related resource was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lead-status-changes/{id}": {
+      "put": {
+        "tags": [
+          "LeadStatusChanges"
+        ],
+        "summary": "Update a lead status history entry",
+        "description": "Updates a lead status history entry and, when it is current, updates the lead's current status.",
+        "operationId": "LeadStatusChanges_Update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the lead status change.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The lead status change request payload for the operation.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadStatusChangeRequest"
+                  }
+                ],
+                "description": "Request model for creating or updating a lead status change."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadStatusChangeRequest"
+                  }
+                ],
+                "description": "Request model for creating or updating a lead status change."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the lead status change response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusChangeResponse"
+                    }
+                  ],
+                  "description": "Response model for lead status change data."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "LeadStatusChanges"
+        ],
+        "summary": "Get a lead status history entry",
+        "description": "Returns one lead status change record so users can review a lead outcome, related notes, and follow-up context.",
+        "operationId": "LeadStatusChanges_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the lead status change to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The lead status change was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusChangeResponse"
+                    }
+                  ],
+                  "description": "Response model for lead status change data."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead status change was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "LeadStatusChanges"
+        ],
+        "summary": "Delete a lead status history entry",
+        "description": "Deletes a lead status change from a lead when the outcome record should no longer appear in event or reporting views.",
+        "operationId": "LeadStatusChanges_Delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the lead status change to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The lead status change was successfully deleted.",
+            "content": {
+              "application/json": { }
+            }
+          },
+          "404": {
+            "description": "The specified lead status change was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lead-status-changes/all/my": {
+      "post": {
+        "tags": [
+          "LeadStatusChanges"
+        ],
+        "summary": "Get all for current organization",
+        "operationId": "LeadStatusChanges_GetAllForCurrentOrganization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PagedResultOfLeadStatusChangeResponse"
+                    }
+                  ],
+                  "description": "A generic container for paginated results returned to the client."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leads/{leadId}/status-history": {
+      "get": {
+        "tags": [
+          "LeadStatusChanges"
+        ],
+        "summary": "List a lead's status history",
+        "description": "Lists lead status change outcome history for one lead, including prior outcomes, notes, follow-up context, timestamps, and actor details used for audit review.",
+        "operationId": "LeadStatusChanges_GetByLeadId",
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "description": "The ID of the lead to get lead status changes for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The lead status history was successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/LeadStatusChangeResponse"
+                      }
+                    ],
+                    "description": "Response model for lead status change data."
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leads/{leadId}/status-history/export": {
+      "get": {
+        "tags": [
+          "LeadStatusChanges"
+        ],
+        "summary": "Export a lead's status history",
+        "description": "Exports lead status change data for one lead, packaging outcome history for reporting, audit review, or handoff workflows.",
+        "operationId": "LeadStatusChanges_ExportByLeadId",
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "description": "The lead identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the lead status change export response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadStatusChangeExportResponse"
+                    }
+                  ],
+                  "description": "API response containing lead status change export data returned to callers."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/lead-statuses": {
       "get": {
         "tags": [
@@ -3487,6 +3498,163 @@
             "description": "Unauthorized",
             "content": {
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notifications/push/installations/current": {
+      "put": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Register or refresh the current user's mobile push installation.",
+        "operationId": "Notifications_RegisterPushInstallation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PushInstallationRequest"
+                  }
+                ],
+                "description": "Describes a mobile push installation. Identity and Azure tags are derived by the API."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/PushInstallationRequest"
+                  }
+                ],
+                "description": "Describes a mobile push installation. Identity and Azure tags are derived by the API."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notifications/push/installations/{installationId}": {
+      "delete": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Unregister the current user's mobile push installation.",
+        "operationId": "Notifications_UnregisterPushInstallation",
+        "parameters": [
+          {
+            "name": "installationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
                 }
@@ -11603,6 +11771,11 @@
             "description": "Email address used to resolve the lead's avatar when available.",
             "nullable": true
           },
+          "avatarUrl": {
+            "type": "string",
+            "description": "Optional profile image URL explicitly associated with the lead.",
+            "nullable": true
+          },
           "lastSnippet": {
             "type": "string",
             "description": "Most recent message preview shown for the conversation.",
@@ -11662,14 +11835,14 @@
             "type": "boolean",
             "description": "Indicates whether the Leadping conversation has been archived."
           },
-          "currentDisposition": {
+          "currentLeadStatus": {
             "type": "object",
             "allOf": [
               {
-                "$ref": "#/components/schemas/CurrentDispositionSummary"
+                "$ref": "#/components/schemas/CurrentLeadStatusSummary"
               }
             ],
-            "description": "Current disposition summary that describes the lead outcome.",
+            "description": "Current lead status change summary that describes the lead outcome.",
             "nullable": true
           },
           "nextStep": {
@@ -11749,12 +11922,12 @@
         },
         "description": "Request payload for create note."
       },
-      "CurrentDispositionSummary": {
+      "CurrentLeadStatusSummary": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique Leadping identifier for this current disposition summary.",
+            "description": "Unique Leadping identifier for this current lead status change summary.",
             "nullable": true
           },
           "category": {
@@ -11767,32 +11940,32 @@
               "Duplicate"
             ],
             "type": "string",
-            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
+            "description": "Controlled lead status change categories used for reporting, automation, and analytics.",
             "nullable": true
           },
           "outcome": {
             "type": "string",
-            "description": "Current disposition outcome assigned to the lead.",
+            "description": "Current lead status change outcome assigned to the lead.",
             "nullable": true
           },
           "displayName": {
             "type": "string",
-            "description": "Human-readable display name shown for this current disposition summary."
+            "description": "Human-readable display name shown for this current lead status change summary."
           },
           "changedAt": {
             "type": "string",
-            "description": "UTC timestamp when the disposition last changed.",
+            "description": "UTC timestamp when the lead status change last changed.",
             "format": "date-time",
             "nullable": true
           },
           "changedByUserId": {
             "type": "string",
-            "description": "User ID of the person who last changed the disposition.",
+            "description": "User ID of the person who last changed the lead status change.",
             "nullable": true
           },
           "changedByAutomationId": {
             "type": "string",
-            "description": "Automation ID that last changed the disposition.",
+            "description": "Automation ID that last changed the lead status change.",
             "nullable": true
           },
           "source": {
@@ -11804,11 +11977,11 @@
               "API"
             ],
             "type": "string",
-            "description": "Known sources that can change a lead's current disposition.",
+            "description": "Known sources that can change a lead's current lead status change.",
             "nullable": true
           }
         },
-        "description": "Summary schema for Leadping API current disposition summary data used in dashboards and reports."
+        "description": "Summary schema for Leadping API current lead status change summary data used in dashboards and reports."
       },
       "CustomerActivationHealth": {
         "type": "object",
@@ -12387,495 +12560,6 @@
         },
         "description": "Represents customer response metrics data exposed by Leadping analytics."
       },
-      "DispositionCategory": {
-        "enum": [
-          "Open",
-          "Qualified",
-          "Converted",
-          "Lost",
-          "Invalid",
-          "Duplicate"
-        ],
-        "type": "string",
-        "description": "Controlled disposition categories used for reporting, automation, and analytics."
-      },
-      "DispositionChangeSource": {
-        "enum": [
-          "User",
-          "AI",
-          "Automation",
-          "System",
-          "API"
-        ],
-        "type": "string",
-        "description": "Known sources that can change a lead's current disposition."
-      },
-      "DispositionExportResponse": {
-        "type": "object",
-        "properties": {
-          "fileName": {
-            "type": "string",
-            "description": "The file name value for this disposition export."
-          },
-          "contentType": {
-            "type": "string",
-            "description": "The content type classification for this disposition export."
-          },
-          "csv": {
-            "type": "string",
-            "description": "The csv value for this disposition export."
-          },
-          "rows": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/DispositionExportRow"
-                }
-              ],
-              "description": "API response containing disposition export row data returned to callers."
-            },
-            "description": "The rows included with this disposition export."
-          }
-        },
-        "description": "API response containing disposition export data returned to callers."
-      },
-      "DispositionExportRow": {
-        "type": "object",
-        "properties": {
-          "leadId": {
-            "type": "string",
-            "description": "The lead ID associated with this disposition export row.",
-            "nullable": true
-          },
-          "dispositionId": {
-            "type": "string",
-            "description": "The disposition ID associated with this disposition export row.",
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "description": "The type classification for this disposition export row.",
-            "nullable": true
-          },
-          "outcome": {
-            "type": "string",
-            "description": "The outcome value for this disposition export row.",
-            "nullable": true
-          },
-          "category": {
-            "enum": [
-              "Open",
-              "Qualified",
-              "Converted",
-              "Lost",
-              "Invalid",
-              "Duplicate"
-            ],
-            "type": "string",
-            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
-            "nullable": true
-          },
-          "oldDispositionId": {
-            "type": "string",
-            "description": "Unique identifier of the old disposition associated with this Leadping disposition export row.",
-            "nullable": true
-          },
-          "oldDispositionType": {
-            "type": "string",
-            "description": "Old disposition type classification for this Leadping disposition export row.",
-            "nullable": true
-          },
-          "oldDispositionOutcome": {
-            "type": "string",
-            "description": "Old disposition outcome associated with this Leadping disposition export row.",
-            "nullable": true
-          },
-          "newDispositionId": {
-            "type": "string",
-            "description": "Unique identifier of the new disposition associated with this Leadping disposition export row.",
-            "nullable": true
-          },
-          "changeSource": {
-            "enum": [
-              "User",
-              "AI",
-              "Automation",
-              "System",
-              "API"
-            ],
-            "type": "string",
-            "description": "Known sources that can change a lead's current disposition.",
-            "nullable": true
-          },
-          "changedByUserId": {
-            "type": "string",
-            "description": "Unique identifier of the Leadping user who made the change.",
-            "nullable": true
-          },
-          "changedByAutomationId": {
-            "type": "string",
-            "description": "Unique identifier of the automation that changed the disposition, when applicable.",
-            "nullable": true
-          },
-          "changedAt": {
-            "type": "string",
-            "description": "Date and time when the disposition change occurred.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "reason": {
-            "type": "string",
-            "description": "Human-readable explanation for the current disposition export row outcome.",
-            "nullable": true
-          },
-          "followUpStatus": {
-            "type": "string",
-            "description": "The current follow up status for this disposition export row.",
-            "nullable": true
-          },
-          "callbackAt": {
-            "type": "string",
-            "description": "The date and time for the callback at value on this disposition export row.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "taskDueAt": {
-            "type": "string",
-            "description": "The date and time for the task due at value on this disposition export row.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "appointmentStartAt": {
-            "type": "string",
-            "description": "The date and time for the appointment start at value on this disposition export row.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "appointmentEndAt": {
-            "type": "string",
-            "description": "The date and time for the appointment end at value on this disposition export row.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "assignedToUserId": {
-            "type": "string",
-            "description": "The assigned to user ID associated with this disposition export row.",
-            "nullable": true
-          },
-          "sourceId": {
-            "type": "string",
-            "description": "The source ID associated with this disposition export row.",
-            "nullable": true
-          },
-          "relatedCallEventId": {
-            "type": "string",
-            "description": "The related call event ID associated with this disposition export row.",
-            "nullable": true
-          },
-          "isMissedCallFollowUp": {
-            "type": "boolean",
-            "description": "Whether this disposition export row is missed call follow up."
-          },
-          "notes": {
-            "type": "string",
-            "description": "The operator or customer notes recorded for this disposition export row.",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "The date and time for the created at value on this disposition export row.",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "The date and time for the updated at value on this disposition export row.",
-            "format": "date-time"
-          }
-        },
-        "description": "API response containing disposition export row data returned to callers."
-      },
-      "DispositionRequest": {
-        "type": "object",
-        "properties": {
-          "leadId": {
-            "type": "string",
-            "description": "The lead ID associated with this disposition."
-          },
-          "type": {
-            "type": "string",
-            "description": "The type classification for this disposition."
-          },
-          "outcome": {
-            "type": "string",
-            "description": "The outcome value for this disposition."
-          },
-          "category": {
-            "enum": [
-              "Open",
-              "Qualified",
-              "Converted",
-              "Lost",
-              "Invalid",
-              "Duplicate"
-            ],
-            "type": "string",
-            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
-            "nullable": true
-          },
-          "notes": {
-            "type": "string",
-            "description": "The operator or customer notes recorded for this disposition.",
-            "nullable": true
-          },
-          "reason": {
-            "type": "string",
-            "description": "The reason this disposition was changed.",
-            "nullable": true
-          },
-          "changeSource": {
-            "enum": [
-              "User",
-              "AI",
-              "Automation",
-              "System",
-              "API"
-            ],
-            "type": "string",
-            "description": "Known sources that can change a lead's current disposition.",
-            "nullable": true
-          },
-          "changedByAutomationId": {
-            "type": "string",
-            "description": "The automation that changed this disposition, when applicable.",
-            "nullable": true
-          },
-          "timestamp": {
-            "type": "string",
-            "description": "The date and time for the timestamp value on this disposition.",
-            "format": "date-time"
-          },
-          "followUpStatus": {
-            "type": "string",
-            "description": "The current follow up status for this disposition.",
-            "nullable": true
-          },
-          "callbackAt": {
-            "type": "string",
-            "description": "The date and time for the callback at value on this disposition.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "taskDueAt": {
-            "type": "string",
-            "description": "The date and time for the task due at value on this disposition.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "appointmentStartAt": {
-            "type": "string",
-            "description": "The date and time for the appointment start at value on this disposition.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "appointmentEndAt": {
-            "type": "string",
-            "description": "The date and time for the appointment end at value on this disposition.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "appointmentNotes": {
-            "type": "string",
-            "description": "The appointment notes value for this disposition.",
-            "nullable": true
-          },
-          "assignedToUserId": {
-            "type": "string",
-            "description": "The assigned to user ID associated with this disposition.",
-            "nullable": true
-          },
-          "relatedCallEventId": {
-            "type": "string",
-            "description": "The related call event ID associated with this disposition.",
-            "nullable": true
-          },
-          "isMissedCallFollowUp": {
-            "type": "boolean",
-            "description": "Whether this disposition is missed call follow up."
-          },
-          "sourceId": {
-            "type": "string",
-            "description": "The source ID associated with this disposition.",
-            "nullable": true
-          }
-        },
-        "description": "Request model for creating or updating a disposition."
-      },
-      "DispositionResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique ID for this disposition."
-          },
-          "leadId": {
-            "type": "string",
-            "description": "The lead ID associated with this disposition."
-          },
-          "leadName": {
-            "type": "string",
-            "description": "The display name of the lead associated with this disposition.",
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "description": "The type classification for this disposition."
-          },
-          "outcome": {
-            "type": "string",
-            "description": "The outcome value for this disposition."
-          },
-          "category": {
-            "enum": [
-              "Open",
-              "Qualified",
-              "Converted",
-              "Lost",
-              "Invalid",
-              "Duplicate"
-            ],
-            "type": "string",
-            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
-            "nullable": true
-          },
-          "oldDispositionId": {
-            "type": "string",
-            "description": "Unique identifier of the old disposition associated with this Leadping disposition.",
-            "nullable": true
-          },
-          "oldDispositionType": {
-            "type": "string",
-            "description": "Old disposition type classification for this Leadping disposition.",
-            "nullable": true
-          },
-          "oldDispositionOutcome": {
-            "type": "string",
-            "description": "Old disposition outcome associated with this Leadping disposition.",
-            "nullable": true
-          },
-          "newDispositionId": {
-            "type": "string",
-            "description": "Unique identifier of the new disposition associated with this Leadping disposition.",
-            "nullable": true
-          },
-          "notes": {
-            "type": "string",
-            "description": "The operator or customer notes recorded for this disposition."
-          },
-          "reason": {
-            "type": "string",
-            "description": "The reason this disposition was changed.",
-            "nullable": true
-          },
-          "changedByUserId": {
-            "type": "string",
-            "description": "Unique identifier of the Leadping user who made the change.",
-            "nullable": true
-          },
-          "changedByAutomationId": {
-            "type": "string",
-            "description": "Unique identifier of the automation that changed the disposition, when applicable.",
-            "nullable": true
-          },
-          "changedAt": {
-            "type": "string",
-            "description": "Date and time when the disposition change occurred.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "changeSource": {
-            "enum": [
-              "User",
-              "AI",
-              "Automation",
-              "System",
-              "API"
-            ],
-            "type": "string",
-            "description": "Known sources that can change a lead's current disposition.",
-            "nullable": true
-          },
-          "timestamp": {
-            "type": "string",
-            "description": "The date and time for the timestamp value on this disposition.",
-            "format": "date-time"
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "The date and time for the created at value on this disposition.",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "The date and time for the updated at value on this disposition.",
-            "format": "date-time"
-          },
-          "followUpStatus": {
-            "type": "string",
-            "description": "The current follow up status for this disposition.",
-            "nullable": true
-          },
-          "callbackAt": {
-            "type": "string",
-            "description": "The date and time for the callback at value on this disposition.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "taskDueAt": {
-            "type": "string",
-            "description": "The date and time for the task due at value on this disposition.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "appointmentStartAt": {
-            "type": "string",
-            "description": "The date and time for the appointment start at value on this disposition.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "appointmentEndAt": {
-            "type": "string",
-            "description": "The date and time for the appointment end at value on this disposition.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "appointmentNotes": {
-            "type": "string",
-            "description": "The appointment notes value for this disposition.",
-            "nullable": true
-          },
-          "assignedToUserId": {
-            "type": "string",
-            "description": "The assigned to user ID associated with this disposition.",
-            "nullable": true
-          },
-          "relatedCallEventId": {
-            "type": "string",
-            "description": "The related call event ID associated with this disposition.",
-            "nullable": true
-          },
-          "isMissedCallFollowUp": {
-            "type": "boolean",
-            "description": "Whether this disposition is missed call follow up."
-          },
-          "sourceId": {
-            "type": "string",
-            "description": "The source ID associated with this disposition.",
-            "nullable": true
-          }
-        },
-        "description": "Response model for disposition data."
-      },
       "DomainSearchStage": {
         "enum": [
           "Queued",
@@ -13015,7 +12699,7 @@
               "Call",
               "Voicemail",
               "Note",
-              "Disposition",
+              "LeadStatusChange",
               "LeadCreated",
               "LeadUpdated",
               "Notification",
@@ -13522,7 +13206,7 @@
           "Call",
           "Voicemail",
           "Note",
-          "Disposition",
+          "LeadStatusChange",
           "LeadCreated",
           "LeadUpdated",
           "Notification",
@@ -13869,6 +13553,11 @@
           "email": {
             "type": "string",
             "description": "Email address for the person represented by this lead contact profile.",
+            "nullable": true
+          },
+          "avatarUrl": {
+            "type": "string",
+            "description": "Optional profile image URL for the contact. Clients fall back to Gravatar\nand then initials when this value is not supplied.",
             "nullable": true
           }
         },
@@ -14475,14 +14164,14 @@
             "type": "boolean",
             "description": "Indicates whether the lead has been archived in Leadping."
           },
-          "currentDisposition": {
+          "currentLeadStatus": {
             "type": "object",
             "allOf": [
               {
-                "$ref": "#/components/schemas/CurrentDispositionSummary"
+                "$ref": "#/components/schemas/CurrentLeadStatusSummary"
               }
             ],
-            "description": "Current disposition summary that describes the lead outcome.",
+            "description": "Current lead status change summary that describes the lead outcome.",
             "nullable": true
           },
           "tags": {
@@ -14515,6 +14204,491 @@
         },
         "description": "Response schema for the Leadping API lead response returned to authenticated clients."
       },
+      "LeadStatusCategory": {
+        "enum": [
+          "Open",
+          "Qualified",
+          "Converted",
+          "Lost",
+          "Invalid",
+          "Duplicate"
+        ],
+        "type": "string",
+        "description": "Controlled lead status change categories used for reporting, automation, and analytics."
+      },
+      "LeadStatusChangeExportResponse": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "description": "The file name value for this lead status change export."
+          },
+          "contentType": {
+            "type": "string",
+            "description": "The content type classification for this lead status change export."
+          },
+          "csv": {
+            "type": "string",
+            "description": "The csv value for this lead status change export."
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/LeadStatusChangeExportRow"
+                }
+              ],
+              "description": "API response containing lead status change export row data returned to callers."
+            },
+            "description": "The rows included with this lead status change export."
+          }
+        },
+        "description": "API response containing lead status change export data returned to callers."
+      },
+      "LeadStatusChangeExportRow": {
+        "type": "object",
+        "properties": {
+          "leadId": {
+            "type": "string",
+            "description": "The lead ID associated with this lead status change export row.",
+            "nullable": true
+          },
+          "leadStatusChangeId": {
+            "type": "string",
+            "description": "The lead status change ID associated with this lead status change export row.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The type classification for this lead status change export row.",
+            "nullable": true
+          },
+          "outcome": {
+            "type": "string",
+            "description": "The outcome value for this lead status change export row.",
+            "nullable": true
+          },
+          "category": {
+            "enum": [
+              "Open",
+              "Qualified",
+              "Converted",
+              "Lost",
+              "Invalid",
+              "Duplicate"
+            ],
+            "type": "string",
+            "description": "Controlled lead status change categories used for reporting, automation, and analytics.",
+            "nullable": true
+          },
+          "oldLeadStatusChangeId": {
+            "type": "string",
+            "description": "Unique identifier of the old lead status change associated with this Leadping lead status change export row.",
+            "nullable": true
+          },
+          "oldLeadStatusChangeType": {
+            "type": "string",
+            "description": "Old lead status change type classification for this Leadping lead status change export row.",
+            "nullable": true
+          },
+          "oldLeadStatusChangeOutcome": {
+            "type": "string",
+            "description": "Old lead status change outcome associated with this Leadping lead status change export row.",
+            "nullable": true
+          },
+          "newLeadStatusChangeId": {
+            "type": "string",
+            "description": "Unique identifier of the new lead status change associated with this Leadping lead status change export row.",
+            "nullable": true
+          },
+          "changeSource": {
+            "enum": [
+              "User",
+              "AI",
+              "Automation",
+              "System",
+              "API"
+            ],
+            "type": "string",
+            "description": "Known sources that can change a lead's current lead status change.",
+            "nullable": true
+          },
+          "changedByUserId": {
+            "type": "string",
+            "description": "Unique identifier of the Leadping user who made the change.",
+            "nullable": true
+          },
+          "changedByAutomationId": {
+            "type": "string",
+            "description": "Unique identifier of the automation that changed the lead status change, when applicable.",
+            "nullable": true
+          },
+          "changedAt": {
+            "type": "string",
+            "description": "Date and time when the lead status change change occurred.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "description": "Human-readable explanation for the current lead status change export row outcome.",
+            "nullable": true
+          },
+          "followUpStatus": {
+            "type": "string",
+            "description": "The current follow up status for this lead status change export row.",
+            "nullable": true
+          },
+          "callbackAt": {
+            "type": "string",
+            "description": "The date and time for the callback at value on this lead status change export row.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "taskDueAt": {
+            "type": "string",
+            "description": "The date and time for the task due at value on this lead status change export row.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentStartAt": {
+            "type": "string",
+            "description": "The date and time for the appointment start at value on this lead status change export row.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentEndAt": {
+            "type": "string",
+            "description": "The date and time for the appointment end at value on this lead status change export row.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "assignedToUserId": {
+            "type": "string",
+            "description": "The assigned to user ID associated with this lead status change export row.",
+            "nullable": true
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "The source ID associated with this lead status change export row.",
+            "nullable": true
+          },
+          "relatedCallEventId": {
+            "type": "string",
+            "description": "The related call event ID associated with this lead status change export row.",
+            "nullable": true
+          },
+          "isMissedCallFollowUp": {
+            "type": "boolean",
+            "description": "Whether this lead status change export row is missed call follow up."
+          },
+          "notes": {
+            "type": "string",
+            "description": "The operator or customer notes recorded for this lead status change export row.",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The date and time for the created at value on this lead status change export row.",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The date and time for the updated at value on this lead status change export row.",
+            "format": "date-time"
+          }
+        },
+        "description": "API response containing lead status change export row data returned to callers."
+      },
+      "LeadStatusChangeRequest": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type classification for this lead status change."
+          },
+          "outcome": {
+            "type": "string",
+            "description": "The outcome value for this lead status change."
+          },
+          "category": {
+            "enum": [
+              "Open",
+              "Qualified",
+              "Converted",
+              "Lost",
+              "Invalid",
+              "Duplicate"
+            ],
+            "type": "string",
+            "description": "Controlled lead status change categories used for reporting, automation, and analytics.",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "The operator or customer notes recorded for this lead status change.",
+            "nullable": true
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason this lead status change was changed.",
+            "nullable": true
+          },
+          "changeSource": {
+            "enum": [
+              "User",
+              "AI",
+              "Automation",
+              "System",
+              "API"
+            ],
+            "type": "string",
+            "description": "Known sources that can change a lead's current lead status change.",
+            "nullable": true
+          },
+          "changedByAutomationId": {
+            "type": "string",
+            "description": "The automation that changed this lead status change, when applicable.",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "The date and time for the timestamp value on this lead status change.",
+            "format": "date-time"
+          },
+          "followUpStatus": {
+            "type": "string",
+            "description": "The current follow up status for this lead status change.",
+            "nullable": true
+          },
+          "callbackAt": {
+            "type": "string",
+            "description": "The date and time for the callback at value on this lead status change.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "taskDueAt": {
+            "type": "string",
+            "description": "The date and time for the task due at value on this lead status change.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentStartAt": {
+            "type": "string",
+            "description": "The date and time for the appointment start at value on this lead status change.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentEndAt": {
+            "type": "string",
+            "description": "The date and time for the appointment end at value on this lead status change.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentNotes": {
+            "type": "string",
+            "description": "The appointment notes value for this lead status change.",
+            "nullable": true
+          },
+          "assignedToUserId": {
+            "type": "string",
+            "description": "The assigned to user ID associated with this lead status change.",
+            "nullable": true
+          },
+          "relatedCallEventId": {
+            "type": "string",
+            "description": "The related call event ID associated with this lead status change.",
+            "nullable": true
+          },
+          "isMissedCallFollowUp": {
+            "type": "boolean",
+            "description": "Whether this lead status change is missed call follow up."
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "The source ID associated with this lead status change.",
+            "nullable": true
+          }
+        },
+        "description": "Request model for creating or updating a lead status change."
+      },
+      "LeadStatusChangeResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID for this lead status change."
+          },
+          "leadId": {
+            "type": "string",
+            "description": "The lead ID associated with this lead status change."
+          },
+          "leadName": {
+            "type": "string",
+            "description": "The display name of the lead associated with this lead status change.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The type classification for this lead status change."
+          },
+          "outcome": {
+            "type": "string",
+            "description": "The outcome value for this lead status change."
+          },
+          "category": {
+            "enum": [
+              "Open",
+              "Qualified",
+              "Converted",
+              "Lost",
+              "Invalid",
+              "Duplicate"
+            ],
+            "type": "string",
+            "description": "Controlled lead status change categories used for reporting, automation, and analytics.",
+            "nullable": true
+          },
+          "oldLeadStatusChangeId": {
+            "type": "string",
+            "description": "Unique identifier of the old lead status change associated with this Leadping lead status change.",
+            "nullable": true
+          },
+          "oldLeadStatusChangeType": {
+            "type": "string",
+            "description": "Old lead status change type classification for this Leadping lead status change.",
+            "nullable": true
+          },
+          "oldLeadStatusChangeOutcome": {
+            "type": "string",
+            "description": "Old lead status change outcome associated with this Leadping lead status change.",
+            "nullable": true
+          },
+          "newLeadStatusChangeId": {
+            "type": "string",
+            "description": "Unique identifier of the new lead status change associated with this Leadping lead status change.",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "The operator or customer notes recorded for this lead status change."
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason this lead status change was changed.",
+            "nullable": true
+          },
+          "changedByUserId": {
+            "type": "string",
+            "description": "Unique identifier of the Leadping user who made the change.",
+            "nullable": true
+          },
+          "changedByAutomationId": {
+            "type": "string",
+            "description": "Unique identifier of the automation that changed the lead status change, when applicable.",
+            "nullable": true
+          },
+          "changedAt": {
+            "type": "string",
+            "description": "Date and time when the lead status change change occurred.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "changeSource": {
+            "enum": [
+              "User",
+              "AI",
+              "Automation",
+              "System",
+              "API"
+            ],
+            "type": "string",
+            "description": "Known sources that can change a lead's current lead status change.",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "The date and time for the timestamp value on this lead status change.",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "The date and time for the created at value on this lead status change.",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "The date and time for the updated at value on this lead status change.",
+            "format": "date-time"
+          },
+          "followUpStatus": {
+            "type": "string",
+            "description": "The current follow up status for this lead status change.",
+            "nullable": true
+          },
+          "callbackAt": {
+            "type": "string",
+            "description": "The date and time for the callback at value on this lead status change.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "taskDueAt": {
+            "type": "string",
+            "description": "The date and time for the task due at value on this lead status change.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentStartAt": {
+            "type": "string",
+            "description": "The date and time for the appointment start at value on this lead status change.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentEndAt": {
+            "type": "string",
+            "description": "The date and time for the appointment end at value on this lead status change.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "appointmentNotes": {
+            "type": "string",
+            "description": "The appointment notes value for this lead status change.",
+            "nullable": true
+          },
+          "assignedToUserId": {
+            "type": "string",
+            "description": "The assigned to user ID associated with this lead status change.",
+            "nullable": true
+          },
+          "relatedCallEventId": {
+            "type": "string",
+            "description": "The related call event ID associated with this lead status change.",
+            "nullable": true
+          },
+          "isMissedCallFollowUp": {
+            "type": "boolean",
+            "description": "Whether this lead status change is missed call follow up."
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "The source ID associated with this lead status change.",
+            "nullable": true
+          }
+        },
+        "description": "Response model for lead status change data."
+      },
+      "LeadStatusChangeSource": {
+        "enum": [
+          "User",
+          "AI",
+          "Automation",
+          "System",
+          "API"
+        ],
+        "type": "string",
+        "description": "Known sources that can change a lead's current lead status change."
+      },
       "LeadStatusRequest": {
         "type": "object",
         "properties": {
@@ -14538,7 +14712,7 @@
               "Duplicate"
             ],
             "type": "string",
-            "description": "Controlled disposition categories used for reporting, automation, and analytics.",
+            "description": "Controlled lead status change categories used for reporting, automation, and analytics.",
             "nullable": true
           },
           "sortOrder": {
@@ -14571,10 +14745,10 @@
           "category": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/DispositionCategory"
+                "$ref": "#/components/schemas/LeadStatusCategory"
               }
             ],
-            "description": "Disposition category represented by the lead status."
+            "description": "LeadStatusChange category represented by the lead status."
           },
           "sortOrder": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -14673,14 +14847,14 @@
             "type": "boolean",
             "description": "Whether this lead is archived."
           },
-          "currentDisposition": {
+          "currentLeadStatus": {
             "type": "object",
             "allOf": [
               {
-                "$ref": "#/components/schemas/CurrentDispositionSummary"
+                "$ref": "#/components/schemas/CurrentLeadStatusSummary"
               }
             ],
-            "description": "Current disposition summary that describes the lead outcome.",
+            "description": "Current lead status change summary that describes the lead outcome.",
             "nullable": true
           },
           "price": {
@@ -14875,6 +15049,10 @@
           "isRead": {
             "type": "boolean",
             "description": "Whether this notification is read."
+          },
+          "pushEnabled": {
+            "type": "boolean",
+            "description": "Whether this notification should also be delivered as a device push notification."
           },
           "actionUrl": {
             "type": "string",
@@ -17341,7 +17519,7 @@
         },
         "description": "A generic container for paginated results returned to the client."
       },
-      "PagedResultOfDispositionResponse": {
+      "PagedResultOfEventTableRow": {
         "type": "object",
         "properties": {
           "items": {
@@ -17349,10 +17527,10 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/DispositionResponse"
+                  "$ref": "#/components/schemas/EventTableRow"
                 }
               ],
-              "description": "Response model for disposition data."
+              "description": "List item schema for Leadping API event timeline table row results shown in searchable tables."
             },
             "description": "The subset of items returned for the current page."
           },
@@ -17374,7 +17552,7 @@
         },
         "description": "A generic container for paginated results returned to the client."
       },
-      "PagedResultOfEventTableRow": {
+      "PagedResultOfLeadStatusChangeResponse": {
         "type": "object",
         "properties": {
           "items": {
@@ -17382,10 +17560,10 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/EventTableRow"
+                  "$ref": "#/components/schemas/LeadStatusChangeResponse"
                 }
               ],
-              "description": "List item schema for Leadping API event timeline table row results shown in searchable tables."
+              "description": "Response model for lead status change data."
             },
             "description": "The subset of items returned for the current page."
           },
@@ -18967,6 +19145,54 @@
             "nullable": true
           }
         }
+      },
+      "PushInstallationRequest": {
+        "type": "object",
+        "properties": {
+          "installationId": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "pushChannel": {
+            "type": "string"
+          },
+          "appIdentifier": {
+            "type": "string"
+          },
+          "appName": {
+            "type": "string",
+            "nullable": true
+          },
+          "appVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "appBuild": {
+            "type": "string",
+            "nullable": true
+          },
+          "devicePlatform": {
+            "type": "string",
+            "nullable": true
+          },
+          "deviceVersion": {
+            "type": "string",
+            "nullable": true
+          },
+          "deviceModel": {
+            "type": "string",
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Describes a mobile push installation. Identity and Azure tags are derived by the API."
       },
       "RangeFilter": {
         "type": "object",
@@ -22211,13 +22437,13 @@
       "name": "Conversations"
     },
     {
-      "name": "Dispositions"
-    },
-    {
       "name": "Feedback"
     },
     {
       "name": "Leads"
+    },
+    {
+      "name": "LeadStatusChanges"
     },
     {
       "name": "LeadStatuses"
