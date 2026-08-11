@@ -4785,7 +4785,7 @@
           "Sources"
         ],
         "summary": "Get lead metrics for a source",
-        "description": "Returns lead creation metrics for one organization intake source, including accepted, rejected, duplicate, validation, and recent activity counts for monitoring.",
+        "description": "View lead creation metrics for an organization intake source, including accepted, rejected, duplicate, validation, and recent activity counts.",
         "operationId": "Sources_GetMetrics",
         "parameters": [
           {
