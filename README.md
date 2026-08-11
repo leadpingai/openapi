@@ -4,11 +4,21 @@
 
 # ![Leadping](https://leadping.ai/favicon.ico) Leadping OpenAPI
 
-Official OpenAPI specification for the Leadping API.
+The official OpenAPI 3 specification for the Leadping API: a machine-readable contract for building lead management, messaging, calling, automation, reporting, billing, and business integrations with Leadping.
 
-This repository publishes the machine-readable API contract used by Leadping documentation, client tooling, and generated SDKs. The specification describes Leadping endpoints for lead intake, messaging, calling, automations, billing, business settings, and compliant lead communication workflows.
+This repository is the source for Leadping API documentation, client tooling, and generated SDKs. Use the hosted [Leadping OpenAPI specification](https://leadping.ai/docs/openapi.json) to inspect request and response schemas, validate integrations, generate a custom API client, or power OpenAPI-compatible developer tools.
 
-Documentation is available at [leadping.ai/docs](https://leadping.ai/docs).
+New to the API? Start with the [Leadping API introduction](https://leadping.ai/docs/introduction), then use the [API reference](https://leadping.ai/docs/api-reference) for endpoint details.
+
+## Download the specification
+
+Download the currently published contract from Leadping:
+
+```bash
+curl -fsSLo leadping-openapi.json https://leadping.ai/docs/openapi.json
+```
+
+The hosted document is the canonical specification for the production API.
 
 ## API Server
 
@@ -20,52 +30,54 @@ https://api.leadping.ai
 
 ## Authentication
 
-Leadping API clients authenticate with one of the supported request headers:
+Leadping API clients authenticate with the Bearer scheme:
+
+| Credential | Authorization header | Intended use |
+| --- | --- | --- |
+| WorkOS organization API key | `Bearer sk_...` | Services, agents, and organization integrations |
+| Leadping user access token | `Bearer <user-token>` | Operations performed for a signed-in user |
+| Leadping source key | `Bearer lp_src_...` | Approved lead-ingestion endpoints only |
 
 ```http
-Authorization: Bearer <token>
+Authorization: Bearer sk_example
 ```
 
-```http
-X-Leadping-Api-Key: <key>
-```
+Source keys are rejected by non-ingestion endpoints. See [API authentication](https://leadping.ai/docs/api-authentication) for credential details.
 
-Use the credential type that matches your Leadping integration.
+## Official Leadping SDKs
 
-## SDKs
+Leadping publishes type-safe SDKs generated from this OpenAPI contract. For production integrations, choose the package for your language:
 
-Leadping publishes generated SDKs from this OpenAPI contract:
+| Language | Package | Repository |
+| --- | --- | --- |
+| TypeScript / JavaScript | [`@leadping/sdk`](https://www.npmjs.com/package/@leadping/sdk) | [leadping-typescript](https://github.com/leadpingai/leadping-typescript) |
+| Python | [`leadping`](https://pypi.org/project/leadping/) | [leadping-python](https://github.com/leadpingai/leadping-python) |
+| .NET | [`Leadping.OpenApiClient`](https://www.nuget.org/packages/Leadping.OpenApiClient/) | [leadping-dotnet](https://github.com/leadpingai/leadping-dotnet) |
+| Go | [`github.com/leadpingai/leadping-go`](https://pkg.go.dev/github.com/leadpingai/leadping-go) | [leadping-go](https://github.com/leadpingai/leadping-go) |
+| PHP | [`leadpingai/sdk`](https://packagist.org/packages/leadpingai/sdk) | [leadping-php](https://github.com/leadpingai/leadping-php) |
+| Java | [`ai.leadping:leadping`](https://central.sonatype.com/artifact/ai.leadping/leadping) | [leadping-java](https://github.com/leadpingai/leadping-java) |
 
-| Language | Repository |
-| --- | --- |
-| TypeScript | [leadping-typescript](https://github.com/leadpingai/leadping-typescript) |
-| Python | [leadping-python](https://github.com/leadpingai/leadping-python) |
-| .NET | [leadping-dotnet](https://github.com/leadpingai/leadping-dotnet) |
-| Go | [leadping-go](https://github.com/leadpingai/leadping-go) |
-| PHP | [leadping-php](https://github.com/leadpingai/leadping-php) |
-| Java | [leadping-java](https://github.com/leadpingai/leadping-java) |
-
-## Using the Specification
+## Use the specification
 
 You can use `openapi.json` with OpenAPI-compatible tooling such as Swagger UI, Redoc, Microsoft Kiota, or OpenAPI Generator.
 
-Example validation:
+Validate with Redocly:
 
 ```bash
 npx @redocly/cli lint openapi.json
 ```
 
-Example SDK generation with Kiota:
+Generate a TypeScript client with Kiota:
 
 ```bash
 kiota generate --openapi openapi.json --language typescript --class-name LeadpingOpenApiClient --namespace-name leadping
 ```
 
-Prefer the official Leadping SDK repositories for production use. Generate clients directly from this repository when you need custom packaging, local experiments, or unsupported target languages.
+Prefer an official SDK for production use. Generate a custom client for unsupported languages or custom packaging.
 
 ## Contributing
 
-Open an issue for documentation problems, schema mismatches, or feature requests. If an API contract change is needed, describe the endpoint, expected behavior, and any backward-compatibility concerns.
+Open an issue for documentation problems, schema mismatches, or feature requests. Include the affected path, operation, expected behavior, and observed behavior. Remove credentials and customer data from examples.
 
 Do not report security vulnerabilities in public issues. Follow `SECURITY.md` instead.
 
