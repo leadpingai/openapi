@@ -440,6 +440,131 @@
         }
       }
     },
+    "/automations/{id}/runs": {
+      "get": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Gets recent persisted execution runs for an automation console.",
+        "operationId": "Automations_GetRuns",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/AutomationConsoleResponse"
+                    }
+                  ],
+                  "description": "Recent persisted execution runs for an automation console."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/automations/{id}/runs/{runId}": {
+      "get": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Gets one persisted automation execution run for its console.",
+        "operationId": "Automations_GetRun",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "runId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/AutomationConsoleResponse"
+                    }
+                  ],
+                  "description": "Recent persisted execution runs for an automation console."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/automations/all/my": {
       "post": {
         "tags": [
@@ -590,6 +715,72 @@
           },
           "401": {
             "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/automations/{id}/run": {
+      "post": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Runs an automation through its Manual trigger.",
+        "operationId": "Automations_RunManual",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/AutomationRunRecord"
+                    }
+                  ],
+                  "description": "History record schema for Leadping API automation run record data exposed in automation and audit views."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
@@ -2031,7 +2222,7 @@
           "Leads"
         ],
         "summary": "Delete an organization lead record by ID",
-        "description": "Deletes a lead from the current organization when it should no longer appear in communication, routing, or event workflows.",
+        "description": "Marks a lead as deleted so it no longer appears in user-facing lead, conversation, routing, or event workflows. The stored lead,\nconversation, and event records are retained.",
         "operationId": "Leads_Delete",
         "parameters": [
           {
@@ -12308,6 +12499,26 @@
         },
         "description": "A directed connection between two nodes in an automation graph."
       },
+      "AutomationConsoleResponse": {
+        "type": "object",
+        "properties": {
+          "automationId": {
+            "type": "string"
+          },
+          "runs": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AutomationWorkflowRunResponse"
+                }
+              ],
+              "description": "User-safe automation workflow run status returned for a lead."
+            }
+          }
+        },
+        "description": "Recent persisted execution runs for an automation console."
+      },
       "AutomationPreviewActionResult": {
         "type": "object",
         "properties": {
@@ -13568,6 +13779,8 @@
           "openai_operation",
           "domain_registration",
           "10dlc_application",
+          "10dlc_campaign_month",
+          "payment_processing_fee",
           "connection_action",
           "automation_run"
         ],
@@ -13616,6 +13829,20 @@
               "string"
             ],
             "description": "User ID associated with the person or agent who initiated this call event."
+          },
+          "userName": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Display name for the person or agent who initiated this call event."
+          },
+          "userEmail": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Email address for the person or agent who initiated this call event."
           },
           "conversationId": {
             "type": [
@@ -15268,6 +15495,13 @@
             ],
             "description": "User summary connected to this event detail response."
           },
+          "userEmail": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Email address for the user connected to this event detail response."
+          },
           "userId": {
             "type": "string",
             "description": "User ID associated with the activity that created this event."
@@ -16636,6 +16870,18 @@
         },
         "description": "Public Leadping API schema for lead attribution metadata data."
       },
+      "LeadProcessingStatus": {
+        "enum": [
+          "Verifying",
+          "Validating",
+          "Enriching",
+          "Ready",
+          "Invalid",
+          "Failed"
+        ],
+        "type": "string",
+        "description": "Defines the asynchronous verification and enrichment lifecycle for a lead."
+      },
       "LeadProfile": {
         "type": "object",
         "properties": {
@@ -16880,6 +17126,21 @@
             "type": "boolean",
             "description": "Indicates whether this lead response is active and available in the Leadping API."
           },
+          "deletedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC timestamp when this lead was soft deleted.",
+            "format": "date-time"
+          },
+          "deletedByUserId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "User ID of the person who soft deleted this lead."
+          },
           "archivedAt": {
             "type": [
               "null",
@@ -16937,6 +17198,36 @@
               }
             ],
             "description": "Current lead status change summary that describes the lead outcome."
+          },
+          "processingStatus": {
+            "enum": [
+              "Verifying",
+              "Validating",
+              "Enriching",
+              "Ready",
+              "Invalid",
+              "Failed"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Defines the asynchronous verification and enrichment lifecycle for a lead."
+          },
+          "processingStatusReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Explanation when asynchronous lead processing is blocked or fails."
+          },
+          "processingStatusChangedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC timestamp when the processing stage last changed.",
+            "format": "date-time"
           },
           "tags": {
             "type": "array",
@@ -17763,6 +18054,36 @@
               }
             ],
             "description": "Current lead status change summary that describes the lead outcome."
+          },
+          "processingStatus": {
+            "enum": [
+              "Verifying",
+              "Validating",
+              "Enriching",
+              "Ready",
+              "Invalid",
+              "Failed"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Defines the asynchronous verification and enrichment lifecycle for a lead."
+          },
+          "processingStatusReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Explanation when asynchronous lead processing is blocked or fails."
+          },
+          "processingStatusChangedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC timestamp when the processing stage last changed.",
+            "format": "date-time"
           },
           "price": {
             "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
@@ -21819,6 +22140,23 @@
             "type": "string",
             "description": "The UTC timestamp when the lookup action occurred.",
             "format": "date-time"
+          },
+          "providerCostAmount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "description": "The provider cost incurred by this lookup action, in USD.",
+            "format": "double"
+          },
+          "providerPricingVersion": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The provider pricing version used to calculate the lookup cost."
           }
         },
         "description": "An auditable lookup, enrichment, or reputation check performed for a phone identity."
@@ -24365,6 +24703,13 @@
             ],
             "description": "User summary for the person who created this lead source response."
           },
+          "createdByUserEmail": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Email used to resolve the creator's avatar."
+          },
           "modifiedByUser": {
             "type": [
               "null",
@@ -25530,6 +25875,7 @@
               "openai",
               "domain",
               "10dlc",
+              "payment",
               "connection",
               "automation"
             ],
@@ -25554,6 +25900,8 @@
               "openai_operation",
               "domain_registration",
               "10dlc_application",
+              "10dlc_campaign_month",
+              "payment_processing_fee",
               "connection_action",
               "automation_run"
             ],
@@ -25747,6 +26095,7 @@
               "openai",
               "domain",
               "10dlc",
+              "payment",
               "connection",
               "automation"
             ],
@@ -25771,6 +26120,8 @@
               "openai_operation",
               "domain_registration",
               "10dlc_application",
+              "10dlc_campaign_month",
+              "payment_processing_fee",
               "connection_action",
               "automation_run"
             ],
@@ -25893,6 +26244,7 @@
           "openai",
           "domain",
           "10dlc",
+          "payment",
           "connection",
           "automation"
         ],
