@@ -13978,6 +13978,18 @@
             ],
             "description": "URL for the call recording, when the provider makes one available."
           },
+          "consoleEntries": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CommunicationConsoleEntry"
+                }
+              ],
+              "description": "Describes one durable diagnostic entry from the processing of a communication."
+            },
+            "description": "Ordered diagnostic entries recorded while Leadping processed this call."
+          },
           "user": {
             "type": "string",
             "description": "User summary connected to this call event table row."
@@ -14034,6 +14046,28 @@
           }
         },
         "description": "Defines the input used for change billing plan."
+      },
+      "CommunicationConsoleEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "occurredAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "description": "Describes one durable diagnostic entry from the processing of a communication."
       },
       "ComplianceUpdateRequest": {
         "type": "object",
@@ -22063,6 +22097,18 @@
             ],
             "description": "URL for the call recording, when the provider makes one available."
           },
+          "consoleEntries": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CommunicationConsoleEntry"
+                }
+              ],
+              "description": "Describes one durable diagnostic entry from the processing of a communication."
+            },
+            "description": "Ordered diagnostic entries recorded while Leadping processed this call."
+          },
           "id": {
             "type": "string",
             "description": "The unique identifier for the entity."
@@ -24030,6 +24076,18 @@
             ],
             "description": "Compliance action applied to this message, lead, or sender."
           },
+          "consoleEntries": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CommunicationConsoleEntry"
+                }
+              ],
+              "description": "Describes one durable diagnostic entry from the processing of a communication."
+            },
+            "description": "Ordered diagnostic entries recorded while Leadping processed this message."
+          },
           "user": {
             "type": "string",
             "description": "User summary connected to this SMS event table row."
@@ -24469,6 +24527,18 @@
               "string"
             ],
             "description": "Compliance action applied to this message, lead, or sender."
+          },
+          "consoleEntries": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CommunicationConsoleEntry"
+                }
+              ],
+              "description": "Describes one durable diagnostic entry from the processing of a communication."
+            },
+            "description": "Ordered diagnostic entries recorded while Leadping processed this message."
           },
           "id": {
             "type": "string",
