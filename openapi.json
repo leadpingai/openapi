@@ -2071,16 +2071,6 @@
         "summary": "Create a lead record from an external source",
         "description": "Creates a source-authenticated lead captured outside Leadping, starting follow-up, routing, and automation from structured lead data.",
         "operationId": "Leads_CreateExternal",
-        "parameters": [
-          {
-            "name": "sourceKey",
-            "in": "query",
-            "description": "The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "The lead data submitted by the external system.",
           "content": {
@@ -2212,9 +2202,6 @@
         "security": [
           {
             "SourceKey": [ ]
-          },
-          {
-            "SourceKeyQuery": [ ]
           }
         ]
       }
@@ -2227,16 +2214,6 @@
         "summary": "Create a lead record from intake payload",
         "description": "Creates a source-authenticated lead from a flat intake payload, capturing contact fields, metadata, and automation-ready lead details.",
         "operationId": "Leads_CreateIntake",
-        "parameters": [
-          {
-            "name": "sourceKey",
-            "in": "query",
-            "description": "The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "requestBody": {
           "description": "The common lead fields submitted by the external system.",
           "content": {
@@ -2353,9 +2330,6 @@
         "security": [
           {
             "SourceKey": [ ]
-          },
-          {
-            "SourceKeyQuery": [ ]
           }
         ]
       },
@@ -2649,14 +2623,6 @@
                 "type": "string"
               }
             }
-          },
-          {
-            "name": "sourceKey",
-            "in": "query",
-            "description": "The Leadping source key supplied as a query string parameter, or omitted when supplied as Authorization: Bearer lp_src_...",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -2749,9 +2715,6 @@
         "security": [
           {
             "SourceKey": [ ]
-          },
-          {
-            "SourceKeyQuery": [ ]
           }
         ]
       }
@@ -32323,12 +32286,6 @@
         "description": "Leadping source key for lead ingestion endpoints only using the Authorization header. Example: \"Authorization: Bearer lp_src_...\".",
         "scheme": "bearer",
         "bearerFormat": "Leadping source key"
-      },
-      "SourceKeyQuery": {
-        "type": "apiKey",
-        "description": "Leadping source key supplied as the sourceKey query parameter. Supported only by lead ingestion endpoints.",
-        "name": "sourceKey",
-        "in": "query"
       }
     }
   },
