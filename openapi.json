@@ -894,7 +894,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -904,7 +904,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -921,7 +921,7 @@
                       "$ref": "#/components/schemas/PagedResultOfAutomationTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -1491,7 +1491,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "text/json": {
@@ -1501,7 +1501,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -1511,7 +1511,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -1528,7 +1528,7 @@
                       "$ref": "#/components/schemas/PagedResultOfConversationResponse"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               },
               "application/json": {
@@ -1538,7 +1538,7 @@
                       "$ref": "#/components/schemas/PagedResultOfConversationResponse"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               },
               "text/json": {
@@ -1548,7 +1548,7 @@
                       "$ref": "#/components/schemas/PagedResultOfConversationResponse"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -1735,7 +1735,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "text/json": {
@@ -1745,7 +1745,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -1755,7 +1755,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -1772,7 +1772,7 @@
                       "$ref": "#/components/schemas/PagedResultOfConversationResponse"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               },
               "application/json": {
@@ -1782,7 +1782,7 @@
                       "$ref": "#/components/schemas/PagedResultOfConversationResponse"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               },
               "text/json": {
@@ -1792,7 +1792,7 @@
                       "$ref": "#/components/schemas/PagedResultOfConversationResponse"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -3565,7 +3565,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -3575,7 +3575,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -3592,7 +3592,7 @@
                       "$ref": "#/components/schemas/PagedResultOfLeadTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -4687,7 +4687,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -4697,7 +4697,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -4714,7 +4714,7 @@
                       "$ref": "#/components/schemas/PagedResultOfLeadStatusChangeResponse"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -5645,7 +5645,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -5655,7 +5655,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -5672,7 +5672,7 @@
                       "$ref": "#/components/schemas/PagedResultOfNotificationTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -6092,7 +6092,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -6102,7 +6102,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -6119,7 +6119,7 @@
                       "$ref": "#/components/schemas/PagedResultOfNotificationTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -7090,7 +7090,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -7100,7 +7100,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -7117,7 +7117,7 @@
                       "$ref": "#/components/schemas/PagedResultOfSourceTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -7730,7 +7730,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -7740,7 +7740,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -7757,7 +7757,7 @@
                       "$ref": "#/components/schemas/PagedResultOfSuppressionEntryResponse"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -9666,7 +9666,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -9676,7 +9676,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -9693,7 +9693,7 @@
                       "$ref": "#/components/schemas/PagedResultOfPhoneNumberTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -13754,7 +13754,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -13764,7 +13764,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -13781,7 +13781,7 @@
                       "$ref": "#/components/schemas/PagedResultOfOrganizationTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -14380,7 +14380,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -14390,7 +14390,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -14407,7 +14407,7 @@
                       "$ref": "#/components/schemas/PagedResultOfCallEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -14632,7 +14632,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -14642,7 +14642,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -14659,7 +14659,7 @@
                       "$ref": "#/components/schemas/PagedResultOfCallEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -14771,7 +14771,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -14781,7 +14781,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -14798,7 +14798,7 @@
                       "$ref": "#/components/schemas/PagedResultOfCallEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -14927,7 +14927,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -14937,7 +14937,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -14954,7 +14954,7 @@
                       "$ref": "#/components/schemas/PagedResultOfEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -15084,7 +15084,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -15094,7 +15094,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -15111,7 +15111,7 @@
                       "$ref": "#/components/schemas/PagedResultOfEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -15223,7 +15223,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -15233,7 +15233,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -15250,7 +15250,7 @@
                       "$ref": "#/components/schemas/PagedResultOfEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -15362,7 +15362,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -15372,7 +15372,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -15389,7 +15389,7 @@
                       "$ref": "#/components/schemas/PagedResultOfEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -15855,7 +15855,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -15865,7 +15865,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -15882,7 +15882,7 @@
                       "$ref": "#/components/schemas/PagedResultOfSmsEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -16107,7 +16107,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -16117,7 +16117,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -16134,7 +16134,7 @@
                       "$ref": "#/components/schemas/PagedResultOfSmsEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -16246,7 +16246,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -16256,7 +16256,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -16273,7 +16273,7 @@
                       "$ref": "#/components/schemas/PagedResultOfSmsEventTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -17096,7 +17096,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -17106,7 +17106,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -17123,7 +17123,7 @@
                       "$ref": "#/components/schemas/PagedResultOfTransactionTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -17209,7 +17209,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
             "application/*+json": {
@@ -17219,7 +17219,7 @@
                     "$ref": "#/components/schemas/RequestDataOptions"
                   }
                 ],
-                "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             }
           },
@@ -17236,7 +17236,7 @@
                       "$ref": "#/components/schemas/PagedResultOfUsageLedgerTableRow"
                     }
                   ],
-                  "description": "A generic container for paginated results returned to the client."
+                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
                 }
               }
             }
@@ -18393,7 +18393,7 @@
             "maxLength": 255,
             "minLength": 0,
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name for the resource, subject to the API's maximum name length."
           },
           "id": {
             "type": [
@@ -18688,15 +18688,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -18704,7 +18704,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -20956,11 +20956,11 @@
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -20968,7 +20968,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -21368,14 +21368,14 @@
         "type": "object",
         "properties": {
           "value": {
-            "description": "The value that the field must match."
+            "description": "Scalar value the target field must equal; its JSON type should match the field being queried."
           },
           "field": {
             "type": "string",
             "description": "The field to filter by."
           }
         },
-        "description": "A generic object for handling exact match filtering during querying"
+        "description": "Selects records whose named field equals a supplied scalar value."
       },
       "FeedbackCreateRequest": {
         "type": "object",
@@ -21536,14 +21536,14 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier."
+            "description": "Stable unique identifier of the referenced resource."
           },
           "name": {
             "type": "string",
-            "description": "The display name."
+            "description": "Human-readable display name of the referenced resource."
           }
         },
-        "description": "A minimal Record type with an Id (string), Name (string), and maximum JSON compatibility. The reason for this type (over something like KeyValuePair, dictionary) is because of JSON serialization support."
+        "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
       },
       "IdNameValue": {
         "required": [
@@ -21557,18 +21557,18 @@
               "null",
               "string"
             ],
-            "description": "The optional value associated with the identifier and name."
+            "description": "Optional machine-readable or display value associated with the referenced resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier."
+            "description": "Stable unique identifier of the referenced resource."
           },
           "name": {
             "type": "string",
-            "description": "The display name."
+            "description": "Human-readable display name of the referenced resource."
           }
         },
-        "description": "A minimal Record type with an Id (string), Name (string), nullable Value (string?) and maximum JSON compatibility"
+        "description": "Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata."
       },
       "InitiateCallRequest": {
         "required": [
@@ -22634,11 +22634,11 @@
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -22646,7 +22646,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -23695,15 +23695,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -23711,7 +23711,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -23789,15 +23789,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -23805,7 +23805,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -23834,7 +23834,7 @@
         "properties": {
           "field": {
             "type": "string",
-            "description": "The field to sort by."
+            "description": "Serializable field name used for sorting; supported names are determined by the queried resource."
           },
           "direction": {
             "enum": [
@@ -23848,7 +23848,7 @@
             "description": "An enumerator for sort direction during querying"
           }
         },
-        "description": "An object for ordering during querying"
+        "description": "Defines one field and direction used to order an API query result set."
       },
       "OrganizationActivationState": {
         "type": "object",
@@ -24836,15 +24836,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -24852,7 +24852,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -25079,7 +25079,7 @@
                   "$ref": "#/components/schemas/IdNameValue"
                 }
               ],
-              "description": "A minimal Record type with an Id (string), Name (string), nullable Value (string?) and maximum JSON compatibility"
+              "description": "Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata."
             },
             "description": "Phone numbers assigned to this organization."
           },
@@ -25099,7 +25099,7 @@
             "maxLength": 255,
             "minLength": 0,
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name for the resource, subject to the API's maximum name length."
           },
           "id": {
             "type": [
@@ -25331,7 +25331,7 @@
                   "$ref": "#/components/schemas/IdNameValue"
                 }
               ],
-              "description": "A minimal Record type with an Id (string), Name (string), nullable Value (string?) and maximum JSON compatibility"
+              "description": "Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata."
             },
             "description": "Phone numbers assigned to this organization."
           },
@@ -25393,15 +25393,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -25409,7 +25409,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -26428,11 +26428,11 @@
               ],
               "description": "Summarizes automation data in paginated and searchable results."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26440,7 +26440,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26448,10 +26448,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfCallEventTableRow": {
         "type": "object",
@@ -26466,11 +26466,11 @@
               ],
               "description": "Summarizes call event data in paginated and searchable results."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26478,7 +26478,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26486,10 +26486,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfConversationResponse": {
         "type": "object",
@@ -26504,11 +26504,11 @@
               ],
               "description": "Describes conversation data returned by Leadping."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26516,7 +26516,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26524,10 +26524,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfEventTableRow": {
         "type": "object",
@@ -26542,11 +26542,11 @@
               ],
               "description": "Summarizes event timeline data in paginated and searchable results."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26554,7 +26554,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26562,10 +26562,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfLeadStatusChangeResponse": {
         "type": "object",
@@ -26580,11 +26580,11 @@
               ],
               "description": "Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26592,7 +26592,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26600,10 +26600,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfLeadTableRow": {
         "type": "object",
@@ -26618,11 +26618,11 @@
               ],
               "description": "Summarizes lead data in paginated and searchable results."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26630,7 +26630,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26638,10 +26638,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfNotificationTableRow": {
         "type": "object",
@@ -26656,11 +26656,11 @@
               ],
               "description": "Describes notification data returned by Leadping."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26668,7 +26668,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26676,10 +26676,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfOrganizationTableRow": {
         "type": "object",
@@ -26694,11 +26694,11 @@
               ],
               "description": "Describes organization data used in Leadping API requests and responses."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26706,7 +26706,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26714,10 +26714,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfPhoneNumberTableRow": {
         "type": "object",
@@ -26732,11 +26732,11 @@
               ],
               "description": "Summarizes phone number data in paginated and searchable results."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26744,7 +26744,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26752,10 +26752,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfSmsEventTableRow": {
         "type": "object",
@@ -26770,11 +26770,11 @@
               ],
               "description": "Summarizes SMS event data in paginated and searchable results."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26782,7 +26782,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26790,10 +26790,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfSourceTableRow": {
         "type": "object",
@@ -26808,11 +26808,11 @@
               ],
               "description": "Summarizes lead source data in paginated and searchable results."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26820,7 +26820,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26828,10 +26828,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfSuppressionEntryResponse": {
         "type": "object",
@@ -26846,11 +26846,11 @@
               ],
               "description": "Describes a recipient suppression that prevents outreach through one or more communication channels."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26858,7 +26858,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26866,10 +26866,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfTransactionTableRow": {
         "type": "object",
@@ -26884,11 +26884,11 @@
               ],
               "description": "Summarizes billing transaction data in paginated and searchable results."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26896,7 +26896,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26904,10 +26904,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "PagedResultOfUsageLedgerTableRow": {
         "type": "object",
@@ -26922,11 +26922,11 @@
               ],
               "description": "Describes usage ledger data used in Leadping API requests and responses."
             },
-            "description": "The subset of items returned for the current page."
+            "description": "Items included in the current page, in the order determined by the query."
           },
           "pageSize": {
             "type": "integer",
-            "description": "The number of items returned per page in the response. This may reflect the client's requested page size, or a server-defined default or limit.",
+            "description": "Effective page-size limit used for this response, which may differ from the requested size because of server defaults or limits.",
             "format": "int32"
           },
           "totalCount": {
@@ -26934,7 +26934,7 @@
               "null",
               "integer"
             ],
-            "description": "The total number of items that match the query across all pages. May be null if the count is not computed or not applicable (e.g., in continuation-based pagination).",
+            "description": "Total number of records matching the query across all pages, or null when counting was not requested or computed.",
             "format": "int32"
           },
           "continuationToken": {
@@ -26942,10 +26942,10 @@
               "null",
               "string"
             ],
-            "description": "Opaque storage continuation token. ‑ `null` → the current page was the last page."
+            "description": "Opaque cursor for requesting the next page, or null when no additional page is available; clients must not parse or modify it."
           }
         },
-        "description": "A generic container for paginated results returned to the client."
+        "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
       },
       "Phone": {
         "type": "object",
@@ -27154,11 +27154,11 @@
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -27166,7 +27166,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -27318,15 +27318,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -27334,7 +27334,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -27405,7 +27405,7 @@
               "null",
               "string"
             ],
-            "description": "An enumerator describing phone line types"
+            "description": "Classifies the access technology or service type associated with a telephone number."
           },
           "carrier": {
             "type": [
@@ -27457,11 +27457,11 @@
           },
           "id": {
             "type": "string",
-            "description": "Unique Leadping identifier for the saved phone lookup record."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "UTC timestamp when the phone lookup record was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -27469,7 +27469,7 @@
               "null",
               "string"
             ],
-            "description": "UTC timestamp when the phone lookup record was last updated.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -27545,7 +27545,7 @@
               "null",
               "string"
             ],
-            "description": "An enumerator describing carrier types"
+            "description": "Classifies a telephone number by the network service or carrier category that provides it."
           },
           "errorCode": {
             "type": [
@@ -27996,7 +27996,7 @@
             "maxLength": 255,
             "minLength": 0,
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name for the resource, subject to the API's maximum name length."
           },
           "id": {
             "type": [
@@ -28060,15 +28060,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -28076,7 +28076,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -28599,7 +28599,7 @@
         "properties": {
           "pageSize": {
             "type": "integer",
-            "description": "Maximum items to return in one page",
+            "description": "Maximum number of items requested for one page; the server may enforce a lower maximum or apply a default.",
             "format": "int32"
           },
           "continuationToken": {
@@ -28607,7 +28607,7 @@
               "null",
               "string"
             ],
-            "description": "Opaque Cosmos DB continuation token. ‑ null on the **first** request. ‑ Client must echo back the NextToken it received from the previous page."
+            "description": "Opaque cursor returned by the previous paged response; omit it when requesting the first page and do not parse or modify it."
           },
           "orderBy": {
             "type": [
@@ -28620,23 +28620,23 @@
                   "$ref": "#/components/schemas/OrderByOption"
                 }
               ],
-              "description": "An object for ordering during querying"
+              "description": "Defines one field and direction used to order an API query result set."
             },
-            "description": "List of sort instructions, in priority order."
+            "description": "Sort instructions applied in priority order, with the first entry acting as the primary sort."
           },
           "includeCount": {
             "type": [
               "null",
               "boolean"
             ],
-            "description": "Whether to include the total count in the response (for pagination)."
+            "description": "Whether the response should include the total number of matching records; counting may increase query cost or latency."
           },
           "search": {
             "type": [
               "null",
               "string"
             ],
-            "description": "The search term to filter results (applied to SearchFields)."
+            "description": "Free-text search term applied to the configured SearchFields."
           },
           "searchFields": {
             "type": [
@@ -28646,7 +28646,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The list of fields to apply the Search term to (must be string properties)."
+            "description": "Serializable string field names searched for Search; supported names are determined by the queried resource."
           },
           "filters": {
             "type": [
@@ -28659,9 +28659,9 @@
                   "$ref": "#/components/schemas/ExactMatchFilter"
                 }
               ],
-              "description": "A generic object for handling exact match filtering during querying"
+              "description": "Selects records whose named field equals a supplied scalar value."
             },
-            "description": "Key-value exact match filters (e.g., Status = Active)."
+            "description": "Exact-match conditions that require each named field to equal its supplied value."
           },
           "rangeFilters": {
             "type": [
@@ -28676,10 +28676,10 @@
               ],
               "description": "A generic object for handling range filtering during querying"
             },
-            "description": "Advanced range-based filters (e.g., Price > 50 and Price <= 200)."
+            "description": "Range conditions that constrain comparable fields with inclusive or exclusive lower and upper bounds."
           }
         },
-        "description": "Options for flexible, efficient, and explicit querying in Cosmos DB or similar repositories."
+        "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
       },
       "SendSmsRequest": {
         "required": [
@@ -29449,11 +29449,11 @@
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -29461,7 +29461,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -29579,7 +29579,7 @@
             "maxLength": 255,
             "minLength": 0,
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name for the resource, subject to the API's maximum name length."
           },
           "id": {
             "type": [
@@ -29742,15 +29742,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -29758,7 +29758,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -29948,66 +29948,66 @@
               "null",
               "string"
             ],
-            "description": "The primary address line (e.g., street address, P.O. box, company name)."
+            "description": "Primary delivery line, such as a street address, post-office box, or company name."
           },
           "line2": {
             "type": [
               "null",
               "string"
             ],
-            "description": "The secondary address line (e.g., apartment, suite, unit, or building)."
+            "description": "Secondary delivery line, such as an apartment, suite, unit, floor, or building."
           },
           "city": {
             "type": [
               "null",
               "string"
             ],
-            "description": "The city, town, or locality."
+            "description": "City, town, village, or other postal locality."
           },
           "state": {
             "type": [
               "null",
               "string"
             ],
-            "description": "The state, province, or equivalent administrative region. Commonly used in countries like the US, Canada, and Australia."
+            "description": "State or equivalent first-level administrative subdivision when that label is used by the country."
           },
           "province": {
             "type": [
               "null",
               "string"
             ],
-            "description": "The province or territory, if distinct from state in your use case (optional, use with care)."
+            "description": "Province or territory when represented separately from State by the source or destination system."
           },
           "region": {
             "type": [
               "null",
               "string"
             ],
-            "description": "The broader region, district, or administrative area (e.g., prefecture or county)."
+            "description": "Region, district, county, prefecture, or other administrative area not represented by state or province."
           },
           "postalCode": {
             "type": [
               "null",
               "string"
             ],
-            "description": "The postal or ZIP code."
+            "description": "Postal routing code, such as a ZIP code or postcode, formatted according to the destination country."
           },
           "country": {
             "type": [
               "null",
               "string"
             ],
-            "description": "The ISO 3166-1 alpha-2 country code (e.g., \"US\", \"GB\", \"CA\")."
+            "description": "Two-letter ISO 3166-1 alpha-2 country code, such as US, GB, or CA."
           },
           "additionalInfo": {
             "type": [
               "null",
               "string"
             ],
-            "description": "Optional additional notes or delivery instructions."
+            "description": "Additional address context or delivery instructions that do not fit the structured fields."
           }
         },
-        "description": "A minimal, serializable record type for physical mailing addresses, with support for international formats and compatibility with common APIs."
+        "description": "Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields."
       },
       "StripeInvoiceResponse": {
         "type": "object",
@@ -30439,11 +30439,11 @@
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -30451,7 +30451,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -30892,11 +30892,11 @@
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -30904,7 +30904,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -31634,15 +31634,15 @@
         "properties": {
           "issuer": {
             "type": "string",
-            "description": "Identity provider or tenant that issued the user's sign-in identity."
+            "description": "Identity provider or tenant that issued the sign-in identity, such as contoso.com or facebook.com."
           },
           "issuerAssignedId": {
             "type": "string",
-            "description": "Unique user identifier assigned by the identity provider."
+            "description": "Stable unique user identifier assigned by the identity provider within the issuer's namespace."
           },
           "signInType": {
             "type": "string",
-            "description": "Sign-in method represented by the identity, such as email address, username, or federated login."
+            "description": "Sign-in method represented by the identity, such as emailAddress, userName, or federated."
           }
         },
         "description": "Identifies an external sign-in identity linked to a Leadping user, including its provider, provider-assigned user identifier, and authentication method."
@@ -31882,7 +31882,7 @@
             "maxLength": 255,
             "minLength": 0,
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name for the resource, subject to the API's maximum name length."
           },
           "id": {
             "type": [
@@ -32083,15 +32083,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -32099,7 +32099,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -32233,15 +32233,15 @@
           },
           "name": {
             "type": "string",
-            "description": "The display name for the entity."
+            "description": "Human-readable display name of the resource."
           },
           "id": {
             "type": "string",
-            "description": "The unique identifier for the entity."
+            "description": "Stable unique identifier of the resource."
           },
           "createdAt": {
             "type": "string",
-            "description": "The date and time when the entity was created.",
+            "description": "UTC timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -32249,7 +32249,7 @@
               "null",
               "string"
             ],
-            "description": "The date and time when the entity was last modified, if applicable.",
+            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
