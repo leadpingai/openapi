@@ -32314,7 +32314,7 @@
     "securitySchemes": {
       "Bearer": {
         "type": "http",
-        "description": "Authorization header using the Bearer scheme. Accepted values are Leadping user JWT access tokens, WorkOS organization API keys beginning with sk_, and Leadping source keys beginning with lp_src_ on lead ingestion endpoints only.",
+        "description": "Authorization header using the Bearer scheme. Accepted values are Leadping user JWT access tokens and WorkOS organization API keys beginning with sk_.",
         "scheme": "bearer",
         "bearerFormat": "JWT or organization API key"
       },
