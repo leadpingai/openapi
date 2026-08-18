@@ -74,7 +74,7 @@
                       "$ref": "#/components/schemas/CustomerAnalyticsResponse"
                     }
                   ],
-                  "description": "Response model containing customer analytics data returned by the Leadping API."
+                  "description": "Aggregates an organization's lead performance, response speed, communication usage, automation health, and activation insights."
                 }
               }
             }
@@ -4214,7 +4214,7 @@
                     "$ref": "#/components/schemas/LeadStatusChangeRequest"
                   }
                 ],
-                "description": "Request model for creating or updating a lead status change."
+                "description": "Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context."
               }
             },
             "application/*+json": {
@@ -4224,7 +4224,7 @@
                     "$ref": "#/components/schemas/LeadStatusChangeRequest"
                   }
                 ],
-                "description": "Request model for creating or updating a lead status change."
+                "description": "Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context."
               }
             }
           },
@@ -4241,7 +4241,7 @@
                       "$ref": "#/components/schemas/LeadStatusChangeResponse"
                     }
                   ],
-                  "description": "Response model for lead status change data."
+                  "description": "Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time."
                 }
               }
             }
@@ -4368,7 +4368,7 @@
                     "$ref": "#/components/schemas/LeadStatusChangeRequest"
                   }
                 ],
-                "description": "Request model for creating or updating a lead status change."
+                "description": "Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context."
               }
             },
             "application/*+json": {
@@ -4378,7 +4378,7 @@
                     "$ref": "#/components/schemas/LeadStatusChangeRequest"
                   }
                 ],
-                "description": "Request model for creating or updating a lead status change."
+                "description": "Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context."
               }
             }
           },
@@ -4395,7 +4395,7 @@
                       "$ref": "#/components/schemas/LeadStatusChangeResponse"
                     }
                   ],
-                  "description": "Response model for lead status change data."
+                  "description": "Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time."
                 }
               }
             }
@@ -4521,7 +4521,7 @@
                       "$ref": "#/components/schemas/LeadStatusChangeResponse"
                     }
                   ],
-                  "description": "Response model for lead status change data."
+                  "description": "Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time."
                 }
               }
             }
@@ -4851,7 +4851,7 @@
                         "$ref": "#/components/schemas/LeadStatusChangeResponse"
                       }
                     ],
-                    "description": "Response model for lead status change data."
+                    "description": "Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time."
                   }
                 }
               }
@@ -5069,7 +5069,7 @@
                         "$ref": "#/components/schemas/LeadStatusResponse"
                       }
                     ],
-                    "description": "Represents a configurable status that can be assigned to leads."
+                    "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
                   }
                 }
               }
@@ -5189,7 +5189,7 @@
                       "$ref": "#/components/schemas/LeadStatusResponse"
                     }
                   ],
-                  "description": "Represents a configurable status that can be assigned to leads."
+                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
                 }
               },
               "application/json": {
@@ -5199,7 +5199,7 @@
                       "$ref": "#/components/schemas/LeadStatusResponse"
                     }
                   ],
-                  "description": "Represents a configurable status that can be assigned to leads."
+                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
                 }
               },
               "text/json": {
@@ -5209,7 +5209,7 @@
                       "$ref": "#/components/schemas/LeadStatusResponse"
                     }
                   ],
-                  "description": "Represents a configurable status that can be assigned to leads."
+                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
                 }
               }
             }
@@ -5341,7 +5341,7 @@
                       "$ref": "#/components/schemas/LeadStatusResponse"
                     }
                   ],
-                  "description": "Represents a configurable status that can be assigned to leads."
+                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
                 }
               },
               "application/json": {
@@ -5351,7 +5351,7 @@
                       "$ref": "#/components/schemas/LeadStatusResponse"
                     }
                   ],
-                  "description": "Represents a configurable status that can be assigned to leads."
+                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
                 }
               },
               "text/json": {
@@ -5361,7 +5361,7 @@
                       "$ref": "#/components/schemas/LeadStatusResponse"
                     }
                   ],
-                  "description": "Represents a configurable status that can be assigned to leads."
+                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
                 }
               }
             }
@@ -6524,7 +6524,7 @@
                       "$ref": "#/components/schemas/OutboundCapacityOverview"
                     }
                   ],
-                  "description": "Represents outbound capacity overview data used by Leadping."
+                  "description": "Summarizes organization-wide SMS and voice sending capacity, phone-number health, and recent outbound pacing decisions."
                 }
               }
             }
@@ -7282,7 +7282,7 @@
                       "$ref": "#/components/schemas/SourceMetricsResponse"
                     }
                   ],
-                  "description": "Response model containing source metrics data returned by the Leadping API."
+                  "description": "Aggregates lead volume, conversion, delivery, and activity metrics attributed to a Leadping source over the requested reporting period."
                 }
               }
             }
@@ -11994,7 +11994,7 @@
                     "$ref": "#/components/schemas/TelephonyLoginRequest"
                   }
                 ],
-                "description": "Request model for telephony login token generation."
+                "description": "Identifies the Leadping user and calling context for which a short-lived telephony client token should be issued."
               }
             },
             "application/*+json": {
@@ -12004,7 +12004,7 @@
                     "$ref": "#/components/schemas/TelephonyLoginRequest"
                   }
                 ],
-                "description": "Request model for telephony login token generation."
+                "description": "Identifies the Leadping user and calling context for which a short-lived telephony client token should be issued."
               }
             }
           },
@@ -12021,7 +12021,7 @@
                       "$ref": "#/components/schemas/TelephonyLoginResponse"
                     }
                   ],
-                  "description": "Response model for telephony login token generation."
+                  "description": "Provides the short-lived access token and client configuration required to initialize an authenticated Leadping calling session."
                 }
               }
             }
@@ -14093,7 +14093,7 @@
                       "$ref": "#/components/schemas/UserDataExportResponse"
                     }
                   ],
-                  "description": "Response model containing user data export data returned by the Leadping API."
+                  "description": "Describes the lifecycle, scope, progress, retention, and downloadable artifacts of a Leadping user-data export request."
                 }
               }
             }
@@ -14191,7 +14191,7 @@
                       "$ref": "#/components/schemas/UserDataExportResponse"
                     }
                   ],
-                  "description": "Response model containing user data export data returned by the Leadping API."
+                  "description": "Describes the lifecycle, scope, progress, retention, and downloadable artifacts of a Leadping user-data export request."
                 }
               }
             }
@@ -17781,7 +17781,7 @@
           "Blocked"
         ],
         "type": "string",
-        "description": "Defines the supported Activation Launch Review Status values."
+        "description": "Describes the administrative review decision that determines whether an organization can launch Leadping workflows."
       },
       "ActivationOnboardingStatus": {
         "enum": [
@@ -17790,7 +17790,7 @@
           "Failed"
         ],
         "type": "string",
-        "description": "Defines the supported Activation Onboarding Status values."
+        "description": "Describes completion and blocking state for an organization's core Leadping onboarding requirements."
       },
       "ActivationPaymentStatus": {
         "enum": [
@@ -17799,7 +17799,7 @@
           "Failed"
         ],
         "type": "string",
-        "description": "Defines the supported Activation Payment Status values."
+        "description": "Describes whether valid funding and payment prerequisites are satisfied during organization activation."
       },
       "ActivationSubscriptionStatus": {
         "enum": [
@@ -17809,7 +17809,7 @@
           "Canceled"
         ],
         "type": "string",
-        "description": "Defines the supported Activation Subscription Status values."
+        "description": "Describes whether an organization's subscription is ready, blocked, or still incomplete during activation."
       },
       "ActivationTelephonyStatus": {
         "enum": [
@@ -17821,7 +17821,7 @@
           "BlockedRequiresOperatorAction"
         ],
         "type": "string",
-        "description": "Defines the supported Activation Telephony Status values."
+        "description": "Describes whether phone numbers, calling, messaging, and provider resources are ready for organization launch."
       },
       "ActivationTimelineEvent": {
         "type": "object",
@@ -17884,7 +17884,7 @@
           2
         ],
         "type": "integer",
-        "description": "Defines the supported analytics bucket size values.",
+        "description": "Selects the time interval used to aggregate points in a Leadping analytics trend series.",
         "format": "int32"
       },
       "AnalyticsComparison": {
@@ -17913,7 +17913,7 @@
             "description": "Direction classification for this Leadping analytics comparison."
           }
         },
-        "description": "Represents analytics comparison data exposed by Leadping analytics."
+        "description": "Compares a metric with the preceding period and reports its absolute and percentage change."
       },
       "AnalyticsDateRange": {
         "type": "object",
@@ -17937,7 +17937,7 @@
             "description": "Bucket size associated with this Leadping analytics date range."
           }
         },
-        "description": "Represents analytics date range data exposed by Leadping analytics."
+        "description": "Defines the inclusive reporting window and comparison window used to calculate Leadping analytics."
       },
       "AnalyticsTrendPointOfdecimal": {
         "type": "object",
@@ -17962,7 +17962,7 @@
             "format": "double"
           }
         },
-        "description": "Represents analytics trend point data exposed by Leadping analytics."
+        "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
       },
       "AnalyticsTrendPointOfint": {
         "type": "object",
@@ -17987,7 +17987,7 @@
             "format": "int32"
           }
         },
-        "description": "Represents analytics trend point data exposed by Leadping analytics."
+        "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
       },
       "AutomationAction": {
         "type": "object",
@@ -19442,7 +19442,7 @@
           "automation_run"
         ],
         "type": "string",
-        "description": "Defines the supported Billable Unit values."
+        "description": "Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number."
       },
       "BillingPlan": {
         "enum": [
@@ -19450,7 +19450,7 @@
           "Monthly"
         ],
         "type": "string",
-        "description": "Defines the supported Billing Plan values."
+        "description": "Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior."
       },
       "CallEventTableRow": {
         "type": "object",
@@ -19558,7 +19558,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Phone Call Status values."
+            "description": "Describes the durable business outcome of a Leadping phone call after provider status normalization."
           },
           "statusReason": {
             "type": [
@@ -20072,12 +20072,12 @@
                   "$ref": "#/components/schemas/CustomerActivationHealthItem"
                 }
               ],
-              "description": "Represents customer activation health item data exposed by Leadping analytics."
+              "description": "Describes the state, severity, and recommended next action for one organization activation requirement."
             },
             "description": "Collection of items included with this Leadping customer activation health."
           }
         },
-        "description": "Represents customer activation health data exposed by Leadping analytics."
+        "description": "Summarizes an organization's progress and blockers across onboarding, billing, telephony, compliance, and launch readiness."
       },
       "CustomerActivationHealthItem": {
         "type": "object",
@@ -20106,7 +20106,7 @@
             "description": "Relative URL for the recommended follow-up action."
           }
         },
-        "description": "Represents customer activation health item data exposed by Leadping analytics."
+        "description": "Describes the state, severity, and recommended next action for one organization activation requirement."
       },
       "CustomerActivationStatus": {
         "enum": [
@@ -20132,7 +20132,7 @@
           "ManuallyBypassed"
         ],
         "type": "string",
-        "description": "Defines the supported Customer Activation Status values."
+        "description": "Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness."
       },
       "CustomerAnalyticsResponse": {
         "type": "object",
@@ -20185,7 +20185,7 @@
                   "$ref": "#/components/schemas/CustomerLeadSourceBreakdown"
                 }
               ],
-              "description": "Represents customer lead source breakdown data exposed by Leadping analytics."
+              "description": "Attributes an organization's lead volume, qualification, and conversion outcomes to a specific acquisition source."
             },
             "description": "Collection of lead sources included with this Leadping customer analytics."
           },
@@ -20213,7 +20213,7 @@
                   "$ref": "#/components/schemas/CustomerNeedsAttentionItem"
                 }
               ],
-              "description": "Represents customer needs attention item data exposed by Leadping analytics."
+              "description": "Identifies an organization-level issue or opportunity and provides severity, supporting context, and a recommended action."
             },
             "description": "Date and time when this Leadping customer analytics was needs attention."
           },
@@ -20223,7 +20223,7 @@
             "format": "date-time"
           }
         },
-        "description": "Response model containing customer analytics data returned by the Leadping API."
+        "description": "Aggregates an organization's lead performance, response speed, communication usage, automation health, and activation insights."
       },
       "CustomerAnalyticsSummary": {
         "type": "object",
@@ -20321,7 +20321,7 @@
             "description": "Current wallet status for this Leadping customer analytics summary."
           }
         },
-        "description": "Represents customer analytics summary data exposed by Leadping analytics."
+        "description": "Summarizes an organization's primary lead, response, communication, and conversion KPIs for the selected period."
       },
       "CustomerAutomationHealth": {
         "type": "object",
@@ -20371,12 +20371,12 @@
                   "$ref": "#/components/schemas/CustomerFailingAutomation"
                 }
               ],
-              "description": "Represents customer failing automation data exposed by Leadping analytics."
+              "description": "Identifies an automation with recent execution failures and summarizes its affected leads and failure context."
             },
             "description": "Collection of failing automations included with this Leadping customer automation health."
           }
         },
-        "description": "Represents customer automation health data exposed by Leadping analytics."
+        "description": "Summarizes automation coverage, execution success, failures, and workflows requiring organization attention."
       },
       "CustomerCommunicationUsage": {
         "type": "object",
@@ -20434,12 +20434,12 @@
                   "$ref": "#/components/schemas/CustomerCommunicationUsagePoint"
                 }
               ],
-              "description": "Represents customer communication usage point data exposed by Leadping analytics."
+              "description": "Measures organization messaging and calling activity within one analytics time bucket."
             },
             "description": "Collection of trend included with this Leadping customer communication usage."
           }
         },
-        "description": "Represents customer communication usage data exposed by Leadping analytics."
+        "description": "Aggregates an organization's SMS, MMS, and calling activity, delivery outcomes, and billable usage over time."
       },
       "CustomerCommunicationUsagePoint": {
         "type": "object",
@@ -20484,7 +20484,7 @@
             "format": "double"
           }
         },
-        "description": "Represents customer communication usage point data exposed by Leadping analytics."
+        "description": "Measures organization messaging and calling activity within one analytics time bucket."
       },
       "CustomerFailingAutomation": {
         "type": "object",
@@ -20516,7 +20516,7 @@
             "description": "Error associated with this Leadping customer failing automation."
           }
         },
-        "description": "Represents customer failing automation data exposed by Leadping analytics."
+        "description": "Identifies an automation with recent execution failures and summarizes its affected leads and failure context."
       },
       "CustomerLeadSourceBreakdown": {
         "type": "object",
@@ -20536,7 +20536,7 @@
             "format": "double"
           }
         },
-        "description": "Represents customer lead source breakdown data exposed by Leadping analytics."
+        "description": "Attributes an organization's lead volume, qualification, and conversion outcomes to a specific acquisition source."
       },
       "CustomerLeadTrend": {
         "type": "object",
@@ -20562,12 +20562,12 @@
                   "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
                 }
               ],
-              "description": "Represents analytics trend point data exposed by Leadping analytics."
+              "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
             },
             "description": "Collection of points included with this Leadping customer lead trend."
           }
         },
-        "description": "Represents customer lead trend data exposed by Leadping analytics."
+        "description": "Measures lead creation, qualification, and conversion activity within one reporting time bucket."
       },
       "CustomerNeedsAttentionItem": {
         "type": "object",
@@ -20599,7 +20599,7 @@
             "description": "Action text associated with this Leadping customer needs attention item."
           }
         },
-        "description": "Represents customer needs attention item data exposed by Leadping analytics."
+        "description": "Identifies an organization-level issue or opportunity and provides severity, supporting context, and a recommended action."
       },
       "CustomerResponseMetrics": {
         "type": "object",
@@ -20653,12 +20653,12 @@
                   "$ref": "#/components/schemas/AnalyticsTrendPointOfdecimal"
                 }
               ],
-              "description": "Represents analytics trend point data exposed by Leadping analytics."
+              "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
             },
             "description": "Collection of average minutes trend included with this Leadping customer response metrics."
           }
         },
-        "description": "Represents customer response metrics data exposed by Leadping analytics."
+        "description": "Measures how quickly and consistently an organization responds to leads across supported communication channels."
       },
       "EligibleOutgoingNumberResponse": {
         "type": "object",
@@ -20687,7 +20687,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported SMS readiness health assessments."
+            "description": "Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic."
           },
           "healthLabel": {
             "type": [
@@ -20801,7 +20801,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Event timeline type values."
+            "description": "Classifies the kind of activity displayed in a lead or conversation event timeline."
           },
           "timelineCategory": {
             "type": [
@@ -20843,7 +20843,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Event status values."
+            "description": "Describes whether a Leadping event is pending, processing, completed, failed, or otherwise resolved."
           },
           "statusReason": {
             "type": [
@@ -21127,7 +21127,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Event timeline status values."
+            "description": "Provides the customer-facing outcome shown for an item in a lead or conversation timeline."
           },
           "statusReason": {
             "type": [
@@ -21148,7 +21148,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported SMS Traffic Type values."
+            "description": "Classifies messaging traffic by conversational, informational, marketing, or other compliance-relevant purpose."
           },
           "fromPhoneNumberId": {
             "type": [
@@ -21193,7 +21193,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Outgoing Number Selection Reason values."
+            "description": "Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number."
           },
           "wasManuallyOverridden": {
             "type": "boolean",
@@ -21399,7 +21399,7 @@
           "Warmup"
         ],
         "type": "string",
-        "description": "Defines the supported Event timeline type values."
+        "description": "Classifies the kind of activity displayed in a lead or conversation event timeline."
       },
       "ExactMatchFilter": {
         "type": "object",
@@ -22330,7 +22330,7 @@
               "null",
               "string"
             ],
-            "description": "Represents a gender classification used for demographic or identification purposes."
+            "description": "Classifies a lead's self-reported gender when required by a qualification, demographic, or integration workflow."
           },
           "height": {
             "type": [
@@ -22368,7 +22368,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Marital Status Type values."
+            "description": "Classifies a lead's reported marital status when required by a qualification or integration workflow."
           },
           "income": {
             "type": [
@@ -22426,7 +22426,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Employment Type values."
+            "description": "Classifies a lead's reported employment arrangement for qualification and demographic workflows."
           },
           "numberOfDependents": {
             "type": [
@@ -23074,7 +23074,7 @@
             "description": "The source ID associated with this lead status change."
           }
         },
-        "description": "Request model for creating or updating a lead status change."
+        "description": "Defines a lead status transition or correction, including its target status, effective time, source, and explanatory context."
       },
       "LeadStatusChangeResponse": {
         "type": "object",
@@ -23279,7 +23279,7 @@
             "description": "The source ID associated with this lead status change."
           }
         },
-        "description": "Response model for lead status change data."
+        "description": "Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time."
       },
       "LeadStatusRequest": {
         "type": "object",
@@ -23366,7 +23366,7 @@
             "format": "date-time"
           }
         },
-        "description": "Represents a configurable status that can be assigned to leads."
+        "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
       },
       "LeadTableRow": {
         "type": "object",
@@ -23650,7 +23650,7 @@
           "Critical"
         ],
         "type": "string",
-        "description": "Defines the supported Notification Priority values."
+        "description": "Ranks the urgency and presentation importance of a Leadping user notification."
       },
       "NotificationResponse": {
         "type": "object",
@@ -23864,7 +23864,7 @@
           "Activation"
         ],
         "type": "string",
-        "description": "Defines the supported Notification Type values."
+        "description": "Identifies the Leadping workflow or account event communicated by a user notification."
       },
       "OrderByOption": {
         "type": "object",
@@ -24269,7 +24269,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Billing Plan values."
+            "description": "Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior."
           },
           "billingPlanChangeEffectiveAt": {
             "type": [
@@ -24625,7 +24625,7 @@
           "Failed to send"
         ],
         "type": "string",
-        "description": "Defines the supported Organization Invitation Status values."
+        "description": "Describes the lifecycle of an organization membership invitation from issuance through acceptance, expiration, or revocation."
       },
       "OrganizationInvitationTableRow": {
         "type": "object",
@@ -24902,7 +24902,7 @@
           "Agent"
         ],
         "type": "string",
-        "description": "Defines the supported Organization User Role values."
+        "description": "Identifies an organization member's access level and permission scope within Leadping."
       },
       "OrganizationMemberTableRow": {
         "type": "object",
@@ -24981,7 +24981,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Organization Status values."
+            "description": "Describes an organization's account lifecycle and whether it can actively use Leadping services."
           },
           "enabled": {
             "type": [
@@ -25184,7 +25184,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Billing Plan values."
+            "description": "Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior."
           },
           "subscriptionStatus": {
             "enum": [
@@ -25197,7 +25197,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Subscription Status values."
+            "description": "Describes an organization's billing subscription lifecycle, including trial, active, delinquent, canceled, and expired states."
           },
           "billingState": {
             "type": [
@@ -25241,7 +25241,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Organization Status values."
+            "description": "Describes an organization's account lifecycle and whether it can actively use Leadping services."
           },
           "setupStatus": {
             "enum": [
@@ -25259,7 +25259,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported User Setup Status values."
+            "description": "Describes a user's progress through required Leadping profile and account setup tasks."
           },
           "enabled": {
             "type": "boolean",
@@ -25402,7 +25402,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Organization Setup Step values."
+            "description": "Identifies a discrete billing, telephony, compliance, or configuration stage in organization provisioning."
           },
           "activation": {
             "type": [
@@ -25493,7 +25493,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Organization Status values."
+            "description": "Describes an organization's account lifecycle and whether it can actively use Leadping services."
           },
           "activationStatus": {
             "enum": [
@@ -25522,7 +25522,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Customer Activation Status values."
+            "description": "Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness."
           },
           "tenDlcStatus": {
             "enum": [
@@ -25542,7 +25542,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported 10DLC Application Status values."
+            "description": "Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission."
           },
           "needsAdminReview": {
             "type": "boolean",
@@ -25631,7 +25631,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Billing Plan values."
+            "description": "Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior."
           },
           "subscriptionStatus": {
             "enum": [
@@ -25644,7 +25644,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Subscription Status values."
+            "description": "Describes an organization's billing subscription lifecycle, including trial, active, delinquent, canceled, and expired states."
           },
           "lastSubscriptionEventAt": {
             "type": [
@@ -25688,7 +25688,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Organization Status values."
+            "description": "Describes an organization's account lifecycle and whether it can actively use Leadping services."
           },
           "enabled": {
             "type": "boolean",
@@ -25766,7 +25766,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Organization Setup Step values."
+            "description": "Identifies a discrete billing, telephony, compliance, or configuration stage in organization provisioning."
           },
           "activationStatus": {
             "enum": [
@@ -25795,7 +25795,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Customer Activation Status values."
+            "description": "Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness."
           },
           "websiteStatus": {
             "enum": [
@@ -25816,7 +25816,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Website Lifecycle Status values."
+            "description": "Describes an organization website's lifecycle from discovery and verification through activation, suspension, or removal."
           },
           "tenDlcStatus": {
             "enum": [
@@ -25836,7 +25836,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported 10DLC Application Status values."
+            "description": "Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission."
           },
           "needsAdminReview": {
             "type": "boolean",
@@ -25901,7 +25901,7 @@
                   "$ref": "#/components/schemas/OutboundPhoneNumberCapacity"
                 }
               ],
-              "description": "Represents outbound phone number capacity data used by Leadping."
+              "description": "Reports the sending capacity, current load, and availability of a phone number considered for outbound delivery."
             },
             "description": "Collection of phone numbers included with this Leadping outbound capacity overview."
           },
@@ -25913,12 +25913,12 @@
                   "$ref": "#/components/schemas/OutboundQueueItem"
                 }
               ],
-              "description": "Represents outbound queue item data used by Leadping."
+              "description": "Describes a queued or recently evaluated outbound delivery request and the pacing decision that controls when it may be sent."
             },
             "description": "Collection of recent decisions included with this Leadping outbound capacity overview."
           }
         },
-        "description": "Represents outbound capacity overview data used by Leadping."
+        "description": "Summarizes organization-wide SMS and voice sending capacity, phone-number health, and recent outbound pacing decisions."
       },
       "OutboundDeliveryChannel": {
         "enum": [
@@ -26147,7 +26147,7 @@
             "format": "date-time"
           }
         },
-        "description": "Represents outbound phone number capacity data used by Leadping."
+        "description": "Reports the sending capacity, current load, and availability of a phone number considered for outbound delivery."
       },
       "OutboundQueueItem": {
         "type": "object",
@@ -26235,7 +26235,7 @@
             "description": "Phone number associated with this Leadping outbound queue item."
           }
         },
-        "description": "Represents outbound queue item data used by Leadping."
+        "description": "Describes a queued or recently evaluated outbound delivery request and the pacing decision that controls when it may be sent."
       },
       "OutgoingNumberManualOverrideRequest": {
         "required": [
@@ -26271,7 +26271,7 @@
           "ManualOverride"
         ],
         "type": "string",
-        "description": "Defines the supported Outgoing Number Selection Reason values."
+        "description": "Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number."
       },
       "OutgoingNumberSelectionRequest": {
         "type": "object",
@@ -26306,7 +26306,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Outgoing Number Channel values."
+            "description": "Identifies whether an outgoing phone number is eligible for voice, SMS, MMS, or another communication channel."
           },
           "campaignId": {
             "type": [
@@ -26379,7 +26379,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported SMS readiness health assessments."
+            "description": "Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic."
           },
           "healthLabel": {
             "type": [
@@ -26410,7 +26410,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Outgoing Number Selection Reason values."
+            "description": "Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number."
           },
           "reasonLabel": {
             "type": [
@@ -26615,7 +26615,7 @@
                   "$ref": "#/components/schemas/LeadStatusChangeResponse"
                 }
               ],
-              "description": "Response model for lead status change data."
+              "description": "Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time."
             },
             "description": "The subset of items returned for the current page."
           },
@@ -27094,7 +27094,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Outgoing Number Selection Reason values."
+            "description": "Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number."
           },
           "wasManuallyOverridden": {
             "type": "boolean",
@@ -27233,7 +27233,7 @@
           "configuration_required"
         ],
         "type": "string",
-        "description": "Defines the supported Phone Call Status values."
+        "description": "Describes the durable business outcome of a Leadping phone call after provider status normalization."
       },
       "PhoneIdentityLookupAction": {
         "type": "object",
@@ -27248,7 +27248,7 @@
                 "$ref": "#/components/schemas/PhoneIdentityLookupActionType"
               }
             ],
-            "description": "Identifies the kind of lookup action performed for a phone identity."
+            "description": "The category of enrichment, validation, or reputation lookup that was performed."
           },
           "provider": {
             "type": "string",
@@ -27260,7 +27260,7 @@
                 "$ref": "#/components/schemas/PhoneIdentityLookupActionStatus"
               }
             ],
-            "description": "Identifies the outcome of a phone identity lookup action."
+            "description": "The processing outcome reported for the phone identity lookup."
           },
           "occurredAt": {
             "type": "string",
@@ -27964,7 +27964,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported SMS readiness states."
+            "description": "Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping."
           },
           "healthStatus": {
             "enum": [
@@ -27978,7 +27978,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported SMS readiness health assessments."
+            "description": "Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic."
           },
           "healthScore": {
             "type": "integer",
@@ -28002,7 +28002,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported voice call warmup stages for a Leadping-managed phone number."
+            "description": "Identifies the current traffic-ramp stage of controlled voice warmup for a Leadping-managed phone number."
           }
         },
         "description": "Messaging and calling warmup for a Leadping phone number."
@@ -28871,7 +28871,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported SMS Message Status values."
+            "description": "Describes the normalized lifecycle of an SMS or MMS message from scheduling through delivery or failure."
           },
           "statusReason": {
             "type": [
@@ -29030,7 +29030,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported SMS Traffic Type values."
+            "description": "Classifies messaging traffic by conversational, informational, marketing, or other compliance-relevant purpose."
           },
           "billableAmount": {
             "type": [
@@ -29121,7 +29121,7 @@
           "Blocked"
         ],
         "type": "string",
-        "description": "Defines the supported SMS readiness health assessments."
+        "description": "Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic."
       },
       "SmsReadinessState": {
         "enum": [
@@ -29132,7 +29132,7 @@
           "Ready"
         ],
         "type": "string",
-        "description": "Defines the supported SMS readiness states."
+        "description": "Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping."
       },
       "SmsReadinessStatusResponse": {
         "type": "object",
@@ -29249,7 +29249,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Outgoing Number Selection Reason values."
+            "description": "Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number."
           },
           "wasManuallyOverridden": {
             "type": "boolean",
@@ -29306,7 +29306,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported SMS Message Status values."
+            "description": "Describes the normalized lifecycle of an SMS or MMS message from scheduling through delivery or failure."
           },
           "statusReason": {
             "type": [
@@ -29448,7 +29448,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported SMS Traffic Type values."
+            "description": "Classifies messaging traffic by conversational, informational, marketing, or other compliance-relevant purpose."
           },
           "billableAmount": {
             "type": [
@@ -29528,7 +29528,7 @@
                   "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
                 }
               ],
-              "description": "Represents analytics trend point data exposed by Leadping analytics."
+              "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
             },
             "description": "Collection of points included with this Leadping source metrics."
           },
@@ -29538,7 +29538,7 @@
             "format": "date-time"
           }
         },
-        "description": "Response model containing source metrics data returned by the Leadping API."
+        "description": "Aggregates lead volume, conversion, delivery, and activity metrics attributed to a Leadping source over the requested reporting period."
       },
       "SourceRequest": {
         "required": [
@@ -30535,7 +30535,7 @@
             "description": "Identifier and display name of the related device."
           }
         },
-        "description": "Request model for telephony login token generation."
+        "description": "Identifies the Leadping user and calling context for which a short-lived telephony client token should be issued."
       },
       "TelephonyLoginResponse": {
         "type": "object",
@@ -30561,7 +30561,7 @@
             "description": "Callback token for this telephony login."
           }
         },
-        "description": "Response model for telephony login token generation."
+        "description": "Provides the short-lived access token and client configuration required to initialize an authenticated Leadping calling session."
       },
       "TenDlcApplicationDraft": {
         "type": "object",
@@ -30749,7 +30749,7 @@
           "Failed"
         ],
         "type": "string",
-        "description": "Defines the supported 10DLC Application Status values."
+        "description": "Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission."
       },
       "TenDlcNotesRequest": {
         "type": "object",
@@ -30839,7 +30839,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Usage Channel values."
+            "description": "Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage."
           },
           "billableUnit": {
             "enum": [
@@ -30865,7 +30865,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Billable Unit values."
+            "description": "Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number."
           },
           "gatewayFeeAmount": {
             "type": [
@@ -30954,7 +30954,7 @@
           "Failed"
         ],
         "type": "string",
-        "description": "Defines the supported Transaction Status values."
+        "description": "Describes the processing and settlement lifecycle of a Leadping wallet or billing transaction."
       },
       "TransactionTableRow": {
         "type": "object",
@@ -31039,7 +31039,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Usage Channel values."
+            "description": "Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage."
           },
           "billableUnit": {
             "enum": [
@@ -31065,7 +31065,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Billable Unit values."
+            "description": "Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number."
           },
           "sourceEventId": {
             "type": [
@@ -31133,7 +31133,7 @@
           "Deposit"
         ],
         "type": "string",
-        "description": "Defines the supported Transaction Type values."
+        "description": "Classifies a wallet transaction as a debit, credit, refund, adjustment, deposit, or other balance movement."
       },
       "TrustedFormCertificate": {
         "type": "object",
@@ -31186,7 +31186,7 @@
           "automation"
         ],
         "type": "string",
-        "description": "Defines the supported Usage Channel values."
+        "description": "Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage."
       },
       "UsageCounterLine": {
         "type": "object",
@@ -31368,7 +31368,7 @@
           "blocked_due_to_billing"
         ],
         "type": "string",
-        "description": "Defines the supported Usage Record Status values."
+        "description": "Describes whether a metered usage record is pending, rated, billed, reconciled, excluded, or failed."
       },
       "UsageSummaryLine": {
         "type": "object",
@@ -31542,7 +31542,7 @@
             "format": "int32"
           }
         },
-        "description": "Response model containing user data export file data returned by the Leadping API."
+        "description": "Describes a file included in a user-data export, including its logical category, media type, size, and integrity metadata."
       },
       "UserDataExportResponse": {
         "type": "object",
@@ -31648,12 +31648,12 @@
                   "$ref": "#/components/schemas/UserDataExportFile"
                 }
               ],
-              "description": "Response model containing user data export file data returned by the Leadping API."
+              "description": "Describes a file included in a user-data export, including its logical category, media type, size, and integrity metadata."
             },
             "description": "Collection of files included with this Leadping user data export."
           }
         },
-        "description": "Response model containing user data export data returned by the Leadping API."
+        "description": "Describes the lifecycle, scope, progress, retention, and downloadable artifacts of a Leadping user-data export request."
       },
       "UserDataExportStatuses": {
         "enum": [
@@ -31664,7 +31664,7 @@
           "Expired"
         ],
         "type": "string",
-        "description": "Defines the supported user data export statuses values."
+        "description": "Identifies the preparation, availability, failure, expiration, or deletion stage of a Leadping user-data export."
       },
       "UserIdentity": {
         "type": "object",
@@ -31682,7 +31682,7 @@
             "description": "Sign-in method represented by the identity, such as email address, username, or federated login."
           }
         },
-        "description": "Represents a user's sign-in identity, including information about the identity provider and method of authentication."
+        "description": "Identifies an external sign-in identity linked to a Leadping user, including its provider, provider-assigned user identifier, and authentication method."
       },
       "UserNotificationPreferences": {
         "type": "object",
@@ -31862,7 +31862,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Billing Plan values."
+            "description": "Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior."
           },
           "currentOrganization": {
             "type": [
@@ -31976,7 +31976,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Billing Plan values."
+            "description": "Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior."
           },
           "subscriptionStatus": {
             "enum": [
@@ -31989,7 +31989,7 @@
               "null",
               "string"
             ],
-            "description": "Defines the supported Subscription Status values."
+            "description": "Describes an organization's billing subscription lifecycle, including trial, active, delinquent, canceled, and expired states."
           },
           "billingState": {
             "type": [
@@ -32025,7 +32025,7 @@
                   "$ref": "#/components/schemas/UserIdentity"
                 }
               ],
-              "description": "Represents a user's sign-in identity, including information about the identity provider and method of authentication."
+              "description": "Identifies an external sign-in identity linked to a Leadping user, including its provider, provider-assigned user identifier, and authentication method."
             },
             "description": "The identities included with this user."
           },
@@ -32308,7 +32308,7 @@
           "ManuallyBypassed"
         ],
         "type": "string",
-        "description": "Defines the supported Website Lifecycle Status values."
+        "description": "Describes an organization website's lifecycle from discovery and verification through activation, suspension, or removal."
       }
     },
     "securitySchemes": {
