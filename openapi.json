@@ -18400,7 +18400,7 @@
               "null",
               "string"
             ],
-            "description": "The unique identifier for the entity, when updating an existing entity."
+            "description": "Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation."
           }
         },
         "description": "Defines the fields clients can send when working with automation configuration."
@@ -21372,7 +21372,7 @@
           },
           "field": {
             "type": "string",
-            "description": "The field to filter by."
+            "description": "Serializable field name to evaluate; supported names are determined by the queried resource."
           }
         },
         "description": "Selects records whose named field equals a supplied scalar value."
@@ -22469,7 +22469,7 @@
               "null",
               "string"
             ],
-            "description": "The unique identifier for the entity, when updating an existing entity."
+            "description": "Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation."
           }
         },
         "description": "Defines the fields clients can send when working with lead."
@@ -23845,7 +23845,7 @@
               "null",
               "string"
             ],
-            "description": "An enumerator for sort direction during querying"
+            "description": "Identifies whether query results are ordered from lower to higher values or from higher to lower values."
           }
         },
         "description": "Defines one field and direction used to order an API query result set."
@@ -25106,7 +25106,7 @@
               "null",
               "string"
             ],
-            "description": "The unique identifier for the entity, when updating an existing entity."
+            "description": "Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation."
           }
         },
         "description": "Defines the fields clients can send when working with organization profile."
@@ -28003,7 +28003,7 @@
               "null",
               "string"
             ],
-            "description": "The unique identifier for the entity, when updating an existing entity."
+            "description": "Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation."
           }
         },
         "description": "Defines the fields clients can send when working with phone number update."
@@ -28576,23 +28576,23 @@
         "type": "object",
         "properties": {
           "greaterThan": {
-            "description": "The exclusive lower bound for the field value."
+            "description": "Exclusive lower bound; matching field values must be greater than this value."
           },
           "greaterThanOrEqual": {
-            "description": "The inclusive lower bound for the field value."
+            "description": "Inclusive lower bound; matching field values must be greater than or equal to this value."
           },
           "lessThan": {
-            "description": "The exclusive upper bound for the field value."
+            "description": "Exclusive upper bound; matching field values must be less than this value."
           },
           "lessThanOrEqual": {
-            "description": "The inclusive upper bound for the field value."
+            "description": "Inclusive upper bound; matching field values must be less than or equal to this value."
           },
           "field": {
             "type": "string",
-            "description": "The field to filter by."
+            "description": "Serializable field name to evaluate; supported names are determined by the queried resource."
           }
         },
-        "description": "A generic object for handling range filtering during querying"
+        "description": "Selects records by applying inclusive or exclusive lower and upper bounds to a named comparable field."
       },
       "RequestDataOptions": {
         "type": "object",
@@ -28674,7 +28674,7 @@
                   "$ref": "#/components/schemas/RangeFilter"
                 }
               ],
-              "description": "A generic object for handling range filtering during querying"
+              "description": "Selects records by applying inclusive or exclusive lower and upper bounds to a named comparable field."
             },
             "description": "Range conditions that constrain comparable fields with inclusive or exclusive lower and upper bounds."
           }
@@ -29586,7 +29586,7 @@
               "null",
               "string"
             ],
-            "description": "The unique identifier for the entity, when updating an existing entity."
+            "description": "Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation."
           }
         },
         "description": "Defines the fields clients can send when working with lead source."
@@ -30381,7 +30381,7 @@
               "null",
               "string"
             ],
-            "description": "The unique identifier for the entity, when updating an existing entity."
+            "description": "Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation."
           }
         },
         "description": "Defines the fields clients can send when working with tag."
@@ -31889,7 +31889,7 @@
               "null",
               "string"
             ],
-            "description": "The unique identifier for the entity, when updating an existing entity."
+            "description": "Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation."
           }
         },
         "description": "Defines the fields clients can send when working with user profile."
