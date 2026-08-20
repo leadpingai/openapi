@@ -23,6 +23,129 @@
     }
   ],
   "paths": {
+    "/.well-known/agent-card.json": {
+      "get": {
+        "tags": [
+          "leadping.Api"
+        ],
+        "summary": "Get the Leadping A2A Agent Card",
+        "description": "Returns Leadping's public A2A Agent Card, including protocol capabilities, authentication requirements, input and output modes, and supported skills.",
+        "operationId": "A2A_GetAgentCard",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/a2a": {
+      "post": {
+        "tags": [
+          "leadping.Api"
+        ],
+        "summary": "Handle an A2A request",
+        "description": "Accepts authenticated A2A JSON-RPC requests for Leadping's supported agent operations.",
+        "operationId": "A2A_HandleRequest",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
     "/analytics/my": {
       "get": {
         "tags": [
@@ -23970,7 +24093,7 @@
               "null",
               "boolean"
             ],
-            "description": "Indicates whether the organization serves customers younger than 90, for compliance and underwriting context."
+            "description": "Whether the organization was formed less than 90 days ago."
           }
         },
         "description": "Defines the fields clients can send when working with organization profile."
@@ -27043,20 +27166,7 @@
             "description": "Request trace identifier used to correlate this problem with Leadping diagnostics."
           }
         },
-        "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error.",
-        "example": {
-          "type": "https://leadping.ai/docs/errors/validation",
-          "title": "Request validation failed",
-          "status": 400,
-          "detail": "One or more request fields are invalid.",
-          "instance": "/leads/intake",
-          "errors": {
-            "email": [
-              "The email field is required."
-            ]
-          },
-          "traceId": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01"
-        }
+        "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
       },
       "PushInstallationRequest": {
         "type": "object",
@@ -28589,7 +28699,7 @@
           },
           "last4": {
             "type": "string",
-            "description": "UTC timestamp for last4 on this Stripe payment method."
+            "description": "Last four digits of the payment card number."
           },
           "expMonth": {
             "type": "integer",
@@ -30369,7 +30479,7 @@
               "null",
               "string"
             ],
-            "description": "UTC timestamp for last name on this user."
+            "description": "Last name of the Leadping user."
           },
           "phone": {
             "type": [
@@ -30745,6 +30855,9 @@
     }
   },
   "tags": [
+    {
+      "name": "leadping.Api"
+    },
     {
       "name": "Analytics",
       "description": "Provides lead, communication, conversion, and organization performance analytics. Use these endpoints to measure activity over time, compare outcomes, and power operational dashboards and reporting workflows."
