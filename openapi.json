@@ -66,6 +66,22 @@
               }
             }
           }
+        },
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
         }
       }
     },
@@ -167,7 +183,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/analytics/my": {
@@ -325,7 +357,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/automations": {
@@ -477,7 +525,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/automations/{id}": {
@@ -661,7 +725,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "get": {
         "tags": [
@@ -796,7 +876,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -926,7 +1022,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/automations/{id}/runs": {
@@ -1042,7 +1154,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/automations/{id}/runs/{runId}": {
@@ -1188,7 +1316,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/automations/all/my": {
@@ -1340,7 +1484,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/automations/preview": {
@@ -1349,8 +1509,18 @@
           "Automations"
         ],
         "summary": "Preview a lead follow-up automation",
-        "description": "Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.",
+        "description": "Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.\nSet `validate_only` to return configuration validation without evaluating conditions or actions and without writing a test audit event.",
         "operationId": "Automations_Preview",
+        "parameters": [
+          {
+            "name": "validate_only",
+            "in": "query",
+            "description": "When true, validates the automation without evaluating actions or writing an audit event.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "requestBody": {
           "description": "The automation preview request payload for the operation.",
           "content": {
@@ -1492,7 +1662,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/automations/{id}/run": {
@@ -1637,7 +1823,208 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "/blog": {
+      "get": {
+        "tags": [
+          "BlogArticles"
+        ],
+        "summary": "Lists published blog articles.",
+        "description": "Returns the Leadping blog articles currently available to public readers.",
+        "operationId": "BlogArticles_GetPublished",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BlogArticleResponse"
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [ ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      }
+    },
+    "/blog/{slug}": {
+      "get": {
+        "tags": [
+          "BlogArticles"
+        ],
+        "summary": "Gets a published blog article by slug.",
+        "description": "Returns the public article identified by its URL slug, or a not-found response when no published article matches.",
+        "operationId": "BlogArticles_GetPublishedBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "The public URL slug of the published article.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlogArticleResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlogArticleResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlogArticleResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [ ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/conversations/my": {
@@ -1850,7 +2237,189 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "/conversations/{id}/mark-read": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Marks an inbox conversation as read.",
+        "description": "Updates the conversation's read state for the current user's inbox and returns whether the conversation was found.",
+        "operationId": "Conversations_MarkAsRead",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the conversation to mark as read.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/conversations/lead/{leadId}": {
@@ -2064,7 +2633,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/feedback": {
@@ -2195,7 +2780,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/leads": {
@@ -2368,7 +2969,23 @@
           {
             "SourceKey": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/leads/intake": {
@@ -2520,7 +3137,23 @@
           {
             "SourceKey": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/leads/{id}": {
@@ -2657,7 +3290,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "put": {
         "tags": [
@@ -2839,7 +3488,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -2962,7 +3627,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/leads/{id}/workflow-status": {
@@ -3099,7 +3780,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/leads/{id}/archive": {
@@ -3290,7 +3987,28 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          },
+          "reversibility": {
+            "supported": true,
+            "operation-id": "Leads_Unarchive",
+            "window": "While the lead remains archived."
+          }
+        }
       }
     },
     "/leads/{id}/unarchive": {
@@ -3427,7 +4145,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/leads/all/my": {
@@ -3595,7 +4329,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/leads/{id}/tags": {
@@ -3779,7 +4529,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "put": {
         "tags": [
@@ -3961,7 +4727,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/leads/{id}/tags/{tagId}": {
@@ -4127,7 +4909,231 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "/leads/{id}/assignment": {
+      "put": {
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Assign an organization lead to an active member, or return it to the unassigned queue.",
+        "description": "Updates ownership of the specified lead after validating that the selected assignee is an active member of the current organization.",
+        "operationId": "Leads_Assign",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the lead whose assignment should be updated.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The requested assignee, or an unassigned selection.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadAssignmentRequest"
+                  }
+                ],
+                "description": "Assigns an organization lead to an active organization member. A null user ID returns the lead to the unassigned queue."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadAssignmentRequest"
+                  }
+                ],
+                "description": "Assigns an organization lead to an active organization member. A null user ID returns the lead to the unassigned queue."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadResponse"
+                    }
+                  ],
+                  "description": "Describes lead data returned by Leadping."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/leads/{leadId}/status": {
@@ -4311,7 +5317,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/lead-status-changes/{id}": {
@@ -4495,7 +5517,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "get": {
         "tags": [
@@ -4630,7 +5668,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -4756,7 +5810,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/lead-status-changes/all/my": {
@@ -4887,7 +5957,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/leads/{leadId}/status-history": {
@@ -5027,7 +6113,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/leads/{leadId}/status-history/export": {
@@ -5164,7 +6266,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/lead-statuses": {
@@ -5280,7 +6398,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "post": {
         "tags": [
@@ -5437,7 +6571,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/lead-statuses/{id}": {
@@ -5607,7 +6757,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -5734,7 +6900,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/notifications/{id}": {
@@ -5850,7 +7032,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/notifications/me": {
@@ -6022,7 +7220,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/notifications/unread-count": {
@@ -6144,7 +7358,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/notifications/{id}/mark-read": {
@@ -6297,7 +7527,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/notifications/mark-all-read": {
@@ -6419,7 +7665,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/notifications/announcements": {
@@ -6571,7 +7833,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/notifications/push/installations/current": {
@@ -6707,7 +7985,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/notifications/push/installations/{installationId}": {
@@ -6807,7 +8101,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/outbound/overview": {
@@ -6912,7 +8222,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/sources": {
@@ -6957,10 +8283,10 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/SourceResponse"
+                      "$ref": "#/components/schemas/SourceCredentialIssueResponse"
                     }
                   ],
-                  "description": "Describes lead source data returned by Leadping."
+                  "description": "Returns a newly issued source credential exactly once."
                 }
               }
             }
@@ -7064,7 +8390,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/sources/{id}": {
@@ -7227,7 +8569,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "get": {
         "tags": [
@@ -7362,7 +8720,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -7485,7 +8859,176 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "/sources/{id}/credentials/rotate": {
+      "post": {
+        "tags": [
+          "Sources"
+        ],
+        "summary": "Rotate a source intake credential.",
+        "description": "Invalidates the current credential and returns the replacement secret once. Only its hash and short preview are retained.",
+        "operationId": "Sources_RotateApiKey",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the source whose intake credential should be rotated.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SourceCredentialIssueResponse"
+                    }
+                  ],
+                  "description": "Returns a newly issued source credential exactly once."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/sources/all/my": {
@@ -7616,7 +9159,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/sources/{id}/metrics": {
@@ -7783,7 +9342,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/suppressions": {
@@ -7792,7 +9367,7 @@
           "Suppressions"
         ],
         "summary": "Create or reactivate a recipient suppression",
-        "description": "Creates or reactivates a Leadping suppression entry that blocks future outreach to a recipient across the selected communication channel.",
+        "description": "The result reflects the effective compliance state after normalization, organization scoping, and suppression-history checks.",
         "operationId": "Suppressions_Suppress",
         "requestBody": {
           "description": "The suppression entry request payload for the operation.",
@@ -7935,7 +9510,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/suppressions/release": {
@@ -7944,7 +9535,7 @@
           "Suppressions"
         ],
         "summary": "Release an active recipient suppression",
-        "description": "Releases an active Leadping suppression entry so a recipient can be contacted again, returning the updated suppression record when available.",
+        "description": "The result reflects the effective compliance state after normalization, organization scoping, and suppression-history checks.",
         "operationId": "Suppressions_Release",
         "requestBody": {
           "description": "The suppression entry request payload for the operation.",
@@ -8087,7 +9678,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/suppressions/check": {
@@ -8096,7 +9703,7 @@
           "Suppressions"
         ],
         "summary": "Check whether a recipient is suppressed",
-        "description": "Checks whether a recipient is blocked by an active Leadping suppression entry before sending messages or placing calls through the selected channel.",
+        "description": "The result reflects the effective compliance state after normalization, organization scoping, and suppression-history checks.",
         "operationId": "Suppressions_Check",
         "requestBody": {
           "description": "The suppression entry request payload for the operation.",
@@ -8239,7 +9846,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/suppressions/all/my": {
@@ -8370,7 +9993,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/suppressions/{id}": {
@@ -8507,7 +10146,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/tags": {
@@ -8625,7 +10280,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "post": {
         "tags": [
@@ -8775,7 +10446,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/tags/{id}": {
@@ -8959,7 +10646,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -9099,7 +10802,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/users/me/paymentmethod": {
@@ -9168,6 +10887,27 @@
               }
             }
           },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "429": {
             "description": "The API rate limit for this account or client has been exceeded.",
             "headers": {
@@ -9204,7 +10944,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/users/me": {
@@ -9309,7 +11065,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "put": {
         "tags": [
@@ -9438,7 +11210,170 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "/users/me/notification-preferences": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Updates the current user's notification preferences without requiring profile fields.",
+        "description": "Replaces the notification channel and delivery preferences stored for the authenticated user.",
+        "operationId": "Users_UpdateNotificationPreferencesForCurrentUser",
+        "requestBody": {
+          "description": "The notification preferences to store for the current user.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserNotificationPreferences"
+                  }
+                ],
+                "description": "Describes user notification preferences data used in Leadping API requests and responses."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserNotificationPreferences"
+                  }
+                ],
+                "description": "Describes user notification preferences data used in Leadping API requests and responses."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/UserResponse"
+                    }
+                  ],
+                  "description": "Describes user data returned by Leadping."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/users/change-billing-plan": {
@@ -9554,6 +11489,27 @@
               }
             }
           },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "429": {
             "description": "The API rate limit for this account or client has been exceeded.",
             "headers": {
@@ -9590,7 +11546,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/users/compliance": {
@@ -9721,7 +11693,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-call/initiate": {
@@ -9730,7 +11718,7 @@
           "Calls"
         ],
         "summary": "Initiate a Leadping phone call",
-        "description": "Starts an outbound Leadping phone call for an authenticated user and returns the provider call identifiers, status, and routing details.",
+        "description": "The call operation validates ownership and current provider state before returning the updated Leadping call representation.",
         "operationId": "Calls_InitiateCall",
         "requestBody": {
           "description": "The call initiation request containing phone number and optional metadata.",
@@ -9873,7 +11861,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-call/{callId}/hangup": {
@@ -9882,7 +11886,7 @@
           "Calls"
         ],
         "summary": "End an active Leadping phone call",
-        "description": "Ends an active Leadping phone call by call ID and returns the updated call record, including status and provider routing details.",
+        "description": "The call operation validates ownership and current provider state before returning the updated Leadping call representation.",
         "operationId": "Calls_HangupCall",
         "parameters": [
           {
@@ -10031,7 +12035,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-call/{callId}/status": {
@@ -10040,7 +12060,7 @@
           "Calls"
         ],
         "summary": "Get the status of a Leadping phone call",
-        "description": "Retrieves the latest status for a Leadping phone call by call ID, including provider state and call details for tracking progress.",
+        "description": "The call operation validates ownership and current provider state before returning the updated Leadping call representation.",
         "operationId": "Calls_GetCallStatus",
         "parameters": [
           {
@@ -10168,7 +12188,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/phone-call/{callId}/transfer": {
@@ -10177,7 +12213,7 @@
           "Calls"
         ],
         "summary": "Transfer an active Leadping phone call",
-        "description": "Transfers an active Leadping phone call to a new phone number and returns the updated call record with status and routing details.",
+        "description": "The call operation validates ownership and current provider state before returning the updated Leadping call representation.",
         "operationId": "Calls_TransferCall",
         "parameters": [
           {
@@ -10334,7 +12370,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-numbers/search": {
@@ -10507,7 +12559,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-numbers/all/organization": {
@@ -10659,7 +12727,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-numbers/outgoing/conversation/{conversationId}": {
@@ -10822,7 +12906,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-numbers/outgoing/new": {
@@ -10974,7 +13074,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-numbers/outgoing/manual-override": {
@@ -11126,7 +13242,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-numbers/outgoing/conversation/{conversationId}/override": {
@@ -11289,7 +13421,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -11424,7 +13572,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-numbers/{phoneNumberId}": {
@@ -11561,7 +13725,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "put": {
         "tags": [
@@ -11764,7 +13944,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -11929,7 +14125,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-numbers": {
@@ -12102,7 +14314,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/phone-numbers/{phoneNumber}/status": {
@@ -12290,7 +14518,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/phone-numbers/{phoneNumberId}/warmup": {
@@ -12457,7 +14701,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/phone-numbers/is-available-for-purchase": {
@@ -12630,7 +14890,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/sms/send": {
@@ -12803,7 +15079,28 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          },
+          "reversibility": {
+            "supported": "conditional",
+            "operation-id": "Sms_CancelScheduled",
+            "window": "While the SMS status is Scheduled and before delivery begins."
+          }
+        }
       }
     },
     "/sms/media": {
@@ -12978,7 +15275,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/sms/{smsEventId}/cancel": {
@@ -12987,7 +15300,7 @@
           "Sms"
         ],
         "summary": "Cancel a scheduled SMS message for a lead",
-        "description": "Cancels a scheduled SMS event before delivery, preserving the event record while preventing the queued message from being sent.",
+        "description": "Cancels a scheduled SMS event before delivery, preserving the event record while preventing the queued message from being sent.\nThe cancellation window remains open only while the SMS status is Scheduled and closes when delivery begins.",
         "operationId": "Sms_CancelScheduled",
         "parameters": [
           {
@@ -13136,7 +15449,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/telephony/login": {
@@ -13145,7 +15474,7 @@
           "Telephony"
         ],
         "summary": "Generate a WebRTC login token",
-        "description": "Generates a Leadping WebRTC login token so authenticated agents can connect to telephony services and place or receive browser-based calls.",
+        "description": "The issued client configuration is scoped to the authenticated user and contains only the short-lived credentials required by the calling client.",
         "operationId": "Telephony_Login",
         "requestBody": {
           "description": "The telephony login request containing connection details.",
@@ -13288,7 +15617,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/me": {
@@ -13393,7 +15738,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "post": {
         "tags": [
@@ -13522,7 +15883,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "put": {
         "tags": [
@@ -13651,7 +16028,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/me/options": {
@@ -13738,7 +16131,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/organizations/me/switch": {
@@ -13869,7 +16278,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/me/members": {
@@ -13977,7 +16402,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "post": {
         "tags": [
@@ -14127,7 +16568,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/me/members/{userId}": {
@@ -14290,7 +16747,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -14413,7 +16886,161 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "/organizations/me/membership": {
+      "delete": {
+        "tags": [
+          "Organizations"
+        ],
+        "summary": "Leave the current organization without changing its subscription or deleting organization data.",
+        "description": "Removes the authenticated user's membership from the current organization while preserving the organization and its billing state.",
+        "operationId": "Organizations_LeaveCurrentOrganization",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/me/invitations": {
@@ -14521,7 +17148,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "post": {
         "tags": [
@@ -14671,7 +17314,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/me/invitations/{invitationId}/resend": {
@@ -14828,7 +17487,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/me/invitations/{invitationId}": {
@@ -14953,7 +17628,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/me/10dlc/notes": {
@@ -15105,7 +17796,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/api-keys/my": {
@@ -15114,7 +17821,7 @@
           "Organizations"
         ],
         "summary": "List current-organization API keys",
-        "description": "Retrieves a paged list of API keys owned by the caller's current Leadping organization, with support for filtering, sorting, and pagination.",
+        "description": "The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.",
         "operationId": "Organizations_GetAllApiKeysForCurrentUser",
         "requestBody": {
           "description": "Pagination, filtering, and sorting options.",
@@ -15257,7 +17964,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/organizations/api-keys/{id}": {
@@ -15266,7 +17989,7 @@
           "Organizations"
         ],
         "summary": "Gets a safe API key detail row for a key the caller can access.",
-        "description": "Returns the API key row with a safe token preview.",
+        "description": "The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.",
         "operationId": "Organizations_GetApiKey",
         "parameters": [
           {
@@ -15394,14 +18117,30 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "post": {
         "tags": [
           "Organizations"
         ],
         "summary": "Creates an organization-owned API key.",
-        "description": "The one-time API token and safe key detail row.",
+        "description": "The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.",
         "operationId": "Organizations_IssueApiKey",
         "parameters": [
           {
@@ -15555,14 +18294,30 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "delete": {
         "tags": [
           "Organizations"
         ],
         "summary": "Deletes an organization-owned API key without deleting the organization.",
-        "description": "Confirmation that identifies the revoked key.",
+        "description": "The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.",
         "operationId": "Organizations_DeleteApiKey",
         "parameters": [
           {
@@ -15690,7 +18445,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/reports/exports/my": {
@@ -15795,7 +18566,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/reports/exports/{exportId}": {
@@ -15911,7 +18698,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/reports/exports/{exportId}/download": {
@@ -16064,7 +18867,23 @@
             }
           }
         },
-        "security": [ ]
+        "security": [ ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/events/calls/all/my": {
@@ -16216,7 +19035,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/calls/{callEventId}": {
@@ -16353,7 +19188,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/events/calls/lead/{leadId}": {
@@ -16516,7 +19367,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/calls/phone/{phoneNumber}": {
@@ -16679,7 +19546,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/all/my": {
@@ -16859,7 +19742,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/organizations/{organizationId}": {
@@ -17040,7 +19939,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/conversations/{conversationId}": {
@@ -17203,7 +20118,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/leads/{leadId}": {
@@ -17366,7 +20297,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/{eventId}": {
@@ -17503,7 +20450,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/events/detail/{eventId}": {
@@ -17640,7 +20603,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/events/conversations/{conversationId}/notes": {
@@ -17803,7 +20782,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/sms/all/my": {
@@ -17955,7 +20950,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/sms/{smsEventId}": {
@@ -18092,7 +21103,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/events/sms/lead/{leadId}": {
@@ -18255,7 +21282,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/events/sms/phone/{phoneNumber}": {
@@ -18418,7 +21461,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/payment-methods": {
@@ -18469,6 +21528,27 @@
               }
             }
           },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "429": {
             "description": "The API rate limit for this account or client has been exceeded.",
             "headers": {
@@ -18505,7 +21585,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/payment-methods/invoices": {
@@ -18564,6 +21660,27 @@
               }
             }
           },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "429": {
             "description": "The API rate limit for this account or client has been exceeded.",
             "headers": {
@@ -18600,7 +21717,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/payment-methods/invoices/{invoiceId}/pdf-access": {
@@ -18696,6 +21829,27 @@
               }
             }
           },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "429": {
             "description": "The API rate limit for this account or client has been exceeded.",
             "headers": {
@@ -18732,7 +21886,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/payment-methods/{id}": {
@@ -18833,6 +22003,27 @@
               }
             }
           },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "429": {
             "description": "The API rate limit for this account or client has been exceeded.",
             "headers": {
@@ -18869,7 +22060,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -18963,6 +22170,27 @@
               }
             }
           },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "429": {
             "description": "The API rate limit for this account or client has been exceeded.",
             "headers": {
@@ -18999,7 +22227,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "safety-critical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/payment-methods/{id}/default": {
@@ -19079,6 +22323,27 @@
               }
             }
           },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "429": {
             "description": "The API rate limit for this account or client has been exceeded.",
             "headers": {
@@ -19115,7 +22380,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/transactions/{id}": {
@@ -19252,7 +22533,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/transactions/all/my": {
@@ -19403,7 +22700,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/usage/all/my": {
@@ -19534,7 +22847,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     },
     "/usage/summary/my": {
@@ -19659,7 +22988,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/wallets/{id}": {
@@ -19817,7 +23162,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     },
     "/wallets/me": {
@@ -19964,7 +23325,23 @@
           {
             "Bearer": [ ]
           }
-        ]
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
       }
     }
   },
@@ -20292,6 +23669,13 @@
             "type": "string",
             "description": "Current lifecycle status for this automation action run record in the Leadping API."
           },
+          "selectedConnectionId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Connection selected by a control-flow action such as a weighted random split."
+          },
           "startedAt": {
             "type": "string",
             "description": "UTC timestamp when processing started for this automation action run record.",
@@ -20416,6 +23800,11 @@
           "targetNodeId": {
             "type": "string",
             "description": "Graph node identifier where the connection ends."
+          },
+          "weight": {
+            "type": "integer",
+            "description": "Percentage chance assigned to this connection when it leaves a weighted random split. Ignored for connections from other node types.",
+            "format": "int32"
           }
         },
         "description": "A directed connection between two nodes in an automation graph."
@@ -21691,6 +25080,66 @@
         "type": "string",
         "description": "Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior."
       },
+      "BlogArticleResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "excerpt": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "category": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "authorName": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "coverImageUrl": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uri"
+          },
+          "publishedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "isPublished": {
+            "type": "boolean"
+          },
+          "isFeatured": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "CallEventTableRow": {
         "type": "object",
         "properties": {
@@ -22542,6 +25991,18 @@
             "description": "Total number of failure records represented by this Leadping customer automation health.",
             "format": "int32"
           },
+          "trend": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CustomerAutomationHealthPoint"
+                }
+              ],
+              "description": "Measures automation execution activity within one analytics time bucket."
+            },
+            "description": "Automation execution activity over the reporting period."
+          },
           "lastFailure": {
             "type": [
               "null",
@@ -22569,6 +26030,35 @@
         },
         "description": "Summarizes automation coverage, execution success, failures, and workflows requiring organization attention."
       },
+      "CustomerAutomationHealthPoint": {
+        "type": "object",
+        "properties": {
+          "startAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "label": {
+            "type": "string"
+          },
+          "executions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "successCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "failureCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "Measures automation execution activity within one analytics time bucket."
+      },
       "CustomerCommunicationUsage": {
         "type": "object",
         "properties": {
@@ -22595,6 +26085,11 @@
           "callsReceived": {
             "type": "integer",
             "description": "Number of inbound calls received during the reporting period.",
+            "format": "int32"
+          },
+          "callErrors": {
+            "type": "integer",
+            "description": "Number of calls that failed or were blocked during the reporting period.",
             "format": "int32"
           },
           "answeredCalls": {
@@ -22659,9 +26154,29 @@
             "description": "Number of SMS messages received during the reporting period.",
             "format": "int32"
           },
+          "smsErrors": {
+            "type": "integer",
+            "description": "Number of SMS messages that failed or were blocked in this time bucket.",
+            "format": "int32"
+          },
           "calls": {
             "type": "integer",
             "description": "Number of calls represented by this Leadping customer communication usage point.",
+            "format": "int32"
+          },
+          "callsPlaced": {
+            "type": "integer",
+            "description": "Number of outbound calls placed in this time bucket.",
+            "format": "int32"
+          },
+          "callsReceived": {
+            "type": "integer",
+            "description": "Number of inbound calls received in this time bucket.",
+            "format": "int32"
+          },
+          "callErrors": {
+            "type": "integer",
+            "description": "Number of calls that failed or were blocked in this time bucket.",
             "format": "int32"
           },
           "callMinutes": {
@@ -23911,6 +27426,18 @@
         },
         "description": "Defines the fields clients can send when working with lead archive."
       },
+      "LeadAssignmentRequest": {
+        "type": "object",
+        "properties": {
+          "assignedToUserId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "description": "Assigns an organization lead to an active organization member. A null user ID returns the lead to the unassigned queue."
+      },
       "LeadContact": {
         "type": "object",
         "properties": {
@@ -24705,6 +28232,25 @@
       "LeadResponse": {
         "type": "object",
         "properties": {
+          "assignedToUserId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Leadping user currently responsible for this lead, or null when it is in the unassigned queue."
+          },
+          "assignedTo": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "Identifier and display name of the active organization member assigned to this lead."
+          },
           "metadata": {
             "allOf": [
               {
@@ -24820,6 +28366,7 @@
           },
           "processingStatus": {
             "enum": [
+              "Quarantined",
               "Verifying",
               "Validating",
               "Enriching",
@@ -25515,6 +29062,25 @@
             "type": "string",
             "description": "Unique Leadping identifier for this lead table row."
           },
+          "assignedToUserId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Leadping user currently responsible for this lead, or null when unassigned."
+          },
+          "assignedTo": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "Identifier and display name of the assigned organization member."
+          },
           "firstName": {
             "type": [
               "null",
@@ -25533,10 +29099,25 @@
             "type": "string",
             "description": "Phone details for the lead, user, or organization represented by this lead table row."
           },
+          "phoneIdentityId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Identifier of the canonical phone identity associated with this lead's phone number."
+          },
           "email": {
             "type": "string",
             "description": "Email address for the person represented by this lead table row.",
             "format": "email"
+          },
+          "avatarUrl": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Optional profile image URL explicitly associated with the lead.",
+            "format": "uri"
           },
           "createdAt": {
             "type": "string",
@@ -25613,6 +29194,7 @@
           },
           "processingStatus": {
             "enum": [
+              "Quarantined",
               "Verifying",
               "Validating",
               "Enriching",
@@ -31405,6 +34987,24 @@
         },
         "description": "Describes an SMS or MMS message, including participants, delivery state, scheduling, media, and billing details."
       },
+      "SourceCredentialIssueResponse": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SourceResponse"
+              }
+            ],
+            "description": "Source metadata safe for later retrieval."
+          },
+          "secret": {
+            "type": "string",
+            "description": "Newly issued source credential. Leadping does not retain this plaintext value."
+          }
+        },
+        "description": "Returns a newly issued source credential exactly once."
+      },
       "SourceMetricsResponse": {
         "type": "object",
         "properties": {
@@ -31513,19 +35113,20 @@
             "type": "boolean",
             "description": "Indicates whether this lead source response is active and available in the Leadping API."
           },
-          "apiKey": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "Source API key used to authenticate inbound lead delivery to Leadping. Unlike an organization API key, this value remains available to authorized source users."
-          },
           "apiKeyPreview": {
             "type": [
               "null",
               "string"
             ],
             "description": "Masked preview of the source API key for compact display."
+          },
+          "apiKeyRotatedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC timestamp when the source credential was most recently rotated.",
+            "format": "date-time"
           },
           "firstLeadReceivedAt": {
             "type": [
@@ -31687,13 +35288,17 @@
             "type": "string",
             "description": "Human-readable description that explains this lead source table row to API users."
           },
-          "apiKey": {
-            "type": "string",
-            "description": "Source API key used to authenticate inbound lead delivery to Leadping. Unlike an organization API key, this value remains available to authorized source users."
-          },
           "apiKeyPreview": {
             "type": "string",
             "description": "Masked preview of the source API key for compact display."
+          },
+          "apiKeyRotatedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC timestamp when the source credential was most recently rotated.",
+            "format": "date-time"
           },
           "apiKeyLastUsedAt": {
             "type": [
@@ -34138,7 +37743,8 @@
   },
   "tags": [
     {
-      "name": "leadping.Api"
+      "name": "leadping.Api",
+      "description": "Agent-to-agent discovery and request handling for Leadping's supported AI agent integrations."
     },
     {
       "name": "Analytics",
@@ -34147,6 +37753,10 @@
     {
       "name": "Automations",
       "description": "Manages automated lead follow-up workflows and their execution history. Use these endpoints to configure SMS automation steps, preview eligible leads, run workflows, and inspect individual automation executions."
+    },
+    {
+      "name": "BlogArticles",
+      "description": "Provides published Leadping blog content. Use these endpoints to list published articles and retrieve an individual article by its public slug."
     },
     {
       "name": "Conversations",
@@ -34303,7 +37913,22 @@
             "description": "The consumer accepted the delivery for asynchronous processing."
           }
         },
-        "security": [ ]
+        "security": [ ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "Consumer-configured webhook authentication"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "post": {
         "summary": "Receive an automation webhook using POST",
@@ -34374,7 +37999,22 @@
             "description": "The consumer accepted the delivery for asynchronous processing."
           }
         },
-        "security": [ ]
+        "security": [ ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "Consumer-configured webhook authentication"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "put": {
         "summary": "Receive an automation webhook using PUT",
@@ -34445,7 +38085,22 @@
             "description": "The consumer accepted the delivery for asynchronous processing."
           }
         },
-        "security": [ ]
+        "security": [ ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "Consumer-configured webhook authentication"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       },
       "patch": {
         "summary": "Receive an automation webhook using PATCH",
@@ -34516,7 +38171,22 @@
             "description": "The consumer accepted the delivery for asynchronous processing."
           }
         },
-        "security": [ ]
+        "security": [ ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": false
+          },
+          "authorization": {
+            "source": "Consumer-configured webhook authentication"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
       }
     }
   }
