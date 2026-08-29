@@ -1858,7 +1858,12 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/BlogArticleResponse"
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/BlogArticleResponse"
+                      }
+                    ],
+                    "description": "Represents a blog article response."
                   }
                 }
               }
@@ -1940,17 +1945,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/BlogArticleResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BlogArticleResponse"
+                    }
+                  ],
+                  "description": "Represents a blog article response."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BlogArticleResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BlogArticleResponse"
+                    }
+                  ],
+                  "description": "Represents a blog article response."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BlogArticleResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BlogArticleResponse"
+                    }
+                  ],
+                  "description": "Represents a blog article response."
                 }
               }
             }
@@ -24310,18 +24330,6 @@
             ],
             "description": "Status from the most recent automation run."
           },
-          "recentRuns": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/AutomationRunRecord"
-                }
-              ],
-              "description": "History record schema for Leadping API automation run record data exposed in automation and audit views."
-            },
-            "description": "Recent automation runs returned for history and troubleshooting."
-          },
           "version": {
             "type": "integer",
             "description": "Version number for this automation configuration response schema or saved configuration.",
@@ -25084,37 +25092,45 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Gets or sets the ID."
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description": "Gets or sets the title."
           },
           "slug": {
-            "type": "string"
+            "type": "string",
+            "description": "Gets or sets the slug."
           },
           "excerpt": {
-            "type": "string"
+            "type": "string",
+            "description": "Gets or sets the excerpt."
           },
           "content": {
-            "type": "string"
+            "type": "string",
+            "description": "Gets or sets the content."
           },
           "category": {
             "type": [
               "null",
               "string"
-            ]
+            ],
+            "description": "Gets or sets the category."
           },
           "authorName": {
             "type": [
               "null",
               "string"
-            ]
+            ],
+            "description": "Gets or sets the author name."
           },
           "coverImageUrl": {
             "type": [
               "null",
               "string"
             ],
+            "description": "Gets or sets the cover image URL.",
             "format": "uri"
           },
           "publishedAt": {
@@ -25122,23 +25138,29 @@
               "null",
               "string"
             ],
+            "description": "Gets or sets the published at.",
             "format": "date-time"
           },
           "isPublished": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Gets or sets the is published."
           },
           "isFeatured": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Gets or sets the is featured."
           },
           "createdAt": {
             "type": "string",
+            "description": "Gets or sets the created at.",
             "format": "date-time"
           },
           "modifiedAt": {
             "type": "string",
+            "description": "Gets or sets the modified at.",
             "format": "date-time"
           }
-        }
+        },
+        "description": "Represents a blog article response."
       },
       "CallEventTableRow": {
         "type": "object",
@@ -26035,25 +26057,31 @@
         "properties": {
           "startAt": {
             "type": "string",
+            "description": "Gets or sets the start at.",
             "format": "date-time"
           },
           "endAt": {
             "type": "string",
+            "description": "Gets or sets the end at.",
             "format": "date-time"
           },
           "label": {
-            "type": "string"
+            "type": "string",
+            "description": "Gets or sets the label."
           },
           "executions": {
             "type": "integer",
+            "description": "Gets or sets the executions.",
             "format": "int32"
           },
           "successCount": {
             "type": "integer",
+            "description": "Gets or sets the success count.",
             "format": "int32"
           },
           "failureCount": {
             "type": "integer",
+            "description": "Gets or sets the failure count.",
             "format": "int32"
           }
         },
@@ -26252,6 +26280,11 @@
             "description": "Total number of total records represented by this Leadping customer lead trend.",
             "format": "int32"
           },
+          "totalErrors": {
+            "type": "integer",
+            "description": "Total number of lead submissions rejected during intake.",
+            "format": "int32"
+          },
           "comparison": {
             "allOf": [
               {
@@ -26271,6 +26304,18 @@
               "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
             },
             "description": "Collection of points included with this Leadping customer lead trend."
+          },
+          "errorPoints": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
+                }
+              ],
+              "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
+            },
+            "description": "Lead intake errors grouped into the same reporting buckets as Points."
           }
         },
         "description": "Measures lead creation, qualification, and conversion activity within one reporting time bucket."
@@ -27433,7 +27478,8 @@
             "type": [
               "null",
               "string"
-            ]
+            ],
+            "description": "Gets or sets the assigned to user ID."
           }
         },
         "description": "Assigns an organization lead to an active organization member. A null user ID returns the lead to the unassigned queue."
@@ -35021,6 +35067,11 @@
             "description": "Total number of leads records represented by this Leadping source metrics.",
             "format": "int32"
           },
+          "totalErrors": {
+            "type": "integer",
+            "description": "Total number of lead intake errors represented by this Leadping source metrics.",
+            "format": "int32"
+          },
           "points": {
             "type": "array",
             "items": {
@@ -35032,6 +35083,18 @@
               "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
             },
             "description": "Collection of points included with this Leadping source metrics."
+          },
+          "errorPoints": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AnalyticsTrendPointOfint"
+                }
+              ],
+              "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
+            },
+            "description": "Collection of lead intake error points included with this Leadping source metrics."
           },
           "generatedAt": {
             "type": "string",
