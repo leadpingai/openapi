@@ -1760,14 +1760,6 @@
           },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1943,27 +1935,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BlogArticleResponse"
-                    }
-                  ],
-                  "description": "Represents a blog article response."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/BlogArticleResponse"
-                    }
-                  ],
-                  "description": "Represents a blog article response."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -2078,16 +2050,6 @@
                 "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
-              }
-            },
             "application/*+json": {
               "schema": {
                 "allOf": [
@@ -2105,27 +2067,7 @@
           "200": {
             "description": "Returns the paged conversation response.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfConversationResponse"
-                    }
-                  ],
-                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfConversationResponse"
-                    }
-                  ],
-                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -2339,14 +2281,6 @@
           },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -2474,16 +2408,6 @@
                 "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
               }
             },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/RequestDataOptions"
-                  }
-                ],
-                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
-              }
-            },
             "application/*+json": {
               "schema": {
                 "allOf": [
@@ -2501,27 +2425,7 @@
           "200": {
             "description": "Returns the paged conversation response.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfConversationResponse"
-                    }
-                  ],
-                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfConversationResponse"
-                    }
-                  ],
-                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -4292,6 +4196,27 @@
               }
             }
           },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "403": {
             "description": "The authenticated user or organization does not have permission to perform this operation.",
             "content": {
@@ -5074,14 +4999,6 @@
           },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5899,6 +5816,27 @@
               }
             }
           },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -6315,7 +6253,7 @@
         "operationId": "LeadStatuses_GetAll",
         "responses": {
           "200": {
-            "description": "The active lead statuses available to the current organization.",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -6334,14 +6272,6 @@
           },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -6471,29 +6401,9 @@
         },
         "responses": {
           "201": {
-            "description": "The newly created lead status.",
+            "description": "Created",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadStatusResponse"
-                    }
-                  ],
-                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadStatusResponse"
-                    }
-                  ],
-                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -6505,16 +6415,29 @@
               }
             }
           },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
                 "schema": {
-                  "type": "string"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
                 }
               }
-            },
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -6657,29 +6580,9 @@
         },
         "responses": {
           "200": {
-            "description": "The updated lead status.",
+            "description": "OK",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadStatusResponse"
-                    }
-                  ],
-                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadStatusResponse"
-                    }
-                  ],
-                  "description": "Describes an organization-defined lead status used to classify pipeline progress, drive automation, and report lifecycle outcomes."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -6691,16 +6594,50 @@
               }
             }
           },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
                 "schema": {
-                  "type": "string"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
                 }
               }
-            },
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -6815,35 +6752,38 @@
         ],
         "responses": {
           "200": {
-            "description": "`true` after the lead status is archived.",
+            "description": "OK",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "boolean"
                 }
               }
             }
           },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
                 "schema": {
-                  "type": "string"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "The request could not be completed."
                 }
               }
-            },
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -8532,6 +8472,27 @@
               }
             }
           },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "403": {
             "description": "The authenticated user or organization does not have permission to perform this operation.",
             "content": {
@@ -9117,6 +9078,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
                   "detail": "The request could not be completed."
                 }
               }
@@ -9931,6 +9913,27 @@
                     }
                   ],
                   "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
                 }
               }
             }
@@ -15156,27 +15159,7 @@
           "200": {
             "description": "OK",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/MessageMediaAttachment"
-                    }
-                  ],
-                  "description": "Media attached to an SMS/MMS conversation event."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/MessageMediaAttachment"
-                    }
-                  ],
-                  "description": "Media attached to an SMS/MMS conversation event."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -15211,14 +15194,6 @@
           },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -16262,6 +16237,27 @@
               }
             }
           },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "429": {
             "description": "The API rate limit for this account or client has been exceeded.",
             "headers": {
@@ -16981,14 +16977,6 @@
           },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -21653,14 +21641,6 @@
           },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -21822,14 +21802,6 @@
           },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
-            "headers": {
-              "WWW-Authenticate": {
-                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -22663,6 +22635,27 @@
               }
             }
           },
+          "400": {
+            "description": "The request was invalid or malformed.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "403": {
             "description": "The authenticated user or organization does not have permission to perform this operation.",
             "content": {
@@ -22805,6 +22798,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
                   "detail": "The request could not be completed."
                 }
               }
@@ -27153,6 +27167,9 @@
         "description": "Classifies the kind of activity displayed in a lead or conversation event timeline."
       },
       "ExactMatchFilter": {
+        "required": [
+          "field"
+        ],
         "type": "object",
         "properties": {
           "value": {
@@ -29635,6 +29652,9 @@
         "description": "Identifies the Leadping workflow or account event communicated by a user notification."
       },
       "OrderByOption": {
+        "required": [
+          "field"
+        ],
         "type": "object",
         "properties": {
           "field": {
@@ -30582,7 +30602,7 @@
       },
       "OrganizationInvitationStatus": {
         "enum": [
-          "Awaiting WorkOS confirmation",
+          "Awaiting confirmation",
           "Pending",
           "Accepted",
           "Expired",
@@ -33039,7 +33059,7 @@
           },
           "createdAt": {
             "type": "string",
-            "description": "UTC timestamp when the resource was created.",
+            "description": "Timestamp when the resource was created.",
             "format": "date-time"
           },
           "modifiedAt": {
@@ -33047,7 +33067,7 @@
               "null",
               "string"
             ],
-            "description": "UTC timestamp when the resource was last modified, or null when it has not been updated.",
+            "description": "Timestamp when the resource was last modified, or null when it has not been updated.",
             "format": "date-time"
           }
         },
@@ -34140,6 +34160,9 @@
         "description": "Describes a mobile push installation. Identity and Azure tags are derived by the API."
       },
       "RangeFilter": {
+        "required": [
+          "field"
+        ],
         "type": "object",
         "properties": {
           "greaterThan": {
@@ -37211,6 +37234,11 @@
         "description": "Identifies the preparation, availability, failure, expiration, or deletion stage of a Leadping user-data export."
       },
       "UserIdentity": {
+        "required": [
+          "issuer",
+          "issuerAssignedId",
+          "signInType"
+        ],
         "type": "object",
         "properties": {
           "issuer": {
