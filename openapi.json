@@ -11780,7 +11780,7 @@
                       "$ref": "#/components/schemas/PhoneCallResponse"
                     }
                   ],
-                  "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, recording, and billing details."
+                  "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, voicemail, and billing details."
                 }
               }
             }
@@ -11933,7 +11933,7 @@
                       "$ref": "#/components/schemas/PhoneCallResponse"
                     }
                   ],
-                  "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, recording, and billing details."
+                  "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, voicemail, and billing details."
                 }
               }
             }
@@ -12107,7 +12107,7 @@
                       "$ref": "#/components/schemas/PhoneCallResponse"
                     }
                   ],
-                  "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, recording, and billing details."
+                  "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, voicemail, and billing details."
                 }
               }
             }
@@ -12268,7 +12268,7 @@
                       "$ref": "#/components/schemas/PhoneCallResponse"
                     }
                   ],
-                  "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, recording, and billing details."
+                  "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, voicemail, and billing details."
                 }
               }
             }
@@ -25347,12 +25347,12 @@
             ],
             "description": "Billing state for this communication, charge, or transaction."
           },
-          "recordingUrl": {
+          "voicemailUrl": {
             "type": [
               "null",
               "string"
             ],
-            "description": "URL for the call recording, when the provider makes one available.",
+            "description": "URL for voicemail audio, when the call resulted in a voicemail.",
             "format": "uri"
           },
           "consoleEntries": {
@@ -32730,12 +32730,12 @@
             "description": "Monetary amount billed for this Leadping communication or transaction.",
             "format": "double"
           },
-          "recordingUrl": {
+          "voicemailUrl": {
             "type": [
               "null",
               "string"
             ],
-            "description": "URL for the call recording, when the provider makes one available.",
+            "description": "URL for voicemail audio, when the call resulted in a voicemail.",
             "format": "uri"
           },
           "consoleEntries": {
@@ -32768,7 +32768,7 @@
             "format": "date-time"
           }
         },
-        "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, recording, and billing details."
+        "description": "Describes a Leadping phone call, including participants, direction, provider state, timing, voicemail, and billing details."
       },
       "PhoneCallStatus": {
         "enum": [
