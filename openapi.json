@@ -23509,7 +23509,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related actor."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "failureReason": {
             "type": [
@@ -23584,7 +23584,7 @@
                 "$ref": "#/components/schemas/AnalyticsBucketSize"
               }
             ],
-            "description": "Bucket size associated with this Leadping analytics date range."
+            "description": "Selects the time interval used to aggregate points in a Leadping analytics trend series."
           }
         },
         "description": "Defines the inclusive reporting window and comparison window used to calculate Leadping analytics."
@@ -23930,7 +23930,7 @@
                 "$ref": "#/components/schemas/AutomationRequestSnapshot"
               }
             ],
-            "description": "Automation configuration to evaluate without executing live actions."
+            "description": "Public Leadping API schema for automation request snapshot data."
           },
           "triggerType": {
             "type": [
@@ -23965,7 +23965,7 @@
                 "$ref": "#/components/schemas/AutomationValidationResult"
               }
             ],
-            "description": "Validation result returned for the automation configuration."
+            "description": "Result schema for the Leadping API automation validation result returned by lookup and validation endpoints."
           },
           "conditionResults": {
             "type": "array",
@@ -24359,7 +24359,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary connected to this automation configuration response."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "organization": {
             "type": [
@@ -24371,7 +24371,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Organization summary connected to this automation configuration response."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "name": {
             "type": "string",
@@ -24607,7 +24607,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary connected to this automation table row."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "organization": {
             "type": [
@@ -24619,7 +24619,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Organization summary connected to this automation table row."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           }
         },
         "description": "Summarizes automation data in paginated and searchable results."
@@ -24875,7 +24875,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related automation."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "triggerType": {
             "type": [
@@ -24909,7 +24909,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the workflow step currently awaiting or performing work."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "currentStepOrder": {
             "type": [
@@ -25105,46 +25105,49 @@
       "BlogArticleResponse": {
         "type": "object",
         "properties": {
+          "imagesProcessing": {
+            "type": "boolean",
+            "description": "Whether saved image references are awaiting Engine processing."
+          },
+          "imageProcessingError": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The latest background image processing failure, when present."
+          },
           "id": {
-            "type": "string",
-            "description": "Gets or sets the ID."
+            "type": "string"
           },
           "title": {
-            "type": "string",
-            "description": "Gets or sets the title."
+            "type": "string"
           },
           "slug": {
-            "type": "string",
-            "description": "Gets or sets the slug."
+            "type": "string"
           },
           "excerpt": {
-            "type": "string",
-            "description": "Gets or sets the excerpt."
+            "type": "string"
           },
           "content": {
-            "type": "string",
-            "description": "Gets or sets the content."
+            "type": "string"
           },
           "category": {
             "type": [
               "null",
               "string"
-            ],
-            "description": "Gets or sets the category."
+            ]
           },
           "authorName": {
             "type": [
               "null",
               "string"
-            ],
-            "description": "Gets or sets the author name."
+            ]
           },
           "coverImageUrl": {
             "type": [
               "null",
               "string"
             ],
-            "description": "Gets or sets the cover image URL.",
             "format": "uri"
           },
           "publishedAt": {
@@ -25152,25 +25155,45 @@
               "null",
               "string"
             ],
-            "description": "Gets or sets the published at.",
             "format": "date-time"
           },
           "isPublished": {
-            "type": "boolean",
-            "description": "Gets or sets the is published."
+            "type": "boolean"
           },
           "isFeatured": {
-            "type": "boolean",
-            "description": "Gets or sets the is featured."
+            "type": "boolean"
           },
           "createdAt": {
             "type": "string",
-            "description": "Gets or sets the created at.",
             "format": "date-time"
           },
           "modifiedAt": {
             "type": "string",
-            "description": "Gets or sets the modified at.",
+            "format": "date-time"
+          },
+          "seoTitle": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "metaDescription": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "coverImageAlt": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "contentUpdatedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
             "format": "date-time"
           }
         },
@@ -25397,7 +25420,7 @@
                 "$ref": "#/components/schemas/BillingPlan"
               }
             ],
-            "description": "Billing plan for this billing plan."
+            "description": "Identifies the Leadping subscription plan that determines organization features, allowances, and billing behavior."
           }
         },
         "description": "Defines the input used for change billing plan."
@@ -25442,7 +25465,7 @@
                 "$ref": "#/components/schemas/UserCompliance"
               }
             ],
-            "description": "Compliance for this compliance update."
+            "description": "Describes user compliance data used in Leadping API requests and responses."
           },
           "source": {
             "type": [
@@ -25576,7 +25599,7 @@
                 "$ref": "#/components/schemas/CurrentLeadStatusSummary"
               }
             ],
-            "description": "Current lead status change summary that describes the lead outcome."
+            "description": "Summary schema for Leadping API current lead status change summary data used in dashboards and reports."
           },
           "nextStep": {
             "type": [
@@ -25599,7 +25622,7 @@
                 "$ref": "#/components/schemas/IdNameValue"
               }
             ],
-            "description": "Phone number used by this conversation response for calls, SMS, lookup, or routing."
+            "description": "Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata."
           },
           "leadPhoneNumber": {
             "type": [
@@ -25819,7 +25842,7 @@
                 "$ref": "#/components/schemas/AnalyticsDateRange"
               }
             ],
-            "description": "Range associated with this Leadping customer analytics."
+            "description": "Defines the inclusive reporting window and comparison window used to calculate Leadping analytics."
           },
           "summary": {
             "allOf": [
@@ -25827,7 +25850,7 @@
                 "$ref": "#/components/schemas/CustomerAnalyticsSummary"
               }
             ],
-            "description": "Human-readable summary for this Leadping customer analytics."
+            "description": "Summarizes an organization's primary lead, response, communication, and conversion KPIs for the selected period."
           },
           "leadTrend": {
             "allOf": [
@@ -25835,7 +25858,7 @@
                 "$ref": "#/components/schemas/CustomerLeadTrend"
               }
             ],
-            "description": "Lead trend associated with this Leadping customer analytics."
+            "description": "Measures lead creation, qualification, and conversion activity within one reporting time bucket."
           },
           "responseMetrics": {
             "allOf": [
@@ -25843,7 +25866,7 @@
                 "$ref": "#/components/schemas/CustomerResponseMetrics"
               }
             ],
-            "description": "Response metrics associated with this Leadping customer analytics."
+            "description": "Measures how quickly and consistently an organization responds to leads across supported communication channels."
           },
           "communicationUsage": {
             "allOf": [
@@ -25851,7 +25874,7 @@
                 "$ref": "#/components/schemas/CustomerCommunicationUsage"
               }
             ],
-            "description": "Communication usage associated with this Leadping customer analytics."
+            "description": "Aggregates an organization's SMS, MMS, and calling activity, delivery outcomes, and billable usage over time."
           },
           "leadSources": {
             "type": "array",
@@ -25871,7 +25894,7 @@
                 "$ref": "#/components/schemas/CustomerAutomationHealth"
               }
             ],
-            "description": "Automation health associated with this Leadping customer analytics."
+            "description": "Summarizes automation coverage, execution success, failures, and workflows requiring organization attention."
           },
           "activationHealth": {
             "allOf": [
@@ -25879,7 +25902,7 @@
                 "$ref": "#/components/schemas/CustomerActivationHealth"
               }
             ],
-            "description": "Activation health associated with this Leadping customer analytics."
+            "description": "Summarizes an organization's progress and blockers across onboarding, billing, telephony, compliance, and launch readiness."
           },
           "needsAttention": {
             "type": "array",
@@ -25915,7 +25938,7 @@
                 "$ref": "#/components/schemas/AnalyticsComparison"
               }
             ],
-            "description": "Date and time when this Leadping customer analytics summary was leads comparison."
+            "description": "Compares a metric with the preceding period and reports its absolute and percentage change."
           },
           "averageResponseMinutes": {
             "type": [
@@ -26049,7 +26072,7 @@
                 "$ref": "#/components/schemas/CustomerFailingAutomation"
               }
             ],
-            "description": "Last failure associated with this Leadping customer automation health."
+            "description": "Identifies an automation with recent execution failures and summarizes its affected leads and failure context."
           },
           "failingAutomations": {
             "type": "array",
@@ -26071,31 +26094,25 @@
         "properties": {
           "startAt": {
             "type": "string",
-            "description": "Gets or sets the start at.",
             "format": "date-time"
           },
           "endAt": {
             "type": "string",
-            "description": "Gets or sets the end at.",
             "format": "date-time"
           },
           "label": {
-            "type": "string",
-            "description": "Gets or sets the label."
+            "type": "string"
           },
           "executions": {
             "type": "integer",
-            "description": "Gets or sets the executions.",
             "format": "int32"
           },
           "successCount": {
             "type": "integer",
-            "description": "Gets or sets the success count.",
             "format": "int32"
           },
           "failureCount": {
             "type": "integer",
-            "description": "Gets or sets the failure count.",
             "format": "int32"
           }
         },
@@ -26305,7 +26322,7 @@
                 "$ref": "#/components/schemas/AnalyticsComparison"
               }
             ],
-            "description": "Date and time when this Leadping customer lead trend was comparison."
+            "description": "Compares a metric with the preceding period and reports its absolute and percentage change."
           },
           "points": {
             "type": "array",
@@ -26478,7 +26495,7 @@
                 "$ref": "#/components/schemas/OutgoingNumberSelectionReason"
               }
             ],
-            "description": "Reason Leadping selected this outbound sender number."
+            "description": "Explains why Leadping selected, rejected, or substituted an outgoing caller or messaging number."
           },
           "reasonLabel": {
             "type": "string",
@@ -26735,7 +26752,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary connected to this event detail response."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "userEmail": {
             "type": [
@@ -26800,7 +26817,7 @@
                 "$ref": "#/components/schemas/EventTimelineType"
               }
             ],
-            "description": "Timeline type used to render this event in Leadping activity feeds."
+            "description": "Classifies the kind of activity displayed in a lead or conversation event timeline."
           },
           "timelineCategory": {
             "type": "string",
@@ -27261,7 +27278,7 @@
                 "$ref": "#/components/schemas/FeedbackType"
               }
             ],
-            "description": "Type classification used to route and interpret this feedback item response in the Leadping API."
+            "description": "Defines the type of product feedback submitted from inside Leadping."
           },
           "status": {
             "allOf": [
@@ -27269,7 +27286,7 @@
                 "$ref": "#/components/schemas/FeedbackStatus"
               }
             ],
-            "description": "Current lifecycle status for this feedback item response in the Leadping API."
+            "description": "Defines admin triage statuses for durable product feedback."
           },
           "area": {
             "type": [
@@ -27475,7 +27492,7 @@
                 "$ref": "#/components/schemas/LeadArchiveReason"
               }
             ],
-            "description": "Human-readable reason supplied for this request or result."
+            "description": "Defines why a lead was removed from the active working pipeline."
           },
           "note": {
             "maxLength": 500,
@@ -27495,8 +27512,7 @@
             "type": [
               "null",
               "string"
-            ],
-            "description": "Gets or sets the assigned to user ID."
+            ]
           }
         },
         "description": "Assigns an organization lead to an active organization member. A null user ID returns the lead to the unassigned queue."
@@ -27528,7 +27544,7 @@
                 "$ref": "#/components/schemas/StreetAddress"
               }
             ],
-            "description": "Postal street address for the lead contact profile."
+            "description": "Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields."
           },
           "coordinate": {
             "type": [
@@ -27559,7 +27575,7 @@
                 "$ref": "#/components/schemas/Phone"
               }
             ],
-            "description": "Phone details for the lead, user, or organization represented by this lead contact profile."
+            "description": "Public Leadping API schema for lead phone number data."
           },
           "email": {
             "type": [
@@ -28243,7 +28259,7 @@
                 "$ref": "#/components/schemas/LeadMetadata"
               }
             ],
-            "description": "Structured metadata used for attribution, integrations, and reporting on this lead request."
+            "description": "Public Leadping API schema for lead attribution metadata data."
           },
           "contact": {
             "allOf": [
@@ -28251,7 +28267,7 @@
                 "$ref": "#/components/schemas/LeadContact"
               }
             ],
-            "description": "Contact details for the lead or customer represented by this lead request."
+            "description": "Public Leadping API schema for lead contact profile data."
           },
           "customer": {
             "allOf": [
@@ -28259,7 +28275,7 @@
                 "$ref": "#/components/schemas/LeadProfile"
               }
             ],
-            "description": "Demographic profile details for the lead represented by this lead request."
+            "description": "Public Leadping API schema for lead demographic profile data."
           },
           "enabled": {
             "type": [
@@ -28312,7 +28328,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the active organization member assigned to this lead."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "metadata": {
             "allOf": [
@@ -28320,7 +28336,7 @@
                 "$ref": "#/components/schemas/LeadMetadata"
               }
             ],
-            "description": "Structured metadata used for attribution, integrations, and reporting on this lead response."
+            "description": "Public Leadping API schema for lead attribution metadata data."
           },
           "contact": {
             "allOf": [
@@ -28328,7 +28344,7 @@
                 "$ref": "#/components/schemas/LeadContact"
               }
             ],
-            "description": "Contact details for the lead or customer represented by this lead response."
+            "description": "Public Leadping API schema for lead contact profile data."
           },
           "phoneIdentity": {
             "type": [
@@ -28340,7 +28356,7 @@
                 "$ref": "#/components/schemas/PhoneIdentityResponse"
               }
             ],
-            "description": "Canonical phone identity and provider lookup details for this lead."
+            "description": "Describes Leadping's canonical identity for a phone number, including normalization, carrier, line type, reputation, and lookup history."
           },
           "customer": {
             "allOf": [
@@ -28348,7 +28364,7 @@
                 "$ref": "#/components/schemas/LeadProfile"
               }
             ],
-            "description": "Demographic profile details for the lead represented by this lead response."
+            "description": "Public Leadping API schema for lead demographic profile data."
           },
           "enabled": {
             "type": "boolean",
@@ -28425,7 +28441,7 @@
                 "$ref": "#/components/schemas/CurrentLeadStatusSummary"
               }
             ],
-            "description": "Current lead status change summary that describes the lead outcome."
+            "description": "Summary schema for Leadping API current lead status change summary data used in dashboards and reports."
           },
           "processingStatus": {
             "enum": [
@@ -28844,6 +28860,22 @@
             ],
             "description": "The display name of the lead associated with this lead status change."
           },
+          "leadEmail": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The lead's email address, used for Gravatar fallback.",
+            "format": "email"
+          },
+          "leadAvatarUrl": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The lead's profile image URL, when available.",
+            "format": "uri"
+          },
           "type": {
             "type": "string",
             "description": "Category of status change recorded for the lead."
@@ -29099,7 +29131,7 @@
                 "$ref": "#/components/schemas/LeadStatusCategory"
               }
             ],
-            "description": "LeadStatusChange category represented by the lead status."
+            "description": "Controlled lead status change categories used for reporting, automation, and analytics."
           },
           "sortOrder": {
             "type": "integer",
@@ -29142,7 +29174,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the assigned organization member."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "firstName": {
             "type": [
@@ -29253,7 +29285,7 @@
                 "$ref": "#/components/schemas/CurrentLeadStatusSummary"
               }
             ],
-            "description": "Current lead status change summary that describes the lead outcome."
+            "description": "Summary schema for Leadping API current lead status change summary data used in dashboards and reports."
           },
           "processingStatus": {
             "enum": [
@@ -29304,7 +29336,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related organization."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "source": {
             "type": [
@@ -29316,7 +29348,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related source."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "tags": {
             "type": "array",
@@ -29364,6 +29396,13 @@
       "MessageMediaAttachment": {
         "type": "object",
         "properties": {
+          "mediaId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The durable Media record containing this attachment's scanned bytes."
+          },
           "url": {
             "type": "string",
             "description": "URL from which the media attachment can be retrieved.",
@@ -29410,7 +29449,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related device."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "inboundPhoneCallsEnabled": {
             "type": "boolean",
@@ -29446,7 +29485,7 @@
                 "$ref": "#/components/schemas/NotificationType"
               }
             ],
-            "description": "The type classification for this notification."
+            "description": "Identifies the Leadping workflow or account event communicated by a user notification."
           },
           "priority": {
             "allOf": [
@@ -29454,7 +29493,7 @@
                 "$ref": "#/components/schemas/NotificationPriority"
               }
             ],
-            "description": "Priority for this notification."
+            "description": "Ranks the urgency and presentation importance of a Leadping user notification."
           },
           "userId": {
             "type": "string",
@@ -29548,7 +29587,7 @@
                 "$ref": "#/components/schemas/NotificationType"
               }
             ],
-            "description": "The type classification for this notification."
+            "description": "Identifies the Leadping workflow or account event communicated by a user notification."
           },
           "priority": {
             "allOf": [
@@ -29556,7 +29595,7 @@
                 "$ref": "#/components/schemas/NotificationPriority"
               }
             ],
-            "description": "Priority for this notification."
+            "description": "Ranks the urgency and presentation importance of a Leadping user notification."
           },
           "message": {
             "type": "string",
@@ -29684,7 +29723,7 @@
                 "$ref": "#/components/schemas/CustomerActivationStatus"
               }
             ],
-            "description": "The current status for this organization activation state."
+            "description": "Summarizes an organization's overall progress from initial Leadping onboarding through launch readiness."
           },
           "onboardingStatus": {
             "allOf": [
@@ -29692,7 +29731,7 @@
                 "$ref": "#/components/schemas/ActivationOnboardingStatus"
               }
             ],
-            "description": "The current onboarding status for this organization activation state."
+            "description": "Describes completion and blocking state for an organization's core Leadping onboarding requirements."
           },
           "paymentStatus": {
             "allOf": [
@@ -29700,7 +29739,7 @@
                 "$ref": "#/components/schemas/ActivationPaymentStatus"
               }
             ],
-            "description": "The current payment status for this organization activation state."
+            "description": "Describes whether valid funding and payment prerequisites are satisfied during organization activation."
           },
           "billingSubscriptionStatus": {
             "allOf": [
@@ -29708,7 +29747,7 @@
                 "$ref": "#/components/schemas/ActivationSubscriptionStatus"
               }
             ],
-            "description": "The current billing subscription status for this organization activation state."
+            "description": "Describes whether an organization's subscription is ready, blocked, or still incomplete during activation."
           },
           "launchReviewStatus": {
             "allOf": [
@@ -29716,7 +29755,7 @@
                 "$ref": "#/components/schemas/ActivationLaunchReviewStatus"
               }
             ],
-            "description": "The current launch review status for this organization activation state."
+            "description": "Describes the administrative review decision that determines whether an organization can launch Leadping workflows."
           },
           "controlledLaunch": {
             "type": "boolean",
@@ -29728,7 +29767,7 @@
                 "$ref": "#/components/schemas/ActivationTelephonyStatus"
               }
             ],
-            "description": "The current telephony status for this organization activation state."
+            "description": "Describes whether phone numbers, calling, messaging, and provider resources are ready for organization launch."
           },
           "websiteStatus": {
             "allOf": [
@@ -29736,7 +29775,7 @@
                 "$ref": "#/components/schemas/WebsiteLifecycleStatus"
               }
             ],
-            "description": "The current website status for this organization activation state."
+            "description": "Describes an organization website's lifecycle from discovery and verification through activation, suspension, or removal."
           },
           "tenDlcStatus": {
             "allOf": [
@@ -29744,7 +29783,7 @@
                 "$ref": "#/components/schemas/TenDlcApplicationStatus"
               }
             ],
-            "description": "The current 10DLC status for this organization activation state."
+            "description": "Describes an organization's overall 10DLC registration lifecycle across brand and messaging campaign submission."
           },
           "tenDlcApplicationId": {
             "type": [
@@ -29986,7 +30025,7 @@
                 "$ref": "#/components/schemas/TenDlcApplicationDraft"
               }
             ],
-            "description": "10DLC draft for this organization activation state."
+            "description": "Describes 10DLC application draft data used in Leadping API requests and responses."
           },
           "events": {
             "type": "array",
@@ -30034,7 +30073,7 @@
                 "$ref": "#/components/schemas/OrganizationApiKeyPreviewResponse"
               }
             ],
-            "description": "API key associated with this Leadping organization API key issue."
+            "description": "Safe identifying and usage metadata for an organization API key. This model never contains the secret credential."
           }
         },
         "description": "Returns a newly issued organization API key and its identifying metadata; the secret credential is shown only in this response."
@@ -30091,7 +30130,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Organization that owns the API key."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "enabled": {
             "type": "boolean",
@@ -30298,7 +30337,7 @@
                 "$ref": "#/components/schemas/OrganizationDunningInfo"
               }
             ],
-            "description": "Customer-safe payment recovery state for the organization."
+            "description": "Dunning state recorded after a failed recurring payment."
           },
           "lastSubscriptionEventAt": {
             "type": [
@@ -30461,7 +30500,7 @@
                 "$ref": "#/components/schemas/OrganizationMemberRole"
               }
             ],
-            "description": "Role for this organization invitation."
+            "description": "Identifies an organization member's access level and permission scope within Leadping."
           }
         },
         "description": "Defines the input used for organization invitation."
@@ -30486,7 +30525,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related organization."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "email": {
             "type": "string",
@@ -30499,7 +30538,7 @@
                 "$ref": "#/components/schemas/OrganizationMemberRole"
               }
             ],
-            "description": "Role for this organization invitation."
+            "description": "Identifies an organization member's access level and permission scope within Leadping."
           },
           "status": {
             "allOf": [
@@ -30507,7 +30546,7 @@
                 "$ref": "#/components/schemas/OrganizationInvitationStatus"
               }
             ],
-            "description": "The current status for this organization invitation."
+            "description": "Describes the lifecycle of an organization membership invitation from issuance through acceptance, expiration, or revocation."
           },
           "createdAt": {
             "type": "string",
@@ -30626,7 +30665,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related organization."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "email": {
             "type": "string",
@@ -30639,7 +30678,7 @@
                 "$ref": "#/components/schemas/OrganizationMemberRole"
               }
             ],
-            "description": "Role for this organization invitation."
+            "description": "Identifies an organization member's access level and permission scope within Leadping."
           },
           "status": {
             "allOf": [
@@ -30647,7 +30686,7 @@
                 "$ref": "#/components/schemas/OrganizationInvitationStatus"
               }
             ],
-            "description": "The current status for this organization invitation."
+            "description": "Describes the lifecycle of an organization membership invitation from issuance through acceptance, expiration, or revocation."
           },
           "createdAt": {
             "type": "string",
@@ -30764,7 +30803,7 @@
                 "$ref": "#/components/schemas/OrganizationMemberRole"
               }
             ],
-            "description": "Organization role assigned to the user."
+            "description": "Identifies an organization member's access level and permission scope within Leadping."
           }
         },
         "description": "Defines the fields clients can send when working with organization user."
@@ -30778,7 +30817,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Organization for this organization user."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "user": {
             "allOf": [
@@ -30786,7 +30825,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User for this organization user."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "userEmail": {
             "type": [
@@ -30802,7 +30841,7 @@
                 "$ref": "#/components/schemas/OrganizationMemberRole"
               }
             ],
-            "description": "Role for this organization user."
+            "description": "Identifies an organization member's access level and permission scope within Leadping."
           },
           "createdByUserId": {
             "type": [
@@ -30903,7 +30942,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related user."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "userEmail": {
             "type": [
@@ -30919,7 +30958,7 @@
                 "$ref": "#/components/schemas/OrganizationMemberRole"
               }
             ],
-            "description": "Role for this organization user."
+            "description": "Identifies an organization member's access level and permission scope within Leadping."
           },
           "createdAt": {
             "type": "string",
@@ -30978,7 +31017,7 @@
                 "$ref": "#/components/schemas/StreetAddress"
               }
             ],
-            "description": "Postal address for the organization, lead, or contact represented by this organization profile request."
+            "description": "Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields."
           },
           "website": {
             "type": [
@@ -31038,7 +31077,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary connected to this organization profile response."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "accountBalance": {
             "type": "number",
@@ -31079,7 +31118,7 @@
                 "$ref": "#/components/schemas/OrganizationBillingState"
               }
             ],
-            "description": "Customer-safe billing state for this organization."
+            "description": "Customer-safe billing state for a Leadping organization."
           },
           "autoRefillEnabled": {
             "type": "boolean",
@@ -31159,7 +31198,7 @@
                 "$ref": "#/components/schemas/StreetAddress"
               }
             ],
-            "description": "Postal address for the organization, lead, or contact represented by this organization profile response."
+            "description": "Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields."
           },
           "billingName": {
             "type": [
@@ -31178,7 +31217,7 @@
                 "$ref": "#/components/schemas/StreetAddress"
               }
             ],
-            "description": "Postal address used for invoices, receipts, and payment processor billing records."
+            "description": "Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields."
           },
           "billingTaxId": {
             "type": [
@@ -31218,7 +31257,7 @@
                 "$ref": "#/components/schemas/IdNameValue"
               }
             ],
-            "description": "Uploaded EIN document reference used for organization verification."
+            "description": "Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata."
           },
           "domain": {
             "type": [
@@ -31252,7 +31291,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Leadping website record connected to this organization."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "setupStep": {
             "enum": [
@@ -31284,7 +31323,7 @@
                 "$ref": "#/components/schemas/OrganizationActivationState"
               }
             ],
-            "description": "Organization activation state covering site, billing, compliance, and telephony readiness."
+            "description": "Describes organization activation state data used in Leadping API requests and responses."
           },
           "compliancePolicy": {
             "type": [
@@ -31296,7 +31335,7 @@
                 "$ref": "#/components/schemas/OrganizationCompliancePolicy"
               }
             ],
-            "description": "Compliance policy configuration for the organization."
+            "description": "Describes organization compliance policy data used in Leadping API requests and responses."
           },
           "name": {
             "type": "string",
@@ -31339,7 +31378,7 @@
                 "$ref": "#/components/schemas/OrganizationMemberRole"
               }
             ],
-            "description": "Role for this organization switch option."
+            "description": "Identifies an organization member's access level and permission scope within Leadping."
           },
           "isCurrent": {
             "type": "boolean",
@@ -31586,7 +31625,7 @@
                 "$ref": "#/components/schemas/PhoneNumberOutboundHealthStatus"
               }
             ],
-            "description": "Current health status for this Leadping outbound phone number capacity."
+            "description": "Defines phone-number outbound health states used by pacing."
           },
           "healthReason": {
             "type": [
@@ -31764,7 +31803,7 @@
                 "$ref": "#/components/schemas/OutboundDeliveryChannel"
               }
             ],
-            "description": "Channel classification for this Leadping outbound queue item."
+            "description": "Defines outbound delivery channels protected by delivery control."
           },
           "source": {
             "allOf": [
@@ -31772,7 +31811,7 @@
                 "$ref": "#/components/schemas/OutboundDeliverySource"
               }
             ],
-            "description": "Source classification for this Leadping outbound queue item."
+            "description": "Defines the source that requested outbound delivery."
           },
           "status": {
             "allOf": [
@@ -31780,7 +31819,7 @@
                 "$ref": "#/components/schemas/OutboundDeliveryStatus"
               }
             ],
-            "description": "Current status for this Leadping outbound queue item."
+            "description": "Defines durable outbound delivery request statuses."
           },
           "reasonCode": {
             "enum": [
@@ -31853,7 +31892,7 @@
                 "$ref": "#/components/schemas/OutgoingNumberSelectionRequest"
               }
             ],
-            "description": "Selected outgoing number and selection rationale returned by Leadping."
+            "description": "Defines the fields clients can send when working with outgoing number selection."
           }
         },
         "description": "Defines the fields clients can send when working with outgoing number manual override."
@@ -32578,7 +32617,7 @@
                 "$ref": "#/components/schemas/PhoneCallStatus"
               }
             ],
-            "description": "Current lifecycle status for this phone call in the Leadping API."
+            "description": "Describes the durable business outcome of a Leadping phone call after provider status normalization."
           },
           "statusReason": {
             "type": [
@@ -32809,7 +32848,7 @@
                 "$ref": "#/components/schemas/PhoneIdentityLookupActionType"
               }
             ],
-            "description": "The category of enrichment, validation, or reputation lookup that was performed."
+            "description": "Identifies the kind of lookup action performed for a phone identity."
           },
           "provider": {
             "type": "string",
@@ -32821,7 +32860,7 @@
                 "$ref": "#/components/schemas/PhoneIdentityLookupActionStatus"
               }
             ],
-            "description": "The processing outcome reported for the phone identity lookup."
+            "description": "Identifies the outcome of a phone identity lookup action."
           },
           "occurredAt": {
             "type": "string",
@@ -32880,7 +32919,7 @@
                 "$ref": "#/components/schemas/PhoneLookup"
               }
             ],
-            "description": "Provider lookup and enrichment data for the number."
+            "description": "Public Leadping API schema for phone lookup result data."
           },
           "providerEnrichment": {
             "type": [
@@ -32892,7 +32931,7 @@
                 "$ref": "#/components/schemas/PhoneLookupProviderSnapshot"
               }
             ],
-            "description": "Lossless provider response retained for administrative diagnostics."
+            "description": "Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later."
           },
           "lastEnrichedAt": {
             "type": [
@@ -33015,7 +33054,7 @@
                 "$ref": "#/components/schemas/PhoneLookupCarrier"
               }
             ],
-            "description": "Complete carrier metadata reported for this phone number."
+            "description": "Complete carrier metadata returned by a phone number lookup provider."
           },
           "callerName": {
             "type": [
@@ -33027,7 +33066,7 @@
                 "$ref": "#/components/schemas/PhoneLookupCallerName"
               }
             ],
-            "description": "Caller-name data returned by the provider."
+            "description": "Caller-name data returned by the phone lookup provider."
           },
           "portability": {
             "type": [
@@ -33039,7 +33078,7 @@
                 "$ref": "#/components/schemas/PhoneLookupPortability"
               }
             ],
-            "description": "Complete portability data returned by Telnyx."
+            "description": "Number-portability and routing data returned by Telnyx."
           },
           "location": {
             "type": [
@@ -33051,7 +33090,7 @@
                 "$ref": "#/components/schemas/PhoneNumberLocation"
               }
             ],
-            "description": "Geographic location metadata for the phone number, lead, or lookup result."
+            "description": "Public Leadping API schema for phone number location data."
           },
           "id": {
             "type": "string",
@@ -33329,7 +33368,7 @@
                 "$ref": "#/components/schemas/PhoneNumberLocation"
               }
             ],
-            "description": "Geographic location metadata for the phone number, lead, or lookup result."
+            "description": "Public Leadping API schema for phone number location data."
           }
         },
         "description": "Reports whether a phone number is available for purchase or assignment and explains any blocking condition."
@@ -33382,7 +33421,7 @@
                 "$ref": "#/components/schemas/Coordinate"
               }
             ],
-            "description": "Latitude and longitude coordinate for this phone number location."
+            "description": "Latitude and longitude coordinate for this lead contact profile."
           },
           "coordinateSource": {
             "type": [
@@ -33394,7 +33433,7 @@
                 "$ref": "#/components/schemas/PhoneLocationSource"
               }
             ],
-            "description": "Describes how the coordinate was resolved."
+            "description": "Describes how a phone location value was resolved."
           },
           "timeZoneId": {
             "type": [
@@ -33413,7 +33452,7 @@
                 "$ref": "#/components/schemas/PhoneLocationSource"
               }
             ],
-            "description": "Describes how the time zone was resolved."
+            "description": "Describes how a phone location value was resolved."
           }
         },
         "description": "Public Leadping API schema for phone number location data."
@@ -33581,6 +33620,13 @@
             ],
             "description": "Human-readable label for the phone number."
           },
+          "numberHealthEnabled": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Opts this number into the optional $2 monthly number health add-on. Defaults to on on creation; omitted updates preserve the current selection."
+          },
           "number": {
             "type": "string",
             "description": "E.164 phone number exposed by this phone number update request."
@@ -33591,6 +33637,10 @@
       "PhoneNumberResponse": {
         "type": "object",
         "properties": {
+          "numberHealthEnabled": {
+            "type": "boolean",
+            "description": "Opts this number into the optional $2 monthly number health add-on. Defaults to on; customers can opt out."
+          },
           "number": {
             "type": "string",
             "description": "E.164 phone number exposed by this phone number."
@@ -33612,7 +33662,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Organization summary connected to this phone number."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "leadpingOwned": {
             "type": "boolean",
@@ -33624,7 +33674,7 @@
                 "$ref": "#/components/schemas/PhoneNumberRoutingMetadata"
               }
             ],
-            "description": "Routing metadata that connects this phone number to teams, campaigns, and sources."
+            "description": "Public Leadping API schema for phone number routing metadata data."
           },
           "enabled": {
             "type": "boolean",
@@ -33636,7 +33686,7 @@
                 "$ref": "#/components/schemas/PhoneNumberReadiness"
               }
             ],
-            "description": "SMS and call warmup for this phone number."
+            "description": "Messaging and calling warmup for a Leadping phone number."
           },
           "name": {
             "type": "string",
@@ -33724,7 +33774,7 @@
                 "$ref": "#/components/schemas/PhoneNumberLocation"
               }
             ],
-            "description": "Geographic location metadata for the phone number, lead, or lookup result."
+            "description": "Public Leadping API schema for phone number location data."
           }
         },
         "description": "Defines the fields clients can send when working with phone number search."
@@ -33764,7 +33814,7 @@
                 "$ref": "#/components/schemas/PhoneNumberLocation"
               }
             ],
-            "description": "Geographic location metadata for the phone number, lead, or lookup result."
+            "description": "Public Leadping API schema for phone number location data."
           }
         },
         "description": "Result schema for the Leadping API phone number search result returned by lookup and validation endpoints."
@@ -33796,7 +33846,7 @@
                 "$ref": "#/components/schemas/SmsReadinessStatusResponse"
               }
             ],
-            "description": "SMS warmup status for this phone number."
+            "description": "Describes SMS warmup status data returned by Leadping."
           },
           "outboundCapacity": {
             "type": [
@@ -33808,7 +33858,7 @@
                 "$ref": "#/components/schemas/OutboundPhoneNumberCapacity"
               }
             ],
-            "description": "Current outbound SMS and voice capacity for this phone number."
+            "description": "Reports the sending capacity, current load, and availability of a phone number considered for outbound delivery."
           },
           "optOutMetrics": {
             "allOf": [
@@ -33816,7 +33866,7 @@
                 "$ref": "#/components/schemas/PhoneNumberOptOutMetricsResponse"
               }
             ],
-            "description": "Recent SMS opt-out metrics used to evaluate sender health and compliance risk."
+            "description": "Describes phone number opt-out metrics data returned by Leadping."
           },
           "trafficMetrics": {
             "allOf": [
@@ -33824,7 +33874,7 @@
                 "$ref": "#/components/schemas/PhoneNumberTrafficMetricsResponse"
               }
             ],
-            "description": "Phone number traffic metrics for recent SMS and call activity."
+            "description": "Describes phone number traffic metrics data returned by Leadping."
           },
           "recentEvents": {
             "type": "array",
@@ -33881,7 +33931,7 @@
                 "$ref": "#/components/schemas/PhoneNumberReadiness"
               }
             ],
-            "description": "Warmup state for this phone number."
+            "description": "Messaging and calling warmup for a Leadping phone number."
           },
           "ownership": {
             "type": "string",
@@ -34369,7 +34419,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related lead."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "fromPhoneNumberId": {
             "type": "string",
@@ -34704,7 +34754,7 @@
                 "$ref": "#/components/schemas/SmsReadinessState"
               }
             ],
-            "description": "The current state for this SMS warmup status."
+            "description": "Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping."
           },
           "healthStatus": {
             "allOf": [
@@ -34712,7 +34762,7 @@
                 "$ref": "#/components/schemas/SmsReadinessHealthStatus"
               }
             ],
-            "description": "The current delivery-health assessment for this SMS warmup status."
+            "description": "Summarizes the severity of conditions affecting an organization's ability to send compliant SMS or MMS traffic."
           },
           "healthScore": {
             "type": "integer",
@@ -34734,7 +34784,7 @@
                 "$ref": "#/components/schemas/SmsReadinessUiState"
               }
             ],
-            "description": "The current UI state for this SMS warmup status."
+            "description": "Describes SMS readiness UI state data used in Leadping API requests and responses."
           }
         },
         "description": "Describes SMS warmup status data returned by Leadping."
@@ -34748,7 +34798,7 @@
                 "$ref": "#/components/schemas/SmsReadinessState"
               }
             ],
-            "description": "The human-readable label shown for this SMS readiness UI state."
+            "description": "Describes whether an organization is configured and permitted to send SMS or MMS traffic through Leadping."
           },
           "tone": {
             "type": "string",
@@ -35066,7 +35116,7 @@
                 "$ref": "#/components/schemas/SourceResponse"
               }
             ],
-            "description": "Source metadata safe for later retrieval."
+            "description": "Describes lead source data returned by Leadping."
           },
           "secret": {
             "type": "string",
@@ -35084,7 +35134,7 @@
                 "$ref": "#/components/schemas/AnalyticsDateRange"
               }
             ],
-            "description": "Range associated with this Leadping source metrics."
+            "description": "Defines the inclusive reporting window and comparison window used to calculate Leadping analytics."
           },
           "totalLeads": {
             "type": "integer",
@@ -35241,7 +35291,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary connected to this lead source response."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "createdByUser": {
             "type": [
@@ -35253,7 +35303,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary for the person who created this lead source response."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "createdByUserEmail": {
             "type": [
@@ -35273,7 +35323,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary for the person who last modified this lead source response."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "organization": {
             "type": [
@@ -35285,7 +35335,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Organization summary connected to this lead source response."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "costPerLead": {
             "type": [
@@ -35443,7 +35493,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary connected to this lead source table row."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "createdByUser": {
             "type": [
@@ -35455,7 +35505,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary for the person who created this lead source table row."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "modifiedByUser": {
             "type": [
@@ -35467,7 +35517,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "User summary for the person who last modified this lead source table row."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "organization": {
             "type": [
@@ -35479,7 +35529,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Organization summary connected to this lead source table row."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "organizationId": {
             "type": [
@@ -36088,7 +36138,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related device."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           }
         },
         "description": "Identifies the Leadping user and calling context for which a short-lived telephony client token should be issued."
@@ -36249,7 +36299,7 @@
                 "$ref": "#/components/schemas/TenDlcRegistrationStatus"
               }
             ],
-            "description": "The current provider review status for the submitted brand."
+            "description": "Defines the provider lifecycle for an individual 10DLC brand or campaign."
           },
           "campaignStatus": {
             "allOf": [
@@ -36257,7 +36307,7 @@
                 "$ref": "#/components/schemas/TenDlcRegistrationStatus"
               }
             ],
-            "description": "The current provider review status for the submitted campaign."
+            "description": "Defines the provider lifecycle for an individual 10DLC brand or campaign."
           },
           "lastSubmittedAt": {
             "type": [
@@ -36345,7 +36395,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related organization."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "lead": {
             "type": [
@@ -36357,7 +36407,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related lead."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "amount": {
             "type": "number",
@@ -36473,7 +36523,7 @@
                 "$ref": "#/components/schemas/TransactionType"
               }
             ],
-            "description": "Debit or credit classification for this wallet transaction."
+            "description": "Classifies a wallet transaction as a debit, credit, refund, adjustment, deposit, or other balance movement."
           },
           "transactionStatus": {
             "allOf": [
@@ -36481,7 +36531,7 @@
                 "$ref": "#/components/schemas/TransactionStatus"
               }
             ],
-            "description": "Processing status for this wallet transaction."
+            "description": "Describes the processing and settlement lifecycle of a Leadping wallet or billing transaction."
           },
           "id": {
             "type": "string",
@@ -36529,7 +36579,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related organization."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "lead": {
             "type": [
@@ -36541,7 +36591,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related lead."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "amount": {
             "type": "number",
@@ -36650,7 +36700,7 @@
                 "$ref": "#/components/schemas/TransactionType"
               }
             ],
-            "description": "Debit or credit classification for this wallet transaction."
+            "description": "Classifies a wallet transaction as a debit, credit, refund, adjustment, deposit, or other balance movement."
           },
           "transactionStatus": {
             "allOf": [
@@ -36658,7 +36708,7 @@
                 "$ref": "#/components/schemas/TransactionStatus"
               }
             ],
-            "description": "Processing status for this wallet transaction."
+            "description": "Describes the processing and settlement lifecycle of a Leadping wallet or billing transaction."
           },
           "paymentMethodDisplay": {
             "type": [
@@ -36789,7 +36839,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related organization."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "user": {
             "type": [
@@ -36801,7 +36851,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related user."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "lead": {
             "type": [
@@ -36813,7 +36863,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Identifier and display name of the related lead."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "phoneNumberId": {
             "type": [
@@ -36835,7 +36885,7 @@
                 "$ref": "#/components/schemas/UsageChannel"
               }
             ],
-            "description": "Channel for this usage ledger."
+            "description": "Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage."
           },
           "billableUnit": {
             "allOf": [
@@ -36843,7 +36893,7 @@
                 "$ref": "#/components/schemas/BillableUnit"
               }
             ],
-            "description": "Billable unit for this usage ledger."
+            "description": "Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number."
           },
           "status": {
             "allOf": [
@@ -36851,7 +36901,7 @@
                 "$ref": "#/components/schemas/UsageStatus"
               }
             ],
-            "description": "The current status for this usage ledger."
+            "description": "Describes whether a metered usage record is pending, rated, billed, reconciled, excluded, or failed."
           },
           "quantity": {
             "type": "number",
@@ -36935,7 +36985,7 @@
                 "$ref": "#/components/schemas/UsageChannel"
               }
             ],
-            "description": "Channel for this usage summary line."
+            "description": "Identifies the messaging, calling, phone-number, lookup, or platform channel that generated billable usage."
           },
           "billableUnit": {
             "allOf": [
@@ -36943,7 +36993,7 @@
                 "$ref": "#/components/schemas/BillableUnit"
               }
             ],
-            "description": "Billable unit for this usage summary line."
+            "description": "Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number."
           },
           "status": {
             "allOf": [
@@ -36951,7 +37001,7 @@
                 "$ref": "#/components/schemas/UsageStatus"
               }
             ],
-            "description": "The current status for this usage summary line."
+            "description": "Describes whether a metered usage record is pending, rated, billed, reconciled, excluded, or failed."
           },
           "quantity": {
             "type": "number",
@@ -37124,7 +37174,7 @@
                 "$ref": "#/components/schemas/UserDataExportStatuses"
               }
             ],
-            "description": "Current status for this Leadping user data export."
+            "description": "Identifies the preparation, availability, failure, expiration, or deletion stage of a Leadping user-data export."
           },
           "requestedAt": {
             "type": "string",
@@ -37284,7 +37334,7 @@
                 "$ref": "#/components/schemas/TrustedFormCertificate"
               }
             ],
-            "description": "The TrustedForm certificate captured for the user's most recent SMS opt-in."
+            "description": "Describes trusted form certificate data used in Leadping API requests and responses."
           },
           "paymentFailedEnabled": {
             "type": "boolean",
@@ -37433,7 +37483,7 @@
                 "$ref": "#/components/schemas/UserNotificationPreferences"
               }
             ],
-            "description": "Notification preferences configured for the user."
+            "description": "Describes user notification preferences data used in Leadping API requests and responses."
           }
         },
         "description": "Defines the fields clients can send when working with user profile."
@@ -37508,7 +37558,7 @@
                 "$ref": "#/components/schemas/OrganizationBillingState"
               }
             ],
-            "description": "Customer-safe billing state for the user's currently selected organization."
+            "description": "Customer-safe billing state for a Leadping organization."
           },
           "roles": {
             "type": [
@@ -37546,7 +37596,7 @@
                 "$ref": "#/components/schemas/IdNamePair"
               }
             ],
-            "description": "Current organization for this user."
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
           "compliance": {
             "type": [
@@ -37558,7 +37608,7 @@
                 "$ref": "#/components/schemas/UserCompliance"
               }
             ],
-            "description": "Compliance for this user."
+            "description": "Describes user compliance data used in Leadping API requests and responses."
           },
           "notificationPreferences": {
             "type": [
@@ -37570,7 +37620,7 @@
                 "$ref": "#/components/schemas/UserNotificationPreferences"
               }
             ],
-            "description": "Notification preferences for this user."
+            "description": "Describes user notification preferences data used in Leadping API requests and responses."
           },
           "mobileDevicePreferences": {
             "type": [
