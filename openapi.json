@@ -24432,6 +24432,20 @@
             ],
             "description": "Automation trigger type that starts the workflow."
           },
+          "triggerId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Identifier of the trigger node selected when this run was queued."
+          },
+          "conditionResults": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "description": "Results of condition nodes already visited by this run, preserved across waits and retries."
+          },
           "status": {
             "type": "string",
             "description": "Current lifecycle status for this automation run record in the Leadping API."
@@ -27393,6 +27407,14 @@
         "description": "Extends an identifier-and-name resource reference with an optional string value used for display or selection metadata."
       },
       "InitiateCallRequest": {
+        "examples": [
+          {
+            "leadId": "lead-123",
+            "conversationId": "conversation-123",
+            "wasManuallyOverridden": false,
+            "outboundIdempotencyKey": "call-example-001"
+          }
+        ],
         "required": [
           "leadId"
         ],
@@ -27442,13 +27464,7 @@
             "description": "Idempotency key used to prevent duplicate outbound delivery."
           }
         },
-        "description": "Defines the fields clients can send when working with phone call initiation.",
-        "example": {
-          "leadId": "lead-123",
-          "conversationId": "conversation-123",
-          "wasManuallyOverridden": false,
-          "outboundIdempotencyKey": "call-example-001"
-        }
+        "description": "Defines the fields clients can send when working with phone call initiation."
       },
       "InvoicePdfAccessResponse": {
         "type": "object",
@@ -27597,6 +27613,22 @@
         "description": "Public Leadping API schema for lead contact profile data."
       },
       "LeadIntakeRequest": {
+        "examples": [
+          {
+            "firstName": "Taylor",
+            "lastName": "Morgan",
+            "email": "taylor@example.com",
+            "phone": "+13125550100",
+            "utmSource": "paid-search",
+            "utmCampaign": "summer-campaign",
+            "landingPage": "https://example.com/request-a-quote",
+            "externalId": "external-lead-123",
+            "tagNames": [
+              "website",
+              "new-lead"
+            ]
+          }
+        ],
         "type": "object",
         "properties": {
           "firstName": {
@@ -27840,21 +27872,7 @@
             "description": "Tag names assigned to this lead when matching existing tags by name."
           }
         },
-        "description": "Defines the fields clients can send when working with lead intake.",
-        "example": {
-          "firstName": "Taylor",
-          "lastName": "Morgan",
-          "email": "taylor@example.com",
-          "phone": "+13125550100",
-          "utmSource": "paid-search",
-          "utmCampaign": "summer-campaign",
-          "landingPage": "https://example.com/request-a-quote",
-          "externalId": "external-lead-123",
-          "tagNames": [
-            "website",
-            "new-lead"
-          ]
-        }
+        "description": "Defines the fields clients can send when working with lead intake."
       },
       "LeadMetadata": {
         "required": [
@@ -34322,6 +34340,14 @@
         "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
       },
       "SendSmsRequest": {
+        "examples": [
+          {
+            "conversationId": "conversation-123",
+            "text": "Thanks for your interest. When is a good time to talk?",
+            "mediaUrls": [ ],
+            "outboundIdempotencyKey": "sms-example-001"
+          }
+        ],
         "required": [
           "conversationId",
           "text"
@@ -34391,13 +34417,7 @@
             "description": "Idempotency key used to prevent duplicate outbound delivery."
           }
         },
-        "description": "Defines the fields clients can send when working with SMS send.",
-        "example": {
-          "conversationId": "conversation-123",
-          "text": "Thanks for your interest. When is a good time to talk?",
-          "mediaUrls": [ ],
-          "outboundIdempotencyKey": "sms-example-001"
-        }
+        "description": "Defines the fields clients can send when working with SMS send."
       },
       "SmsEventTableRow": {
         "type": "object",
