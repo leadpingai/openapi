@@ -91,7 +91,7 @@
           "leadping.Api"
         ],
         "summary": "Handle an A2A request",
-        "description": "Accepts authenticated A2A JSON-RPC requests for Leadping's supported agent operations.",
+        "description": "Send authenticated A2A JSON-RPC requests to Leadping through the API to access supported agent operations and integrate them into your agent workflows.",
         "operationId": "A2A_HandleRequest",
         "responses": {
           "200": {
@@ -1509,7 +1509,7 @@
           "Automations"
         ],
         "summary": "Preview a lead follow-up automation",
-        "description": "Previews automation execution for a sample lead, showing matched steps and messages without creating follow-up events.\nSet `validate_only` to return configuration validation without evaluating conditions or actions and without writing a test audit event.",
+        "description": "Preview matched automation steps and messages for a sample lead without creating follow-up events, or use validate_only to check the automation configuration.",
         "operationId": "Automations_Preview",
         "parameters": [
           {
@@ -1840,7 +1840,7 @@
           "BlogArticles"
         ],
         "summary": "Lists published blog articles.",
-        "description": "Returns the Leadping blog articles currently available to public readers.",
+        "description": "Retrieve the list of published Leadping blog articles through the public API. This endpoint returns articles available to readers without authentication.",
         "operationId": "BlogArticles_GetPublished",
         "responses": {
           "200": {
@@ -3435,7 +3435,7 @@
           "Leads"
         ],
         "summary": "Delete an organization lead record by ID",
-        "description": "Marks a lead as deleted so it no longer appears in user-facing lead, conversation, routing, or event workflows. The stored lead,\nconversation, and event records are retained.",
+        "description": "Mark a lead as deleted to hide it from lead, conversation, routing, and event workflows while retaining the stored lead, conversation, and event records.",
         "operationId": "Leads_Delete",
         "parameters": [
           {
@@ -3729,7 +3729,7 @@
           "Leads"
         ],
         "summary": "Archive an organization lead record by ID",
-        "description": "Archives a lead without deleting history, removing it from active pipeline views while preserving communication and event records.\nThe request body is intentionally optional. An empty body archives the lead with the default manually-archived reason.",
+        "description": "Archive a lead to remove it from active pipeline views while preserving communication and event history. An optional request body supplies the archive reason.",
         "operationId": "Leads_Archive",
         "parameters": [
           {
@@ -5279,7 +5279,7 @@
           "LeadStatusChanges"
         ],
         "summary": "Update a lead status history entry",
-        "description": "Updates a lead status history entry and, when it is current, updates the lead's current status.",
+        "description": "Update a Leadping lead status history entry through the API. When the entry is current, the operation also updates the lead's current status to match.",
         "operationId": "LeadStatusChanges_Update",
         "parameters": [
           {
@@ -11258,7 +11258,7 @@
           "Users"
         ],
         "summary": "Updates the current user's notification preferences without requiring profile fields.",
-        "description": "Replaces the notification channel and delivery preferences stored for the authenticated user.",
+        "description": "Update notification channel and delivery preferences for the authenticated Leadping user through the API without submitting unrelated user profile fields.",
         "operationId": "Users_UpdateNotificationPreferencesForCurrentUser",
         "requestBody": {
           "description": "The notification preferences to store for the current user.",
@@ -15295,7 +15295,7 @@
           "Sms"
         ],
         "summary": "Cancel a scheduled SMS message for a lead",
-        "description": "Cancels a scheduled SMS event before delivery, preserving the event record while preventing the queued message from being sent.\nThe cancellation window remains open only while the SMS status is Scheduled and closes when delivery begins.",
+        "description": "Cancel a queued SMS message while its status is Scheduled to prevent sending and preserve the event record. Cancellation closes when message delivery begins.",
         "operationId": "Sms_CancelScheduled",
         "parameters": [
           {
