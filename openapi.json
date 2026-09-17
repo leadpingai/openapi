@@ -27326,6 +27326,13 @@
             ],
             "description": "Related entity ID connected to this event or notification."
           },
+          "automationRunId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Automation run ID opened from this automation event."
+          },
           "summary": {
             "type": [
               "null",
@@ -32076,6 +32083,30 @@
       "OutboundPhoneNumberCapacity": {
         "type": "object",
         "properties": {
+          "smsRampDirection": {
+            "enum": [
+              "up",
+              "down",
+              "none"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Indicates whether a phone number's channel capacity is increasing, decreasing, or stable."
+          },
+          "voiceRampDirection": {
+            "enum": [
+              "up",
+              "down",
+              "none"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Indicates whether a phone number's channel capacity is increasing, decreasing, or stable."
+          },
           "capacityAvailable": {
             "type": "boolean",
             "description": "Indicates whether Leadping successfully calculated capacity for this phone number."
@@ -34112,6 +34143,14 @@
       "PhoneNumberResponse": {
         "type": "object",
         "properties": {
+          "smsReady": {
+            "type": "boolean",
+            "description": "Whether provider, routing, and health checks allow SMS."
+          },
+          "voiceReady": {
+            "type": "boolean",
+            "description": "Whether provider, routing, and health checks allow calls."
+          },
           "numberHealthEnabled": {
             "type": "boolean",
             "description": "Opts this number into the optional $2 monthly number health add-on. Defaults to on; customers can opt out."
