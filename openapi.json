@@ -25414,6 +25414,13 @@
             ],
             "format": "date-time"
           },
+          "unpublishedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
           "isPublished": {
             "type": "boolean"
           },
@@ -34336,6 +34343,18 @@
       "PhoneNumberStatusResponse": {
         "type": "object",
         "properties": {
+          "location": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneNumberLocation"
+              }
+            ],
+            "description": "Public Leadping API schema for phone number location data."
+          },
           "number": {
             "type": "string",
             "description": "E.164 phone number exposed by this phone number warmup status."
