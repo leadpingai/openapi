@@ -376,6 +376,158 @@
         }
       }
     },
+    "/analytics/my/export": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Exports the current organization's analytics with the same cohort, timestamps and definitions as charts.",
+        "description": "Downloads the current organization's analytics as a CSV file, using the same cohort, timestamps, and metric definitions as the analytics charts.",
+        "operationId": "Analytics_ExportCurrentOrganization",
+        "parameters": [
+          {
+            "name": "startAt",
+            "in": "query",
+            "description": "Optional inclusive start timestamp for the analytics period.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endAt",
+            "in": "query",
+            "description": "Optional exclusive end timestamp for the analytics period. Defaults to the current UTC time.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "description": "Optional number of days before endAt to include when startAt is not supplied. Defaults to 30 and is limited to 1 through 365.",
+            "schema": {
+              "type": [
+                "null",
+                "integer"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/csv": { }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      }
+    },
     "/automations": {
       "post": {
         "tags": [
@@ -15126,7 +15278,7 @@
         }
       }
     },
-    "/sms/media": {
+    "/sms/uploads": {
       "post": {
         "tags": [
           "Sms"
@@ -23672,6 +23824,18 @@
       "AutomationActionRunRecord": {
         "type": "object",
         "properties": {
+          "smsDelivery": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AutomationSmsDeliveryRecord"
+              }
+            ],
+            "description": "Delivery outcome of the persisted SMS. Workflow steps advance on command acceptance, without waiting for delivery."
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this automation action run record."
@@ -24509,6 +24673,73 @@
         },
         "description": "History record schema for Leadping API automation run record data exposed in automation and audit views."
       },
+      "AutomationSmsDeliveryRecord": {
+        "type": "object",
+        "properties": {
+          "smsEventId": {
+            "type": "string",
+            "description": "Durable SMS event ID used to read subsequent delivery outcomes."
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "scheduled",
+              "queued",
+              "sending",
+              "sent",
+              "received",
+              "delivered",
+              "failed",
+              "undeliverable",
+              "opted_out",
+              "blocked_compliance",
+              "blocked_billing",
+              "blocked_missing_campaign",
+              "canceled"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Describes the normalized lifecycle of an SMS or MMS message from scheduling through delivery or failure."
+          },
+          "scheduledFor": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC time at which the SMS is scheduled to send.",
+            "format": "date-time"
+          },
+          "nextRetryAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC time of the next automatic delivery retry, if any.",
+            "format": "date-time"
+          },
+          "errorCode": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Machine-readable delivery failure code."
+          },
+          "reason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Redacted reason supplied by the delivery pipeline."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Customer-safe delivery summary and suggested next action."
+          }
+        },
+        "description": "Delivery outcome of the persisted SMS. Workflow steps advance on command acceptance, without waiting for delivery."
+      },
       "AutomationTableRow": {
         "type": "object",
         "properties": {
@@ -24693,6 +24924,18 @@
       "AutomationWorkflowActionResponse": {
         "type": "object",
         "properties": {
+          "smsDelivery": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AutomationSmsDeliveryRecord"
+              }
+            ],
+            "description": "Delivery outcome of the persisted SMS. Workflow steps advance on command acceptance, without waiting for delivery."
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for the automation workflow action."
@@ -25216,6 +25459,23 @@
       "CallEventTableRow": {
         "type": "object",
         "properties": {
+          "outboundSource": {
+            "enum": [
+              "manual",
+              "automation",
+              "campaign",
+              "import",
+              "api",
+              "system_notification",
+              "warmup",
+              "retry"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Defines the source that requested outbound delivery."
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this call event table row."
@@ -25941,6 +26201,56 @@
       "CustomerAnalyticsSummary": {
         "type": "object",
         "properties": {
+          "overallFiveMinuteSlaPercent": {
+            "type": "number",
+            "description": "Timely human responses divided by all mature eligible leads, including unanswered leads.",
+            "format": "double"
+          },
+          "slaEligibleLeads": {
+            "type": "integer",
+            "description": "Non-deleted leads created in the cohort with a full five-minute observation window.",
+            "format": "int32"
+          },
+          "slaTimelyLeads": {
+            "type": "integer",
+            "description": "Mature eligible leads with a human response within exactly five minutes.",
+            "format": "int32"
+          },
+          "slaUnrespondedLeads": {
+            "type": "integer",
+            "description": "Mature eligible leads without a human response by ObservedThrough.",
+            "format": "int32"
+          },
+          "slaPendingLeads": {
+            "type": "integer",
+            "description": "Cohort leads younger than five minutes at ObservedThrough; excluded from SLA denominator.",
+            "format": "int32"
+          },
+          "observedThrough": {
+            "type": "string",
+            "description": "Responses observed through this instant; min(report end plus five minutes, generation time).",
+            "format": "date-time"
+          },
+          "smsAttempted": {
+            "type": "integer",
+            "description": "Messages whose send execution started; queued and scheduled messages are excluded.",
+            "format": "int32"
+          },
+          "smsDelivered": {
+            "type": "integer",
+            "description": "Messages confirmed delivered, counted at delivery time.",
+            "format": "int32"
+          },
+          "humanResponses": {
+            "type": "integer",
+            "description": "Manual provider-accepted SMS messages; automated messages are excluded.",
+            "format": "int32"
+          },
+          "prospectReplies": {
+            "type": "integer",
+            "description": "Received prospect messages excluding consent and help commands.",
+            "format": "int32"
+          },
           "leads": {
             "type": "integer",
             "description": "Number of leads represented by this Leadping customer analytics summary.",
@@ -25972,7 +26282,7 @@
           },
           "respondedWithinFiveMinutesPercent": {
             "type": "number",
-            "description": "Responded within five minutes percent expressed as a percentage.",
+            "description": "Conditional percentage: human responses within five minutes divided by responded leads only; not overall coverage.",
             "format": "double"
           },
           "missedLeads": {
@@ -25992,7 +26302,7 @@
           },
           "smsSent": {
             "type": "integer",
-            "description": "Number of SMS messages sent during the reporting period.",
+            "description": "Provider-accepted outbound messages, counted at acceptance time (SmsSent is the compatibility field name).",
             "format": "int32"
           },
           "smsReceived": {
@@ -26135,9 +26445,29 @@
       "CustomerCommunicationUsage": {
         "type": "object",
         "properties": {
+          "smsAttempted": {
+            "type": "integer",
+            "description": "Messages whose send execution started; queued and scheduled messages are excluded.",
+            "format": "int32"
+          },
+          "smsDelivered": {
+            "type": "integer",
+            "description": "Messages confirmed delivered, counted at delivery time.",
+            "format": "int32"
+          },
+          "humanResponses": {
+            "type": "integer",
+            "description": "Manual provider-accepted SMS messages; automated messages are excluded.",
+            "format": "int32"
+          },
+          "prospectReplies": {
+            "type": "integer",
+            "description": "Received prospect messages excluding consent and help commands.",
+            "format": "int32"
+          },
           "smsSent": {
             "type": "integer",
-            "description": "Number of SMS messages sent during the reporting period.",
+            "description": "Provider-accepted outbound messages, counted at acceptance time (SmsSent is the compatibility field name).",
             "format": "int32"
           },
           "smsReceived": {
@@ -26203,6 +26533,26 @@
       "CustomerCommunicationUsagePoint": {
         "type": "object",
         "properties": {
+          "smsAttempted": {
+            "type": "integer",
+            "description": "Messages whose send execution started; queued and scheduled messages are excluded.",
+            "format": "int32"
+          },
+          "smsDelivered": {
+            "type": "integer",
+            "description": "Messages confirmed delivered, counted at delivery time.",
+            "format": "int32"
+          },
+          "humanResponses": {
+            "type": "integer",
+            "description": "Manual provider-accepted SMS messages; automated messages are excluded.",
+            "format": "int32"
+          },
+          "prospectReplies": {
+            "type": "integer",
+            "description": "Received prospect messages excluding consent and help commands.",
+            "format": "int32"
+          },
           "startAt": {
             "type": "string",
             "description": "Date and time when this Leadping customer communication usage point was start.",
@@ -26219,7 +26569,7 @@
           },
           "smsSent": {
             "type": "integer",
-            "description": "Number of SMS messages sent during the reporting period.",
+            "description": "Provider-accepted outbound messages, counted at acceptance time (SmsSent is the compatibility field name).",
             "format": "int32"
           },
           "smsReceived": {
@@ -26400,6 +26750,36 @@
       "CustomerResponseMetrics": {
         "type": "object",
         "properties": {
+          "overallFiveMinuteSlaPercent": {
+            "type": "number",
+            "description": "Timely human responses divided by all mature eligible leads, including unanswered leads.",
+            "format": "double"
+          },
+          "slaEligibleLeads": {
+            "type": "integer",
+            "description": "Non-deleted leads created in the cohort with a full five-minute observation window.",
+            "format": "int32"
+          },
+          "slaTimelyLeads": {
+            "type": "integer",
+            "description": "Mature eligible leads with a human response within exactly five minutes.",
+            "format": "int32"
+          },
+          "slaUnrespondedLeads": {
+            "type": "integer",
+            "description": "Mature eligible leads without a human response by ObservedThrough.",
+            "format": "int32"
+          },
+          "slaPendingLeads": {
+            "type": "integer",
+            "description": "Cohort leads younger than five minutes at ObservedThrough; excluded from SLA denominator.",
+            "format": "int32"
+          },
+          "observedThrough": {
+            "type": "string",
+            "description": "Responses observed through this instant; min(report end plus five minutes, generation time).",
+            "format": "date-time"
+          },
           "averageMinutes": {
             "type": [
               "null",
@@ -26418,7 +26798,7 @@
           },
           "respondedWithinFiveMinutesPercent": {
             "type": "number",
-            "description": "Responded within five minutes percent expressed as a percentage.",
+            "description": "Conditional percentage: human responses within five minutes divided by responded leads only; not overall coverage.",
             "format": "double"
           },
           "respondedLeads": {
@@ -26452,9 +26832,86 @@
               "description": "Associates a typed analytics value with one normalized time bucket in a trend series."
             },
             "description": "Collection of average minutes trend included with this Leadping customer response metrics."
+          },
+          "slaTrend": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/CustomerResponseSlaPoint"
+                }
+              ],
+              "description": "Five-minute human-response SLA for a lead creation cohort."
+            },
+            "description": "Cohort SLA counts and coverage by lead creation bucket."
+          },
+          "cohortStartAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Inclusive cohort start.",
+            "format": "date-time"
+          },
+          "cohortEndAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Exclusive cohort end.",
+            "format": "date-time"
+          },
+          "responseDefinition": {
+            "type": "string",
+            "description": "Shared definition used in charts and exports."
           }
         },
         "description": "Measures how quickly and consistently an organization responds to leads across supported communication channels."
+      },
+      "CustomerResponseSlaPoint": {
+        "type": "object",
+        "properties": {
+          "startAt": {
+            "type": "string",
+            "description": "Inclusive cohort bucket start.",
+            "format": "date-time"
+          },
+          "endAt": {
+            "type": "string",
+            "description": "End of cohort bucket.",
+            "format": "date-time"
+          },
+          "label": {
+            "type": "string",
+            "description": "Bucket label."
+          },
+          "eligibleLeads": {
+            "type": "integer",
+            "description": "Mature leads in this bucket.",
+            "format": "int32"
+          },
+          "timelyLeads": {
+            "type": "integer",
+            "description": "Eligible leads answered in five minutes.",
+            "format": "int32"
+          },
+          "unrespondedLeads": {
+            "type": "integer",
+            "description": "Eligible leads unanswered by observation cutoff.",
+            "format": "int32"
+          },
+          "pendingLeads": {
+            "type": "integer",
+            "description": "Leads still within their first five minutes.",
+            "format": "int32"
+          },
+          "coveragePercent": {
+            "type": "number",
+            "description": "Timely leads divided by all eligible leads.",
+            "format": "double"
+          }
+        },
+        "description": "Five-minute human-response SLA for a lead creation cohort."
       },
       "EligibleOutgoingNumberResponse": {
         "type": "object",
@@ -29414,7 +29871,7 @@
       "MessageMediaAttachment": {
         "type": "object",
         "properties": {
-          "mediaId": {
+          "uploadId": {
             "type": [
               "null",
               "string"
@@ -35940,6 +36397,29 @@
               "string"
             ],
             "description": "Provider or customer identifier used to recognize the suppressed recipient."
+          },
+          "leadName": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Display name of the associated lead, when available."
+          },
+          "leadEmail": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The associated lead's email address, used for Gravatar fallback.",
+            "format": "email"
+          },
+          "leadAvatarUrl": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The associated lead's profile image URL, when available.",
+            "format": "uri"
           },
           "normalizedPhoneNumber": {
             "type": [
