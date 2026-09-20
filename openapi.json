@@ -36943,6 +36943,10 @@
       "TransactionResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean",
+            "description": "Indicates sample activity for app review that must not count toward real financial totals."
+          },
           "organization": {
             "type": [
               "null",
@@ -37123,6 +37127,10 @@
       "TransactionTableRow": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean",
+            "description": "Indicates sample activity for app review that must not count toward real financial totals."
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this billing transaction table row."
