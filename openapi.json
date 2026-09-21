@@ -25423,6 +25423,13 @@
             ],
             "format": "date-time"
           },
+          "lastPublishedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
           "unpublishedAt": {
             "type": [
               "null",
