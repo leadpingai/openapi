@@ -24392,6 +24392,9 @@
       "AutomationResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "description": {
             "type": [
               "null",
@@ -24743,6 +24746,9 @@
       "AutomationTableRow": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this automation table row."
@@ -25104,6 +25110,9 @@
       "AutomationWorkflowRunResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for the automation workflow run."
@@ -25466,6 +25475,9 @@
       "CallEventTableRow": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "outboundSource": {
             "enum": [
               "manual",
@@ -25761,6 +25773,9 @@
       "ConversationResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this conversation response."
@@ -27017,6 +27032,9 @@
       "EventDetailResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "eventType": {
             "type": "string",
             "description": "Event type used to classify this timeline, SMS, call, or automation event."
@@ -27274,6 +27292,9 @@
       "EventTableRow": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this event timeline table row."
@@ -28800,6 +28821,9 @@
       "LeadResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "assignedToUserId": {
             "type": [
               "null",
@@ -29334,6 +29358,9 @@
       "LeadStatusChangeResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this lead status change."
@@ -29642,6 +29669,9 @@
       "LeadTableRow": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this lead table row."
@@ -29968,6 +29998,9 @@
       "NotificationResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "type": {
             "allOf": [
               {
@@ -30070,6 +30103,9 @@
       "NotificationTableRow": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "type": {
             "allOf": [
               {
@@ -31549,6 +31585,9 @@
       "OrganizationResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "secondaryName": {
             "type": [
               "null",
@@ -33124,6 +33163,9 @@
       "PhoneCallResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "status": {
             "allOf": [
               {
@@ -33418,6 +33460,9 @@
       "PhoneIdentityResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "number": {
             "type": "string",
             "description": "The canonical E.164 phone number."
@@ -33973,6 +34018,9 @@
       "PhoneNumberMessagingEventResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this phone number messaging event."
@@ -34150,6 +34198,9 @@
       "PhoneNumberResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "smsReady": {
             "type": "boolean",
             "description": "Whether provider, routing, and health checks allow SMS."
@@ -34427,6 +34478,9 @@
       "PhoneNumberTableRow": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this phone number table row."
@@ -34937,6 +34991,9 @@
       "SmsEventTableRow": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this SMS event table row."
@@ -35349,6 +35406,9 @@
       "SmsResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "conversationId": {
             "type": "string",
             "description": "Conversation ID that links this SMS message to the Leadping inbox thread."
@@ -35774,6 +35834,9 @@
       "SourceResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "description": {
             "type": [
               "null",
@@ -35948,6 +36011,9 @@
       "SourceTableRow": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this lead source table row."
@@ -36435,6 +36501,9 @@
       "SuppressionEntryResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": [
               "null",
@@ -36590,6 +36659,9 @@
       "TagResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "organizationId": {
             "type": [
               "null",
@@ -38057,6 +38129,9 @@
       "UserResponse": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "email": {
             "type": "string",
             "description": "The email address associated with this user.",
