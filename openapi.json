@@ -37944,29 +37944,6 @@
         "type": "string",
         "description": "Identifies the preparation, availability, failure, expiration, or deletion stage of a Leadping user-data export."
       },
-      "UserIdentity": {
-        "required": [
-          "issuer",
-          "issuerAssignedId",
-          "signInType"
-        ],
-        "type": "object",
-        "properties": {
-          "issuer": {
-            "type": "string",
-            "description": "Identity provider or tenant that issued the sign-in identity, such as contoso.com or facebook.com."
-          },
-          "issuerAssignedId": {
-            "type": "string",
-            "description": "Stable unique user identifier assigned by the identity provider within the issuer's namespace."
-          },
-          "signInType": {
-            "type": "string",
-            "description": "Sign-in method represented by the identity, such as emailAddress, userName, or federated."
-          }
-        },
-        "description": "Identifies an external sign-in identity linked to a Leadping user, including its provider, provider-assigned user identifier, and authentication method."
-      },
       "UserNotificationPreferences": {
         "type": "object",
         "properties": {
@@ -38234,21 +38211,6 @@
               "description": "A Leadping user role value."
             },
             "description": "The roles included with this user."
-          },
-          "identities": {
-            "type": [
-              "null",
-              "array"
-            ],
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/UserIdentity"
-                }
-              ],
-              "description": "Identifies an external sign-in identity linked to a Leadping user, including its provider, provider-assigned user identifier, and authentication method."
-            },
-            "description": "The identities included with this user."
           },
           "currentOrganization": {
             "type": [
