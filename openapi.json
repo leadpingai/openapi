@@ -28027,6 +28027,7 @@
           },
           "note": {
             "maxLength": 500,
+            "minLength": 0,
             "type": [
               "null",
               "string"
@@ -37015,6 +37016,7 @@
         "properties": {
           "notes": {
             "maxLength": 4000,
+            "minLength": 0,
             "type": [
               "null",
               "string"
