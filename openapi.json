@@ -25397,6 +25397,9 @@
           "content": {
             "type": "string"
           },
+          "renderedHtml": {
+            "type": "string"
+          },
           "category": {
             "type": [
               "null",
