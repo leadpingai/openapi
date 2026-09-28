@@ -25371,6 +25371,33 @@
       "BlogArticleResponse": {
         "type": "object",
         "properties": {
+          "shareOnFacebook": {
+            "type": "boolean",
+            "description": "Whether to create a Facebook post after publication."
+          },
+          "shareOnInstagram": {
+            "type": "boolean",
+            "description": "Whether to create a Instagram post after publication."
+          },
+          "shareOnX": {
+            "type": "boolean",
+            "description": "Whether to create a X post after publication."
+          },
+          "shareOnLinkedIn": {
+            "type": "boolean",
+            "description": "Whether to create a LinkedIn post after publication."
+          },
+          "socialPosts": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/BlogSocialPost"
+                }
+              ],
+              "description": "Records a social publication attempt. An attempt without a post ID must be reviewed before retrying."
+            }
+          },
           "imagesProcessing": {
             "type": "boolean",
             "description": "Whether saved image references are awaiting Engine processing."
@@ -25497,6 +25524,43 @@
           }
         },
         "description": "Represents a blog article response."
+      },
+      "BlogSocialPlatform": {
+        "enum": [
+          "facebook",
+          "instagram",
+          "x",
+          "linkedin"
+        ],
+        "type": "string"
+      },
+      "BlogSocialPost": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "$ref": "#/components/schemas/BlogSocialPlatform"
+          },
+          "attemptedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "postId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "error": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        },
+        "description": "Records a social publication attempt. An attempt without a post ID must be reviewed before retrying."
       },
       "CallEventTableRow": {
         "type": "object",
