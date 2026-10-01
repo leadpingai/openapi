@@ -28693,7 +28693,7 @@
               "null",
               "string"
             ],
-            "description": "UTC timestamp when Leadping last successfully validated the TrustedForm certificate URL.",
+            "description": "UTC timestamp when Leadping last successfully checked the TrustedForm certificate URL availability.",
             "format": "date-time"
           },
           "userId": {
