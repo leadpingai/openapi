@@ -28002,6 +28002,10 @@
         ],
         "type": "object",
         "properties": {
+          "useBrowserPhone": {
+            "type": "boolean",
+            "description": "Connect the authenticated user's browser phone to the server-controlled destination call."
+          },
           "fromPhoneNumberId": {
             "type": [
               "null",
@@ -31398,6 +31402,18 @@
       "OrganizationMemberRequest": {
         "type": "object",
         "properties": {
+          "stateEligibility": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationMemberStateEligibility"
+              }
+            ],
+            "description": "Defines the states an organization member can work; this is not verification of professional licensing."
+          },
           "userId": {
             "type": [
               "null",
@@ -31427,6 +31443,14 @@
       "OrganizationMemberResponse": {
         "type": "object",
         "properties": {
+          "stateEligibility": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationMemberStateEligibility"
+              }
+            ],
+            "description": "Defines the states an organization member can work; this is not verification of professional licensing."
+          },
           "organization": {
             "allOf": [
               {
@@ -31545,9 +31569,34 @@
         "type": "string",
         "description": "Identifies an organization member's access level and permission scope within Leadping."
       },
+      "OrganizationMemberStateEligibility": {
+        "type": "object",
+        "properties": {
+          "allStates": {
+            "type": "boolean",
+            "description": "Whether all states are eligible, subject to organization and source restrictions."
+          },
+          "allowedStates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Allowed state abbreviations when all states is false. An empty list permits no states."
+          }
+        },
+        "description": "Defines the states an organization member can work; this is not verification of professional licensing."
+      },
       "OrganizationMemberTableRow": {
         "type": "object",
         "properties": {
+          "stateEligibility": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrganizationMemberStateEligibility"
+              }
+            ],
+            "description": "Defines the states an organization member can work; this is not verification of professional licensing."
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this organization user."
@@ -31669,6 +31718,20 @@
               "boolean"
             ],
             "description": "Whether the organization was formed less than 90 days ago."
+          },
+          "offer": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Main service or offer described during organization setup."
+          },
+          "targetAudience": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Intended audience described during organization setup."
           }
         },
         "description": "Defines the fields clients can send when working with organization profile."
