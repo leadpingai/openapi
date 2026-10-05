@@ -26,7 +26,7 @@
     "/.well-known/agent-card.json": {
       "get": {
         "tags": [
-          "leadping.Api"
+          "Leadping.Api"
         ],
         "summary": "Get the Leadping A2A Agent Card",
         "description": "Returns Leadping's public A2A Agent Card, including protocol capabilities, authentication requirements, input and output modes, and supported skills.",
@@ -88,7 +88,7 @@
     "/a2a": {
       "post": {
         "tags": [
-          "leadping.Api"
+          "Leadping.Api"
         ],
         "summary": "Handle an A2A request",
         "description": "Send authenticated A2A JSON-RPC requests to Leadping through the API to access supported agent operations and integrate them into your agent workflows.",
@@ -38643,7 +38643,7 @@
   },
   "tags": [
     {
-      "name": "leadping.Api",
+      "name": "Leadping.Api",
       "description": "Agent-to-agent discovery and request handling for Leadping's supported AI agent integrations."
     },
     {
