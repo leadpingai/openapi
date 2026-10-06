@@ -28462,9 +28462,6 @@
         "description": "Defines the fields clients can send when working with lead intake."
       },
       "LeadMetadata": {
-        "required": [
-          "trustedFormUrl"
-        ],
         "type": "object",
         "properties": {
           "utmSource": {
@@ -28700,6 +28697,21 @@
             "description": "UTC timestamp when Leadping last successfully checked the TrustedForm certificate URL availability.",
             "format": "date-time"
           },
+          "leadpingConsentCertificateId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Standalone Leadping Consent certificate identifier, accepted as an alternative to TrustedForm."
+          },
+          "leadpingConsentCheckedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Server-issued timestamp for successful Leadping Consent evidence and recipient validation.",
+            "format": "date-time"
+          },
           "userId": {
             "type": [
               "null",
@@ -28716,6 +28728,34 @@
           }
         },
         "description": "Public Leadping API schema for lead attribution metadata data."
+      },
+      "LeadpingConsentCertificate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Unique Leadping identifier for this Leadping Consent certificate."
+          },
+          "source": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Source for this Leadping Consent certificate."
+          },
+          "createdAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC timestamp for created at on this Leadping Consent certificate.",
+            "format": "date-time"
+          }
+        },
+        "description": "Describes Leadping Consent certificate data used in Leadping API requests and responses."
       },
       "LeadProfile": {
         "type": "object",
@@ -31013,7 +31053,7 @@
           },
           "requireTrustedFormForAutomations": {
             "type": "boolean",
-            "description": "Whether this organization compliance policy requires TrustedForm for automations."
+            "description": "Whether this organization compliance policy requires TrustedForm or Leadping Consent evidence for automations."
           },
           "requireSourceComplianceApproval": {
             "type": "boolean",
@@ -35966,7 +36006,7 @@
           },
           "requiresTrustedForm": {
             "type": "boolean",
-            "description": "Indicates whether leads from this source must include a TrustedForm certificate for consent proof."
+            "description": "Indicates whether leads from this source must include a TrustedForm or Leadping Consent certificate for consent proof."
           },
           "defaultTagIds": {
             "type": "array",
@@ -36113,7 +36153,7 @@
           },
           "requiresTrustedForm": {
             "type": "boolean",
-            "description": "Indicates whether leads from this source must include a TrustedForm certificate for consent proof."
+            "description": "Indicates whether leads from this source must include a TrustedForm or Leadping Consent certificate for consent proof."
           },
           "complianceApproved": {
             "type": "boolean",
@@ -36317,7 +36357,7 @@
           },
           "requiresTrustedForm": {
             "type": "boolean",
-            "description": "Indicates whether leads from this source must include a TrustedForm certificate for consent proof."
+            "description": "Indicates whether leads from this source must include a TrustedForm or Leadping Consent certificate for consent proof."
           },
           "complianceApproved": {
             "type": "boolean",
@@ -37534,39 +37574,6 @@
         "type": "string",
         "description": "Classifies a wallet transaction as a debit, credit, refund, adjustment, deposit, or other balance movement."
       },
-      "TrustedFormCertificate": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "Unique Leadping identifier for this TrustedForm certificate."
-          },
-          "url": {
-            "type": "string",
-            "description": "The URL associated with this TrustedForm certificate.",
-            "format": "uri"
-          },
-          "source": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "Source for this TrustedForm certificate."
-          },
-          "createdAt": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "UTC timestamp for created at on this TrustedForm certificate.",
-            "format": "date-time"
-          }
-        },
-        "description": "Describes trusted form certificate data used in Leadping API requests and responses."
-      },
       "UsageChannel": {
         "enum": [
           "lead",
@@ -37902,7 +37909,7 @@
             "type": "boolean",
             "description": "Whether the user accepted email for this user compliance."
           },
-          "trustedFormCertificates": {
+          "consentCertificates": {
             "type": [
               "null",
               "array"
@@ -37910,12 +37917,12 @@
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/TrustedFormCertificate"
+                  "$ref": "#/components/schemas/LeadpingConsentCertificate"
                 }
               ],
-              "description": "Describes trusted form certificate data used in Leadping API requests and responses."
+              "description": "Describes Leadping Consent certificate data used in Leadping API requests and responses."
             },
-            "description": "The TrustedForm certificates included with this user compliance."
+            "description": "The Leadping Consent certificates included with this user compliance."
           }
         },
         "description": "Describes user compliance data used in Leadping API requests and responses."
@@ -38094,17 +38101,17 @@
             "description": "When the user's Leadping notification SMS consent was last changed.",
             "format": "date-time"
           },
-          "smsConsentTrustedFormCertificate": {
+          "smsConsentCertificate": {
             "type": [
               "null",
               "object"
             ],
             "allOf": [
               {
-                "$ref": "#/components/schemas/TrustedFormCertificate"
+                "$ref": "#/components/schemas/LeadpingConsentCertificate"
               }
             ],
-            "description": "Describes trusted form certificate data used in Leadping API requests and responses."
+            "description": "Describes Leadping Consent certificate data used in Leadping API requests and responses."
           },
           "paymentFailedEnabled": {
             "type": "boolean",
