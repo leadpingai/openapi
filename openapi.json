@@ -28218,6 +28218,13 @@
         ],
         "type": "object",
         "properties": {
+          "idempotencyKey": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Stable delivery key reused when retrying the same lead submission to this source."
+          },
           "firstName": {
             "type": [
               "null",
@@ -28464,6 +28471,13 @@
       "LeadMetadata": {
         "type": "object",
         "properties": {
+          "intakeIdempotencyKey": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Stable source operation key. Reuse for retries, and change for a new submission."
+          },
           "utmSource": {
             "type": [
               "null",
