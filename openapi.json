@@ -24171,6 +24171,10 @@
         ],
         "type": "object",
         "properties": {
+          "timeZoneId": {
+            "type": "string",
+            "description": "Time zone used by workflow time and day conditions in preview and runtime. Defaults to UTC."
+          },
           "description": {
             "type": [
               "null",
@@ -24271,6 +24275,10 @@
       "AutomationRequestSnapshot": {
         "type": "object",
         "properties": {
+          "timeZoneId": {
+            "type": "string",
+            "description": "Time zone used by workflow time and day conditions in preview and runtime. Defaults to UTC."
+          },
           "id": {
             "type": [
               "null",
@@ -24392,6 +24400,10 @@
       "AutomationResponse": {
         "type": "object",
         "properties": {
+          "timeZoneId": {
+            "type": "string",
+            "description": "Time zone used by workflow time and day conditions in preview and runtime. Defaults to UTC."
+          },
           "isDemo": {
             "type": "boolean"
           },
