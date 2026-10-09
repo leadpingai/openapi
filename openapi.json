@@ -24029,6 +24029,34 @@
         },
         "description": "Recent persisted execution runs for an automation console."
       },
+      "AutomationLineage": {
+        "type": "object",
+        "properties": {
+          "rootEventId": {
+            "type": "string"
+          },
+          "triggerEventId": {
+            "type": "string"
+          },
+          "runId": {
+            "type": "string"
+          },
+          "actionId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "automationIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Automation IDs in execution order, including the run that produced this event."
+          }
+        },
+        "description": "Persisted origin of an automation run and the events produced by its actions."
+      },
       "AutomationPreviewActionResult": {
         "type": "object",
         "properties": {
@@ -24579,6 +24607,18 @@
       "AutomationRunRecord": {
         "type": "object",
         "properties": {
+          "automationLineage": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AutomationLineage"
+              }
+            ],
+            "description": "Persisted origin of an automation run and the events produced by its actions."
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this automation run record."
