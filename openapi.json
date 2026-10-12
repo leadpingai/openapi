@@ -2370,19 +2370,19 @@
         }
       }
     },
-    "/conversations/{id}/mark-read": {
-      "post": {
+    "/conversations/{id}": {
+      "get": {
         "tags": [
           "Conversations"
         ],
-        "summary": "Marks an inbox conversation as read.",
-        "description": "Updates the conversation's read state for the current user's inbox and returns whether the conversation was found.",
-        "operationId": "Conversations_MarkAsRead",
+        "summary": "Get an accessible inbox conversation and its current event version.",
+        "description": "Returns a conversation accessible to the current user, including its current event version for tracking inbox updates.",
+        "operationId": "Conversations_Get",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the conversation to mark as read.",
+            "description": "The ID of the conversation to retrieve.",
             "required": true,
             "schema": {
               "type": "string"
@@ -2395,17 +2395,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "type": "boolean"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ConversationResponse"
+                    }
+                  ],
+                  "description": "Describes conversation data returned by Leadping."
                 }
               },
               "application/json": {
                 "schema": {
-                  "type": "boolean"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ConversationResponse"
+                    }
+                  ],
+                  "description": "Describes conversation data returned by Leadping."
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "boolean"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ConversationResponse"
+                    }
+                  ],
+                  "description": "Describes conversation data returned by Leadping."
                 }
               }
             }
@@ -2427,6 +2442,351 @@
                   "title": "Not Found",
                   "status": 404,
                   "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      }
+    },
+    "/conversations/{id}/outbound-readiness": {
+      "get": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Preview SMS or call sender readiness for an accessible conversation.",
+        "description": "Checks outbound sender readiness for an accessible conversation without sending a message or placing a call.",
+        "operationId": "Conversations_GetOutboundReadiness",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the conversation to check.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "voice",
+            "in": "query",
+            "description": "Whether to check call readiness. When false, checks SMS readiness.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/OutgoingNumberSelectionResponse"
+                    }
+                  ],
+                  "description": "Describes outgoing number selection data returned by Leadping."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/OutgoingNumberSelectionResponse"
+                    }
+                  ],
+                  "description": "Describes outgoing number selection data returned by Leadping."
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/OutgoingNumberSelectionResponse"
+                    }
+                  ],
+                  "description": "Describes outgoing number selection data returned by Leadping."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      }
+    },
+    "/conversations/{id}/mark-read": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Marks an inbox conversation as read.",
+        "description": "Clears unread state only at the observed event version. Returns false if the conversation changed or is inaccessible.",
+        "operationId": "Conversations_MarkAsRead",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the conversation to mark as read.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "eventVersion",
+            "in": "query",
+            "description": "The event version observed by the reader.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
                 }
               }
             }
@@ -6391,6 +6751,306 @@
           },
           "audit": {
             "recommended": false
+          }
+        }
+      }
+    },
+    "/leads/follow-ups": {
+      "get": {
+        "tags": [
+          "LeadStatusChanges"
+        ],
+        "summary": "Lists current due follow-ups with lead assignment and organization access enforced.",
+        "description": "Returns a paginated list of current incomplete follow-ups accessible to the current user, with the option to include upcoming follow-ups.",
+        "operationId": "LeadStatusChanges_GetFollowUps",
+        "parameters": [
+          {
+            "name": "includeUpcoming",
+            "in": "query",
+            "description": "Whether to include future follow-ups. When false, returns only due and overdue follow-ups.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "continuation",
+            "in": "query",
+            "description": "The continuation token from a previous response, or null to retrieve the first page.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      }
+    },
+    "/leads/{leadId}/follow-up": {
+      "put": {
+        "tags": [
+          "LeadStatusChanges"
+        ],
+        "summary": "Completes or reschedules the specific follow-up version displayed by the client.",
+        "description": "Completes or reschedules a lead's follow-up using the version observed by the client. Returns a conflict if the follow-up has changed.",
+        "operationId": "LeadStatusChanges_UpdateFollowUp",
+        "parameters": [
+          {
+            "name": "leadId",
+            "in": "path",
+            "description": "The ID of the lead whose follow-up should be updated.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The observed follow-up version and the requested completion or rescheduling changes.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadFollowUpUpdateRequest"
+                  }
+                ],
+                "description": "Completes or reschedules exactly the follow-up version the operator viewed."
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadFollowUpUpdateRequest"
+                  }
+                ],
+                "description": "Completes or reschedules exactly the follow-up version the operator viewed."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LeadFollowUpUpdateRequest"
+                  }
+                ],
+                "description": "Completes or reschedules exactly the follow-up version the operator viewed."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
           }
         }
       }
@@ -23717,6 +24377,25 @@
         },
         "description": "Compares a metric with the preceding period and reports its absolute and percentage change."
       },
+      "AnalyticsCoverage": {
+        "type": "object",
+        "properties": {
+          "isPartial": {
+            "type": "boolean"
+          },
+          "completeFrom": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "description": "States whether missing historical evidence can make reported counts incomplete."
+      },
       "AnalyticsDateRange": {
         "type": "object",
         "properties": {
@@ -25971,6 +26650,11 @@
             "description": "UTC timestamp when the most recent conversation event occurred.",
             "format": "date-time"
           },
+          "eventVersion": {
+            "type": "integer",
+            "description": "Monotonic event boundary. Mark-read requests must send the version the reader observed.",
+            "format": "int64"
+          },
           "lastEventIsInternalNote": {
             "type": "boolean",
             "description": "Indicates that the most recent conversation activity is an internal note."
@@ -26122,6 +26806,27 @@
       "CurrentLeadStatusSummary": {
         "type": "object",
         "properties": {
+          "revision": {
+            "type": "integer",
+            "description": "Monotonic revision of the lead's current status and scheduling state.",
+            "format": "int64"
+          },
+          "followUpCompletedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When this follow-up was completed; email/call activity alone does not complete it.",
+            "format": "date-time"
+          },
+          "followUpDueAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The earliest callback or task time for the current status.",
+            "format": "date-time"
+          },
           "id": {
             "type": [
               "null",
@@ -26513,6 +27218,14 @@
       "CustomerAutomationHealth": {
         "type": "object",
         "properties": {
+          "coverage": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AnalyticsCoverage"
+              }
+            ],
+            "description": "States whether missing historical evidence can make reported counts incomplete."
+          },
           "automationCount": {
             "type": "integer",
             "description": "Total number of automation records represented by this Leadping customer automation health.",
@@ -27434,6 +28147,14 @@
       "EventTableRow": {
         "type": "object",
         "properties": {
+          "voicemailUrl": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Playable recording URL for voicemail events.",
+            "format": "uri"
+          },
           "isDemo": {
             "type": "boolean"
           },
@@ -28250,6 +28971,30 @@
           }
         },
         "description": "Public Leadping API schema for lead contact profile data."
+      },
+      "LeadFollowUpUpdateRequest": {
+        "required": [
+          "expectedStatusId"
+        ],
+        "type": "object",
+        "properties": {
+          "expectedStatusId": {
+            "type": "string"
+          },
+          "expectedRevision": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dueAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The new time, or null to complete the follow-up.",
+            "format": "date-time"
+          }
+        },
+        "description": "Completes or reschedules exactly the follow-up version the operator viewed."
       },
       "LeadIntakeRequest": {
         "examples": [
@@ -29470,6 +30215,25 @@
         ],
         "type": "object",
         "properties": {
+          "expectedCurrentStatusId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Optional optimistic concurrency guard for the status currently displayed by the client."
+          },
+          "expectedRevision": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Optional revision guard, including when the lead has no persisted status history yet.",
+            "format": "int64"
+          },
+          "completeFollowUp": {
+            "type": "boolean",
+            "description": "Whether the scheduled follow-up is explicitly complete."
+          },
           "type": {
             "type": "string",
             "description": "Category of status change being recorded for the lead."
@@ -29559,6 +30323,19 @@
       "LeadStatusChangeResponse": {
         "type": "object",
         "properties": {
+          "revision": {
+            "type": "integer",
+            "description": "Monotonic revision of the lead's current status and scheduling state.",
+            "format": "int64"
+          },
+          "followUpCompletedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When this follow-up was completed; email/call activity alone does not complete it.",
+            "format": "date-time"
+          },
           "isDemo": {
             "type": "boolean"
           },
@@ -30199,6 +30976,27 @@
       "NotificationResponse": {
         "type": "object",
         "properties": {
+          "organizationId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The organization selected before opening this notification."
+          },
+          "conversationId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The mobile conversation destination."
+          },
+          "leadId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The lead used to resolve the conversation."
+          },
           "isDemo": {
             "type": "boolean"
           },
@@ -33404,7 +34202,7 @@
               "null",
               "string"
             ],
-            "description": "Identifier of the canonical phone identity stored by Leadping."
+            "description": "Server-derived identifier of the canonical phone identity. Client-supplied linkage is ignored when creating or updating a lead."
           },
           "number": {
             "type": "string",
@@ -33454,6 +34252,13 @@
               "string"
             ],
             "description": "Conversation ID that links this phone call to the Leadping inbox thread."
+          },
+          "organizationId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The organization context required to handle this call on a mobile device."
           },
           "leadId": {
             "type": [
