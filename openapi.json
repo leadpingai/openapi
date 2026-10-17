@@ -2888,6 +2888,161 @@
         }
       }
     },
+    "/conversations/{id}/mark-handled": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Marks the observed customer reply as handled without clearing a newer reply.",
+        "description": "Clears the reply requirement only at the observed reply version. Returns false if the reply version changed or the conversation is inaccessible.",
+        "operationId": "Conversations_MarkHandled",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the conversation to mark as handled.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replyVersion",
+            "in": "query",
+            "description": "The customer reply version observed by the caller. Must be non-negative.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
     "/conversations/lead/{leadId}": {
       "post": {
         "tags": [
@@ -8610,274 +8765,6 @@
           "action-class": "acting",
           "consequences": [
             "write"
-          ],
-          "subject": {
-            "required": true
-          },
-          "authorization": {
-            "source": "OpenAPI security requirements",
-            "audience": "https://api.leadping.ai"
-          },
-          "audit": {
-            "recommended": true
-          }
-        }
-      }
-    },
-    "/notifications/push/installations/current": {
-      "put": {
-        "tags": [
-          "Notifications"
-        ],
-        "summary": "Register a current-user mobile push installation",
-        "description": "Registers or refreshes the authenticated user's mobile push installation so Leadping can deliver account and workflow notifications to the device.",
-        "operationId": "Notifications_RegisterPushInstallation",
-        "requestBody": {
-          "description": "The application, device, platform, and provider push-channel details to register.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/PushInstallationRequest"
-                  }
-                ],
-                "description": "Describes a mobile push installation. Identity and Azure tags are derived by the API."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/PushInstallationRequest"
-                  }
-                ],
-                "description": "Describes a mobile push installation. Identity and Azure tags are derived by the API."
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The request was invalid or failed validation.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Bad Request",
-                  "status": 400,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "The API rate limit for this account or client has been exceeded.",
-            "headers": {
-              "Retry-After": {
-                "description": "Number of seconds to wait before retrying the request.",
-                "schema": {
-                  "minimum": 0,
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Too Many Requests",
-                  "status": 429,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "Bearer": [ ]
-          }
-        ],
-        "x-agentic-access": {
-          "action-class": "acting",
-          "consequences": [
-            "write"
-          ],
-          "subject": {
-            "required": true
-          },
-          "authorization": {
-            "source": "OpenAPI security requirements",
-            "audience": "https://api.leadping.ai"
-          },
-          "audit": {
-            "recommended": true
-          }
-        }
-      }
-    },
-    "/notifications/push/installations/{installationId}": {
-      "delete": {
-        "tags": [
-          "Notifications"
-        ],
-        "summary": "Unregister a current-user mobile push installation",
-        "description": "Removes a mobile push installation from the authenticated user's account so Leadping no longer sends notifications to that device.",
-        "operationId": "Notifications_UnregisterPushInstallation",
-        "parameters": [
-          {
-            "name": "installationId",
-            "in": "path",
-            "description": "The stable mobile installation identifier to unregister.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "The API rate limit for this account or client has been exceeded.",
-            "headers": {
-              "Retry-After": {
-                "description": "Number of seconds to wait before retrying the request.",
-                "schema": {
-                  "minimum": 0,
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            },
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Too Many Requests",
-                  "status": 429,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "Bearer": [ ]
-          }
-        ],
-        "x-agentic-access": {
-          "action-class": "acting",
-          "consequences": [
-            "safety-critical"
           ],
           "subject": {
             "required": true
@@ -26642,6 +26529,30 @@
             ],
             "description": "Most recent message preview shown for the conversation."
           },
+          "needsReply": {
+            "type": "boolean",
+            "description": "Whether a customer reply is awaiting a manual response or acknowledgement."
+          },
+          "replyVersion": {
+            "type": "integer",
+            "description": "Monotonic inbound reply boundary used when marking a conversation handled.",
+            "format": "int64"
+          },
+          "lastInboundAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC timestamp of the latest inbound customer activity.",
+            "format": "date-time"
+          },
+          "lastInboundSnippet": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Preview of the latest inbound customer activity, preserved across outbound updates."
+          },
           "lastEventAt": {
             "type": [
               "null",
@@ -35789,77 +35700,6 @@
           }
         },
         "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-      },
-      "PushInstallationRequest": {
-        "type": "object",
-        "properties": {
-          "installationId": {
-            "type": "string",
-            "description": "The stable installation identifier assigned by the mobile client."
-          },
-          "platform": {
-            "type": "string",
-            "description": "The Azure Notification Hubs platform name, such as apns or fcmv1."
-          },
-          "pushChannel": {
-            "type": "string",
-            "description": "The provider-issued push token or channel used to deliver notifications."
-          },
-          "appIdentifier": {
-            "type": "string",
-            "description": "The application bundle identifier or package name."
-          },
-          "appName": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "The human-readable application name reported by the client."
-          },
-          "appVersion": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "The semantic application version reported by the client."
-          },
-          "appBuild": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "The application build number reported by the client."
-          },
-          "devicePlatform": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "The mobile operating-system platform reported by the device."
-          },
-          "deviceVersion": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "The mobile operating-system version reported by the device."
-          },
-          "deviceModel": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "The device model reported by the client."
-          },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Optional client metadata stored with the push installation."
-          }
-        },
-        "description": "Describes a mobile push installation. Identity and Azure tags are derived by the API."
       },
       "RangeFilter": {
         "required": [
