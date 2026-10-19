@@ -31807,13 +31807,6 @@
             },
             "description": "The allowed states included with this organization compliance policy."
           },
-          "allowedProducts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The allowed products included with this organization compliance policy."
-          },
           "requireLeadState": {
             "type": "boolean",
             "description": "Whether this organization compliance policy requires lead state."
@@ -36681,7 +36674,6 @@
       "SourceRequest": {
         "required": [
           "allowedStates",
-          "allowedProducts",
           "defaultTagIds",
           "defaultTagNames"
         ],
@@ -36708,12 +36700,9 @@
             },
             "description": "State or region allowlist used to accept leads from this source."
           },
-          "allowedProducts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Product allowlist used to accept or route leads from this source."
+          "automaticPhoneLookup": {
+            "type": "boolean",
+            "description": "Whether to look up lead phone numbers during intake. When disabled, lookup is required before calling or texting."
           },
           "requiresTrustedForm": {
             "type": "boolean",
@@ -36855,12 +36844,9 @@
             },
             "description": "State or region allowlist used to accept leads from this source."
           },
-          "allowedProducts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Product allowlist used to accept or route leads from this source."
+          "automaticPhoneLookup": {
+            "type": "boolean",
+            "description": "Whether to look up lead phone numbers during intake. When disabled, lookup is required before calling or texting."
           },
           "requiresTrustedForm": {
             "type": "boolean",
@@ -37059,12 +37045,9 @@
             },
             "description": "State or region allowlist used to accept leads from this source."
           },
-          "allowedProducts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Product allowlist used to accept or route leads from this source."
+          "automaticPhoneLookup": {
+            "type": "boolean",
+            "description": "Whether lead phone numbers are looked up automatically during intake."
           },
           "requiresTrustedForm": {
             "type": "boolean",
