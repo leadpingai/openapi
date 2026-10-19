@@ -29134,13 +29134,24 @@
             ],
             "description": "Landing page URL where the lead submitted their information."
           },
-          "trustedFormUrl": {
+          "consentCertificateUrl": {
             "type": [
               "null",
               "string"
             ],
-            "description": "TrustedForm certificate URL used as proof of consumer consent.",
+            "description": "Certificate URL used as proof of consumer consent.",
             "format": "uri"
+          },
+          "consentCertificateType": {
+            "enum": [
+              "TrustedForm",
+              "Leadping"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The provider responsible for a lead's consent certificate."
           },
           "externalId": {
             "type": [
@@ -29406,10 +29417,21 @@
             ],
             "description": "Phone number where SMS consent was captured or evaluated."
           },
-          "trustedFormUrl": {
+          "consentCertificateUrl": {
             "type": "string",
-            "description": "TrustedForm certificate URL used as proof of consumer consent.",
+            "description": "Certificate URL used as proof of consumer consent.",
             "format": "uri"
+          },
+          "consentCertificateType": {
+            "enum": [
+              "TrustedForm",
+              "Leadping"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The provider responsible for a lead's consent certificate."
           },
           "trustedFormCheckedAt": {
             "type": [
@@ -29418,13 +29440,6 @@
             ],
             "description": "UTC timestamp when Leadping last successfully checked the TrustedForm certificate URL availability.",
             "format": "date-time"
-          },
-          "leadpingConsentCertificateId": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "Standalone Leadping Consent certificate identifier, accepted as an alternative to TrustedForm."
           },
           "leadpingConsentCheckedAt": {
             "type": [
@@ -32854,6 +32869,9 @@
       "OrganizationSwitchOption": {
         "type": "object",
         "properties": {
+          "isDemo": {
+            "type": "boolean"
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this organization switch option."
@@ -35447,6 +35465,13 @@
       "PhoneNumberTableRow": {
         "type": "object",
         "properties": {
+          "location": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "City and state from the stored phone identity."
+          },
           "isDemo": {
             "type": "boolean"
           },
