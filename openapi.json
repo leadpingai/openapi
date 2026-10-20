@@ -28804,6 +28804,78 @@
         },
         "description": "Assigns an organization lead to an active organization member. A null user ID returns the lead to the unassigned queue."
       },
+      "LeadCallbackWindow": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Local calendar date for the callback.",
+            "format": "date"
+          },
+          "start": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Inclusive local start time.",
+            "format": "time"
+          },
+          "end": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Exclusive local end time on the same date.",
+            "format": "time"
+          }
+        },
+        "description": "Preferred callback interval on a calendar date in the contact time zone."
+      },
+      "LeadCompany": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Business name."
+          },
+          "website": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Business website URL."
+          },
+          "jobTitle": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Contact role at the business."
+          },
+          "industry": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Industry of the business, independent of the requested service."
+          },
+          "employeeCount": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Number of employees, when known.",
+            "format": "int32"
+          }
+        },
+        "description": "Business represented by a lead contact."
+      },
       "LeadContact": {
         "type": "object",
         "properties": {
@@ -28883,6 +28955,46 @@
         },
         "description": "Public Leadping API schema for lead contact profile data."
       },
+      "LeadContactPreferences": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Preferred BCP 47 language tag, such as en-US."
+          },
+          "channel": {
+            "enum": [
+              "Email",
+              "Phone",
+              "Sms"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Supported LeadContactChannel values."
+          },
+          "callbackWindows": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/LeadCallbackWindow"
+                }
+              ],
+              "description": "Preferred callback interval on a calendar date in the contact time zone."
+            },
+            "description": "Preferred callback windows in the contact time zone."
+          }
+        },
+        "description": "Preferred contact language, channel, and callback windows; does not grant consent."
+      },
       "LeadFollowUpUpdateRequest": {
         "required": [
           "expectedStatusId"
@@ -28906,6 +29018,69 @@
           }
         },
         "description": "Completes or reschedules exactly the follow-up version the operator viewed."
+      },
+      "LeadInquiry": {
+        "type": "object",
+        "properties": {
+          "service": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Requested service or product."
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Description of the requested work or purchase."
+          },
+          "budgetMinimum": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "description": "Minimum budget in the specified currency.",
+            "format": "double"
+          },
+          "budgetMaximum": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "description": "Maximum budget in the specified currency.",
+            "format": "double"
+          },
+          "currency": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "ISO 4217 currency code for the budget."
+          },
+          "desiredStartDate": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Requested start date.",
+            "format": "date"
+          },
+          "urgency": {
+            "enum": [
+              "Flexible",
+              "Soon",
+              "Urgent"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Supported LeadUrgency values."
+          }
+        },
+        "description": "The service or purchase requested by a lead."
       },
       "LeadIntakeRequest": {
         "examples": [
@@ -28960,7 +29135,7 @@
               "null",
               "string"
             ],
-            "description": "Phone details for the lead, user, or organization represented by this lead intake request."
+            "description": "Contact phone number. Use E.164 with a leading + for international numbers."
           },
           "phoneType": {
             "type": [
@@ -29060,7 +29235,7 @@
               "null",
               "number"
             ],
-            "description": "Direct-post price supplied by the lead source during intake.",
+            "description": "Alias for price. When both are supplied, their amounts must agree.",
             "format": "double"
           },
           "price": {
@@ -29183,6 +29358,123 @@
               "type": "string"
             },
             "description": "Tag names assigned to this lead when matching existing tags by name."
+          },
+          "inquiry": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadInquiry"
+              }
+            ],
+            "description": "The service or purchase requested by a lead."
+          },
+          "company": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadCompany"
+              }
+            ],
+            "description": "Business represented by a lead contact."
+          },
+          "serviceAddress": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StreetAddress"
+              }
+            ],
+            "description": "Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields."
+          },
+          "contactPreferences": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadContactPreferences"
+              }
+            ],
+            "description": "Preferred contact language, channel, and callback windows; does not grant consent."
+          },
+          "customFields": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "description": "Industry-specific JSON scalar or scalar-array answers; keys are stable field identifiers."
+          },
+          "profile": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadProfile"
+              }
+            ],
+            "description": "Public Leadping API schema for lead demographic profile data."
+          },
+          "country": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "ISO 3166-1 alpha-2 contact address country code."
+          },
+          "timeZoneId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Contact time zone identifier."
+          },
+          "pubId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Publisher identifier."
+          },
+          "capturedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Original source capture timestamp.",
+            "format": "date-time"
+          },
+          "captureIpAddress": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Original visitor IP as reported by the source."
+          },
+          "captureUserAgent": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Original visitor user agent as reported by the source."
+          },
+          "currency": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "ISO 4217 acquisition price currency."
           }
         },
         "description": "Defines the fields clients can send when working with lead intake."
@@ -29196,6 +29488,35 @@
               "string"
             ],
             "description": "Stable source operation key. Reuse for retries, and change for a new submission."
+          },
+          "capturedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Timestamp when the source originally captured the inquiry.",
+            "format": "date-time"
+          },
+          "captureIpAddress": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Source-reported IP address of the original visitor."
+          },
+          "captureUserAgent": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Source-reported user agent of the original visitor."
+          },
+          "currency": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "ISO 4217 currency code for the lead acquisition price."
           },
           "utmSource": {
             "type": [
@@ -29309,7 +29630,7 @@
               "null",
               "number"
             ],
-            "description": "Direct-post price supplied by the lead source during intake.",
+            "description": "Alias for price. When both are supplied, their amounts must agree.",
             "format": "double"
           },
           "product": {
@@ -29511,22 +29832,6 @@
             ],
             "description": "Classifies a lead's self-reported gender when required by a qualification, demographic, or integration workflow."
           },
-          "height": {
-            "type": [
-              "null",
-              "integer"
-            ],
-            "description": "Lead height provided for qualification workflows that require demographic details.",
-            "format": "int32"
-          },
-          "weight": {
-            "type": [
-              "null",
-              "integer"
-            ],
-            "description": "Relative weighting used to rank or score this lead demographic profile.",
-            "format": "int32"
-          },
           "birthDate": {
             "type": [
               "null",
@@ -29534,6 +29839,40 @@
             ],
             "description": "Lead birth date used for demographic matching and insurance intake workflows.",
             "format": "date"
+          },
+          "qualification": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadQualification"
+              }
+            ],
+            "description": "Optional consumer qualification details for workflows that need them."
+          }
+        },
+        "description": "Public Leadping API schema for lead demographic profile data."
+      },
+      "LeadQualification": {
+        "type": "object",
+        "properties": {
+          "height": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Height in inches.",
+            "format": "int32"
+          },
+          "weight": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Body weight in pounds.",
+            "format": "int32"
           },
           "maritalStatus": {
             "enum": [
@@ -29554,7 +29893,7 @@
               "null",
               "integer"
             ],
-            "description": "Lead income amount or range supplied for qualification workflows.",
+            "description": "Annual income amount in the specified IncomeCurrency.",
             "format": "int32"
           },
           "isHomeowner": {
@@ -29577,7 +29916,7 @@
               "null",
               "integer"
             ],
-            "description": "Lead credit score range or score supplied by the intake source.",
+            "description": "Exact credit score supplied by the intake source; not a range.",
             "format": "int32"
           },
           "hasBankruptcy": {
@@ -29621,17 +29960,21 @@
               "boolean"
             ],
             "description": "Indicates whether the lead reported a medical condition relevant to qualification."
+          },
+          "incomeCurrency": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "ISO 4217 currency code for annual income."
           }
         },
-        "description": "Public Leadping API schema for lead demographic profile data."
+        "description": "Optional consumer qualification details for workflows that need them."
       },
       "LeadRequest": {
         "required": [
           "metadata",
-          "contact",
-          "customer",
-          "tagIds",
-          "tagNames"
+          "contact"
         ],
         "type": "object",
         "properties": {
@@ -29651,7 +29994,11 @@
             ],
             "description": "Public Leadping API schema for lead contact profile data."
           },
-          "customer": {
+          "profile": {
+            "type": [
+              "null",
+              "object"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/LeadProfile"
@@ -29659,26 +30006,81 @@
             ],
             "description": "Public Leadping API schema for lead demographic profile data."
           },
+          "inquiry": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadInquiry"
+              }
+            ],
+            "description": "The service or purchase requested by a lead."
+          },
+          "company": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadCompany"
+              }
+            ],
+            "description": "Business represented by a lead contact."
+          },
+          "serviceAddress": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StreetAddress"
+              }
+            ],
+            "description": "Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields."
+          },
+          "contactPreferences": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadContactPreferences"
+              }
+            ],
+            "description": "Preferred contact language, channel, and callback windows; does not grant consent."
+          },
+          "customFields": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "description": "Industry-specific JSON scalar or scalar-array answers; keys are stable field identifiers."
+          },
           "enabled": {
             "type": [
               "null",
               "boolean"
             ],
-            "description": "Indicates whether this lead request is active and available in the Leadping API."
+            "description": "Whether the lead is enabled."
           },
           "tagIds": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Tag IDs assigned to or filtered against this lead."
+            "description": "Optional tag IDs assigned to this lead. Defaults to an empty list when omitted."
           },
           "tagNames": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Tag names assigned to this lead when matching existing tags by name."
+            "description": "Optional tag names matched against existing tags. Defaults to an empty list when omitted."
           },
           "id": {
             "type": [
@@ -29743,7 +30145,11 @@
             ],
             "description": "Describes Leadping's canonical identity for a phone number, including normalization, carrier, line type, reputation, and lookup history."
           },
-          "customer": {
+          "profile": {
+            "type": [
+              "null",
+              "object"
+            ],
             "allOf": [
               {
                 "$ref": "#/components/schemas/LeadProfile"
@@ -29751,9 +30157,64 @@
             ],
             "description": "Public Leadping API schema for lead demographic profile data."
           },
+          "inquiry": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadInquiry"
+              }
+            ],
+            "description": "The service or purchase requested by a lead."
+          },
+          "company": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadCompany"
+              }
+            ],
+            "description": "Business represented by a lead contact."
+          },
+          "serviceAddress": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StreetAddress"
+              }
+            ],
+            "description": "Describes a physical or mailing address using international locality, administrative-area, postal-code, and country fields."
+          },
+          "contactPreferences": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LeadContactPreferences"
+              }
+            ],
+            "description": "Preferred contact language, channel, and callback windows; does not grant consent."
+          },
+          "customFields": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "description": "Industry-specific JSON scalar or scalar-array answers; keys are stable field identifiers."
+          },
           "enabled": {
             "type": "boolean",
-            "description": "Indicates whether this lead response is active and available in the Leadping API."
+            "description": "Whether the lead is enabled."
           },
           "deletedAt": {
             "type": [
@@ -36698,7 +37159,6 @@
       },
       "SourceRequest": {
         "required": [
-          "allowedStates",
           "defaultTagIds",
           "defaultTagNames"
         ],
@@ -36717,13 +37177,6 @@
               "string"
             ],
             "description": "Human-readable description that explains this lead source request to API users."
-          },
-          "allowedStates": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "State or region allowlist used to accept leads from this source."
           },
           "automaticPhoneLookup": {
             "type": "boolean",
@@ -36861,13 +37314,6 @@
             ],
             "description": "Configured cost charged when this source creates a billable lead.",
             "format": "double"
-          },
-          "allowedStates": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "State or region allowlist used to accept leads from this source."
           },
           "automaticPhoneLookup": {
             "type": "boolean",
@@ -37062,13 +37508,6 @@
             ],
             "description": "Configured cost charged when this source creates a billable lead.",
             "format": "double"
-          },
-          "allowedStates": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "State or region allowlist used to accept leads from this source."
           },
           "automaticPhoneLookup": {
             "type": "boolean",
@@ -38805,6 +39244,27 @@
       "UserNotificationPreferences": {
         "type": "object",
         "properties": {
+          "quietHoursEnabled": {
+            "type": "boolean",
+            "description": "Whether push and automation alerts wait until the user's daily quiet hours end."
+          },
+          "quietHoursStart": {
+            "type": "string",
+            "description": "The inclusive local start of daily quiet hours.",
+            "format": "time"
+          },
+          "quietHoursEnd": {
+            "type": "string",
+            "description": "The exclusive local end of daily quiet hours.",
+            "format": "time"
+          },
+          "quietHoursTimeZoneId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The time zone used for quiet hours, including daylight saving changes."
+          },
           "smsConsentOptedIn": {
             "type": [
               "null",
