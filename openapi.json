@@ -381,7 +381,7 @@
         "tags": [
           "Analytics"
         ],
-        "summary": "Exports the current organization's analytics with the same cohort, timestamps and definitions as charts.",
+        "summary": "Export organization analytics.",
         "description": "Downloads the current organization's analytics as a CSV file, using the same cohort, timestamps, and metric definitions as the analytics charts.",
         "operationId": "Analytics_ExportCurrentOrganization",
         "parameters": [
@@ -1198,7 +1198,7 @@
         "tags": [
           "Automations"
         ],
-        "summary": "Gets recent persisted execution runs for an automation console.",
+        "summary": "List automation runs.",
         "description": "Returns recent execution history for the specified automation in the current organization, including run state and console details.",
         "operationId": "Automations_GetRuns",
         "parameters": [
@@ -1330,7 +1330,7 @@
         "tags": [
           "Automations"
         ],
-        "summary": "Gets one persisted automation execution run for its console.",
+        "summary": "Get an automation run.",
         "description": "Returns the specified persisted execution run for an automation in the current organization, including its current console state.",
         "operationId": "Automations_GetRun",
         "parameters": [
@@ -2375,7 +2375,7 @@
         "tags": [
           "Conversations"
         ],
-        "summary": "Get an accessible inbox conversation and its current event version.",
+        "summary": "Get an inbox conversation.",
         "description": "Returns a conversation accessible to the current user, including its current event version for tracking inbox updates.",
         "operationId": "Conversations_Get",
         "parameters": [
@@ -2893,7 +2893,7 @@
         "tags": [
           "Conversations"
         ],
-        "summary": "Marks the observed customer reply as handled without clearing a newer reply.",
+        "summary": "Mark a customer reply as handled.",
         "description": "Clears the reply requirement only at the observed reply version. Returns false if the reply version changed or the conversation is inaccessible.",
         "operationId": "Conversations_MarkHandled",
         "parameters": [
@@ -5545,8 +5545,8 @@
         "tags": [
           "Leads"
         ],
-        "summary": "Assign an organization lead to an active member, or return it to the unassigned queue.",
-        "description": "Updates ownership of the specified lead after validating that the selected assignee is an active member of the current organization.",
+        "summary": "Update lead assignment.",
+        "description": "Assigns the lead to an active member of the current organization, or returns it to the unassigned queue.",
         "operationId": "Leads_Assign",
         "parameters": [
           {
@@ -6915,8 +6915,8 @@
         "tags": [
           "LeadStatusChanges"
         ],
-        "summary": "Lists current due follow-ups with lead assignment and organization access enforced.",
-        "description": "Returns a paginated list of current incomplete follow-ups accessible to the current user, with the option to include upcoming follow-ups.",
+        "summary": "List due follow-ups.",
+        "description": "Returns a paginated list of current incomplete follow-ups with lead assignment and organization access enforced, with the option to include upcoming follow-ups.",
         "operationId": "LeadStatusChanges_GetFollowUps",
         "parameters": [
           {
@@ -7051,7 +7051,7 @@
         "tags": [
           "LeadStatusChanges"
         ],
-        "summary": "Completes or reschedules the specific follow-up version displayed by the client.",
+        "summary": "Update a lead follow-up.",
         "description": "Completes or reschedules a lead's follow-up using the version observed by the client. Returns a conflict if the follow-up has changed.",
         "operationId": "LeadStatusChanges_UpdateFollowUp",
         "parameters": [
@@ -11956,7 +11956,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Updates the current user's notification preferences without requiring profile fields.",
+        "summary": "Update notification preferences.",
         "description": "Update notification channel and delivery preferences for the authenticated Leadping user through the API without submitting unrelated user profile fields.",
         "operationId": "Users_UpdateNotificationPreferencesForCurrentUser",
         "requestBody": {
@@ -17625,7 +17625,7 @@
         "tags": [
           "Organizations"
         ],
-        "summary": "Leave the current organization without changing its subscription or deleting organization data.",
+        "summary": "Leave the current organization.",
         "description": "Removes the authenticated user's membership from the current organization while preserving the organization and its billing state.",
         "operationId": "Organizations_LeaveCurrentOrganization",
         "responses": {
@@ -18695,7 +18695,7 @@
         "tags": [
           "Organizations"
         ],
-        "summary": "Gets a safe API key detail row for a key the caller can access.",
+        "summary": "Get an API key.",
         "description": "The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.",
         "operationId": "Organizations_GetApiKey",
         "parameters": [
@@ -19023,8 +19023,8 @@
         "tags": [
           "Organizations"
         ],
-        "summary": "Deletes an organization-owned API key without deleting the organization.",
-        "description": "The operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.",
+        "summary": "Delete an API key.",
+        "description": "Deletes the organization-owned API key without deleting the organization.\nThe operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.",
         "operationId": "Organizations_DeleteApiKey",
         "parameters": [
           {
