@@ -29789,6 +29789,14 @@
             "description": "UTC timestamp when Leadping last successfully checked the TrustedForm certificate URL availability.",
             "format": "date-time"
           },
+          "trustedFormRejectedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Server-issued timestamp when TrustedForm returned HTTP 400 or the certificate was already used by the organization; the evidence remains unverified.",
+            "format": "date-time"
+          },
           "leadpingConsentCheckedAt": {
             "type": [
               "null",
