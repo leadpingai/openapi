@@ -26478,6 +26478,15 @@
         },
         "description": "Defines the input used for compliance update."
       },
+      "ConsentVerificationStatus": {
+        "enum": [
+          "Verified",
+          "Unverified",
+          "Quarantined"
+        ],
+        "type": "string",
+        "description": "Leadping's assessment of the supporting consent evidence."
+      },
       "ConversationResponse": {
         "type": "object",
         "properties": {
@@ -29320,13 +29329,18 @@
           "consentCertificateType": {
             "enum": [
               "TrustedForm",
-              "Leadping"
+              "Leadping",
+              "Other"
             ],
             "type": [
               "null",
               "string"
             ],
             "description": "The provider responsible for a lead's consent certificate."
+          },
+          "consentAttested": {
+            "type": "boolean",
+            "description": "Explicitly attests to SMS consent when consentCertificateType is Other. Allows manual texts only."
           },
           "externalId": {
             "type": [
@@ -29746,13 +29760,26 @@
           "consentCertificateType": {
             "enum": [
               "TrustedForm",
-              "Leadping"
+              "Leadping",
+              "Other"
             ],
             "type": [
               "null",
               "string"
             ],
             "description": "The provider responsible for a lead's consent certificate."
+          },
+          "consentAttested": {
+            "type": "boolean",
+            "description": "User attestation of SMS consent from another source; does not establish independent verification."
+          },
+          "consentVerificationStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConsentVerificationStatus"
+              }
+            ],
+            "description": "Leadping's assessment of the supporting consent evidence."
           },
           "trustedFormCheckedAt": {
             "type": [
