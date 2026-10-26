@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.1",
+  "openapi": "3.1.2",
   "info": {
     "title": "Leadping API",
     "description": "The Leadping API helps businesses capture and manage leads, automate follow-up, send SMS and MMS messages, place calls, track conversations, enforce contact suppression, and analyze communication workflows. Use this OpenAPI 3.1 contract to integrate lead sources, build organization tools, or generate a typed API client. Authenticate protected operations with a Leadping user access token or WorkOS organization API key. Lead intake operations also accept a Leadping source key.",
@@ -279,27 +279,6 @@
               }
             }
           },
-          "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Forbidden",
-                  "status": 403,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -316,6 +295,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
                   "detail": "The request could not be completed."
                 }
               }
@@ -778,27 +778,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -815,6 +794,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -929,27 +929,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -966,6 +945,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -1075,27 +1075,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -1112,6 +1091,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -1369,27 +1369,6 @@
               }
             }
           },
-          "404": {
-            "description": "The automation or execution run was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -1406,6 +1385,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The automation or execution run was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -1889,27 +1889,6 @@
               }
             }
           },
-          "403": {
-            "description": "The authenticated user is not allowed to run this automation.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Forbidden",
-                  "status": 403,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -1926,6 +1905,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user is not allowed to run this automation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
                   "detail": "The request could not be completed."
                 }
               }
@@ -2252,27 +2252,6 @@
               }
             }
           },
-          "500": {
-            "description": "An unexpected server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -2289,6 +2268,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -3125,27 +3125,6 @@
               }
             }
           },
-          "500": {
-            "description": "An unexpected server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -3162,6 +3141,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -3440,27 +3440,6 @@
               }
             }
           },
-          "404": {
-            "description": "A related resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or malformed.",
             "content": {
@@ -3519,6 +3498,27 @@
                   "type": "about:blank",
                   "title": "Forbidden",
                   "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A related resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -3782,27 +3782,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified lead was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "The user does not own this lead.",
             "content": {
@@ -3819,6 +3798,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -3959,27 +3959,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified lead was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or malformed.",
             "content": {
@@ -4017,6 +3996,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -4119,27 +4119,6 @@
           "204": {
             "description": "Lead was successfully deleted."
           },
-          "404": {
-            "description": "The specified lead was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -4156,6 +4135,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -4272,27 +4272,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -4309,6 +4288,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -4458,27 +4458,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or failed validation.",
             "content": {
@@ -4516,6 +4495,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -4637,27 +4637,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -4674,6 +4653,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -4842,27 +4842,6 @@
               }
             }
           },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or malformed.",
             "content": {
@@ -4879,6 +4858,27 @@
                   "type": "about:blank",
                   "title": "Bad Request",
                   "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
                   "detail": "The request could not be completed."
                 }
               }
@@ -5021,27 +5021,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or failed validation.",
             "content": {
@@ -5079,6 +5058,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -5219,27 +5219,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or failed validation.",
             "content": {
@@ -5277,6 +5256,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -5422,27 +5422,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -5459,6 +5438,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -5622,6 +5622,27 @@
               }
             }
           },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "403": {
             "description": "The authenticated user or organization does not have permission to perform this operation.",
             "content": {
@@ -5659,27 +5680,6 @@
                   "type": "about:blank",
                   "title": "Not Found",
                   "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
                   "detail": "The request could not be completed."
                 }
               }
@@ -5801,27 +5801,6 @@
               }
             }
           },
-          "404": {
-            "description": "A related resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or malformed.",
             "content": {
@@ -5859,6 +5838,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A related resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -6001,27 +6001,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or failed validation.",
             "content": {
@@ -6059,6 +6038,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -6173,27 +6173,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified lead status change was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -6210,6 +6189,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead status change was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -6315,27 +6315,6 @@
               "application/json": { }
             }
           },
-          "404": {
-            "description": "The specified lead status change was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -6352,6 +6331,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead status change was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -6639,27 +6639,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified lead was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -6676,6 +6655,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified lead was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -6792,27 +6792,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -6829,6 +6808,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -7582,27 +7582,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -7619,6 +7598,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -7728,27 +7728,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -7765,6 +7744,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -7881,27 +7881,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -7918,6 +7897,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -8069,27 +8069,6 @@
               }
             }
           },
-          "500": {
-            "description": "An unexpected server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -8106,6 +8085,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -8207,27 +8207,6 @@
               }
             }
           },
-          "500": {
-            "description": "An unexpected server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -8244,6 +8223,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -8355,6 +8355,27 @@
               }
             }
           },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "404": {
             "description": "The requested resource was not found.",
             "content": {
@@ -8392,27 +8413,6 @@
                   "type": "about:blank",
                   "title": "Internal Server Error",
                   "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
                   "detail": "The request could not be completed."
                 }
               }
@@ -8514,27 +8514,6 @@
               }
             }
           },
-          "500": {
-            "description": "An unexpected server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -8551,6 +8530,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -8682,27 +8682,6 @@
               }
             }
           },
-          "500": {
-            "description": "An unexpected server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -8719,6 +8698,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -9129,8 +9129,8 @@
               }
             }
           },
-          "404": {
-            "description": "The specified source was not found.",
+          "400": {
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -9143,8 +9143,8 @@
                 },
                 "example": {
                   "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
+                  "title": "Bad Request",
+                  "status": 400,
                   "detail": "The request could not be completed."
                 }
               }
@@ -9171,8 +9171,8 @@
               }
             }
           },
-          "400": {
-            "description": "The request was invalid or failed validation.",
+          "404": {
+            "description": "The specified source was not found.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -9185,8 +9185,8 @@
                 },
                 "example": {
                   "type": "about:blank",
-                  "title": "Bad Request",
-                  "status": 400,
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -9301,27 +9301,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified source was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -9338,6 +9317,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified source was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -9440,27 +9440,6 @@
           "204": {
             "description": "Source was successfully deleted."
           },
-          "404": {
-            "description": "The specified source was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -9477,6 +9456,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified source was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -9593,27 +9593,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -9630,6 +9609,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -9761,27 +9761,6 @@
               }
             }
           },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or malformed.",
             "content": {
@@ -9798,6 +9777,27 @@
                   "type": "about:blank",
                   "title": "Bad Request",
                   "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
                   "detail": "The request could not be completed."
                 }
               }
@@ -9944,27 +9944,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -9981,6 +9960,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -10769,27 +10769,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -10806,6 +10785,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -11248,27 +11248,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or failed validation.",
             "content": {
@@ -11306,6 +11285,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -11425,27 +11425,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -11462,6 +11441,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -11709,27 +11709,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -11746,6 +11725,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -12169,27 +12169,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -12206,6 +12185,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -12658,27 +12658,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified call was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -12695,6 +12674,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified call was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -12993,27 +12993,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified call was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -13030,6 +13009,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified call was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -13146,6 +13146,21 @@
           "required": true
         },
         "responses": {
+          "200": {
+            "description": "Returns the phone number search response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PhoneNumberSearchResponse"
+                    }
+                  ],
+                  "description": "Describes phone number search data returned by Leadping."
+                }
+              }
+            }
+          },
           "400": {
             "description": "The request was invalid or failed validation.",
             "content": {
@@ -13167,42 +13182,6 @@
               }
             }
           },
-          "500": {
-            "description": "An unexpected server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "Returns the phone number search response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PhoneNumberSearchResponse"
-                    }
-                  ],
-                  "description": "Describes phone number search data returned by Leadping."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -13219,6 +13198,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -14348,27 +14348,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -14385,6 +14364,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -14546,6 +14546,27 @@
               }
             }
           },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "404": {
             "description": "The requested resource was not found.",
             "content": {
@@ -14583,27 +14604,6 @@
                   "type": "about:blank",
                   "title": "Internal Server Error",
                   "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
                   "detail": "The request could not be completed."
                 }
               }
@@ -14727,6 +14727,27 @@
               }
             }
           },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
           "404": {
             "description": "The requested resource was not found.",
             "content": {
@@ -14764,27 +14785,6 @@
                   "type": "about:blank",
                   "title": "Internal Server Error",
                   "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
                   "detail": "The request could not be completed."
                 }
               }
@@ -14937,27 +14937,6 @@
               }
             }
           },
-          "500": {
-            "description": "An unexpected server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -14974,6 +14953,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -15141,27 +15141,6 @@
               }
             }
           },
-          "500": {
-            "description": "An internal server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -15178,6 +15157,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -15513,27 +15513,6 @@
               }
             }
           },
-          "500": {
-            "description": "An unexpected server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -15550,6 +15529,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -15702,27 +15702,6 @@
               }
             }
           },
-          "500": {
-            "description": "An internal server error occurred.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Internal Server Error",
-                  "status": 500,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -15739,6 +15718,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Internal Server Error",
+                  "status": 500,
                   "detail": "The request could not be completed."
                 }
               }
@@ -16044,27 +16044,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -16081,6 +16060,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -16354,27 +16354,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified organization was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -16391,6 +16370,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified organization was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -16894,8 +16894,8 @@
               }
             }
           },
-          "403": {
-            "description": "The authenticated user is not authorized for this operation.",
+          "400": {
+            "description": "The request was invalid or failed validation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -16908,8 +16908,8 @@
                 },
                 "example": {
                   "type": "about:blank",
-                  "title": "Forbidden",
-                  "status": 403,
+                  "title": "Bad Request",
+                  "status": 400,
                   "detail": "The request could not be completed."
                 }
               }
@@ -16936,8 +16936,8 @@
               }
             }
           },
-          "400": {
-            "description": "The request was invalid or failed validation.",
+          "403": {
+            "description": "The authenticated user is not authorized for this operation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -16950,8 +16950,8 @@
                 },
                 "example": {
                   "type": "about:blank",
-                  "title": "Bad Request",
-                  "status": 400,
+                  "title": "Forbidden",
+                  "status": 403,
                   "detail": "The request could not be completed."
                 }
               }
@@ -17205,27 +17205,6 @@
               }
             }
           },
-          "403": {
-            "description": "The authenticated user is not authorized for this operation.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Forbidden",
-                  "status": 403,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -17242,6 +17221,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user is not authorized for this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
                   "detail": "The request could not be completed."
                 }
               }
@@ -17384,27 +17384,6 @@
               }
             }
           },
-          "403": {
-            "description": "The authenticated user is not authorized for this operation.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Forbidden",
-                  "status": 403,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -17421,6 +17400,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user is not authorized for this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
                   "detail": "The request could not be completed."
                 }
               }
@@ -17523,27 +17523,6 @@
               }
             }
           },
-          "403": {
-            "description": "The authenticated user is not authorized for this operation.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Forbidden",
-                  "status": 403,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -17560,6 +17539,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user is not authorized for this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
                   "detail": "The request could not be completed."
                 }
               }
@@ -17653,27 +17653,6 @@
               }
             }
           },
-          "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Forbidden",
-                  "status": 403,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -17690,6 +17669,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
                   "detail": "The request could not be completed."
                 }
               }
@@ -18725,27 +18725,6 @@
               }
             }
           },
-          "404": {
-            "description": "The API key was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -18762,6 +18741,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The API key was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -18923,27 +18923,6 @@
               }
             }
           },
-          "403": {
-            "description": "The caller cannot manage this organization API key.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Forbidden",
-                  "status": 403,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -18960,6 +18939,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller cannot manage this organization API key.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
                   "detail": "The request could not be completed."
                 }
               }
@@ -19053,27 +19053,6 @@
               }
             }
           },
-          "404": {
-            "description": "The API key was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -19090,6 +19069,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The API key was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -19796,27 +19796,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -19833,6 +19812,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -21058,27 +21058,6 @@
               }
             }
           },
-          "404": {
-            "description": "Event was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -21095,6 +21074,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -21211,27 +21211,6 @@
               }
             }
           },
-          "404": {
-            "description": "Event was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -21248,6 +21227,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -21711,27 +21711,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -21748,6 +21727,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -22478,27 +22478,6 @@
               }
             }
           },
-          "404": {
-            "description": "The requested resource was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "Authentication credentials are missing or invalid.",
             "content": {
@@ -22515,6 +22494,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -22631,27 +22631,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified payment method was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or malformed.",
             "content": {
@@ -22689,6 +22668,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified payment method was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -22798,27 +22798,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified payment method was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or malformed.",
             "content": {
@@ -22856,6 +22835,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified payment method was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -23125,27 +23125,6 @@
               }
             }
           },
-          "404": {
-            "description": "The specified transaction was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "401": {
             "description": "The user does not own this transaction.",
             "content": {
@@ -23162,6 +23141,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified transaction was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -23313,27 +23313,6 @@
               }
             }
           },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or malformed.",
             "content": {
@@ -23350,6 +23329,27 @@
                   "type": "about:blank",
                   "title": "Bad Request",
                   "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
                   "detail": "The request could not be completed."
                 }
               }
@@ -23481,27 +23481,6 @@
               }
             }
           },
-          "401": {
-            "description": "Authentication credentials are missing or invalid.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Unauthorized",
-                  "status": 401,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or failed validation.",
             "content": {
@@ -23518,6 +23497,27 @@
                   "type": "about:blank",
                   "title": "Bad Request",
                   "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
                   "detail": "The request could not be completed."
                 }
               }
@@ -23740,6 +23740,338 @@
         }
       }
     },
+    "/wallets/me/spend-limits": {
+      "get": {
+        "tags": [
+          "Wallets"
+        ],
+        "summary": "Gets the current organization's usage budgets and UTC progress.",
+        "description": "Returns the current organization's daily and monthly usage limits in USD and its progress for the current UTC periods.",
+        "operationId": "Wallets_GetSpendLimits",
+        "responses": {
+          "200": {
+            "description": "Returns the usage limits and progress.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SpendLimitsResponse"
+                    }
+                  ],
+                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SpendLimitsResponse"
+                    }
+                  ],
+                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SpendLimitsResponse"
+                    }
+                  ],
+                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Wallets"
+        ],
+        "summary": "Updates the current organization's usage budgets. Null removes a budget.",
+        "description": "Sets the current organization's daily and monthly usage limits in USD and returns the updated limits and UTC progress.\nA null limit removes that budget; a zero limit stops new paid usage.",
+        "operationId": "Wallets_SetSpendLimits",
+        "requestBody": {
+          "description": "The daily and monthly usage limits to apply.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SpendLimitsRequest"
+                  }
+                ],
+                "description": "Organization usage budgets in USD. Null removes a limit; zero stops new paid usage."
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SpendLimitsRequest"
+                  }
+                ],
+                "description": "Organization usage budgets in USD. Null removes a limit; zero stops new paid usage."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/SpendLimitsRequest"
+                  }
+                ],
+                "description": "Organization usage budgets in USD. Null removes a limit; zero stops new paid usage."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the updated usage limits and progress.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SpendLimitsResponse"
+                    }
+                  ],
+                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SpendLimitsResponse"
+                    }
+                  ],
+                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SpendLimitsResponse"
+                    }
+                  ],
+                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
     "/wallets/{id}": {
       "get": {
         "tags": [
@@ -23771,27 +24103,6 @@
                     }
                   ],
                   "description": "Describes billing wallet data returned by Leadping."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The specified wallet was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
                 }
               }
             }
@@ -23833,6 +24144,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified wallet was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -23938,27 +24270,6 @@
               }
             }
           },
-          "404": {
-            "description": "The current organization wallet was not found.",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProblemDetails"
-                    }
-                  ],
-                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
-                },
-                "example": {
-                  "type": "about:blank",
-                  "title": "Not Found",
-                  "status": 404,
-                  "detail": "The request could not be completed."
-                }
-              }
-            }
-          },
           "400": {
             "description": "The request was invalid or malformed.",
             "content": {
@@ -23996,6 +24307,27 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The current organization wallet was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -26392,11 +26724,17 @@
             "description": "Ordered diagnostic entries recorded while Leadping processed this call."
           },
           "user": {
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "User summary connected to this call event table row."
           },
           "organization": {
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "Organization summary connected to this call event table row."
           },
           "organizationName": {
@@ -28034,7 +28372,10 @@
             "format": "email"
           },
           "userId": {
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "User ID associated with the activity that created this event."
           },
           "leadId": {
@@ -28435,6 +28776,13 @@
               "string"
             ],
             "description": "User ID for the person or system that created this event timeline table row."
+          },
+          "actorLeadId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The lead who performed this action."
           },
           "actorDisplayName": {
             "type": [
@@ -29804,13 +30152,6 @@
             ],
             "description": "Server-issued timestamp for successful Leadping Consent evidence and recipient validation.",
             "format": "date-time"
-          },
-          "userId": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "User ID associated with this lead's attribution metadata."
           },
           "organizationId": {
             "type": [
@@ -35589,6 +35930,15 @@
         "type": "string",
         "description": "Defines phone-number outbound health states used by pacing."
       },
+      "PhoneNumberOwnership": {
+        "enum": [
+          "Unassigned",
+          "Leadping",
+          "Organization"
+        ],
+        "type": "string",
+        "description": "Identifies whose traffic a phone number serves, independently of provider control."
+      },
       "PhoneNumberReadiness": {
         "type": "object",
         "properties": {
@@ -35719,9 +36069,13 @@
             ],
             "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
           },
-          "leadpingOwned": {
-            "type": "boolean",
-            "description": "Indicates whether Leadping provisions and manages this phone number."
+          "ownership": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneNumberOwnership"
+              }
+            ],
+            "description": "Identifies whose traffic a phone number serves, independently of provider control."
           },
           "routing": {
             "allOf": [
@@ -36011,8 +36365,12 @@
             "description": "Messaging and calling warmup for a Leadping phone number."
           },
           "ownership": {
-            "type": "string",
-            "description": "Ownership classification for this phone number, such as Leadping-owned or customer-owned."
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneNumberOwnership"
+              }
+            ],
+            "description": "Identifies whose traffic a phone number serves, independently of provider control."
           },
           "routingSummary": {
             "type": "string",
@@ -36681,7 +37039,10 @@
             "description": "Ordered diagnostic entries recorded while Leadping processed this message."
           },
           "user": {
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "User summary connected to this SMS event table row."
           },
           "actorUserId": {
@@ -36690,6 +37051,13 @@
               "string"
             ],
             "description": "User ID for the actor that performed the action."
+          },
+          "actorLeadId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The lead who performed this action."
           },
           "actorDisplayName": {
             "type": [
@@ -36713,7 +37081,10 @@
             "description": "Display name for the sender of this message."
           },
           "organization": {
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "Organization summary connected to this SMS event table row."
           },
           "organizationName": {
@@ -36825,6 +37196,13 @@
       "SmsResponse": {
         "type": "object",
         "properties": {
+          "organizationId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The organization receiving this message status update."
+          },
           "isDemo": {
             "type": "boolean"
           },
@@ -37206,6 +37584,14 @@
             ],
             "description": "Human-readable source name."
           },
+          "dailyLeadLimit": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Maximum new leads accepted per UTC day. Null means unlimited; zero pauses intake.",
+            "format": "int32"
+          },
           "description": {
             "type": [
               "null",
@@ -37243,6 +37629,14 @@
         "properties": {
           "isDemo": {
             "type": "boolean"
+          },
+          "dailyLeadLimit": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Maximum new leads accepted per UTC day. Null means unlimited; zero pauses intake.",
+            "format": "int32"
           },
           "description": {
             "type": [
@@ -37577,6 +37971,66 @@
           }
         },
         "description": "Summarizes lead source data in paginated and searchable results."
+      },
+      "SpendLimitsRequest": {
+        "type": "object",
+        "properties": {
+          "dailyLimit": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "format": "double"
+          },
+          "monthlyLimit": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "format": "double"
+          }
+        },
+        "description": "Organization usage budgets in USD. Null removes a limit; zero stops new paid usage."
+      },
+      "SpendLimitsResponse": {
+        "type": "object",
+        "properties": {
+          "dailyLimit": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "format": "double"
+          },
+          "monthlyLimit": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "format": "double"
+          },
+          "dailySpent": {
+            "type": "number",
+            "format": "double"
+          },
+          "monthlySpent": {
+            "type": "number",
+            "format": "double"
+          },
+          "reserved": {
+            "type": "number",
+            "format": "double"
+          },
+          "dailyResetsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "monthlyResetsAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
       },
       "StreetAddress": {
         "type": "object",
@@ -39281,7 +39735,7 @@
         "properties": {
           "quietHoursEnabled": {
             "type": "boolean",
-            "description": "Whether push and automation alerts wait until the user's daily quiet hours end."
+            "description": "Whether push, SMS, and automation alerts wait until the user's daily quiet hours end."
           },
           "quietHoursStart": {
             "type": "string",
@@ -39864,10 +40318,6 @@
   },
   "tags": [
     {
-      "name": "Leadping.Api",
-      "description": "Agent-to-agent discovery and request handling for Leadping's supported AI agent integrations."
-    },
-    {
       "name": "Analytics",
       "description": "Provides lead, communication, conversion, and organization performance analytics. Use these endpoints to measure activity over time, compare outcomes, and power operational dashboards and reporting workflows."
     },
@@ -39880,16 +40330,24 @@
       "description": "Provides published Leadping blog content. Use these endpoints to list published articles and retrieve an individual article by its public slug."
     },
     {
+      "name": "CallEvents",
+      "description": "Provides call event records for auditing, diagnostics, and reporting. Use these endpoints to search and inspect lifecycle events emitted as Leadping calls are initiated, connected, completed, or fail."
+    },
+    {
+      "name": "Calls",
+      "description": "Manages outbound Leadping calls and active call-control workflows. Use these endpoints to initiate or cancel a call, retrieve call state, and transfer an active call within supported telephony flows."
+    },
+    {
       "name": "Conversations",
       "description": "Provides lead conversation timelines and inbox-oriented conversation views. Use these endpoints to list recent conversations and retrieve the cross-channel communication history associated with a lead."
     },
     {
-      "name": "Feedback",
-      "description": "Captures Leadping product feedback and supports administrative triage. Users can submit feedback, while authorized staff can search, inspect, classify, and update feedback throughout the review process."
+      "name": "Events",
+      "description": "Provides a unified record of Leadping activity across communication channels. Use these endpoints to retrieve event timelines, search event history, inspect event details, and record supported application events."
     },
     {
-      "name": "Leads",
-      "description": "Manages lead intake, records, assignment, routing, and lifecycle operations. Use these endpoints to ingest leads from trusted sources, search and update lead records, manage ownership and tags, and archive or delete leads."
+      "name": "Feedback",
+      "description": "Captures Leadping product feedback and supports administrative triage. Users can submit feedback, while authorized staff can search, inspect, classify, and update feedback throughout the review process."
     },
     {
       "name": "LeadStatusChanges",
@@ -39900,12 +40358,40 @@
       "description": "Manages the lead statuses used to classify and track leads throughout their lifecycle. Use these endpoints to list, create, update, and archive organization-specific lead statuses for consistent pipeline organization and reporting."
     },
     {
+      "name": "Leadping.Api",
+      "description": "Agent-to-agent discovery and request handling for Leadping's supported AI agent integrations."
+    },
+    {
+      "name": "Leads",
+      "description": "Manages lead intake, records, assignment, routing, and lifecycle operations. Use these endpoints to ingest leads from trusted sources, search and update lead records, manage ownership and tags, and archive or delete leads."
+    },
+    {
       "name": "Notifications",
       "description": "Manages user notifications, announcements, and push-notification installations. Use these endpoints to retrieve notification feeds and unread counts, update read state, and register or remove client push installations."
     },
     {
+      "name": "Organizations",
+      "description": "Manages Leadping organizations, memberships, invitations, settings, and API credentials. Use these endpoints to maintain organization profiles and branding, manage members and invitations, configure options, and issue or revoke organization API keys."
+    },
+    {
       "name": "OutboundDelivery",
       "description": "Reports outbound delivery pacing and sending capacity for the current organization. Use these endpoints to determine whether outbound communications can proceed and to understand active throttles, limits, or capacity constraints."
+    },
+    {
+      "name": "PaymentMethods",
+      "description": "Manages organization payment methods and billing invoices. Use these endpoints to add, confirm, inspect, and remove payment methods or retrieve invoices associated with the current organization's billing account."
+    },
+    {
+      "name": "PhoneNumbers",
+      "description": "Manages phone-number discovery, purchasing, assignment, configuration, and compliance. Use these endpoints to search available numbers, manage owned numbers and caller identity, configure messaging or voice behavior, and monitor registration and warmup state."
+    },
+    {
+      "name": "Sms",
+      "description": "Sends and manages SMS and MMS communications through Leadping. Use these endpoints to send messages, upload MMS media, and cancel eligible scheduled messages while preserving conversation and delivery tracking."
+    },
+    {
+      "name": "SmsEvents",
+      "description": "Provides SMS and MMS event records for delivery tracking and diagnostics. Use these endpoints to search and inspect message lifecycle events, including outbound delivery updates and inbound messaging activity."
     },
     {
       "name": "Sources",
@@ -39920,48 +40406,8 @@
       "description": "Manages organization-defined tags for categorizing and routing leads. Use these endpoints to list, create, update, and archive reusable tags that support lead filtering, automation, assignment, and reporting."
     },
     {
-      "name": "Users",
-      "description": "Manages the current Leadping user's profile, preferences, setup, and account workflows. Use these endpoints to retrieve and update user data, configure communication and compliance preferences, complete onboarding, manage plan-related actions, and request account operations."
-    },
-    {
-      "name": "Calls",
-      "description": "Manages outbound Leadping calls and active call-control workflows. Use these endpoints to initiate or cancel a call, retrieve call state, and transfer an active call within supported telephony flows."
-    },
-    {
-      "name": "PhoneNumbers",
-      "description": "Manages phone-number discovery, purchasing, assignment, configuration, and compliance. Use these endpoints to search available numbers, manage owned numbers and caller identity, configure messaging or voice behavior, and monitor registration and warmup state."
-    },
-    {
-      "name": "Sms",
-      "description": "Sends and manages SMS and MMS communications through Leadping. Use these endpoints to send messages, upload MMS media, and cancel eligible scheduled messages while preserving conversation and delivery tracking."
-    },
-    {
       "name": "Telephony",
       "description": "Provides shared authentication and bootstrap data for Leadping telephony clients. Use this endpoint to obtain the scoped credentials and configuration required to initialize supported calling experiences."
-    },
-    {
-      "name": "Organizations",
-      "description": "Manages Leadping organizations, memberships, invitations, settings, and API credentials. Use these endpoints to maintain organization profiles and branding, manage members and invitations, configure options, and issue or revoke organization API keys."
-    },
-    {
-      "name": "UserDataExports",
-      "description": "Creates and delivers user-requested exports of Leadping account data. Use these endpoints to request an export, monitor its preparation status, and download the completed archive through a time-limited redirect."
-    },
-    {
-      "name": "CallEvents",
-      "description": "Provides call event records for auditing, diagnostics, and reporting. Use these endpoints to search and inspect lifecycle events emitted as Leadping calls are initiated, connected, completed, or fail."
-    },
-    {
-      "name": "Events",
-      "description": "Provides a unified record of Leadping activity across communication channels. Use these endpoints to retrieve event timelines, search event history, inspect event details, and record supported application events."
-    },
-    {
-      "name": "SmsEvents",
-      "description": "Provides SMS and MMS event records for delivery tracking and diagnostics. Use these endpoints to search and inspect message lifecycle events, including outbound delivery updates and inbound messaging activity."
-    },
-    {
-      "name": "PaymentMethods",
-      "description": "Manages organization payment methods and billing invoices. Use these endpoints to add, confirm, inspect, and remove payment methods or retrieve invoices associated with the current organization's billing account."
     },
     {
       "name": "Transactions",
@@ -39970,6 +40416,14 @@
     {
       "name": "Usage",
       "description": "Provides billable usage records for Leadping services. Use these endpoints to review messaging and calling consumption, inspect usage summaries, and reconcile provider activity for an organization."
+    },
+    {
+      "name": "UserDataExports",
+      "description": "Creates and delivers user-requested exports of Leadping account data. Use these endpoints to request an export, monitor its preparation status, and download the completed archive through a time-limited redirect."
+    },
+    {
+      "name": "Users",
+      "description": "Manages the current Leadping user's profile, preferences, setup, and account workflows. Use these endpoints to retrieve and update user data, configure communication and compliance preferences, complete onboarding, manage plan-related actions, and request account operations."
     },
     {
       "name": "Wallets",
