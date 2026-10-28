@@ -3747,6 +3747,187 @@
         }
       }
     },
+    "/leads/{id}/phone-lookup": {
+      "post": {
+        "tags": [
+          "Leads"
+        ],
+        "summary": "Queues a fresh, billable phone identity lookup for an accessible lead.",
+        "description": "Queues a phone identity lookup for a lead visible to the current user and returns the lead after the lookup request is accepted.\nThe lookup runs asynchronously and incurs a charge.",
+        "operationId": "Leads_QueuePhoneLookupForCurrentUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the lead whose phone number should be looked up.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadResponse"
+                    }
+                  ],
+                  "description": "Describes lead data returned by Leadping."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadResponse"
+                    }
+                  ],
+                  "description": "Describes lead data returned by Leadping."
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LeadResponse"
+                    }
+                  ],
+                  "description": "Describes lead data returned by Leadping."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was invalid or failed validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
     "/leads/{id}": {
       "get": {
         "tags": [
@@ -8819,6 +9000,159 @@
                   "type": "about:blank",
                   "title": "Unauthorized",
                   "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      }
+    },
+    "/outbound/{phoneNumberId}/capacity": {
+      "get": {
+        "tags": [
+          "OutboundDelivery"
+        ],
+        "summary": "Gets outbound capacity for a phone number in the current organization.",
+        "description": "Returns the phone number's outbound sending capacity based on current provider and Leadping state, including throttling and delivery eligibility.\nThe phone number must belong to the current organization.",
+        "operationId": "OutboundDelivery_GetPhoneNumberCapacity",
+        "parameters": [
+          {
+            "name": "phoneNumberId",
+            "in": "path",
+            "description": "The ID of the phone number whose outbound capacity should be retrieved.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/OutboundPhoneNumberCapacity"
+                    }
+                  ],
+                  "description": "Reports the sending capacity, current load, and availability of a phone number considered for outbound delivery."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Not Found",
+                  "status": 404,
                   "detail": "The request could not be completed."
                 }
               }
@@ -26310,6 +26644,14 @@
         "type": "string",
         "description": "Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number."
       },
+      "BillingPaymentMethodType": {
+        "enum": [
+          "card",
+          "link"
+        ],
+        "type": "string",
+        "description": "Reusable payment types supported for immediate billing payments."
+      },
       "BillingPlan": {
         "enum": [
           "Annual",
@@ -26552,6 +26894,13 @@
               "string"
             ],
             "description": "Display name for the lead associated with this call event."
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Stored description of the call event."
           },
           "organizationId": {
             "type": [
@@ -29844,6 +30193,20 @@
       "LeadMetadata": {
         "type": "object",
         "properties": {
+          "sourceName": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Source name captured at intake for searching lead attribution."
+          },
+          "organizationName": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Organization name captured at intake for searching lead attribution."
+          },
           "intakeIdempotencyKey": {
             "type": [
               "null",
@@ -36344,6 +36707,30 @@
       "PhoneNumberTableRow": {
         "type": "object",
         "properties": {
+          "smsRampDirection": {
+            "enum": [
+              "up",
+              "down",
+              "none"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Indicates whether a phone number's channel capacity is increasing, decreasing, or stable."
+          },
+          "voiceRampDirection": {
+            "enum": [
+              "up",
+              "down",
+              "none"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Indicates whether a phone number's channel capacity is increasing, decreasing, or stable."
+          },
           "location": {
             "type": [
               "null",
@@ -38179,22 +38566,41 @@
       },
       "StripePaymentMethodResponse": {
         "required": [
-          "id",
-          "brand",
-          "last4"
+          "id"
         ],
         "type": "object",
         "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BillingPaymentMethodType"
+              }
+            ],
+            "description": "Reusable payment types supported for immediate billing payments."
+          },
+          "walletName": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The wallet name when supplied by a digital wallet."
+          },
           "id": {
             "type": "string",
             "description": "Unique Leadping identifier for this Stripe payment method."
           },
           "brand": {
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "Card network brand, such as Visa, Mastercard, or American Express."
           },
           "last4": {
-            "type": "string",
+            "type": [
+              "null",
+              "string"
+            ],
             "description": "Last four digits of the payment card number."
           },
           "expMonth": {
