@@ -3043,6 +3043,161 @@
         }
       }
     },
+    "/conversations/{id}/mark-reply-needed": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Mark an accessible conversation as requiring a reply at the observed reply version.",
+        "description": "Sets the reply requirement only at the observed reply version. Returns false if the reply version changed or the conversation is inaccessible.",
+        "operationId": "Conversations_MarkReplyNeeded",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the conversation to mark as requiring a reply.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replyVersion",
+            "in": "query",
+            "description": "The reply version observed by the caller. Must be non-negative.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
     "/conversations/lead/{leadId}": {
       "post": {
         "tags": [
@@ -27586,6 +27741,14 @@
       "CustomerAnalyticsResponse": {
         "type": "object",
         "properties": {
+          "leadOutcomes": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerLeadOutcomes"
+              }
+            ],
+            "description": "Current outcomes for non-deleted, non-demo leads created in the selected period."
+          },
           "range": {
             "allOf": [
               {
@@ -28130,6 +28293,40 @@
           }
         },
         "description": "Identifies an automation with recent execution failures and summarizes its affected leads and failure context."
+      },
+      "CustomerLeadOutcomes": {
+        "type": "object",
+        "properties": {
+          "totalLeads": {
+            "type": "integer",
+            "description": "Number of non-deleted, non-demo leads created in the selected period.",
+            "format": "int32"
+          },
+          "convertedLeads": {
+            "type": "integer",
+            "description": "Leads whose current status category is Converted.",
+            "format": "int32"
+          },
+          "contactedLeads": {
+            "type": "integer",
+            "description": "Distinct leads with a prospect reply or answered call since creation, through generation time.",
+            "format": "int32"
+          },
+          "needsFollowUpLeads": {
+            "type": "integer",
+            "description": "Enabled, unarchived open or qualified leads with an overdue incomplete follow-up, or neither a manual attempt nor contact.",
+            "format": "int32"
+          },
+          "medianFirstAttemptMinutes": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "description": "Median time to the first manual SMS send attempt or placed outbound call, among attempted leads only.",
+            "format": "double"
+          }
+        },
+        "description": "Current outcomes for non-deleted, non-demo leads created in the selected period."
       },
       "CustomerLeadSourceBreakdown": {
         "type": "object",
