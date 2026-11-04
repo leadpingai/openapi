@@ -25427,6 +25427,18 @@
         },
         "description": "Describes activation timeline event data used in Leadping API requests and responses."
       },
+      "AdminDemoPreferences": {
+        "type": "object",
+        "properties": {
+          "showDemoData": {
+            "type": "boolean"
+          },
+          "showDemoMarkers": {
+            "type": "boolean"
+          }
+        },
+        "description": "Controls demo presentation for an individual platform admin."
+      },
       "AnalyticsBucketSize": {
         "enum": [
           3,
@@ -41050,6 +41062,18 @@
       "UserResponse": {
         "type": "object",
         "properties": {
+          "adminDemoPreferences": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AdminDemoPreferences"
+              }
+            ],
+            "description": "Controls demo presentation for an individual platform admin."
+          },
           "isDemo": {
             "type": "boolean"
           },
