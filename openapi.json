@@ -27009,6 +27009,34 @@
         },
         "description": "Records a social publication attempt. An attempt without a post ID must be reviewed before retrying."
       },
+      "BrowserCallApproval": {
+        "required": [
+          "destinationNumber",
+          "callerNumber",
+          "clientState"
+        ],
+        "type": "object",
+        "properties": {
+          "destinationNumber": {
+            "type": "string"
+          },
+          "callerNumber": {
+            "type": "string"
+          },
+          "clientState": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maximumDurationSeconds": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "Server-approved parameters for one outbound browser call."
+      },
       "CallEventTableRow": {
         "type": "object",
         "properties": {
@@ -28954,6 +28982,14 @@
       "EventTableRow": {
         "type": "object",
         "properties": {
+          "durationSeconds": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Confirmed call talk time in seconds, when available.",
+            "format": "int32"
+          },
           "voicemailUrl": {
             "type": [
               "null",
@@ -29589,9 +29625,13 @@
         ],
         "type": "object",
         "properties": {
+          "originateFromBrowser": {
+            "type": "boolean",
+            "description": "Approve a call for the Portal to originate through WebRTC instead of dialing from the server."
+          },
           "useBrowserPhone": {
             "type": "boolean",
-            "description": "Connect the authenticated user's browser phone to the server-controlled destination call."
+            "description": "Connect the authenticated user's phone to a server-controlled destination call."
           },
           "fromPhoneNumberId": {
             "type": [
@@ -30234,7 +30274,7 @@
           },
           "consentAttested": {
             "type": "boolean",
-            "description": "Explicitly attests to SMS consent when consentCertificateType is Other. Allows manual texts only."
+            "description": "Explicitly attests to SMS consent when consentCertificateType is Other. Allows manual calls and texts only."
           },
           "externalId": {
             "type": [
@@ -34288,6 +34328,11 @@
       "OrganizationSwitchOption": {
         "type": "object",
         "properties": {
+          "memberCount": {
+            "type": "integer",
+            "description": "Number of active members in this organization, excluding pending invitations.",
+            "format": "int32"
+          },
           "timeZoneId": {
             "type": [
               "null",
@@ -35569,6 +35614,18 @@
       "PhoneCallResponse": {
         "type": "object",
         "properties": {
+          "browserCallApproval": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BrowserCallApproval"
+              }
+            ],
+            "description": "Server-approved parameters for one outbound browser call."
+          },
           "isDemo": {
             "type": "boolean"
           },
