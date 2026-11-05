@@ -28162,6 +28162,10 @@
       "CustomerAnalyticsResponse": {
         "type": "object",
         "properties": {
+          "includesDemoData": {
+            "type": "boolean",
+            "description": "Whether the report includes demo data, subject to the current display preference."
+          },
           "leadOutcomes": {
             "allOf": [
               {
