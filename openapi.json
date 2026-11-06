@@ -27492,6 +27492,20 @@
             ],
             "description": "User ID associated with the person or agent who initiated this call event."
           },
+          "actorUserId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The user who performed this action."
+          },
+          "actorDisplayName": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The recorded display name of the actor who performed this action."
+          },
           "userName": {
             "type": [
               "null",
