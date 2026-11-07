@@ -33574,6 +33574,14 @@
             "description": "Number of phone numbers included in the organization's subscription plan.",
             "format": "int64"
           },
+          "numberHealthQuantity": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Number of billable phone numbers with Number Health enabled.",
+            "format": "int64"
+          },
           "organizationMemberQuantity": {
             "type": [
               "null",
@@ -34453,6 +34461,14 @@
               }
             ],
             "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
+          },
+          "billingContactEmail": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Stored billing contact email for the organization.",
+            "format": "email"
           },
           "accountBalance": {
             "type": "number",
