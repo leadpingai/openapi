@@ -40021,6 +40021,10 @@
             "type": "boolean",
             "description": "Indicates sample activity for app review that must not count toward real financial totals."
           },
+          "isUsageReservation": {
+            "type": "boolean",
+            "description": "Indicates a temporary credit hold, not a settled charge."
+          },
           "organization": {
             "type": [
               "null",
@@ -40204,6 +40208,10 @@
           "isDemo": {
             "type": "boolean",
             "description": "Indicates sample activity for app review that must not count toward real financial totals."
+          },
+          "isUsageReservation": {
+            "type": "boolean",
+            "description": "Indicates a temporary credit hold, not a settled charge."
           },
           "id": {
             "type": "string",
