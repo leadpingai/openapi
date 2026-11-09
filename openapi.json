@@ -32645,10 +32645,6 @@
         "description": "Summarizes lead data in paginated and searchable results."
       },
       "LeadTagsRequest": {
-        "required": [
-          "tagIds",
-          "tagNames"
-        ],
         "type": "object",
         "properties": {
           "tagIds": {
