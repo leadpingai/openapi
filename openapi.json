@@ -39799,6 +39799,171 @@
       "TenDlcApplicationDraft": {
         "type": "object",
         "properties": {
+          "displayName": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Customer-facing brand or DBA name."
+          },
+          "brandEntityType": {
+            "type": "string",
+            "description": "Legal entity type registered with Telnyx."
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO two-letter country of registration."
+          },
+          "street": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Legal business street address."
+          },
+          "city": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Legal business city."
+          },
+          "state": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Legal business state or region."
+          },
+          "postalCode": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Legal business postal code."
+          },
+          "businessContactEmail": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Individual representative email required for public-company verification.",
+            "format": "email"
+          },
+          "stockSymbol": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Public-company stock ticker."
+          },
+          "stockExchange": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Public-company stock exchange."
+          },
+          "isReseller": {
+            "type": "boolean",
+            "description": "Whether the brand resells services to other businesses."
+          },
+          "subUseCases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Selected sub-use cases for a mixed campaign."
+          },
+          "ageGated": {
+            "type": "boolean",
+            "description": "Whether campaign content is age gated."
+          },
+          "directLending": {
+            "type": "boolean",
+            "description": "Whether messages concern direct lending or loan arrangements."
+          },
+          "numberPool": {
+            "type": "boolean",
+            "description": "Whether the campaign uses a number pool."
+          },
+          "embeddedLink": {
+            "type": "boolean",
+            "description": "Whether campaign messages contain links."
+          },
+          "embeddedPhone": {
+            "type": "boolean",
+            "description": "Whether campaign messages contain phone numbers."
+          },
+          "embeddedLinkSample": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Representative embedded link submitted for review."
+          },
+          "autoRenewal": {
+            "type": "boolean",
+            "description": "Whether the campaign subscription renews automatically."
+          },
+          "subscriberOptin": {
+            "type": "boolean",
+            "description": "Whether subscribers opt in before messaging."
+          },
+          "subscriberOptout": {
+            "type": "boolean",
+            "description": "Whether the program supports opt-out keywords."
+          },
+          "subscriberHelp": {
+            "type": "boolean",
+            "description": "Whether the program responds to help keywords."
+          },
+          "optinKeywords": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Comma-separated opt-in keywords."
+          },
+          "optoutKeywords": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Comma-separated opt-out keywords."
+          },
+          "helpKeywords": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Comma-separated help keywords."
+          },
+          "optinMessage": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Opt-in confirmation response."
+          },
+          "optoutMessage": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Opt-out confirmation response."
+          },
+          "helpMessage": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Help response with customer-care information."
+          },
+          "termsAndConditions": {
+            "type": "boolean",
+            "description": "Acceptance of the carrier campaign terms."
+          },
           "companyName": {
             "type": [
               "null",
