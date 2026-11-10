@@ -27706,6 +27706,10 @@
       "CommunicationConsoleEntry": {
         "type": "object",
         "properties": {
+          "adminOnly": {
+            "type": "boolean",
+            "description": "Restricts this diagnostic entry to platform administrators."
+          },
           "id": {
             "type": "string",
             "description": "Unique identifier of this diagnostic console entry."
@@ -29585,6 +29589,7 @@
           },
           "selectionReason": {
             "enum": [
+              "NearestLocation",
               "StickyConversation",
               "LeadAssigned",
               "CampaignOrSource",
@@ -35325,6 +35330,7 @@
       },
       "OutgoingNumberSelectionReason": {
         "enum": [
+          "NearestLocation",
           "StickyConversation",
           "LeadAssigned",
           "CampaignOrSource",
@@ -35461,6 +35467,7 @@
           },
           "selectionReason": {
             "enum": [
+              "NearestLocation",
               "StickyConversation",
               "LeadAssigned",
               "CampaignOrSource",
@@ -36143,6 +36150,7 @@
           },
           "selectionReason": {
             "enum": [
+              "NearestLocation",
               "StickyConversation",
               "LeadAssigned",
               "CampaignOrSource",
@@ -36887,6 +36895,10 @@
               }
             ],
             "description": "Latitude and longitude coordinate for this lead contact profile."
+          },
+          "isCoordinateApproximate": {
+            "type": "boolean",
+            "description": "Whether the coordinates represent an approximate phone-number region rather than a resolved city."
           },
           "coordinateSource": {
             "type": [
@@ -38338,6 +38350,7 @@
           },
           "selectionReason": {
             "enum": [
+              "NearestLocation",
               "StickyConversation",
               "LeadAssigned",
               "CampaignOrSource",
