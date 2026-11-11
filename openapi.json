@@ -27957,6 +27957,20 @@
             "description": "Optional profile image URL explicitly associated with the lead.",
             "format": "uri"
           },
+          "canCallNow": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Current manual voice eligibility, including contact hours. Populated on individual conversation reads. Sender readiness and billing are checked when calling; null means eligibility has not been evaluated."
+          },
+          "canTextNow": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Current manual SMS eligibility, including contact hours. Populated on individual conversation reads. Sender readiness and billing are checked when sending; null means eligibility has not been evaluated."
+          },
           "complianceStatus": {
             "type": [
               "null",
