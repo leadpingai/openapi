@@ -27962,7 +27962,7 @@
               "null",
               "string"
             ],
-            "description": "Stored compliance status of the associated lead; not a live call-readiness guarantee."
+            "description": "Consent verification status of the associated lead; not a live call-readiness guarantee."
           },
           "lastSnippet": {
             "type": [
@@ -37578,30 +37578,6 @@
       "PhoneNumberTableRow": {
         "type": "object",
         "properties": {
-          "smsRampDirection": {
-            "enum": [
-              "up",
-              "down",
-              "none"
-            ],
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "Indicates whether a phone number's channel capacity is increasing, decreasing, or stable."
-          },
-          "voiceRampDirection": {
-            "enum": [
-              "up",
-              "down",
-              "none"
-            ],
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "Indicates whether a phone number's channel capacity is increasing, decreasing, or stable."
-          },
           "location": {
             "type": [
               "null",
