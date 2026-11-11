@@ -40207,6 +40207,20 @@
           "canText": {
             "type": "boolean",
             "description": "Whether the lead can currently be texted after evaluating applicable contact hours, suppression, and consent rules."
+          },
+          "callBlockedReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Customer-safe explanation when calling is unavailable."
+          },
+          "textBlockedReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Customer-safe explanation when texting is unavailable."
           }
         },
         "description": "Current call and text eligibility for a lead under the applicable contact rules."
