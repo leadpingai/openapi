@@ -39258,6 +39258,18 @@
       "EventTableRow": {
         "type": "object",
         "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/TagSummary"
+                }
+              ],
+              "description": "Summary schema for Leadping API tag summary data used in dashboards and reports."
+            },
+            "description": "Tags affected by this event, including their display colors."
+          },
           "durationSeconds": {
             "type": [
               "null",
