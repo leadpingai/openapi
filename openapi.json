@@ -44280,6 +44280,14 @@
             "description": "UTC timestamp for created at on this organization user.",
             "format": "date-time"
           },
+          "lastActiveAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "UTC timestamp of the user's most recent activity in Leadping.",
+            "format": "date-time"
+          },
           "licenseBillingStatus": {
             "type": [
               "null",
