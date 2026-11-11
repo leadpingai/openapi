@@ -1,8 +1,8 @@
 {
-  "openapi": "3.1.2",
+  "openapi": "3.2.0",
   "info": {
     "title": "Leadping API",
-    "description": "The Leadping API helps businesses capture and manage leads, automate follow-up, send SMS and MMS messages, place calls, track conversations, enforce contact suppression, and analyze communication workflows. Use this OpenAPI 3.1 contract to integrate lead sources, build organization tools, or generate a typed API client. Authenticate protected operations with a Leadping user access token or WorkOS organization API key. Lead intake operations also accept a Leadping source key.",
+    "description": "The Leadping API helps businesses capture and manage leads, automate follow-up, send SMS and MMS messages, place calls, track conversations, enforce contact suppression, and analyze communication workflows. Use this OpenAPI 3.2 contract to integrate lead sources, build organization tools, or generate a typed API client. Authenticate protected operations with a Leadping user access token or WorkOS organization API key. Lead intake operations also accept a Leadping source key.",
     "termsOfService": "https://leadping.ai/docs/terms-of-service",
     "contact": {
       "name": "Leadping Support",
@@ -421,7 +421,11 @@
           "200": {
             "description": "OK",
             "content": {
-              "text/csv": { }
+              "text/csv": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileContentResult"
+                }
+              }
             }
           },
           "401": {
@@ -2187,6 +2191,15 @@
             "description": "Optional filter selecting active, archived, or all lead conversations.",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "contactable",
+            "in": "query",
+            "description": "Whether to include only conversations with contactable leads.",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           }
         ],
@@ -18172,6 +18185,138 @@
         }
       }
     },
+    "/organizations/me/lead-assignees": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "summary": "Lists active organization users available for lead assignee filters.",
+        "description": "Returns distinct users in the current organization, ordered by name, for selecting lead assignees.",
+        "operationId": "Organizations_GetCurrentOrganizationLeadAssignees",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/IdNamePair"
+                      }
+                    ],
+                    "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      }
+    },
     "/organizations/me/members/{userId}": {
       "put": {
         "tags": [
@@ -27812,6 +27957,13 @@
             "description": "Optional profile image URL explicitly associated with the lead.",
             "format": "uri"
           },
+          "complianceStatus": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Stored compliance status of the associated lead; not a live call-readiness guarantee."
+          },
           "lastSnippet": {
             "type": [
               "null",
@@ -29983,6 +30135,10 @@
         ],
         "type": "string",
         "description": "Defines the type of product feedback submitted from inside Leadping."
+      },
+      "FileContentResult": {
+        "type": "string",
+        "format": "binary"
       },
       "IdNamePair": {
         "required": [
@@ -37037,6 +37193,18 @@
       "PhoneNumberReadiness": {
         "type": "object",
         "properties": {
+          "trafficHealth": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PhoneNumberTrafficHealth"
+              }
+            ],
+            "description": "Hourly local reputation-risk estimate using 24-hour, seven-day, and thirty-day traffic evidence."
+          },
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether phone number warmup is enabled in Leadping."
@@ -37512,6 +37680,20 @@
           }
         },
         "description": "Summarizes phone number data in paginated and searchable results."
+      },
+      "PhoneNumberTrafficHealth": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "The lower evaluated channel score, or null when neither channel has sufficient evidence.",
+            "format": "int32"
+          }
+        },
+        "description": "Hourly local reputation-risk estimate using 24-hour, seven-day, and thirty-day traffic evidence."
       },
       "PhoneNumberTrafficMetricsResponse": {
         "type": "object",
@@ -41430,6 +41612,13 @@
               "string"
             ],
             "description": "The date and time when this user last completed the Leadping sign-in flow.",
+            "format": "date-time"
+          },
+          "lastActiveAt": {
+            "type": [
+              "null",
+              "string"
+            ],
             "format": "date-time"
           },
           "personalDataDeletionRequestedAt": {
