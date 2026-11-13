@@ -46059,6 +46059,20 @@
       "OrganizationRequest": {
         "type": "object",
         "properties": {
+          "automaticallyMarkAppointmentSet": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Sets the lead to Appointment set when an appointment is created."
+          },
+          "automaticallyClearAppointmentSet": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Restores the previous status after the last upcoming appointment completes or becomes overdue."
+          },
           "automaticallyMarkLeadsCalled": {
             "type": [
               "null",
@@ -46168,6 +46182,14 @@
       "OrganizationResponse": {
         "type": "object",
         "properties": {
+          "automaticallyMarkAppointmentSet": {
+            "type": "boolean",
+            "description": "Sets the lead to Appointment set when an appointment is created."
+          },
+          "automaticallyClearAppointmentSet": {
+            "type": "boolean",
+            "description": "Restores the previous status after the last upcoming appointment completes or becomes overdue."
+          },
           "automaticallyMarkLeadsCalled": {
             "type": "boolean",
             "description": "Automatically advances new leads after a confirmed outbound call attempt. Enabled by default."
