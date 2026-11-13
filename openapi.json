@@ -677,29 +677,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "The request completed successfully.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -741,7 +721,7 @@
             }
           },
           "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "description": "The caller does not have permission to perform this operation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -935,7 +915,7 @@
             }
           },
           "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "description": "The caller does not have permission to perform this operation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1054,35 +1034,9 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "The request completed successfully.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/AppointmentResponse"
-                      }
-                    ],
-                    "description": "An appointment visible to the current user, with history populated on detail requests."
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/AppointmentResponse"
-                      }
-                    ],
-                    "description": "An appointment visible to the current user, with history populated on detail requests."
-                  }
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -1127,7 +1081,7 @@
             }
           },
           "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "description": "The caller does not have permission to perform this operation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1310,7 +1264,7 @@
             }
           },
           "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "description": "The caller does not have permission to perform this operation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1442,29 +1396,9 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "The request completed successfully.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -1506,7 +1440,7 @@
             }
           },
           "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "description": "The caller does not have permission to perform this operation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1521,6 +1455,27 @@
                   "type": "about:blank",
                   "title": "Forbidden",
                   "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The current resource state prevents this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Conflict",
+                  "status": 409,
                   "detail": "The request could not be completed."
                 }
               }
@@ -1638,29 +1593,9 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "The request completed successfully.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -1702,7 +1637,7 @@
             }
           },
           "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "description": "The caller does not have permission to perform this operation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1717,6 +1652,27 @@
                   "type": "about:blank",
                   "title": "Forbidden",
                   "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The current resource state prevents this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Conflict",
+                  "status": 409,
                   "detail": "The request could not be completed."
                 }
               }
@@ -1834,29 +1790,9 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "The request completed successfully.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -1898,7 +1834,7 @@
             }
           },
           "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "description": "The caller does not have permission to perform this operation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1913,6 +1849,27 @@
                   "type": "about:blank",
                   "title": "Forbidden",
                   "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The current resource state prevents this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Conflict",
+                  "status": 409,
                   "detail": "The request could not be completed."
                 }
               }
@@ -2030,29 +1987,9 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "The request completed successfully.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/AppointmentResponse"
-                    }
-                  ],
-                  "description": "An appointment visible to the current user, with history populated on detail requests."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -2094,7 +2031,7 @@
             }
           },
           "403": {
-            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "description": "The caller does not have permission to perform this operation.",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -2109,6 +2046,27 @@
                   "type": "about:blank",
                   "title": "Forbidden",
                   "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The current resource state prevents this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Conflict",
+                  "status": 409,
                   "detail": "The request could not be completed."
                 }
               }
@@ -4699,27 +4657,7 @@
           "200": {
             "description": "The lead's current call and text eligibility under applicable contact rules.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadContactabilityResponse"
-                    }
-                  ],
-                  "description": "Current call and text eligibility for a lead under the applicable contact rules."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadContactabilityResponse"
-                    }
-                  ],
-                  "description": "Current call and text eligibility for a lead under the applicable contact rules."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -4922,27 +4860,7 @@
           "200": {
             "description": "The accessible conversation with its current communication and inbox state.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ConversationResponse"
-                    }
-                  ],
-                  "description": "Describes conversation data returned by Leadping."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ConversationResponse"
-                    }
-                  ],
-                  "description": "Describes conversation data returned by Leadping."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -5154,27 +5072,7 @@
           "200": {
             "description": "Eligible sending numbers and current outbound readiness for the requested SMS or voice channel.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/OutgoingNumberSelectionResponse"
-                    }
-                  ],
-                  "description": "Describes outgoing number selection data returned by Leadping."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/OutgoingNumberSelectionResponse"
-                    }
-                  ],
-                  "description": "Describes outgoing number selection data returned by Leadping."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -5387,17 +5285,7 @@
           "200": {
             "description": "True when the observed conversation version was marked read; false when it changed or is inaccessible.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "boolean"
                 }
@@ -5605,17 +5493,7 @@
           "200": {
             "description": "True when the observed reply version was marked handled; false when it changed or is inaccessible.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "boolean"
                 }
@@ -5823,17 +5701,7 @@
           "200": {
             "description": "True when a reply requirement was set for the observed version; false when it changed or is inaccessible.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "boolean"
                 }
@@ -7009,27 +6877,7 @@
           "202": {
             "description": "The lead after its asynchronous phone lookup has been accepted for processing.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadResponse"
-                    }
-                  ],
-                  "description": "Describes lead data returned by Leadping."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadResponse"
-                    }
-                  ],
-                  "description": "Describes lead data returned by Leadping."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -9323,27 +9171,7 @@
           "200": {
             "description": "The lead after the specified tag has been removed.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadResponse"
-                    }
-                  ],
-                  "description": "Describes lead data returned by Leadping."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadResponse"
-                    }
-                  ],
-                  "description": "Describes lead data returned by Leadping."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -11408,27 +11236,7 @@
           "200": {
             "description": "A page of current incomplete follow-ups and a continuation token when more results are available.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfLeadFollowUpResponse"
-                    }
-                  ],
-                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PagedResultOfLeadFollowUpResponse"
-                    }
-                  ],
-                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -11667,27 +11475,7 @@
           "200": {
             "description": "The updated lead status entry after completing or rescheduling the observed follow-up version.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadStatusChangeResponse"
-                    }
-                  ],
-                  "description": "Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/LeadStatusChangeResponse"
-                    }
-                  ],
-                  "description": "Describes an auditable lead status transition, including the previous and new status, source, actor, and effective time."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -17883,17 +17671,7 @@
           "200": {
             "description": "True after the tag has been archived.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "boolean"
                 }
@@ -24311,27 +24089,7 @@
           "200": {
             "description": "The matching organization lead's identifier and name, or null identity fields when no lead matches.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/IncomingCallerResponse"
-                    }
-                  ],
-                  "description": "Lead identity matched to an incoming caller within the current organization."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/IncomingCallerResponse"
-                    }
-                  ],
-                  "description": "Lead identity matched to an incoming caller within the current organization."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -24523,17 +24281,7 @@
           "200": {
             "description": "True when the current user is available to receive a call across their devices and organizations.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "boolean"
                 }
@@ -24718,17 +24466,7 @@
           "200": {
             "description": "True when the device's availability claim was updated; false when the claim could not be changed.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "boolean"
                 }
@@ -27868,27 +27606,7 @@
           "200": {
             "description": "Returns the organization invitation response.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/OrganizationInvitationResponse"
-                    }
-                  ],
-                  "description": "Describes organization invitation data returned by Leadping."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/OrganizationInvitationResponse"
-                    }
-                  ],
-                  "description": "Describes organization invitation data returned by Leadping."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -32742,6 +32460,223 @@
         }
       }
     },
+    "/events/conversations/{conversationId}/notes/{eventId}": {
+      "put": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Updates an internal note authored by the current user.",
+        "description": "The event table row.",
+        "operationId": "Events_UpdateNote",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "description": "The conversation identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "The note event identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The replacement note content.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateNoteRequest"
+                  }
+                ],
+                "description": "Defines the input used for create note."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateNoteRequest"
+                  }
+                ],
+                "description": "Defines the input used for create note."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The request completed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/EventTableRow"
+                    }
+                  ],
+                  "description": "Summarizes event timeline data in paginated and searchable results."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request contains invalid values or fails validation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Bad Request",
+                  "status": 400,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "The request content type is not supported.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Request Failed",
+                  "status": 415,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
     "/events/sms/all/my": {
       "post": {
         "tags": [
@@ -35728,27 +35663,7 @@
           "200": {
             "description": "Returns the usage limits and progress.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SpendLimitsResponse"
-                    }
-                  ],
-                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SpendLimitsResponse"
-                    }
-                  ],
-                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -35926,16 +35841,6 @@
                 "description": "Organization usage budgets in USD. Null removes a limit; zero stops new paid usage."
               }
             },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SpendLimitsRequest"
-                  }
-                ],
-                "description": "Organization usage budgets in USD. Null removes a limit; zero stops new paid usage."
-              }
-            },
             "application/*+json": {
               "schema": {
                 "allOf": [
@@ -35953,27 +35858,7 @@
           "200": {
             "description": "Returns the updated usage limits and progress.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SpendLimitsResponse"
-                    }
-                  ],
-                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
-                }
-              },
               "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SpendLimitsResponse"
-                    }
-                  ],
-                  "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
-                }
-              },
-              "text/json": {
                 "schema": {
                   "allOf": [
                     {
@@ -40994,6 +40879,14 @@
       "EventTableRow": {
         "type": "object",
         "properties": {
+          "canEditNote": {
+            "type": "boolean",
+            "description": "Whether the current user authored this editable note."
+          },
+          "noteEdited": {
+            "type": "boolean",
+            "description": "Whether the note has been edited."
+          },
           "tags": {
             "type": "array",
             "items": {
