@@ -49679,6 +49679,18 @@
       "SmsEventTableRow": {
         "type": "object",
         "properties": {
+          "automation": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdNamePair"
+              }
+            ],
+            "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
+          },
           "isDemo": {
             "type": "boolean",
             "description": "Whether this record belongs to demo data."
