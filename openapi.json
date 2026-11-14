@@ -41047,6 +41047,13 @@
             "type": "string",
             "description": "Human-readable phone number shown in Leadping UI and API responses."
           },
+          "state": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Geographic state or region associated with the phone number."
+          },
           "healthStatus": {
             "enum": [
               "Not Evaluated",
