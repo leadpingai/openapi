@@ -43639,6 +43639,32 @@
       "LeadMetadata": {
         "type": "object",
         "properties": {
+          "sentiment": {
+            "enum": [
+              "Positive",
+              "Negative"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Interest expressed in the lead's first inbound text reply, independent of contact consent."
+          },
+          "sentimentMessageId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "First inbound SMS selected for sentiment analysis. Later replies cannot replace it."
+          },
+          "sentimentAnalyzedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Completion time, including a first reply that has no positive or negative sentiment.",
+            "format": "date-time"
+          },
           "sourceName": {
             "type": [
               "null",
@@ -45251,6 +45277,17 @@
       "LeadTableRow": {
         "type": "object",
         "properties": {
+          "sentiment": {
+            "enum": [
+              "Positive",
+              "Negative"
+            ],
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Interest expressed in the lead's first inbound text reply, independent of contact consent."
+          },
           "isDemo": {
             "type": "boolean",
             "description": "Whether this record belongs to demo data."
@@ -45842,6 +45879,7 @@
       },
       "NotificationType": {
         "enum": [
+          "PositiveSentiment",
           "Appointment",
           "General",
           "Lead",
@@ -54079,6 +54117,18 @@
       "UserNotificationPreferences": {
         "type": "object",
         "properties": {
+          "positiveSentimentEnabled": {
+            "type": "boolean",
+            "description": "Send push alerts when a lead's first text reply has positive sentiment."
+          },
+          "positiveSentimentEmailEnabled": {
+            "type": "boolean",
+            "description": "Email alerts when a lead's first text reply has positive sentiment."
+          },
+          "positiveSentimentSmsEnabled": {
+            "type": "boolean",
+            "description": "Text alerts for positive first replies, subject to notification SMS consent."
+          },
           "appointmentReminderInAppEnabled": {
             "type": "boolean",
             "description": "Show callback reminder dialogs in the Portal."
