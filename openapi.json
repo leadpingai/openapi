@@ -41758,6 +41758,28 @@
             "type": "boolean",
             "description": "Indicates whether Leadping can send outbound messages using this eligible outgoing phone number."
           },
+          "canCall": {
+            "type": "boolean",
+            "description": "Whether this sender is ready for outbound calls."
+          },
+          "canText": {
+            "type": "boolean",
+            "description": "Whether this sender is ready for outbound texts."
+          },
+          "callUnavailableReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Explains why outbound calls are unavailable for this sender."
+          },
+          "textUnavailableReason": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Explains why outbound texts are unavailable for this sender."
+          },
           "selectionReason": {
             "allOf": [
               {
