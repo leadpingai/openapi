@@ -49857,6 +49857,14 @@
       "PhoneNumberLocation": {
         "type": "object",
         "properties": {
+          "resolvedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When local geography resolution completed, including when no geographic match exists. Prevents repeated resolution until an explicit rebuild or new carrier lookup.",
+            "format": "date-time"
+          },
           "location": {
             "type": [
               "null",
