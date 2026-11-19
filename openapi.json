@@ -38726,8 +38726,11 @@
         "type": "object",
         "properties": {
           "timeZoneId": {
-            "type": "string",
-            "description": "Time zone used by workflow time and day conditions in preview and runtime. Defaults to UTC."
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Time zone used by workflow time and day conditions in preview and runtime. New workflows default to the organization�s time zone."
           },
           "description": {
             "type": [
