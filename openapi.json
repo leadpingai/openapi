@@ -40103,6 +40103,13 @@
             ],
             "description": "Display name for the lead associated with this call event."
           },
+          "leadAvatarUrl": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uri"
+          },
           "description": {
             "type": [
               "null",
@@ -50942,6 +50949,13 @@
               }
             ],
             "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
+          },
+          "leadAvatarUrl": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uri"
           },
           "fromPhoneNumberId": {
             "type": "string",
