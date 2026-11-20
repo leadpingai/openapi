@@ -43237,6 +43237,10 @@
             "type": "boolean",
             "description": "Whether the lead can currently be texted after evaluating applicable contact hours, suppression, and consent rules."
           },
+          "smsLineRestricted": {
+            "type": "boolean",
+            "description": "Whether the stored phone lookup rules out texting this recipient."
+          },
           "callBlockedReason": {
             "type": [
               "null",
