@@ -42365,6 +42365,13 @@
             ],
             "description": "Automation run ID opened from this automation event."
           },
+          "automationName": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Name of the automation when it started."
+          },
           "summary": {
             "type": [
               "null",
