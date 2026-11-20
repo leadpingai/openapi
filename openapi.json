@@ -1165,7 +1165,7 @@
           {
             "name": "includeClosed",
             "in": "query",
-            "description": "Whether to include completed and cancelled appointments. Ignored when dueOnly is true.",
+            "description": "Whether to include completed, cancelled, and archived appointments. Ignored when dueOnly is true.",
             "schema": {
               "type": "boolean"
             }
@@ -4535,7 +4535,16 @@
           {
             "name": "contactable",
             "in": "query",
-            "description": "Whether to include only conversations with contactable leads.",
+            "description": "Whether to include only conversations where calling is available.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "textingAvailable",
+            "in": "query",
+            "description": "Whether to include only conversations where texting is available.",
             "schema": {
               "type": "boolean",
               "default": false
@@ -48151,6 +48160,14 @@
       "OutboundPhoneNumberCapacity": {
         "type": "object",
         "properties": {
+          "nextReservationChangeAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next time an active reservation starts or expires and may change the reported usage.",
+            "format": "date-time"
+          },
           "smsRampDirection": {
             "enum": [
               "up",
