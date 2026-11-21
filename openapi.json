@@ -40678,6 +40678,14 @@
             "description": "UTC timestamp when the most recent conversation event occurred.",
             "format": "date-time"
           },
+          "lastSnippetAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Timestamp of the conversation activity shown in LastSnippet.",
+            "format": "date-time"
+          },
           "eventVersion": {
             "type": "integer",
             "description": "Monotonic event boundary. Mark-read requests must send the version the reader observed.",
