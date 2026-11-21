@@ -47478,6 +47478,20 @@
             ],
             "description": "Destination status for outbound call attempts. Null uses the built-in Called status."
           },
+          "automaticallyMarkLeadsMessaged": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Automatically advances new leads when an outbound message is delivered."
+          },
+          "messagedLeadStatusId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Destination status for delivered outbound messages."
+          },
           "timeZoneId": {
             "type": [
               "null",
@@ -47591,6 +47605,17 @@
               "string"
             ],
             "description": "Destination status for outbound call attempts. Null uses the built-in Called status."
+          },
+          "automaticallyMarkLeadsMessaged": {
+            "type": "boolean",
+            "description": "Automatically advances new leads when an outbound message is delivered."
+          },
+          "messagedLeadStatusId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Destination status for delivered outbound messages."
           },
           "timeZoneId": {
             "type": [
@@ -49582,6 +49607,10 @@
       "PhoneIdentityResponse": {
         "type": "object",
         "properties": {
+          "smsNotRoutable": {
+            "type": "boolean",
+            "description": "Whether Telnyx rejected SMS routing to this destination with error 40001."
+          },
           "isDemo": {
             "type": "boolean",
             "description": "Whether this record belongs to demo data."
