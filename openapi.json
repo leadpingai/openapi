@@ -4549,6 +4549,15 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "priority",
+            "in": "query",
+            "description": "Orders the full filtered inbox by the next action before paging.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
           }
         ],
         "requestBody": {
@@ -4585,10 +4594,10 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/PagedResultOfConversationResponse"
+                      "$ref": "#/components/schemas/ConversationPage"
                     }
                   ],
-                  "description": "Returns one page of query results together with page-size, optional total-count, and opaque continuation-cursor metadata."
+                  "description": "A page of inbox conversations with optional action counts and refresh timing."
                 }
               }
             }
@@ -6245,6 +6254,152 @@
                   "type": "about:blank",
                   "title": "Internal Server Error",
                   "status": 500,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "write"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "/conversations/{conversationId}/retry": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Updates the next manual call attempt if the observed retry time is still current.",
+        "operationId": "Conversations_SetRetry",
+        "parameters": [
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CallRetryRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CallRetryRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CallRetryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
                   "detail": "The request could not be completed."
                 }
               }
@@ -20319,6 +20474,175 @@
                   "type": "about:blank",
                   "title": "Internal Server Error",
                   "status": 500,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "/phone-call/next/{requestId}": {
+      "post": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Starts the next eligible call in the rep's filtered inbox.",
+        "operationId": "Calls_InitiateNext",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "texting",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestDataOptions"
+                  }
+                ],
+                "description": "Defines cursor pagination, sorting, search, exact-match filters, and range filters for a structured API query."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
                   "detail": "The request could not be completed."
                 }
               }
@@ -38739,7 +39063,7 @@
               "null",
               "string"
             ],
-            "description": "Time zone used by workflow time and day conditions in preview and runtime. New workflows default to the organization�s time zone."
+            "description": "Time zone used by workflow time and day conditions in preview and runtime. New workflows default to the organization's time zone."
           },
           "description": {
             "type": [
@@ -40491,6 +40815,27 @@
         },
         "description": "Summarizes call event data in paginated and searchable results."
       },
+      "CallRetryRequest": {
+        "type": "object",
+        "properties": {
+          "expectedRetryAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The prior retry time observed by the rep.",
+            "format": "date-time"
+          },
+          "retryAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When to offer this call again. Clear to remove the retry.",
+            "format": "date-time"
+          }
+        }
+      },
       "ChangeBillingPlanRequest": {
         "required": [
           "billingPlan"
@@ -40573,6 +40918,56 @@
         "type": "string",
         "description": "Leadping's assessment of the supporting consent evidence."
       },
+      "ConversationPage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ConversationResponse"
+                }
+              ],
+              "description": "Describes conversation data returned by Leadping."
+            }
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "format": "int32"
+          },
+          "continuationToken": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "refreshAfter": {
+            "pattern": "^-?(\\d+\\.)?\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,7})?$",
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Time remaining until a scheduled action or contact window could change this page, measured on the server."
+          },
+          "needsReplyCount": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Visible unanswered conversations, capped at ReplyCountDisplayLimit + 1. Included on request.",
+            "format": "int32"
+          }
+        },
+        "description": "A page of inbox conversations with optional action counts and refresh timing."
+      },
       "ConversationResponse": {
         "type": "object",
         "properties": {
@@ -40649,6 +41044,37 @@
           "needsReply": {
             "type": "boolean",
             "description": "Whether a customer reply is awaiting a manual response or acknowledgement."
+          },
+          "inboxAction": {
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "The next action for a conversation, in inbox priority order.",
+            "format": "int32"
+          },
+          "inboxActionAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Customer reply time, due time, or request time explaining the action.",
+            "format": "date-time"
+          },
+          "callRetryAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Rep-selected time for the next call attempt.",
+            "format": "date-time"
           },
           "replyVersion": {
             "type": "integer",
@@ -40868,6 +41294,14 @@
               "string"
             ],
             "description": "The earliest callback or task time for the current status.",
+            "format": "date-time"
+          },
+          "callbackAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The promised callback time, independent of a general follow-up task.",
             "format": "date-time"
           },
           "id": {
@@ -51069,6 +51503,14 @@
         ],
         "type": "object",
         "properties": {
+          "replyVersion": {
+            "type": [
+              "null",
+              "integer"
+            ],
+            "description": "Version of the incoming conversation reply displayed to the agent when composing this response.",
+            "format": "int64"
+          },
           "smsEventId": {
             "type": [
               "null",
