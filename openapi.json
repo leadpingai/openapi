@@ -4267,6 +4267,507 @@
         }
       }
     },
+    "/automations/lead-audience": {
+      "get": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Counts the active leads selectable by the current user across the organization.",
+        "operationId": "Automations_GetLeadAudience",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/AutomationLeadAudience"
+                    }
+                  ],
+                  "description": "Active leads in the current organization, optionally limited to one assignee, as of the selection time."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/AutomationLeadAudience"
+                    }
+                  ],
+                  "description": "Active leads in the current organization, optionally limited to one assignee, as of the selection time."
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/AutomationLeadAudience"
+                    }
+                  ],
+                  "description": "Active leads in the current organization, optionally limited to one assignee, as of the selection time."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      }
+    },
+    "/automations/{id}/run-for-audience": {
+      "post": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Queues a bulk run for the authorized lead audience.",
+        "operationId": "Automations_RunForAudience",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AutomationAudienceRequest"
+                  }
+                ],
+                "description": "Runs an automation for a server-resolved audience, omitting leads the user unchecked."
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AutomationAudienceRequest"
+                  }
+                ],
+                "description": "Runs an automation for a server-resolved audience, omitting leads the user unchecked."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AutomationAudienceRequest"
+                  }
+                ],
+                "description": "Runs an automation for a server-resolved audience, omitting leads the user unchecked."
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "/automations/{id}/leads/{leadId}/run/{requestId}": {
+      "post": {
+        "tags": [
+          "Automations"
+        ],
+        "summary": "Queues a manual automation run for a lead. Reuse the request ID when retrying the same run.",
+        "operationId": "Automations_RunForLead",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "leadId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/AutomationRunRecord"
+                    }
+                  ],
+                  "description": "History record schema for Leadping API automation run record data exposed in automation and audit views."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/AutomationRunRecord"
+                    }
+                  ],
+                  "description": "History record schema for Leadping API automation run record data exposed in automation and audit views."
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/AutomationRunRecord"
+                    }
+                  ],
+                  "description": "History record schema for Leadping API automation run record data exposed in automation and audit views."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "acting",
+          "consequences": [
+            "physical"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": true
+          }
+        }
+      }
+    },
     "/blog": {
       "get": {
         "tags": [
@@ -38975,6 +39476,35 @@
         },
         "description": "History record schema for Leadping API automation action run record data exposed in automation and audit views."
       },
+      "AutomationAudienceRequest": {
+        "required": [
+          "audience",
+          "requestId",
+          "excludedLeadIds"
+        ],
+        "type": "object",
+        "properties": {
+          "audience": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AutomationLeadAudience"
+              }
+            ],
+            "description": "Active leads in the current organization, optionally limited to one assignee, as of the selection time."
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "excludedLeadIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Runs an automation for a server-resolved audience, omitting leads the user unchecked."
+      },
       "AutomationCondition": {
         "type": "object",
         "properties": {
@@ -39077,6 +39607,39 @@
           }
         },
         "description": "Recent persisted execution runs for an automation console."
+      },
+      "AutomationLeadAudience": {
+        "required": [
+          "organizationId",
+          "assignedToUserId",
+          "selectedAt",
+          "includeDemo",
+          "count"
+        ],
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "string"
+          },
+          "assignedToUserId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "selectedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "includeDemo": {
+            "type": "boolean"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "description": "Active leads in the current organization, optionally limited to one assignee, as of the selection time."
       },
       "AutomationLineage": {
         "type": "object",
@@ -39874,6 +40437,10 @@
           "enabled": {
             "type": "boolean",
             "description": "Indicates whether this automation table row is active and available in the Leadping API."
+          },
+          "canRunForLead": {
+            "type": "boolean",
+            "description": "Whether the current user can start this automation for a selected inbox lead."
           },
           "organizationId": {
             "type": [
@@ -41176,6 +41743,25 @@
           "leadId": {
             "type": "string",
             "description": "Lead ID associated with this inbox conversation."
+          },
+          "assignedToUserId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The lead assignee used for inbox audience selection."
+          },
+          "leadCreatedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "When the associated lead was created.",
+            "format": "date-time"
+          },
+          "leadEnabled": {
+            "type": "boolean",
+            "description": "Whether the associated lead is enabled for selection."
           },
           "firstName": {
             "type": [
@@ -52657,6 +53243,10 @@
             "type": "boolean",
             "description": "Whether to look up lead phone numbers during intake. When disabled, lookup is required before calling or texting."
           },
+          "normalizeIncomingData": {
+            "type": "boolean",
+            "description": "Whether to normalize capitalization in incoming lead names and cities."
+          },
           "automaticConsentValidation": {
             "type": "boolean",
             "description": "Whether to validate consent certificates during intake. Skipped validation leaves consent unverified."
@@ -52806,6 +53396,10 @@
           "automaticPhoneLookup": {
             "type": "boolean",
             "description": "Whether to look up lead phone numbers during intake. When disabled, lookup is required before calling or texting."
+          },
+          "normalizeIncomingData": {
+            "type": "boolean",
+            "description": "Whether to normalize capitalization in incoming lead names and cities."
           },
           "automaticConsentValidation": {
             "type": "boolean",
@@ -53005,6 +53599,10 @@
           "automaticPhoneLookup": {
             "type": "boolean",
             "description": "Whether lead phone numbers are looked up automatically during intake."
+          },
+          "normalizeIncomingData": {
+            "type": "boolean",
+            "description": "Whether to normalize capitalization in incoming lead names and cities."
           },
           "automaticConsentValidation": {
             "type": "boolean",
