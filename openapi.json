@@ -45144,6 +45144,10 @@
       "LeadResponse": {
         "type": "object",
         "properties": {
+          "hasSourceSmsConsent": {
+            "type": "boolean",
+            "description": "Whether the source covers SMS consent for the current recipient."
+          },
           "isDemo": {
             "type": "boolean",
             "description": "Whether this record belongs to demo data."
