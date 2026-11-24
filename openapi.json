@@ -662,7 +662,7 @@
           "Appointments"
         ],
         "summary": "Get an appointment.",
-        "description": "Returns an appointment and its history, subject to lead and organization access.",
+        "description": "Retrieve a callback appointment and its history by ID in Leadping. The signed-in user must have access to the associated lead and organization.",
         "operationId": "Appointments_Get",
         "parameters": [
           {
@@ -800,7 +800,7 @@
           "Appointments"
         ],
         "summary": "Update an appointment.",
-        "description": "Updates an appointment using the expected revision to detect concurrent changes.",
+        "description": "Edit an existing callback appointment in Leadping. Include the revision you last retrieved so the API can detect changes made since you viewed it.",
         "operationId": "Appointments_Update",
         "parameters": [
           {
@@ -995,7 +995,8 @@
         "tags": [
           "Appointments"
         ],
-        "summary": "Gets occupied appointment times for a lead's selected assignee.",
+        "summary": "Check booked times for a lead assignee",
+        "description": "Look up appointment times already booked for a lead’s selected assignee in Leadping before choosing a time for a new or rescheduled callback.",
         "operationId": "Appointments_BookedTimes",
         "parameters": [
           {
@@ -1135,7 +1136,7 @@
           "Appointments"
         ],
         "summary": "List appointments.",
-        "description": "Returns appointments visible to the current user, with optional lead, reminder, and status filters.",
+        "description": "List callback appointments the signed-in user can access in Leadping. Filter by lead, reminder, or appointment status to narrow the results.",
         "operationId": "Appointments_List",
         "parameters": [
           {
@@ -1299,7 +1300,7 @@
           "Appointments"
         ],
         "summary": "Create an appointment.",
-        "description": "Schedules a callback appointment for a lead and configures its assigned agent and reminder.",
+        "description": "Schedule a callback for a lead through the Leadping API. Set the appointment time, assign the agent responsible for the call, and configure its reminder.",
         "operationId": "Appointments_Create",
         "requestBody": {
           "description": "The appointment details to create.",
@@ -1484,7 +1485,7 @@
           "Appointments"
         ],
         "summary": "Complete an appointment.",
-        "description": "Marks an appointment as completed using the expected revision to detect concurrent changes.",
+        "description": "Mark a callback appointment as completed in Leadping. Supply the expected revision so the API can detect another user’s changes before recording completion.",
         "operationId": "Appointments_Complete",
         "parameters": [
           {
@@ -1681,7 +1682,7 @@
           "Appointments"
         ],
         "summary": "Cancel an appointment.",
-        "description": "Cancels an appointment and invalidates unsent reminders using the expected revision.",
+        "description": "Cancel a Leadping callback appointment and invalidate reminders that have yet to be sent. Include the expected revision to detect concurrent changes.",
         "operationId": "Appointments_Cancel",
         "parameters": [
           {
@@ -1878,7 +1879,7 @@
           "Appointments"
         ],
         "summary": "Dismiss an appointment reminder.",
-        "description": "Dismisses the reminder without completing the appointment, using the expected revision.",
+        "description": "Dismiss a callback reminder in Leadping while leaving the appointment open. Include the expected revision to apply the change to the reminder you reviewed.",
         "operationId": "Appointments_Dismiss",
         "parameters": [
           {
@@ -2075,7 +2076,7 @@
           "Appointments"
         ],
         "summary": "Snooze an appointment reminder.",
-        "description": "Defers the reminder for ten minutes without moving the appointment, using the expected revision.",
+        "description": "Delay a Leadping appointment reminder by ten minutes while keeping the callback time unchanged. Send the expected revision to detect conflicting updates.",
         "operationId": "Appointments_Snooze",
         "parameters": [
           {
@@ -4272,7 +4273,8 @@
         "tags": [
           "Automations"
         ],
-        "summary": "Counts the active leads selectable by the current user across the organization.",
+        "summary": "Count leads available for automation",
+        "description": "Check how many active leads the signed-in user can select across the organization before queuing a bulk automation run in Leadping.",
         "operationId": "Automations_GetLeadAudience",
         "responses": {
           "200": {
@@ -4421,6 +4423,7 @@
           "Automations"
         ],
         "summary": "Queues a bulk run for the authorized lead audience.",
+        "description": "Queue a Leadping automation for a group of leads in one request. The bulk run uses the lead audience the current user is authorized to select.",
         "operationId": "Automations_RunForAudience",
         "parameters": [
           {
@@ -4598,7 +4601,8 @@
         "tags": [
           "Automations"
         ],
-        "summary": "Queues a manual automation run for a lead. Reuse the request ID when retrying the same run.",
+        "summary": "Run an automation for one lead",
+        "description": "Queue a manual automation for a specific lead in Leadping. Reuse the same request ID if you retry so the retry refers to the original run.",
         "operationId": "Automations_RunForLead",
         "parameters": [
           {
@@ -5703,7 +5707,7 @@
         "tags": [
           "Conversations"
         ],
-        "summary": "Preview SMS or call sender readiness for an accessible conversation.",
+        "summary": "Check SMS and call readiness",
         "description": "Checks outbound sender readiness for an accessible conversation without sending a message or placing a call.",
         "operationId": "Conversations_GetOutboundReadiness",
         "parameters": [
@@ -6331,7 +6335,7 @@
         "tags": [
           "Conversations"
         ],
-        "summary": "Mark an accessible conversation as requiring a reply at the observed reply version.",
+        "summary": "Mark a conversation as needing a reply",
         "description": "Sets the reply requirement only at the observed reply version. Returns false if the reply version changed or the conversation is inaccessible.",
         "operationId": "Conversations_MarkReplyNeeded",
         "parameters": [
@@ -6789,7 +6793,8 @@
         "tags": [
           "Conversations"
         ],
-        "summary": "Updates the next manual call attempt if the observed retry time is still current.",
+        "summary": "Reschedule a manual call",
+        "description": "Set the next manual call time for a Leadping conversation. The update applies only if the retry time still matches the one you last saw.",
         "operationId": "Conversations_SetRetry",
         "parameters": [
           {
@@ -7663,8 +7668,8 @@
         "tags": [
           "Leads"
         ],
-        "summary": "Queues a fresh, billable phone identity lookup for an accessible lead.",
-        "description": "Queues a phone identity lookup for a lead visible to the current user and returns the lead after the lookup request is accepted.\nThe lookup runs asynchronously and incurs a charge.",
+        "summary": "Request a lead phone identity lookup",
+        "description": "Queue a new, billable phone identity lookup for a lead you can access. The API returns the lead once the request is accepted and runs the lookup asynchronously.",
         "operationId": "Leads_QueuePhoneLookupForCurrentUser",
         "parameters": [
           {
@@ -13373,6 +13378,7 @@
           "MessageTemplates"
         ],
         "summary": "Lists organization templates, including disabled templates.",
+        "description": "Retrieve your organization’s Leadping message templates in one request. The list includes enabled templates as well as templates that are currently disabled.",
         "operationId": "MessageTemplates_GetAll",
         "responses": {
           "200": {
@@ -13528,6 +13534,7 @@
           "MessageTemplates"
         ],
         "summary": "Creates a disabled organization template.",
+        "description": "Create a reusable message template for your Leadping organization. New templates start disabled, so you can review the message before enabling it.",
         "operationId": "MessageTemplates_Create",
         "requestBody": {
           "content": {
@@ -13710,7 +13717,8 @@
         "tags": [
           "MessageTemplates"
         ],
-        "summary": "Updates an organization template's name, message, and enabled state.",
+        "summary": "Edit an organization message template",
+        "description": "Update a Leadping message template by ID. Change its name or message text, or enable or disable the template for use in your organization.",
         "operationId": "MessageTemplates_Update",
         "parameters": [
           {
@@ -13902,6 +13910,7 @@
           "MessageTemplates"
         ],
         "summary": "Permanently deletes an organization template.",
+        "description": "Permanently remove a message template from your Leadping organization by ID. To keep the template for later use, disable it with the update endpoint.",
         "operationId": "MessageTemplates_Delete",
         "parameters": [
           {
@@ -15490,8 +15499,8 @@
         "tags": [
           "OutboundDelivery"
         ],
-        "summary": "Gets outbound capacity for a phone number in the current organization.",
-        "description": "Returns the phone number's outbound sending capacity based on current provider and Leadping state, including throttling and delivery eligibility.\nThe phone number must belong to the current organization.",
+        "summary": "Check outbound capacity by phone number",
+        "description": "Check outbound sending capacity for a phone number in your Leadping organization, including current throttling and eligibility for delivery.",
         "operationId": "OutboundDelivery_GetPhoneNumberCapacity",
         "parameters": [
           {
@@ -21009,7 +21018,8 @@
         "tags": [
           "Calls"
         ],
-        "summary": "Calls a number with the browser phone. For a new number, the caller confirms permission for manual voice contact and a lead is created.",
+        "summary": "Dial a number from the browser",
+        "description": "Place a call with the Leadping browser phone. For a new number, confirm permission for manual voice contact so Leadping can create the lead.",
         "operationId": "Calls_Dial",
         "parameters": [
           {
@@ -21204,6 +21214,7 @@
           "Calls"
         ],
         "summary": "Starts the next eligible call in the rep's filtered inbox.",
+        "description": "Start the next eligible call from a rep’s Leadping inbox. Supply the inbox filters so the next call comes from the leads in the rep’s current view.",
         "operationId": "Calls_InitiateNext",
         "parameters": [
           {
@@ -26114,7 +26125,7 @@
           "Telephony"
         ],
         "summary": "Get call availability",
-        "description": "Returns whether the authenticated user can currently receive an incoming call.",
+        "description": "Check whether the signed-in Leadping user can receive an incoming call right now. Use the result to show their current availability in a calling workflow.",
         "operationId": "Telephony_Availability",
         "responses": {
           "200": {
@@ -26725,6 +26736,7 @@
           "Invitations"
         ],
         "summary": "Decline with token",
+        "description": "Decline a Leadping organization invitation without signing in. Submit the token from the invitation link to identify the invite you want to decline.",
         "operationId": "Invitations_DeclineWithToken",
         "requestBody": {
           "content": {
@@ -26822,6 +26834,7 @@
           "Invitations"
         ],
         "summary": "Get",
+        "description": "List open, unexpired organization invitations for the signed-in recipient’s verified email address, or use an invitation token to look up one invite.",
         "operationId": "Invitations_Get",
         "parameters": [
           {
@@ -26988,6 +27001,7 @@
           "Invitations"
         ],
         "summary": "Accept",
+        "description": "Accept a pending organization invitation in Leadping. Sign in as the invited recipient and submit the invitation ID to join the organization.",
         "operationId": "Invitations_Accept",
         "parameters": [
           {
@@ -27114,6 +27128,7 @@
           "Invitations"
         ],
         "summary": "Decline",
+        "description": "Decline a pending Leadping organization invitation by ID while signed in as the recipient. Use this endpoint to turn down the invitation to join.",
         "operationId": "Invitations_Decline",
         "parameters": [
           {
@@ -28717,8 +28732,8 @@
         "tags": [
           "Organizations"
         ],
-        "summary": "Lists active organization users available for lead assignee filters.",
-        "description": "Returns distinct users in the current organization, ordered by name, for selecting lead assignees.",
+        "summary": "List active lead assignees",
+        "description": "Retrieve active users in the current Leadping organization for a lead assignee filter. Each user appears once, and results are ordered by name.",
         "operationId": "Organizations_GetCurrentOrganizationLeadAssignees",
         "responses": {
           "200": {
@@ -31327,7 +31342,7 @@
           "Organizations"
         ],
         "summary": "Delete an API key.",
-        "description": "Deletes the organization-owned API key without deleting the organization.\nThe operation enforces organization ownership or platform-admin authorization and returns state suitable for membership, billing, and support workflows.",
+        "description": "Delete an organization-owned Leadping API key while keeping the organization intact. The request requires organization ownership or platform admin access.",
         "operationId": "Organizations_DeleteApiKey",
         "parameters": [
           {
@@ -34820,7 +34835,7 @@
           "Events"
         ],
         "summary": "Updates an internal note authored by the current user.",
-        "description": "The event table row.",
+        "description": "Edit an internal note you authored in Leadping. Submit the revised note text and use the returned event row to display the updated entry in the timeline.",
         "operationId": "Events_UpdateNote",
         "parameters": [
           {
@@ -38010,7 +38025,7 @@
         "tags": [
           "Wallets"
         ],
-        "summary": "Gets the current organization's usage budgets and UTC progress.",
+        "summary": "Check usage budgets and UTC progress",
         "description": "Returns the current organization's daily and monthly usage limits in USD and its progress for the current UTC periods.",
         "operationId": "Wallets_GetSpendLimits",
         "responses": {
@@ -38179,8 +38194,8 @@
         "tags": [
           "Wallets"
         ],
-        "summary": "Updates the current organization's usage budgets. Null removes a budget.",
-        "description": "Sets the current organization's daily and monthly usage limits in USD and returns the updated limits and UTC progress.\nA null limit removes that budget; a zero limit stops new paid usage.",
+        "summary": "Set daily and monthly usage budgets",
+        "description": "Set daily and monthly usage budgets in USD for your Leadping organization. Use null to remove a limit or zero to stop new paid usage.",
         "operationId": "Wallets_SetSpendLimits",
         "requestBody": {
           "description": "The daily and monthly usage limits to apply.",
