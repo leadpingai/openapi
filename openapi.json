@@ -46969,6 +46969,13 @@
         ],
         "type": "object",
         "properties": {
+          "fromPhoneNumberId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The outgoing number selected in the dialer."
+          },
           "phoneNumber": {
             "type": "string",
             "description": "The destination phone number."
