@@ -5063,6 +5063,14 @@
               "type": "boolean",
               "default": false
             }
+          },
+          {
+            "name": "selectedConversationId",
+            "in": "query",
+            "description": "Optional selected thread to include when it still matches the priority inbox.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -41708,6 +41716,18 @@
               "description": "Describes conversation data returned by Leadping."
             }
           },
+          "selectedConversation": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConversationResponse"
+              }
+            ],
+            "description": "Describes conversation data returned by Leadping."
+          },
           "pageSize": {
             "type": "integer",
             "format": "int32"
@@ -41846,14 +41866,34 @@
               1,
               2,
               3,
-              4
+              4,
+              5
             ],
             "type": [
               "null",
               "integer"
             ],
-            "description": "The next action for a conversation, in inbox priority order.",
+            "description": "The reason a conversation appears in the priority inbox.",
             "format": "int32"
+          },
+          "priorityPreview": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "priorityLabel": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "lastAgentReplyAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
           },
           "inboxActionAt": {
             "type": [
@@ -54789,6 +54829,13 @@
               }
             ],
             "description": "Provides a compact API reference to another resource using its stable identifier and human-readable display name."
+          },
+          "messageEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Identifier of the message associated with an SMS or MMS usage entry."
           },
           "amount": {
             "type": "number",
