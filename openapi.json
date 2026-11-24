@@ -55794,6 +55794,10 @@
             "type": "boolean",
             "description": "Indicates whether low wallet balance SMS functionality is enabled for this Leadping user notification preferences."
           },
+          "walletDepletedSmsEnabled": {
+            "type": "boolean",
+            "description": "Text organization admins when their prepaid wallet runs out of funds."
+          },
           "tenDlcStatusEnabled": {
             "type": "boolean",
             "description": "Whether 10DLC status notifications are enabled for this user notification preferences."
