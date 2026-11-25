@@ -51055,21 +51055,6 @@
             "type": "string",
             "description": "The UTC timestamp when the lookup action occurred.",
             "format": "date-time"
-          },
-          "providerCostAmount": {
-            "type": [
-              "null",
-              "number"
-            ],
-            "description": "The provider cost incurred by this lookup action, in USD.",
-            "format": "double"
-          },
-          "providerPricingVersion": {
-            "type": [
-              "null",
-              "string"
-            ],
-            "description": "The provider pricing version used to calculate the lookup cost."
           }
         },
         "description": "An auditable lookup, enrichment, or reputation check performed for a phone identity."
@@ -51117,18 +51102,6 @@
               }
             ],
             "description": "Public Leadping API schema for phone lookup result data."
-          },
-          "providerEnrichment": {
-            "type": [
-              "null",
-              "object"
-            ],
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PhoneLookupProviderSnapshot"
-              }
-            ],
-            "description": "Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later."
           },
           "lastEnrichedAt": {
             "type": [
@@ -51487,34 +51460,6 @@
           }
         },
         "description": "Number-portability and routing data returned by Telnyx."
-      },
-      "PhoneLookupProviderSnapshot": {
-        "type": "object",
-        "properties": {
-          "provider": {
-            "type": "string",
-            "description": "The provider that supplied the phone lookup record."
-          },
-          "lookupType": {
-            "type": "string",
-            "description": "The provider lookup product or operation that produced this snapshot."
-          },
-          "schemaVersion": {
-            "type": "integer",
-            "description": "The Leadping schema version used to interpret the stored provider record.",
-            "format": "int32"
-          },
-          "retrievedAt": {
-            "type": "string",
-            "description": "The UTC timestamp when Leadping retrieved the provider record.",
-            "format": "date-time"
-          },
-          "rawRecordJson": {
-            "type": "string",
-            "description": "The complete provider response serialized as JSON for lossless audit and replay."
-          }
-        },
-        "description": "Lossless provider snapshot retained with a phone identity for replay, audits, and fields added by providers later."
       },
       "PhoneNumberAvailabilityRequest": {
         "required": [
@@ -55026,11 +54971,6 @@
             "description": "Monetary amount for this billing transaction or wallet operation.",
             "format": "double"
           },
-          "netAmount": {
-            "type": "number",
-            "description": "Net monetary amount after fees, credits, or adjustments.",
-            "format": "double"
-          },
           "billedAmount": {
             "type": "number",
             "description": "Customer-facing amount billed for the transaction.",
@@ -55086,28 +55026,12 @@
             ],
             "description": "Identifies the metered unit used to price Leadping usage, such as a message, call minute, lookup, or phone number."
           },
-          "gatewayFeeAmount": {
-            "type": [
-              "null",
-              "number"
-            ],
-            "description": "Payment gateway fee amount charged for the wallet transaction.",
-            "format": "double"
-          },
           "gatewayStatus": {
             "type": [
               "null",
               "string"
             ],
             "description": "Payment gateway status returned for this transaction."
-          },
-          "platformFeeAmount": {
-            "type": [
-              "null",
-              "number"
-            ],
-            "description": "Leadping platform fee amount included in the transaction.",
-            "format": "double"
           },
           "notes": {
             "type": [
@@ -55217,11 +55141,6 @@
           "amount": {
             "type": "number",
             "description": "Monetary amount for this billing transaction or wallet operation.",
-            "format": "double"
-          },
-          "netAmount": {
-            "type": "number",
-            "description": "Net monetary amount after fees, credits, or adjustments.",
             "format": "double"
           },
           "billedAmount": {
