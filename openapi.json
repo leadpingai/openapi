@@ -43840,7 +43840,7 @@
               "null",
               "string"
             ],
-            "description": "Name of the automation when it started."
+            "description": "Name of the automation associated with this event."
           },
           "summary": {
             "type": [
@@ -55875,6 +55875,10 @@
       "UserNotificationPreferences": {
         "type": "object",
         "properties": {
+          "incomingMessageSoundEnabled": {
+            "type": "boolean",
+            "description": "Play a sound in the Portal when an incoming text message arrives."
+          },
           "positiveSentimentEnabled": {
             "type": "boolean",
             "description": "Send push alerts when a lead's first text reply has positive sentiment."
