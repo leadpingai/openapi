@@ -45971,7 +45971,7 @@
         "properties": {
           "hasSourceSmsConsent": {
             "type": "boolean",
-            "description": "Whether the source covers SMS consent for the current recipient."
+            "description": "Whether the source provides consent for manual quote calls and manual or automated quote texts to this recipient."
           },
           "isDemo": {
             "type": "boolean",
