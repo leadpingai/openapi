@@ -40635,6 +40635,16 @@
             "type": "boolean",
             "description": "Indicates whether this automation table row is active and available in the Leadping API."
           },
+          "enrolledLeadCount": {
+            "type": "integer",
+            "description": "Distinct leads with an unfinished workflow in this automation.",
+            "format": "int32"
+          },
+          "waitingLeadCount": {
+            "type": "integer",
+            "description": "Enrolled leads with at least one waiting or scheduled workflow.",
+            "format": "int32"
+          },
           "canRunForLead": {
             "type": "boolean",
             "description": "Whether the current user can start this automation for a selected inbox lead."
