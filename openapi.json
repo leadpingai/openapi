@@ -21362,6 +21362,154 @@
         }
       }
     },
+    "/phone-call/budget": {
+      "get": {
+        "tags": [
+          "Calls"
+        ],
+        "summary": "Checks whether wallet credit and spending limits allow the current organization to start a call.",
+        "operationId": "Calls_GetBudget",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CallBudgetResponse"
+                    }
+                  ],
+                  "description": "Describes a restriction on starting a call, including the calendar reset when applicable."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CallBudgetResponse"
+                    }
+                  ],
+                  "description": "Describes a restriction on starting a call, including the calendar reset when applicable."
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CallBudgetResponse"
+                    }
+                  ],
+                  "description": "Describes a restriction on starting a call, including the calendar reset when applicable."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication credentials are missing or invalid.",
+            "headers": {
+              "WWW-Authenticate": {
+                "description": "Bearer authentication challenge returned when credentials are missing or invalid.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Unauthorized",
+                  "status": 401,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The authenticated user or organization does not have permission to perform this operation.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Forbidden",
+                  "status": 403,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The API rate limit for this account or client has been exceeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "Number of seconds to wait before retrying the request.",
+                "schema": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ProblemDetails"
+                    }
+                  ],
+                  "description": "Standard problem-details response containing machine-readable and human-readable information about an HTTP API error."
+                },
+                "example": {
+                  "type": "about:blank",
+                  "title": "Too Many Requests",
+                  "status": 429,
+                  "detail": "The request could not be completed."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ],
+        "x-agentic-access": {
+          "action-class": "connected",
+          "consequences": [
+            "read"
+          ],
+          "subject": {
+            "required": true
+          },
+          "authorization": {
+            "source": "OpenAPI security requirements",
+            "audience": "https://api.leadping.ai"
+          },
+          "audit": {
+            "recommended": false
+          }
+        }
+      }
+    },
     "/phone-call/dial/{requestId}": {
       "post": {
         "tags": [
@@ -38375,7 +38523,7 @@
           "Wallets"
         ],
         "summary": "Check usage budgets and UTC progress",
-        "description": "Returns the current organization's daily and monthly usage limits in USD and its progress for the current UTC periods.",
+        "description": "Returns organization and channel budgets and usage in the current UTC periods.",
         "operationId": "Wallets_GetSpendLimits",
         "responses": {
           "200": {
@@ -38543,11 +38691,11 @@
         "tags": [
           "Wallets"
         ],
-        "summary": "Set daily and monthly usage budgets",
-        "description": "Set daily and monthly usage budgets in USD for your Leadping organization. Use null to remove a limit or zero to stop new paid usage.",
+        "summary": "Set organization and channel usage budgets",
+        "description": "Set organization and channel usage budgets in USD for your Leadping organization. Use null to remove a limit or zero to stop new paid usage.",
         "operationId": "Wallets_SetSpendLimits",
         "requestBody": {
-          "description": "The daily and monthly usage limits to apply.",
+          "description": "Organization and channel limits.",
           "content": {
             "application/json": {
               "schema": {
@@ -41686,6 +41834,25 @@
         },
         "description": "Server-approved parameters for one outbound browser call."
       },
+      "CallBudgetResponse": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "resetsAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          }
+        },
+        "description": "Describes a restriction on starting a call, including the calendar reset when applicable."
+      },
       "CallEventTableRow": {
         "type": "object",
         "properties": {
@@ -44270,6 +44437,10 @@
               "string"
             ],
             "description": "Reason Leadping scheduled this delivery for a later time."
+          },
+          "isBudgetDelayed": {
+            "type": "boolean",
+            "description": "Whether the scheduled send is waiting for spending capacity to reset."
           },
           "canceledAt": {
             "type": [
@@ -52880,6 +53051,10 @@
             ],
             "description": "Reason Leadping scheduled this delivery for a later time."
           },
+          "isBudgetDelayed": {
+            "type": "boolean",
+            "description": "Whether the scheduled send is waiting for spending capacity to reset."
+          },
           "sendingStartedAt": {
             "type": [
               "null",
@@ -53330,6 +53505,10 @@
               "string"
             ],
             "description": "Reason Leadping scheduled this delivery for a later time."
+          },
+          "isBudgetDelayed": {
+            "type": "boolean",
+            "description": "Whether the scheduled send is waiting for spending capacity to reset."
           },
           "sendingStartedAt": {
             "type": [
@@ -53999,6 +54178,38 @@
       "SpendLimitsRequest": {
         "type": "object",
         "properties": {
+          "textingLimit": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "description": "Optional texting budget in USD.",
+            "format": "double"
+          },
+          "textingPeriod": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpendPeriod"
+              }
+            ],
+            "description": "Calendar period for an organization channel budget, in UTC."
+          },
+          "callingLimit": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "description": "Optional calling budget in USD.",
+            "format": "double"
+          },
+          "callingPeriod": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpendPeriod"
+              }
+            ],
+            "description": "Calendar period for an organization channel budget, in UTC."
+          },
           "dailyLimit": {
             "type": [
               "null",
@@ -54021,6 +54232,48 @@
       "SpendLimitsResponse": {
         "type": "object",
         "properties": {
+          "textingLimit": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "description": "Optional texting budget in USD.",
+            "format": "double"
+          },
+          "textingPeriod": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpendPeriod"
+              }
+            ],
+            "description": "Calendar period for an organization channel budget, in UTC."
+          },
+          "callingLimit": {
+            "type": [
+              "null",
+              "number"
+            ],
+            "description": "Optional calling budget in USD.",
+            "format": "double"
+          },
+          "callingPeriod": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpendPeriod"
+              }
+            ],
+            "description": "Calendar period for an organization channel budget, in UTC."
+          },
+          "textingUsed": {
+            "type": "number",
+            "description": "Settled texting charges this period plus pending texting reservations.",
+            "format": "double"
+          },
+          "callingUsed": {
+            "type": "number",
+            "description": "Settled calling charges this period plus pending calling reservations.",
+            "format": "double"
+          },
           "dailyLimit": {
             "type": [
               "null",
@@ -54064,6 +54317,15 @@
           }
         },
         "description": "UTC calendar usage budgets, settled spend, and pending usage reservations in USD."
+      },
+      "SpendPeriod": {
+        "enum": [
+          "day",
+          "week",
+          "month"
+        ],
+        "type": "string",
+        "description": "Calendar period for an organization channel budget, in UTC."
       },
       "StreetAddress": {
         "type": "object",
